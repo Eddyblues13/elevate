@@ -39,4 +39,15 @@
                     </div>
 
                     <!-- Submit Button -->
-                    <button type="submit" class="w-full bg-[#04b3e1] hover:bg-[#039bc2] text-white font-bold py-4 rounded-lg shadow-md hover:shadow-lg tr
+                    <button type="submit" class="w-full bg-[#04b3e1] hover:bg-[#039bc2] text-white font-bold py-4 rounded-lg shadow-md hover:shadow-lg transition-all transform hover:-translate-y-0.5">
+                        Send Message
+                    </button>
+
+                </form>
+            </div>
+
+        </div>
+    </div>
+</main>
+
+@include('home.footer')
