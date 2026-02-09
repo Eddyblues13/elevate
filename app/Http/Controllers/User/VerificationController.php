@@ -216,6 +216,7 @@ class VerificationController extends Controller
             return response()->json([
                 'success' => true,
                 'message' => 'Address verification submitted successfully. It will be reviewed shortly.',
+                'redirect' => route('home'),
                 'data' => $verification
             ]);
         } catch (\Exception $e) {

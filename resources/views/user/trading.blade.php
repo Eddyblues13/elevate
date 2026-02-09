@@ -145,27 +145,40 @@
     let tradingViewWidget = null;
     
     document.addEventListener('DOMContentLoaded', function() {
-        initializeTradingView('ZRXUSD');
-        updatePriceLevels('ZRXUSD');
+        const symbol = 'ZRXUSD'; // Default symbol
+        initializeTradingView(symbol);
+        updatePriceLevels(symbol);
         
         // Simulate price updates (in a real app, use WebSocket)
         setInterval(updatePrices, 3000);
     });
+    
+    // Listen for theme changes to update the chart
+    window.addEventListener('themeChanged', function(e) {
+        const symbol = document.querySelector('.asset-pair').value;
+        initializeTradingView(symbol);
+    });
 
     function initializeTradingView(symbol) {
         if(tradingViewWidget !== null) {
-            tradingViewWidget.remove();
+            // TradingView widget doesn't have a simple remove() method in all versions, 
+            // but we can clear the container
+            document.getElementById('tradingview-chart').innerHTML = '';
         }
         
-        tradingViewWidget = new TradingView.widget({
+        const isDark = document.documentElement.classList.contains('dark');
+        const theme = isDark ? 'dark' : 'light';
+        const toolbarBg = isDark ? '#1a1f2b' : '#f1f3f6';
+        
+        new TradingView.widget({
             "autosize": true,
             "symbol": `BINANCE:${symbol}`,
             "interval": "1",
             "timezone": "Etc/UTC",
-            "theme": "dark",
+            "theme": theme,
             "style": "1",
             "locale": "en",
-            "toolbar_bg": "#f1f3f6",
+            "toolbar_bg": toolbarBg,
             "enable_publishing": false,
             "hide_top_toolbar": true,
             "hide_side_toolbar": true,
@@ -313,6 +326,9 @@
         flex-direction: column;
         justify-content: space-between;
         padding: 10px;
-        background: rgba(0, 0, 0, 0.5);
+        background: var(--card-bg); /* Use theme variable */
+        opacity: 0.8;
+        color: var(--text-color);
+        pointer-events: none; /* Allow clicking through to chart if needed */
     }
 </style>

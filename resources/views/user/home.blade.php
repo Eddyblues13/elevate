@@ -218,9 +218,9 @@
         </div>
 
         <div class="col-md-6 col-12">
-            <div class="trades-card">
+            <div class="trades-card h-100">
                 <!-- Toggle Buttons -->
-                <div class="trades-toggle px-5">
+                <div class="trades-toggle px-3 px-md-5 pt-3">
                     <button class="toggle-button active" data-type="closed">
                         <span>
                             <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
@@ -245,57 +245,63 @@
                 </div>
 
                 <!-- Open Trades -->
-                <div id="opentrades">
+                <div id="opentrades" class="pb-3 px-2">
                     @forelse($openTrades as $trade)
-                    <div class="asset-card mt-3">
-                        <div class="date-section">
+                    <div class="asset-card mt-3 d-flex align-items-center p-2 border rounded theme-card-bg">
+                        <div class="date-section text-center me-3" style="min-width: 50px;">
                             <div class="month fs-6 fw-bold text-header">{{ $trade->entry_date->format('M') }}</div>
-                            <div class="day fs-2 text-header">{{ $trade->entry_date->format('d') }}</div>
+                            <div class="day fs-3 text-header">{{ $trade->entry_date->format('d') }}</div>
                         </div>
-                        <img src="{{ $trade->symbol_icon }}" alt="{{ $trade->symbol }}" class="asset-icon bg-primary">
-                        <div class="asset-info">
-                            <div class="staked-section">
-                                <div class="section-label">{{ strtoupper($trade->direction) }} {{
-                                    $trade->formattedAmount }}
-                                    {{ $trade->symbol }}</div>
-                                <div class="crypto-amount">{{ $trade->trader_name ?? 'N/A' }}</div>
+                        <img src="{{ $trade->symbol_icon }}" alt="{{ $trade->symbol }}" class="asset-icon bg-primary rounded-circle me-3" style="width: 40px; height: 40px;">
+                        <div class="asset-info flex-grow-1">
+                            <div class="d-flex justify-content-between align-items-center mb-1">
+                                <div class="section-label fw-bold text-header">{{ strtoupper($trade->direction) }} {{ $trade->formattedAmount }} {{ $trade->symbol }}</div>
+                                <div class="usd-value fw-bold {{ $trade->profit >= 0 ? 'text-success' : 'text-danger' }}">
+                                    {{ $trade->formattedProfit }}
+                                </div>
                             </div>
-                            <div class="usd-value {{ $trade->profit >= 0 ? 'text-success' : 'text-danger' }}">
-                                {{ $trade->formattedProfit }}
-                            </div>
+                            <div class="crypto-amount small text-muted">{{ $trade->trader_name ?? 'N/A' }}</div>
                         </div>
                     </div>
                     @empty
-                    <div class="no-trades d-flex justify-content-center align-items-center">
-                        NO OPEN TRADES
+                    <div class="no-trades d-flex justify-content-center align-items-center flex-column py-5 text-header h-100">
+                        <div class="mb-3">
+                             <svg xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px" fill="currentColor" class="opacity-50">
+                                <path d="M440-280h80v-240h-80v240Zm40-320q17 0 28.5-11.5T520-640q0-17-11.5-28.5T480-680q-17 0-28.5 11.5T440-640q0 17 11.5 28.5T480-600Zm0 520q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/>
+                            </svg>
+                        </div>
+                        <span class="fs-5">NO OPEN TRADES</span>
                     </div>
                     @endforelse
                 </div>
 
                 <!-- Closed Trades -->
-                <div id="closetrades" style="display: none;">
+                <div id="closetrades" style="display: none;" class="pb-3 px-2">
                     @forelse($closedTrades as $trade)
-                    <div class="asset-card mt-3">
-                        <div class="date-section">
+                    <div class="asset-card mt-3 d-flex align-items-center p-2 border rounded theme-card-bg">
+                        <div class="date-section text-center me-3" style="min-width: 50px;">
                             <div class="month fs-6 fw-bold text-header">{{ $trade->exit_date->format('M') }}</div>
-                            <div class="day fs-2 text-header">{{ $trade->exit_date->format('d') }}</div>
+                            <div class="day fs-3 text-header">{{ $trade->exit_date->format('d') }}</div>
                         </div>
-                        <img src="{{ $trade->symbol_icon }}" alt="{{ $trade->symbol }}" class="asset-icon bg-primary">
-                        <div class="asset-info">
-                            <div class="staked-section">
-                                <div class="section-label">{{ strtoupper($trade->direction) }} {{
-                                    $trade->formattedAmount }}
-                                    {{ $trade->symbol }}</div>
-                                <div class="crypto-amount">{{ $trade->trader_name ?? 'N/A' }}</div>
+                        <img src="{{ $trade->symbol_icon }}" alt="{{ $trade->symbol }}" class="asset-icon bg-primary rounded-circle me-3" style="width: 40px; height: 40px;">
+                        <div class="asset-info flex-grow-1">
+                            <div class="d-flex justify-content-between align-items-center mb-1">
+                                <div class="section-label fw-bold text-header">{{ strtoupper($trade->direction) }} {{ $trade->formattedAmount }} {{ $trade->symbol }}</div>
+                                <div class="usd-value fw-bold {{ $trade->profit >= 0 ? 'text-success' : 'text-danger' }}">
+                                    {{ $trade->formattedProfit }}
+                                </div>
                             </div>
-                            <div class="usd-value {{ $trade->profit >= 0 ? 'text-success' : 'text-danger' }}">
-                                {{ $trade->formattedProfit }}
-                            </div>
+                            <div class="crypto-amount small text-muted">{{ $trade->trader_name ?? 'N/A' }}</div>
                         </div>
                     </div>
                     @empty
-                    <div class="no-trades d-flex justify-content-center align-items-center">
-                        NO CLOSED TRADES
+                    <div class="no-trades d-flex justify-content-center align-items-center flex-column py-5 text-header h-100">
+                        <div class="mb-3">
+                             <svg xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px" fill="currentColor" class="opacity-50">
+                                <path d="M440-280h80v-240h-80v240Zm40-320q17 0 28.5-11.5T520-640q0-17-11.5-28.5T480-680q-17 0-28.5 11.5T440-640q0 17 11.5 28.5T480-600Zm0 520q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/>
+                            </svg>
+                        </div>
+                        <span class="fs-5">NO CLOSED TRADES</span>
                     </div>
                     @endforelse
                 </div>

@@ -36,48 +36,260 @@ window.smartsupp||(function(d) {
     </script>
     <noscript> Powered by <a href=“https://www.smartsupp.com” target=“_blank”>Smartsupp</a></noscript>
 
+    <!-- Theme Scripts & Styles -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            corePlugins: { preflight: false },
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: { 'signika': ["Signika Negative", "sans-serif"] }
+                }
+            }
+        }
+    </script>
+    <style>
+        :root {
+            --bg-color: #E6F3FD;
+            --text-color: #4a4a4a;
+            --heading-color: #000000;
+            --card-bg: #ffffff;
+            --sidebar-bg: #ffffff;
+            --sidebar-text: #02194a;
+            --nav-bg: #ffffff;
+            --border-color: #dbdcdf;
+            --input-bg: #f3f4f6;
+            --input-text: #1a1f2b;
+        }
+
+        .dark {
+            --bg-color: #000000;
+            --text-color: #a5bdd9;
+            --heading-color: #ffffff;
+            --card-bg: #1a1f2b;
+            --sidebar-bg: #000000;
+            --sidebar-text: #ffffff;
+            --nav-bg: #1a1f2b;
+            --border-color: #363c4e;
+            --input-bg: #1a1f2b;
+            --input-text: #ffffff;
+        }
+
+        /* Override Default Styles with Variables */
+        body {
+            background-color: var(--bg-color) !important;
+            color: var(--text-color) !important;
+        }
+
+        .text-white {
+            color: var(--heading-color) !important;
+        }
+        
+        /* Sidebar Overrides */
+        .sidebar {
+            background: var(--sidebar-bg) !important;
+            border-right: 1px solid var(--border-color);
+        }
+        
+        .nav-section-title {
+            background: var(--sidebar-bg) !important;
+            color: var(--sidebar-text) !important;
+        }
+
+        .nav-section .nav-link {
+            color: var(--sidebar-text) !important;
+        }
+
+        .nav-section-title span, .nav-section-title svg, .nav-section-title a {
+             color: var(--sidebar-text) !important;
+             fill: var(--sidebar-text) !important;
+        }
+
+        /* Top Nav Overrides */
+        .top-nav {
+            background-color: var(--nav-bg) !important;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .top-nav .text-white, .top-nav a {
+            color: var(--heading-color) !important;
+        }
+
+        /* Card Overrides */
+        .dashboard-balance-card, 
+        .ref-balance-card,
+        .trades-card,
+        .pricing-card,
+        .deposit-card,
+        .transaction-card,
+        .no-transaction-card,
+        .fund-card,
+        .fund-same-card,
+        .pay-crypto-payment-card,
+        .withdraw-card,
+        .coin-card,
+        .notification {
+            background-color: var(--card-bg) !important;
+            color: var(--text-color) !important;
+            border: 1px solid var(--border-color);
+        }
+        
+        /* Ensure Balance Card Text is Always White */
+        .dashboard-balance-card, .dashboard-balance-card .dashboard-balance-label, .dashboard-balance-card .dashboard-balance-amount, .dashboard-balance-card .signal-label {
+             color: white !important;
+        }
+
+        .usd-amount, .payment-description, .status, .instruction, .wallet-address, .text-silverish, .deposit-description, .no-trades {
+            color: var(--text-color) !important;
+        }
+
+        .no-trades {
+            margin-top: 50px;
+        }
+
+        .amount, .plan-name, .feature-item, .payment-title, .heading, .send-amount, .timer {
+            color: var(--heading-color) !important;
+        }
+
+        /* Input Overrides */
+        .amount-input, .select-account {
+             background-color: var(--input-bg) !important;
+             color: var(--input-text) !important;
+             border: 1px solid var(--border-color) !important;
+        }
+
+        /* Trades Toggle */
+        .trades-toggle {
+            background-color: var(--card-bg) !important;
+        }
+        .trades-toggle button {
+             color: var(--text-color) !important;
+        }
+        .trades-toggle button.active {
+             color: var(--heading-color) !important;
+             border-bottom: 2px solid #0d6efd;
+        }
+
+        /* Mobile Menu Button */
+        .mobile-menu {
+            color: var(--heading-color) !important;
+        }
+
+        /* Bottom Nav */
+        .bottom-nav {
+            background-color: var(--nav-bg) !important;
+            border-top: 1px solid var(--border-color);
+        }
+        .bottom-nav .nav-item {
+             color: var(--text-color) !important;
+        }
+        .bottom-nav .nav-item.active {
+             color: #0d6efd !important;
+        }
+        .bottom-nav svg {
+            fill: var(--text-color) !important;
+        }
+        .bottom-nav .nav-item.active svg {
+            fill: #0d6efd !important;
+        }
+
+        /* Text Header */
+        .text-header {
+            color: var(--heading-color) !important;
+        }
+
+    </style>
+    <script>
+        // Check local storage and apply theme immediately
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+
+        function toggleTheme() {
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                localStorage.theme = 'light';
+                updateThemeButton('Light');
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.theme = 'dark';
+                updateThemeButton('Dark');
+            }
+            
+            // Dispatch event for components to react
+            window.dispatchEvent(new CustomEvent('themeChanged', { detail: { theme: localStorage.theme } }));
+        }
+
+        function updateThemeButton(mode) {
+            const btnText = document.getElementById('theme-toggle-text');
+            const icon = document.getElementById('theme-toggle-icon');
+            
+            if (mode === 'Dark') {
+                btnText.innerText = 'Light Mode';
+                // Moon icon
+                icon.innerHTML = '<path d="M480-120q-150 0-255-105T120-480q0-150 105-255t255-105q14 0 27.5 1t26.5 3q-41 29-65.5 75.5T444-660q0 90 63 153t153 63q55 0 101-24.5t75-65.5q2 13 3 26.5t1 27.5q0 150-105 255T480-120Zm0-80q88 0 158-48.5T740-375q-20 5-40 8t-40 3q-123 0-209.5-86.5T364-660q0-20 3-40t8-40q-78 32-126.5 102T200-480q0 116 82 198t198 82Zm-10-270Z"/>';
+            } else {
+                btnText.innerText = 'Dark Mode';
+                // Sun icon
+                icon.innerHTML = '<path d="M480-360q50 0 85-35t35-85q0-50-35-85t-85-35q-50 0-85 35t-35 85q0 50 35 85t85 35Zm-.23 72Q400-288 344-344.23q-56-56.22-56-136Q288-560 344.23-616q56.22-56 136-56Q560-672 616-615.77q56 56.22 56 136Q672-400 615.77-344q-56.22 56-136 56ZM216-444H48v-72h168v72Zm696 0H744v-72h168v72ZM444-744v-168h72v168h-72Zm0 696v-168h72v168h-72ZM269-642 166-742l51-55 102 104-50 51Zm474 475L642-268l49-51 103 101-51 51ZM640-691l102-101 51 49-100 103-53-51ZM163-217l105-99 49 47-98 104-56-52Zm317-263Z"/>';
+            }
+        }
+
+        // Initialize button text on load
+        document.addEventListener('DOMContentLoaded', () => {
+            if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+               updateThemeButton('Dark');
+            } else {
+               updateThemeButton('Light');
+            }
+        });
+    </script>
 </head>
 
 <body>
     <!-- Top Navigation -->
     <div class="top-nav">
-        <div class="d-flex">
-            <button class="btn mobile-menu text-white" type="button" data-bs-toggle="offcanvas"
+        <div class="d-flex align-items-center">
+            <button class="btn mobile-menu me-2" type="button" data-bs-toggle="offcanvas"
                 data-bs-target="#sidebar" aria-controls="sidebarMenu">
-                <i class="bi bi-list"></i>
+                <i class="bi bi-list fs-4"></i>
             </button>
-            <div class="mt-1"><a href="#" class="text-decoration-none text-white">Linit Capital Pro</a></div>
+            <div class="mt-1"><a href="#" class="text-decoration-none text-white fw-bold fs-5">Legacy Capital Pro</a></div>
         </div>
 
-        <div>{{Auth::user()->first_name}}
+        <div class="text-white d-flex align-items-center gap-2">
+            <img src="{{ Auth::user()->profile_photo_url ? asset(Auth::user()->profile_photo_url) : asset('assets/img/human.png') }}" class="rounded-circle" width="32" height="32" alt="Profile">
+            <span class="d-none d-md-block">{{Auth::user()->first_name}}</span>
         </div>
     </div>
 
     <!-- Sidebar -->
     <div class="sidebar offcanvas offcanvas-start" tabindex="-1" id="sidebar" data-bs-scroll="true"
         data-bs-backdrop="false">
-        <div class="profile-section mb-0 d-flex">
-            <div class="d-block align-items-center text-center gap-3">
-                <div class="profile-image py-4"><img
+        <div class="profile-section mb-0 d-flex flex-column align-items-center justify-content-center border-bottom border-light border-opacity-10">
+            <div class="d-block align-items-center text-center gap-3 w-100">
+                <div class="d-flex justify-content-end p-2">
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="profile-image py-2"><img
                         src="{{ Auth::user()->profile_photo_url ? asset(Auth::user()->profile_photo_url) : asset('assets/img/human.png') }}"
-                        alt=""></div>
-                <div>
-                    <div class="fw-bold text-white">{{Auth::user()->first_name}}
-                        {{Auth::user()->last_name}}</div>
+                        alt="" class="border border-2 border-white"></div>
+                <div class="mb-3">
+                    <div class="fw-bold text-white fs-5">{{Auth::user()->first_name}} {{Auth::user()->last_name}}</div>
+                    <div class="small text-white opacity-75">{{Auth::user()->email}}</div>
                 </div>
             </div>
-
-            <button type="button" class="btn-close mt-4 ms-4" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
 
         <!-- Theme Section -->
-        <div class="nav-section mt-0">
-            <div class="nav-section-title">
-                <svg xmlns="http://www.w3.org/2000/svg" height="23px" viewBox="0 -960 960 960" width="23px" fill="#fff">
-                    <path
-                        d="M480-360q50 0 85-35t35-85q0-50-35-85t-85-35q-50 0-85 35t-35 85q0 50 35 85t85 35Zm-.23 72Q400-288 344-344.23q-56-56.22-56-136Q288-560 344.23-616q56.22-56 136-56Q560-672 616-615.77q56 56.22 56 136Q672-400 615.77-344q-56.22 56-136 56ZM216-444H48v-72h168v72Zm696 0H744v-72h168v72ZM444-744v-168h72v168h-72Zm0 696v-168h72v168h-72ZM269-642 166-742l51-55 102 104-50 51Zm474 475L642-268l49-51 103 101-51 51ZM640-691l102-101 51 49-100 103-53-51ZM163-217l105-99 49 47-98 104-56-52Zm317-263Z" />
+        <div class="nav-section mt-2 cursor-pointer" onclick="toggleTheme()" style="cursor: pointer;">
+            <div class="nav-section-title d-flex align-items-center">
+                <svg id="theme-toggle-icon" xmlns="http://www.w3.org/2000/svg" height="23px" viewBox="0 -960 960 960" width="23px" fill="currentColor">
+                    <path d="M480-360q50 0 85-35t35-85q0-50-35-85t-85-35q-50 0-85 35t-35 85q0 50 35 85t85 35Zm-.23 72Q400-288 344-344.23q-56-56.22-56-136Q288-560 344.23-616q56.22-56 136-56Q560-672 616-615.77q56 56.22 56 136Q672-400 615.77-344q-56.22 56-136 56ZM216-444H48v-72h168v72Zm696 0H744v-72h168v72ZM444-744v-168h72v168h-72Zm0 696v-168h72v168h-72ZM269-642 166-742l51-55 102 104-50 51Zm474 475L642-268l49-51 103 101-51 51ZM640-691l102-101 51 49-100 103-53-51ZM163-217l105-99 49 47-98 104-56-52Zm317-263Z" />
                 </svg>
-                <span class="px-2">Light</span>
+                <span class="px-2" id="theme-toggle-text">Dark Mode</span>
             </div>
         </div>
 

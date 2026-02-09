@@ -1,178 +1,278 @@
-<!DOCTYPE html>
-<html lang="en">
+@section('title', 'Email Verification - RegentMarkets')
+@include('home.header')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Linit Capital Pro - Email Verification</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto+Slab:wght@100..900&family=Sahitya:wght@400;700&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-    <style>
-        body {
-            background-color: #000000;
-            color: white;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            font-family: "Poppins", serif;
-            font-weight: 400;
-            font-style: normal;
+<style>
+    .verify-main {
+        background-color: #E6F3FD;
+        min-height: calc(100vh - 200px);
+        padding: 40px 20px;
+    }
+
+    .dark .verify-main {
+        background-color: #0b1118;
+    }
+
+    .verify-container {
+        max-width: 900px;
+        margin: 0 auto;
+    }
+
+    .verify-title {
+        font-size: 1.75rem;
+        font-weight: 700;
+        color: #1a1f2b;
+        margin-bottom: 12px;
+        text-align: center;
+    }
+
+    .dark .verify-title {
+        color: #ffffff;
+    }
+
+    .verify-subtitle {
+        font-size: 0.9rem;
+        color: #6b7280;
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    .dark .verify-subtitle {
+        color: #a5bdd9;
+    }
+
+    .verify-cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 24px;
+    }
+
+    .verify-box {
+        background: #ffffff;
+        padding: 32px;
+        border-radius: 12px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        border: 1px solid #e5e7eb;
+    }
+
+    .dark .verify-box {
+        background: #0b1118;
+        border-color: #363c4e;
+    }
+
+    .box-title {
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: #04b3e1;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-label {
+        display: block;
+        color: #6b7280;
+        font-size: 0.8rem;
+        margin-bottom: 6px;
+        font-weight: 400;
+    }
+
+    .dark .form-label {
+        color: #a5bdd9;
+    }
+
+    .verify-form-input {
+        width: 100%;
+        padding: 12px 14px;
+        border: 1px solid #d1d5db;
+        border-radius: 6px;
+        background: #ffffff;
+        font-size: 0.9rem;
+        color: #1a1f2b;
+        font-family: inherit;
+        box-sizing: border-box;
+    }
+
+    .dark .verify-form-input {
+        background: #1e293b;
+        border-color: #363c4e;
+        color: #ffffff;
+    }
+
+    .verify-form-input:focus {
+        outline: none;
+        border-color: #04b3e1;
+    }
+
+    .verify-form-input[readonly] {
+        background: #f3f4f6;
+        cursor: not-allowed;
+    }
+
+    .dark .verify-form-input[readonly] {
+        background: #2d3748;
+    }
+
+    .verify-btn {
+        display: block;
+        width: 100%;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 8px;
+        background: #04b3e1;
+        color: white;
+        font-size: 0.9rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background 0.3s;
+        font-family: inherit;
+        margin-bottom: 12px;
+        text-align: center;
+        text-decoration: none;
+    }
+
+    .verify-btn:hover {
+        background: #039bc2;
+        color: white;
+    }
+
+    .skip-btn {
+        display: block;
+        width: 100%;
+        padding: 12px 20px;
+        border: 1px solid #04b3e1;
+        border-radius: 8px;
+        background: transparent;
+        color: #04b3e1;
+        font-size: 0.9rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s;
+        font-family: inherit;
+        margin-bottom: 12px;
+    }
+
+    .skip-btn:hover {
+        background: rgba(4, 179, 225, 0.1);
+    }
+
+    .logout-btn {
+        display: block;
+        width: 50%;
+        margin: 20px auto 0;
+        padding: 10px 20px;
+        border: 1px solid #04b3e1;
+        border-radius: 8px;
+        background: transparent;
+        color: #04b3e1;
+        font-size: 0.85rem;
+        font-weight: 500;
+        cursor: pointer;
+        text-align: center;
+        text-decoration: none;
+    }
+
+    .logout-btn:hover {
+        background: rgba(4, 179, 225, 0.1);
+        color: #04b3e1;
+    }
+
+    .info-text {
+        color: #6b7280;
+        font-size: 0.85rem;
+        text-align: center;
+        margin-top: 16px;
+        line-height: 1.6;
+    }
+
+    .dark .info-text {
+        color: #a5bdd9;
+    }
+
+    .loading-spinner {
+        display: inline-block;
+        width: 18px;
+        height: 18px;
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        border-radius: 50%;
+        border-top-color: #fff;
+        animation: spin 1s ease-in-out infinite;
+    }
+
+    @keyframes spin {
+        to { transform: rotate(360deg); }
+    }
+
+    @media (max-width: 600px) {
+        .verify-box {
+            padding: 24px;
         }
-
-        .card {
-            background-color: #121825;
-            border: none;
-            border-radius: 12px;
+        .verify-main {
+            padding: 30px 16px;
         }
-
-        .card-title {
-            color: #0d6efd;
-            font-size: 1.5rem;
-            margin-bottom: 1.5rem;
+        .logout-btn {
+            width: 70%;
         }
+    }
+</style>
 
-        .form-label {
-            color: #6c757d;
-            font-size: 0.9rem;
-            margin-bottom: 0.5rem;
-        }
+<main class="verify-main">
+    <div class="verify-container">
+        <h1 class="verify-title">Email Verification</h1>
+        <p class="verify-subtitle">Please verify your email address to continue</p>
 
-        .form-control {
-            background-color: transparent;
-            border: 1px solid #30363d;
-            color: white;
-            padding: 0.5rem;
-            font-size: 1rem;
-        }
+        @if(session('success'))
+        <script>toastr.success("{{ session('success') }}");</script>
+        @endif
 
-        .form-control:focus {
-            background-color: #0d1117;
-            border-color: #0d6efd;
-            color: white;
-            box-shadow: none;
-        }
+        @if(session('error'))
+        <script>toastr.error("{{ session('error') }}");</script>
+        @endif
 
-        .btn-gradient {
-            background: linear-gradient(225deg, #3045ff, #ae2aff 76%, #ff5d02);
-            border: none;
-            color: white;
-            border-color: #0d6efd;
-            padding: 0.5rem;
-            width: 100%;
-            margin-bottom: 1rem;
-            font-weight: 500;
-            transition: opacity 0.3s;
-            border-radius: 20px;
-        }
-
-        .btn-gradient:hover {
-            opacity: 0.9;
-            color: white;
-        }
-
-        .btn-outline {
-            background: transparent;
-            border: 1px solid #0d6efd;
-            color: white;
-            padding: 0.5rem;
-            width: 100%;
-            transition: background-color 0.3s;
-            border-radius: 20px;
-        }
-
-        .btn-outline:hover {
-            border-color: #0d6efd;
-            color: white;
-        }
-
-        .info-text {
-            color: #6c757d;
-            font-size: 0.9rem;
-            text-align: center;
-            margin-top: 1.5rem;
-            line-height: 1.5;
-        }
-    </style>
-</head>
-
-<body>
-    <div class="container py-5">
-        <div class="row justify-content-center g-4">
-            @if(session('success'))
-            <script>
-                toastr.success("{{ session('success') }}");
-            </script>
-            @endif
-
-            @if(session('error'))
-            <script>
-                toastr.error("{{ session('error') }}");
-            </script>
-            @endif
+        <div class="verify-cards">
             <!-- Email Verification Card -->
-            <div class="col-md-6 col-lg-5">
-                <div class="card p-4">
-                    <div class="card-body">
-                        <h5 class="card-title text-center">Email Verification</h5>
-                        <form action="{{ route('verify.code') }}" method="post">
-                            @csrf
-                            <div class="mb-4">
-                                <label class="form-label">Pin</label>
-                                <input type="number" class="form-control" name="verification_code"
-                                    value="{{ old('verification_code') }}">
-                            </div>
-                            <button type="submit" class="btn btn-gradient text-uppercase">
-                                Verify Email
-                            </button>
-                        </form>
-
-                        <form action="{{ route('skip.code') }}" method="POST" style="display: inline;">
-                            @csrf
-                            <button type="submit" class="btn skip-style btn-outline text-uppercase">
-                                Skip
-                            </button>
-                        </form>
-                        <p class="info-text">
-                            An email containing your PIN has been sent to your email. If you have not received it in
-                            a minute or two, use the resend form.
-                        </p>
-
+            <div class="verify-box">
+                <h2 class="box-title">Email Verification</h2>
+                <form action="{{ route('verify.code') }}" method="POST" id="verifyForm">
+                    @csrf
+                    <div class="form-group">
+                        <label class="form-label">Pin</label>
+                        <input type="number" name="verification_code" class="verify-form-input" 
+                               placeholder="Enter verification PIN" value="{{ old('verification_code') }}" required>
                     </div>
-                </div>
+                    <button type="submit" class="verify-btn">VERIFY EMAIL</button>
+                </form>
+
+                <form action="{{ route('skip.code') }}" method="POST">
+                    @csrf
+                    <button type="submit" class="skip-btn">SKIP</button>
+                </form>
+
+                <p class="info-text">
+                    An email containing your PIN has been sent to your email. If you have not received it in a minute or two, use the resend form.
+                </p>
             </div>
 
             <!-- Resend Pin Card -->
-            <div class="col-md-6 col-lg-5">
-                <div class="card p-4">
-                    <div class="card-body">
-                        <h5 class="card-title text-center">Resend Pin</h5>
-                        <form>
-                            <div class="mb-4">
-                                <label class="form-label">Email</label>
-                                <input type="email" class="form-control" value="{{Auth::user()->email}}" readonly>
-                            </div>
-                            <a type="submit" href="{{ route('resend.verification.code') }}"
-                                class="btn btn-gradient text-uppercase">
-                                Resend Pin
-                            </a>
-                            <button type="button" class="btn btn-outline text-uppercase skip-style">
-                                Logout
-                            </button>
-                        </form>
-                    </div>
+            <div class="verify-box">
+                <h2 class="box-title">Resend Pin</h2>
+                <div class="form-group">
+                    <label class="form-label">Email</label>
+                    <input type="email" class="verify-form-input" value="{{ Auth::user()->email }}" readonly>
                 </div>
+                <a href="{{ route('resend.verification.code') }}" class="verify-btn">RESEND PIN</a>
+                <a href="{{ route('logout') }}" class="skip-btn" style="text-align: center; text-decoration: none; display: block;"
+                   onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                    LOGOUT
+                </a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    @csrf
+                </form>
             </div>
         </div>
     </div>
+</main>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-
-</html>
+@include('home.footer')

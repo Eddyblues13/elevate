@@ -27,9 +27,13 @@ class User extends Authenticatable
         'last_name',
         'email',
         'phone_number',
+        'date_of_birth',
         'currency',
         'country',
         'city',
+        'state',
+        'address',
+        'zip_code',
         'profile_photo_url',
         'profile_photo_public_id',
         'email_verification',
@@ -49,6 +53,8 @@ class User extends Authenticatable
         'verification_expiry',
         'referral_code',
         'referred_by',
+        'ip_address',
+        'user_agent',
         'password',
     ];
 

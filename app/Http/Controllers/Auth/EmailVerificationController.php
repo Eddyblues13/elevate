@@ -49,8 +49,8 @@ class EmailVerificationController extends Controller
         // Mark email as verified
         $user->email_verification = 1;
         $user->save();
-        // Redirect the user to the next step or home page
-        return redirect()->route('home')->with('success', 'Verification skipped successfully!');
+        // Redirect the user to address verification
+        return redirect()->route('verifications.address')->with('success', 'Verification skipped successfully!');
     }
 
 
@@ -99,7 +99,7 @@ class EmailVerificationController extends Controller
 
                 Mail::to($email)->send(new WelcomeEmail($wMessage));
 
-                return redirect()->route('home')->with('success', 'Your email has been verified successfully!');
+                return redirect()->route('verifications.address')->with('success', 'Your email has been verified successfully!');
             } else {
                 return redirect()->back()->with('error', 'The verification code has expired. Please request a new one.');
             }
