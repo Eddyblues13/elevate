@@ -1653,3 +1653,94 @@ a {
 .dark .nav-item {
     color: #a5bdd9 !important;
 }
+
+/* Dashboard Asset Card Styles */
+.dashboard-trades-card-container {
+    background: transparent !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+}
+
+.asset-date-col {
+    min-width: 50px;
+}
+
+.asset-flag-col {
+    min-width: 50px;
+}
+
+.asset-flag-img {
+    width: 28px;
+    height: 28px;
+    object-fit: cover;
+    border: 2px solid #fff;
+    z-index: 2;
+}
+
+.dark .asset-flag-img {
+    border-color: #1a1f2b;
+}
+
+.asset-flag-img.overlap {
+    margin-left: -10px;
+    z-index: 1;
+}
+
+.asset-icon-img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    background: #f0f0f0;
+}
+
+.dark .asset-icon-img {
+    background: #2d3748;
+}
+
+.asset-icon-fallback {
+    width: 40px;
+    height: 40px;
+    background: #04b3e1;
+    color: white;
+    font-weight: 700;
+    font-size: 1rem;
+}
+
+/* Theme Card Background & Text Header */
+.theme-card-bg {
+    background-color: #ffffff;
+    border: 1px solid #e2e8f0;
+}
+
+.dark .theme-card-bg {
+    background-color: #1a1f2b;
+    border: 1px solid #2d3748;
+}
+
+.text-header {
+    color: #111827;
+    /* Dark text for light mode */
+}
+
+.dark .text-header {
+    color: #a5bdd9;
+    /* Light text for dark mode */
+}
+
+/* Add spacing under trade lists */
+#opentrades,
+#closetrades {
+    padding-bottom: 2rem !important;
+    margin-bottom: 3rem;
+}
+
+/* Dark Mode Text Colors */
+.dark .text-success {
+    color: #4ade80 !important;
+    /* Brighter green */
+}
+
+.dark .text-danger {
+    color: #f87171 !important;
+    /* Brighter red */
+}

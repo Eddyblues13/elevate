@@ -214,7 +214,14 @@
                         TRADING ROOM
                     </a>
                 </div>
-
+                <div class="row g-3 mb-3 dashboard-actions-row">
+                    <div class="col-6">
+                        <a href="{{ route('deposit.one') }}" class="btn btn-outline-info w-100 py-2 fw-bold">ADD FUNDS</a>
+                    </div>
+                    <div class="col-6">
+                        <a href="{{ route('copy.trade') }}" class="btn btn-outline-info w-100 py-2 fw-bold">MY TRADERS (0)</a>
+                    </div>
+                </div>
 
                 <!-- TradingView Widget BEGIN -->
                 <div class="tradingview-widget-container mb-4">
@@ -234,7 +241,7 @@
         </div>
 
         <div class="col-md-8 col-12">
-            <div class="trades-card h-100" style="background: transparent; padding: 0; box-shadow: none;">
+            <div class="trades-card h-100 dashboard-trades-card-container">
                 <!-- Toggle Buttons -->
                 <div class="d-flex border-bottom mb-3">
                     <button class="dashboard-tab-btn active" data-type="closed">
@@ -252,10 +259,10 @@
                 </div>
 
                 <!-- Open Trades -->
-                <div id="opentrades" class="pb-3 px-2">
+                <div id="opentrades" class="px-2">
                     @forelse($openTrades as $trade)
                     <div class="asset-card mt-3 d-flex align-items-center p-2 border rounded theme-card-bg">
-                        <div class="date-section text-center me-3" style="min-width: 50px;">
+                        <div class="date-section text-center me-3 asset-date-col">
                             <div class="month fs-6 fw-bold text-header">{{ $trade->entry_date->format('M') }}</div>
                             <div class="day fs-3 text-header">{{ $trade->entry_date->format('d') }}</div>
                         </div>
@@ -267,14 +274,14 @@
                                 $base = substr(strtoupper($trade->symbol), 0, 3);
                                 $quote = substr(strtoupper($trade->symbol), 3, 3);
                             @endphp
-                            <div class="d-flex align-items-center me-3" style="min-width:50px;">
-                                <img src="https://flagcdn.com/w40/{{ $flagMap[$base] ?? 'us' }}.png" alt="{{ $base }}" class="rounded-circle" style="width:28px;height:28px;object-fit:cover;border:2px solid var(--card-bg, #fff);z-index:2;">
-                                <img src="https://flagcdn.com/w40/{{ $flagMap[$quote] ?? 'us' }}.png" alt="{{ $quote }}" class="rounded-circle" style="width:28px;height:28px;object-fit:cover;border:2px solid var(--card-bg, #fff);margin-left:-10px;z-index:1;">
+                            <div class="d-flex align-items-center me-3 asset-flag-col">
+                                <img src="https://flagcdn.com/w40/{{ $flagMap[$base] ?? 'us' }}.png" alt="{{ $base }}" class="rounded-circle asset-flag-img">
+                                <img src="https://flagcdn.com/w40/{{ $flagMap[$quote] ?? 'us' }}.png" alt="{{ $quote }}" class="rounded-circle asset-flag-img overlap">
                             </div>
                         @elseif($trade->symbol_icon !== '')
-                            <img src="{{ $trade->symbol_icon }}" alt="{{ $trade->symbol }}" class="asset-icon rounded-circle me-3" style="width:40px;height:40px;object-fit:contain;background:#f0f0f0;" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="rounded-circle me-3 d-none" style="width:40px;height:40px;background:#04b3e1;display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:1rem;">{{ substr($trade->symbol, 0, 1) }}</div>
+                            <img src="{{ $trade->symbol_icon }}" alt="{{ $trade->symbol }}" class="asset-icon rounded-circle me-3 asset-icon-img" onerror="this.style.display='none';this.nextElementSibling.classList.remove('d-none');this.nextElementSibling.style.display='flex';"><div class="rounded-circle me-3 d-none asset-icon-fallback">{{ substr($trade->symbol, 0, 1) }}</div>
                         @else
-                            <div class="rounded-circle me-3" style="width:40px;height:40px;background:#04b3e1;display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:1rem;">{{ substr($trade->symbol, 0, 1) }}</div>
+                            <div class="rounded-circle me-3 asset-icon-fallback">{{ substr($trade->symbol, 0, 1) }}</div>
                         @endif
                         <div class="asset-info flex-grow-1">
                             <div class="d-flex justify-content-between align-items-center mb-1">
@@ -299,10 +306,10 @@
                 </div>
 
                 <!-- Closed Trades -->
-                <div id="closetrades" style="display: none;" class="pb-3 px-2">
+                <div id="closetrades" style="display: none;" class="px-2">
                     @forelse($closedTrades as $trade)
                     <div class="asset-card mt-3 d-flex align-items-center p-2 border rounded theme-card-bg">
-                        <div class="date-section text-center me-3" style="min-width: 50px;">
+                        <div class="date-section text-center me-3 asset-date-col">
                             <div class="month fs-6 fw-bold text-header">{{ $trade->exit_date->format('M') }}</div>
                             <div class="day fs-3 text-header">{{ $trade->exit_date->format('d') }}</div>
                         </div>
@@ -311,14 +318,14 @@
                                 $base = substr(strtoupper($trade->symbol), 0, 3);
                                 $quote = substr(strtoupper($trade->symbol), 3, 3);
                             @endphp
-                            <div class="d-flex align-items-center me-3" style="min-width:50px;">
-                                <img src="https://flagcdn.com/w40/{{ $flagMap[$base] ?? 'us' }}.png" alt="{{ $base }}" class="rounded-circle" style="width:28px;height:28px;object-fit:cover;border:2px solid var(--card-bg, #fff);z-index:2;">
-                                <img src="https://flagcdn.com/w40/{{ $flagMap[$quote] ?? 'us' }}.png" alt="{{ $quote }}" class="rounded-circle" style="width:28px;height:28px;object-fit:cover;border:2px solid var(--card-bg, #fff);margin-left:-10px;z-index:1;">
+                            <div class="d-flex align-items-center me-3 asset-flag-col">
+                                <img src="https://flagcdn.com/w40/{{ $flagMap[$base] ?? 'us' }}.png" alt="{{ $base }}" class="rounded-circle asset-flag-img">
+                                <img src="https://flagcdn.com/w40/{{ $flagMap[$quote] ?? 'us' }}.png" alt="{{ $quote }}" class="rounded-circle asset-flag-img overlap">
                             </div>
                         @elseif($trade->symbol_icon !== '')
-                            <img src="{{ $trade->symbol_icon }}" alt="{{ $trade->symbol }}" class="asset-icon rounded-circle me-3" style="width:40px;height:40px;object-fit:contain;background:#f0f0f0;" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="rounded-circle me-3 d-none" style="width:40px;height:40px;background:#04b3e1;display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:1rem;">{{ substr($trade->symbol, 0, 1) }}</div>
+                            <img src="{{ $trade->symbol_icon }}" alt="{{ $trade->symbol }}" class="asset-icon rounded-circle me-3 asset-icon-img" onerror="this.style.display='none';this.nextElementSibling.classList.remove('d-none');this.nextElementSibling.style.display='flex';"><div class="rounded-circle me-3 d-none asset-icon-fallback">{{ substr($trade->symbol, 0, 1) }}</div>
                         @else
-                            <div class="rounded-circle me-3" style="width:40px;height:40px;background:#04b3e1;display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:1rem;">{{ substr($trade->symbol, 0, 1) }}</div>
+                            <div class="rounded-circle me-3 asset-icon-fallback">{{ substr($trade->symbol, 0, 1) }}</div>
                         @endif
                         <div class="asset-info flex-grow-1">
                             <div class="d-flex justify-content-between align-items-center mb-1">
