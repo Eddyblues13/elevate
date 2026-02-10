@@ -1,10 +1,105 @@
 @include('user.layouts.header')
 
+<style>
+    :root {
+        --card-bg: #ffffff;
+        --card-border: #e2e8f0;
+        --text-main: #2d3748;
+        --text-secondary: #718096;
+        --bg-main: #f8f9fa;
+        --table-bg: #ffffff;
+        --table-border: #e2e8f0;
+        --table-hover: #f7fafc;
+    }
+
+    [data-bs-theme="dark"] {
+        --card-bg: #1a202c;
+        --card-border: #2d3748;
+        --text-main: #f7fafc;
+        --text-secondary: #a0aec0;
+        --bg-main: #171923;
+        --table-bg: #1a202c;
+        --table-border: #2d3748;
+        --table-hover: #2d3748;
+    }
+
+    body {
+        background-color: var(--bg-main);
+        color: var(--text-main);
+        transition: background-color 0.3s, color 0.3s;
+    }
+
+    .page-title {
+        color: var(--text-main);
+        font-weight: 700;
+    }
+
+    .page-subtitle {
+        color: var(--text-secondary);
+    }
+
+    .trades-card {
+        background-color: var(--card-bg);
+        border: 1px solid var(--card-border);
+        border-radius: 12px;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    }
+
+    .custom-table {
+        color: var(--text-main);
+        margin-bottom: 0;
+    }
+
+    .custom-table th {
+        border-bottom: 2px solid var(--table-border);
+        border-top: none;
+        color: var(--text-secondary);
+        font-weight: 600;
+        text-transform: uppercase;
+        font-size: 0.85rem;
+        padding: 1rem;
+    }
+
+    .custom-table td {
+        border-top: 1px solid var(--table-border);
+        vertical-align: middle;
+        padding: 1rem;
+        color: var(--text-main);
+    }
+
+    .custom-table tbody tr:hover {
+        background-color: var(--table-hover);
+        color: var(--text-main);
+    }
+
+    .trader-name {
+        color: var(--text-main);
+        font-weight: 600;
+    }
+
+    .filter-btn {
+        border-radius: 8px;
+        margin-right: 5px;
+        font-weight: 500;
+        transition: all 0.2s;
+    }
+    
+    .filter-btn.active {
+        color: #fff !important;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    }
+
+    .table-container {
+        border-radius: 12px;
+        overflow: hidden;
+    }
+</style>
+
 <div class="container py-4">
     <div class="row mb-4">
         <div class="col-12">
-            <h2 class="text-white">My Copied Trades</h2>
-            <p class="text-muted">View all traders you're currently copying</p>
+            <h2 class="page-title">My Copied Trades</h2>
+            <p class="page-subtitle">View all traders you're currently copying</p>
         </div>
     </div>
 
@@ -21,10 +116,10 @@
     </div>
 
     <!-- Copied Trades Table -->
-    <div class="card bg-dark border-0 shadow">
-        <div class="card-body">
-            <div class="table-responsive">
-                <table class="table table-dark table-hover">
+    <div class="card trades-card border-0">
+        <div class="card-body p-0">
+            <div class="table-responsive table-container">
+                <table class="table custom-table table-hover">
                     <thead>
                         <tr>
                             <th>Trader</th>
@@ -40,27 +135,27 @@
                             <td>
                                 <div class="d-flex align-items-center">
                                     <img src="{{ asset($history->trader->picture) }}" alt="{{ $history->trader->name }}"
-                                        class="rounded-circle me-3" width="40">
+                                        class="rounded-circle me-3" width="40" height="40" style="object-fit: cover;">
                                     <div>
-                                        <strong>{{ $history->trader->name }}</strong>
-                                        <div class="small text-muted">
-                                            Return: {{ $history->trader->return_rate }}%
+                                        <div class="trader-name">{{ $history->trader->name }}</div>
+                                        <div class="small" style="color: var(--text-secondary);">
+                                            Return: <span class="text-success">{{ $history->trader->return_rate }}%</span>
                                         </div>
                                     </div>
                                 </div>
                             </td>
-                            <td>${{ number_format($history->amount, 2) }}</td>
+                            <td class="fw-bold text-nowrap">${{ number_format($history->amount, 2) }}</td>
                             <td>
-                                <span class="badge 
+                                <span class="badge rounded-pill px-3 py-2
                                     @if($history->status == 'active') bg-success
-                                    @elseif($history->status == 'pending') bg-warning
+                                    @elseif($history->status == 'pending') bg-warning text-dark
                                     @elseif($history->status == 'closed') bg-secondary
                                     @else bg-info @endif">
                                     {{ ucfirst($history->status) }}
                                 </span>
                             </td>
-                            <td>{{ $history->created_at->format('M d, Y H:i') }}</td>
-                            <td>
+                            <td style="color: var(--text-secondary);" class="text-nowrap">{{ $history->created_at->format('M d, Y H:i') }}</td>
+                            <td class="text-nowrap">
                                 @if($history->status == 'active')
                                 <button class="btn btn-sm btn-outline-danger stop-trade"
                                     data-trade-id="{{ $history->id }}" title="Stop Copying">
@@ -74,11 +169,11 @@
                         </tr>
                         @empty
                         <tr>
-                            <td colspan="5" class="text-center py-4">
+                            <td colspan="5" class="text-center py-5">
                                 <div class="text-muted">
-                                    <i class="fas fa-exchange-alt fa-2x mb-2"></i>
-                                    <p>You haven't copied any traders yet</p>
-                                    <a href="{{route('copy.trade')}}" class="btn btn-primary">
+                                    <i class="fas fa-exchange-alt fa-3x mb-3" style="color: var(--text-secondary);"></i>
+                                    <p class="mb-3">You haven't copied any traders yet</p>
+                                    <a href="{{route('copy.trade')}}" class="btn btn-primary px-4 rounded-pill">
                                         Browse Traders
                                     </a>
                                 </div>
@@ -91,7 +186,7 @@
 
             <!-- Pagination -->
             @if($tradingHistory->hasPages())
-            <div class="d-flex justify-content-center mt-4">
+            <div class="d-flex justify-content-center mt-4 mb-3">
                 {{ $tradingHistory->links() }}
             </div>
             @endif
@@ -171,48 +266,3 @@
     };
 });
 </script>
-
-<style>
-    .table-dark {
-        background-color: #1a202c;
-        color: #fff;
-    }
-
-    .table-dark th {
-        border-bottom: 1px solid #2d3748;
-    }
-
-    .table-dark td {
-        border-top: 1px solid #2d3748;
-        vertical-align: middle;
-    }
-
-    .table-hover tbody tr:hover {
-        background-color: #2d3748;
-    }
-
-    .filter-btn.active {
-        color: #fff !important;
-    }
-
-    .filter-btn.active[data-status="all"] {
-        background-color: #0d6efd;
-        border-color: #0d6efd;
-    }
-
-    .filter-btn.active[data-status="active"] {
-        background-color: #198754;
-        border-color: #198754;
-    }
-
-    .filter-btn.active[data-status="pending"] {
-        background-color: #ffc107;
-        border-color: #ffc107;
-        color: #000 !important;
-    }
-
-    .filter-btn.active[data-status="closed"] {
-        background-color: #6c757d;
-        border-color: #6c757d;
-    }
-</style>

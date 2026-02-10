@@ -198,6 +198,37 @@
 
       <!-- Nav items -->
       <nav class="space-y-1 max-h-[65vh] overflow-y-auto">
+        <a href="{{ url('/#plans') }}"
+           class="flex items-center gap-3 py-2 text-[14px] font-medium text-black dark:text-white hover:opacity-90">
+          <!-- list -->
+          <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span>Plans</span>
+        </a>
+
+        <a href="{{ route('register') }}"
+           class="flex items-center gap-3 py-2 text-[14px] font-medium text-black dark:text-white hover:opacity-90">
+          <!-- user plus -->
+          <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="8.5" cy="7" r="4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <line x1="20" y1="8" x2="20" y2="14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <line x1="23" y1="11" x2="17" y2="11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span>Sign Up</span>
+        </a>
+
+        <a href="{{ route('login') }}"
+           class="flex items-center gap-3 py-2 text-[14px] font-medium text-black dark:text-white hover:opacity-90">
+          <!-- sign in -->
+          <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <polyline points="10 17 15 12 10 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <line x1="15" y1="12" x2="3" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span>Login</span>
+        </a>
         <a href="{{ url('contact') }}"
            class="flex items-center gap-3 py-2 text-[14px] font-medium text-black dark:text-white hover:opacity-90">
           <!-- mail -->

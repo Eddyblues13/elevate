@@ -57,6 +57,10 @@
                         aria-hidden="true"></span>
                 </button>
             </div>
+
+            <div class="text-center mt-3">
+                <a href="{{ route('verifications.address') }}" class="withdrawal-btn" style="background-color: transparent; border: 1px solid #04b3e1; color: #04b3e1; display: block; text-decoration: none; text-align: center; padding: 10px;">SKIP</a>
+            </div>
         </form>
     </div>
 
@@ -152,22 +156,14 @@
                 // Show success toast
                 toastr.success(data.message || 'Identity verification submitted successfully!');
                 
-                // Reset form and styles
-                form.reset();
-                document.getElementById('frontFileName').textContent = 'No file selected';
-                document.getElementById('backFileName').textContent = 'No file selected';
-                
-                // Reset button styles
-                document.getElementById('frontSelectBtn').style.backgroundColor = '';
-                document.getElementById('frontSelectBtn').style.borderColor = '';
-                document.getElementById('frontSelectBtn').style.color = '';
-                document.getElementById('backSelectBtn').style.backgroundColor = '';
-                document.getElementById('backSelectBtn').style.borderColor = '';
-                document.getElementById('backSelectBtn').style.color = '';
-                
-                // Reset file name colors
-                document.getElementById('frontFileName').style.color = 'white';
-                document.getElementById('backFileName').style.color = 'white';
+                // Redirect to address verification after a short delay
+                setTimeout(() => {
+                    if (data.redirect) {
+                        window.location.href = data.redirect;
+                    } else {
+                        window.location.href = '{{ route("verifications.address") }}';
+                    }
+                }, 1500);
             } else {
                 if (data.errors) {
                     // Show error toast for general errors

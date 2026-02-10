@@ -130,7 +130,8 @@ class VerificationController extends Controller
 
             return response()->json([
                 'success' => true,
-                'message' => 'Identity verification submitted successfully. It will be reviewed shortly.'
+                'message' => 'Identity verification submitted successfully. It will be reviewed shortly.',
+                'redirect' => route('verifications.address')
             ]);
         } catch (\Exception $e) {
             return response()->json([

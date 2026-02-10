@@ -163,7 +163,10 @@ Route::prefix('user')->middleware('user')->group(function () {
     Route::get('/plans', [App\Http\Controllers\User\PlanController::class, 'index'])->name('plans');
     Route::post('/fund-trading', [App\Http\Controllers\User\PlanController::class, 'fundTrading'])->name('fund.trading');
     Route::get('/holding', [App\Http\Controllers\User\UserController::class, 'holding'])->name('holding');
+    Route::get('/holding/asset/{symbol}', [App\Http\Controllers\User\UserController::class, 'assetDetail'])->name('asset.detail');
     Route::get('/trading', [App\Http\Controllers\User\UserController::class, 'trading'])->name('trading');
+    Route::get('/trading/{symbol}', [App\Http\Controllers\User\UserController::class, 'tradingAsset'])->name('trading.asset');
+    Route::post('/place-trade', [App\Http\Controllers\User\UserController::class, 'placeTrade'])->name('place.trade');
     Route::get('/current-trade', [App\Http\Controllers\User\UserController::class, 'currentTrade'])->name('current.trade');
     Route::get('/staking', [App\Http\Controllers\User\UserController::class, 'staking'])->name('staking');
     Route::get('/mining', [App\Http\Controllers\User\UserController::class, 'mining'])->name('mining');

@@ -11,10 +11,31 @@ use App\Models\User\StakingBalance;
 use App\Models\User\TradingBalance;
 use App\Http\Controllers\Controller;
 use App\Models\User\ReferralBalance;
+use App\Models\Trade;
 use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
+    // Allowed trading symbols
+    private $allowedSymbols = [
+        // Forex
+        'AUDBRL','AUDCAD','AUDCHF','AUDJPY','AUDNZD','AUDUSD','CADJPY','CHFZAR',
+        'EURAUD','EURBRL','EURCAD','EURCHF','EURGBP','EURJPY','EURUSD','GBPAUD',
+        'GBPCAD','GBPCHF','GBPJPY','GBPUSD','NZDUSD','USDCAD','USDCHF','USDJPY','USDZAR',
+        // Crypto
+        'BTCUSD','ETHUSD','XRPUSD','SOLUSD','BNBUSD','ADAUSD','DOGEUSD','TRXUSD',
+        'DOTUSD','LINKUSD','MATICUSD','AVAXUSD','LTCUSD','ATOMUSD','UNIUSD','XLMUSD',
+        'ALGOUSD','NEARUSD','FILUSD','AAVEUSD','APTUSD','ARBUSD','OPUSD','MKRUSD',
+        'INJUSD','RNDRUSD','SUIUSD','SHIBUSD','PEPEUSD','TONUSD',
+        // Stocks
+        'AAPL','MSFT','TSLA','NVDA','AMZN','GOOGL','META','BRK.B','LLY','V',
+        'JPM','WMT','MA','PG','HD','XOM','JNJ','COST','ABBV','CRM',
+        'NFLX','ORCL','AMD','INTC','DIS','BA','UBER','PYPL','SQ','COIN',
+        // ETFs
+        'SPY','QQQ','IWM','DIA','VTI','VOO','VEA','VWO','GLD','SLV',
+        'TLT','XLF','XLK','ARKK','EEM',
+    ];
+
     public function index(Request $request)
     {
         $user = Auth::user();
@@ -74,6 +95,11 @@ class UserController extends Controller
         return view('user.holding', compact('holdingBalance'));
     }
 
+    public function assetDetail($symbol)
+    {
+        return view('user.asset_detail', compact('symbol'));
+    }
+
     public function trading()
     {
 
@@ -86,6 +112,97 @@ class UserController extends Controller
 
         return view('user.trading', compact('tradingBalance'));
     }
+
+    public function tradingAsset($symbol)
+    {
+        $symbol = strtoupper($symbol);
+
+        // Validate symbol exists in allowed list
+        if (!in_array($symbol, $this->allowedSymbols)) {
+            return redirect()->route('trading')->with('error', 'Invalid trading symbol.');
+        }
+
+        $user = Auth::user();
+        $tradingBalance = TradingBalance::where('user_id', $user->id)->sum('amount') ?? 0;
+
+        // Get open trades for this user
+        $openTrades = Trade::where('user_id', $user->id)
+            ->where('status', 'active')
+            ->count();
+
+        return view('user.trading_asset', compact('tradingBalance', 'symbol', 'openTrades'));
+    }
+
+    public function placeTrade(Request $request)
+    {
+        $user = Auth::user();
+
+        $request->validate([
+            'symbol' => 'required|string',
+            'direction' => 'required|in:up,down',
+            'amount' => 'required|numeric|min:0.01',
+            'leverage' => 'required|integer|min:1|max:250',
+            'time' => 'required|integer|min:1',
+            'price' => 'required|numeric|min:0',
+        ]);
+
+        $symbol = strtoupper($request->symbol);
+
+        // Validate symbol
+        if (!in_array($symbol, $this->allowedSymbols)) {
+            return response()->json(['success' => false, 'message' => 'Invalid trading symbol.'], 400);
+        }
+
+        // Check trading balance
+        $tradingBalance = TradingBalance::where('user_id', $user->id)->sum('amount') ?? 0;
+
+        if ($request->amount > $tradingBalance) {
+            return response()->json(['success' => false, 'message' => 'Insufficient trading balance. Your balance is $' . number_format($tradingBalance, 2)], 400);
+        }
+
+        // Determine asset type
+        $forexPairs = ['AUDBRL','AUDCAD','AUDCHF','AUDJPY','AUDNZD','AUDUSD','CADJPY','CHFZAR',
+            'EURAUD','EURBRL','EURCAD','EURCHF','EURGBP','EURJPY','EURUSD','GBPAUD',
+            'GBPCAD','GBPCHF','GBPJPY','GBPUSD','NZDUSD','USDCAD','USDCHF','USDJPY','USDZAR'];
+
+        if (in_array($symbol, $forexPairs)) {
+            $type = 'forex';
+        } elseif (str_ends_with($symbol, 'USD') && !in_array($symbol, $forexPairs)) {
+            $type = 'crypto';
+        } else {
+            $type = 'stocks';
+        }
+
+        // Create trade
+        $trade = Trade::create([
+            'user_id' => $user->id,
+            'symbol' => $symbol,
+            'type' => $type,
+            'direction' => $request->direction,
+            'entry_price' => $request->price,
+            'exit_price' => null,
+            'amount' => $request->amount,
+            'profit' => 0,
+            'status' => 'active',
+            'entry_date' => now(),
+            'exit_date' => null,
+            'trader_name' => null,
+            'notes' => 'Leverage: ' . $request->leverage . 'x, Time: ' . $request->time . ' min',
+        ]);
+
+        // Deduct from trading balance
+        TradingBalance::create([
+            'user_id' => $user->id,
+            'amount' => -$request->amount,
+        ]);
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Trade placed successfully!',
+            'trade_id' => $trade->id,
+        ]);
+    }
+
     public function staking()
     {
 

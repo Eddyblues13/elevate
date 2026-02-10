@@ -538,7 +538,7 @@
   </section>
 
   <!-- ===================== TRADING PLANS ===================== -->
-  <section class="py-16 lg:py-24" style="background-color: var(--background-colour);">
+  <section id="plans" class="py-16 lg:py-24" style="background-color: var(--background-colour);">
     <div class="max-w-7xl mx-auto px-6">
       <div class="text-center mb-16">
         <h2 class="text-5xl md:text-7xl font-black text-black dark:text-white mb-2">Plans</h2>

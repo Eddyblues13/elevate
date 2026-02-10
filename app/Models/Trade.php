@@ -41,15 +41,54 @@ class Trade extends Model
 
     public function getSymbolIconAttribute()
     {
-        // Get first 3 uppercase letters from symbol
-        $symbol = substr(strtoupper(preg_replace('/[^a-zA-Z]/', '', $this->symbol)), 0, 3);
+        $symbol = strtoupper($this->symbol ?? '');
 
-        // Fallback if symbol is too short
-        if (strlen($symbol) < 3) {
-            $symbol = str_pad($symbol, 3, 'BTC');
+        // Forex pairs - return empty (handled by flags in view)
+        $forexPairs = ['AUDBRL','AUDCAD','AUDCHF','AUDJPY','AUDNZD','AUDUSD','CADJPY','CHFZAR',
+            'EURAUD','EURBRL','EURCAD','EURCHF','EURGBP','EURJPY','EURUSD','GBPAUD',
+            'GBPCAD','GBPCHF','GBPJPY','GBPUSD','NZDUSD','USDCAD','USDCHF','USDJPY','USDZAR'];
+
+        if (in_array($symbol, $forexPairs)) {
+            return 'forex';
         }
 
-        return "https://s3-symbol-logo.tradingview.com/crypto/XTVC{$symbol}--big.svg";
+        // Crypto logos
+        $cryptoLogos = [
+            'BTCUSD' => 'bitcoin-btc', 'ETHUSD' => 'ethereum-eth', 'XRPUSD' => 'xrp-xrp',
+            'SOLUSD' => 'solana-sol', 'BNBUSD' => 'bnb-bnb', 'ADAUSD' => 'cardano-ada',
+            'DOGEUSD' => 'dogecoin-doge', 'TRXUSD' => 'tron-trx', 'DOTUSD' => 'polkadot-new-dot',
+            'LINKUSD' => 'chainlink-link', 'MATICUSD' => 'polygon-matic', 'AVAXUSD' => 'avalanche-avax',
+            'LTCUSD' => 'litecoin-ltc', 'ATOMUSD' => 'cosmos-atom', 'UNIUSD' => 'uniswap-uni',
+            'XLMUSD' => 'stellar-xlm', 'ALGOUSD' => 'algorand-algo', 'NEARUSD' => 'near-protocol-near',
+            'FILUSD' => 'filecoin-fil', 'AAVEUSD' => 'aave-aave', 'APTUSD' => 'aptos-apt',
+            'ARBUSD' => 'arbitrum-arb', 'OPUSD' => 'optimism-ethereum-op', 'MKRUSD' => 'maker-mkr',
+            'INJUSD' => 'injective-inj', 'RNDRUSD' => 'render-token-rndr', 'SUIUSD' => 'sui-sui',
+            'SHIBUSD' => 'shiba-inu-shib', 'PEPEUSD' => 'pepe-pepe', 'TONUSD' => 'toncoin-ton',
+        ];
+
+        if (isset($cryptoLogos[$symbol])) {
+            return "https://cryptologos.cc/logos/{$cryptoLogos[$symbol]}-logo.png";
+        }
+
+        // Stock / ETF logos via Clearbit
+        $stockDomains = [
+            'AAPL' => 'apple.com', 'MSFT' => 'microsoft.com', 'TSLA' => 'tesla.com',
+            'NVDA' => 'nvidia.com', 'AMZN' => 'amazon.com', 'GOOGL' => 'google.com', 'META' => 'meta.com',
+            'BRK.B' => 'berkshirehathaway.com', 'LLY' => 'lilly.com', 'V' => 'visa.com',
+            'JPM' => 'jpmorganchase.com', 'WMT' => 'walmart.com', 'MA' => 'mastercard.com',
+            'PG' => 'pg.com', 'HD' => 'homedepot.com', 'XOM' => 'exxonmobil.com',
+            'JNJ' => 'jnj.com', 'COST' => 'costco.com', 'ABBV' => 'abbvie.com', 'CRM' => 'salesforce.com',
+            'NFLX' => 'netflix.com', 'ORCL' => 'oracle.com', 'AMD' => 'amd.com', 'INTC' => 'intel.com',
+            'DIS' => 'thewaltdisneycompany.com', 'BA' => 'boeing.com', 'UBER' => 'uber.com',
+            'PYPL' => 'paypal.com', 'SQ' => 'squareup.com', 'COIN' => 'coinbase.com',
+        ];
+
+        if (isset($stockDomains[$symbol])) {
+            return "https://logo.clearbit.com/{$stockDomains[$symbol]}";
+        }
+
+        // Fallback
+        return '';
     }
 
     public function getFormattedProfitAttribute()
