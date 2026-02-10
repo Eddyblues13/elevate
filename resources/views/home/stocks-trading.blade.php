@@ -1,4 +1,4 @@
-@section('title', 'Stocks Trading - RegentMarkets')
+@section('title', 'Stocks Trading - ElevateCapital')
 @include('home.header')
 
 <!-- ===================== STOCKS TRADING CONTENT ===================== -->
@@ -51,7 +51,7 @@
                 </div>
 
                 <p class="pt-4 border-t border-gray-100 dark:border-gray-700 mt-8">
-                    Start trading stocks with RegentMarkets and gain access to global markets with competitive spreads, advanced charting tools, and real-time market data.
+                    Start trading stocks with ElevateCapital and gain access to global markets with competitive spreads, advanced charting tools, and real-time market data.
                 </p>
             </div>
 

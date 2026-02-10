@@ -1,4 +1,4 @@
-@section('title', 'Dogecoin Mining - RegentMarkets')
+@section('title', 'Dogecoin Mining - ElevateCapital')
 @include('home.header')
 
 <!-- ===================== DOGECOIN MINING CONTENT ===================== -->
@@ -62,7 +62,7 @@
                 </div>
 
                 <p class="pt-4 border-t border-gray-100 dark:border-gray-700 mt-8">
-                    Join RegentMarkets today and start mining Dogecoin through our cloud mining platform for consistent, hassle-free cryptocurrency rewards.
+                    Join ElevateCapital today and start mining Dogecoin through our cloud mining platform for consistent, hassle-free cryptocurrency rewards.
                 </p>
             </div>
 

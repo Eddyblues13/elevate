@@ -1,4 +1,4 @@
-@section('title', 'Crypto Trading - RegentMarkets')
+@section('title', 'Crypto Trading - ElevateCapital')
 @include('home.header')
 
 <!-- ===================== CRYPTO TRADING CONTENT ===================== -->
@@ -15,7 +15,7 @@
             
             <div class="space-y-8 text-base leading-relaxed text-black/80 dark:text-[#a5bdd9]">
                 <p>
-                    RegentMarkets is excited to announce the launch of our new cryptocurrency trading platform. Now you can start trading Bitcoin, Ethereum, and many more cryptocurrencies quickly, easily, and safely from wherever you are — in just seconds. You get great margin trading leverage and short sell options with fast deposits and withdrawals. Our support team is available 24/7/365 to help get you trading on our CySEC-regulated platform with a trading volume of US $11 billion monthly.
+                    ElevateCapital is excited to announce the launch of our new cryptocurrency trading platform. Now you can start trading Bitcoin, Ethereum, and many more cryptocurrencies quickly, easily, and safely from wherever you are — in just seconds. You get great margin trading leverage and short sell options with fast deposits and withdrawals. Our support team is available 24/7/365 to help get you trading on our CySEC-regulated platform with a trading volume of US $11 billion monthly.
                 </p>
 
                 <div>
@@ -40,7 +40,7 @@
                 </div>
 
                 <p class="pt-4 border-t border-gray-100 dark:border-gray-700 mt-8">
-                    Join thousands of traders on RegentMarkets and start your cryptocurrency trading journey today with access to major digital assets and advanced trading features.
+                    Join thousands of traders on ElevateCapital and start your cryptocurrency trading journey today with access to major digital assets and advanced trading features.
                 </p>
             </div>
 

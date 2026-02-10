@@ -1,4 +1,4 @@
-@section('title', 'FAQs - RegentMarkets')
+@section('title', 'FAQs - ElevateCapital')
 @include('home.header')
 
 <!-- ===================== FAQ ===================== -->

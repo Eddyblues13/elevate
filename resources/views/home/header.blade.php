@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>@yield('title', 'RegentMarkets')</title>
+  <title>@yield('title', 'ElevateCapital')</title>
 
   <!-- Font: Signika Negative -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -144,8 +144,7 @@
 
   <!-- Dark Mode Init (prevent flash) -->
   <script>
-    if (localStorage.getItem('theme') === 'dark' || 
-        (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+    if (localStorage.getItem('theme') === 'dark') {
       document.documentElement.classList.add('dark');
     }
   </script>
@@ -363,7 +362,7 @@
       <div class="h-14 flex items-center justify-between">
         <!-- Brand Name (left side) -->
         <a href="{{ url('/') }}" class="text-xl font-bold text-black dark:text-white" style="font-family: 'Signika Negative', sans-serif;">
-          RegentMarkets
+          ElevateCapital
         </a>
 
         <!-- Right side: Nav + Hamburger -->

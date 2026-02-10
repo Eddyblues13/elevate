@@ -6,18 +6,18 @@
         <!-- Brand / Contact / Copyright -->
         <div class="flex flex-col gap-8 max-w-xs">
           <a href="{{ route('home') }}" class="inline-block">
-            <img src="{{ asset('assets/img/logo.png') }}" alt="RegentMarkets" class="h-12 w-auto">
+            <img src="{{ asset('assets/img/logo.png') }}" alt="ElevateCapital" class="h-12 w-auto">
           </a>
           
           <div class="flex items-center gap-3 text-gray-600 dark:text-gray-400 font-medium">
              <div class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-500">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
              </div>
-             <a href="mailto:info@regentmarkets.live" class="hover:text-[#00A3FF] transition-colors">info@regentmarkets.live</a>
+             <a href="mailto:info@elevatecapital.pro" class="hover:text-[#00A3FF] transition-colors">info@elevatecapital.pro</a>
           </div>
 
           <div class="text-sm text-gray-400 dark:text-gray-500 font-medium">
-            &copy; {{ date('Y') }} RegentMarkets. All Rights Reserved.
+            &copy; {{ date('Y') }} ElevateCapital. All Rights Reserved.
           </div>
         </div>
 

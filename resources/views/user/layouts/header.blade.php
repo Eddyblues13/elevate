@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Linit Capital Pro</title>
+    <title>ElevateCapital</title>
     <meta name="robots" content="noindex, nofollow">
     <meta name="googlebot" content="noindex, nofollow">
     <meta name="bingbot" content="noindex, nofollow">
@@ -202,7 +202,7 @@ window.smartsupp||(function(d) {
     </style>
     <script>
         // Check local storage and apply theme immediately
-        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        if (localStorage.theme === 'dark') {
             document.documentElement.classList.add('dark');
         } else {
             document.documentElement.classList.remove('dark');
@@ -240,7 +240,7 @@ window.smartsupp||(function(d) {
 
         // Initialize button text on load
         document.addEventListener('DOMContentLoaded', () => {
-            if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            if (localStorage.theme === 'dark') {
                updateThemeButton('Dark');
             } else {
                updateThemeButton('Light');
@@ -257,7 +257,7 @@ window.smartsupp||(function(d) {
                 data-bs-target="#sidebar" aria-controls="sidebarMenu">
                 <i class="bi bi-list fs-4"></i>
             </button>
-            <div class="mt-1"><a href="#" class="text-decoration-none text-white fw-bold fs-5">Legacy Capital Pro</a></div>
+            <div class="mt-1"><a href="#" class="text-decoration-none text-white fw-bold fs-5">ElevateCapital</a></div>
         </div>
 
         <div class="text-white d-flex align-items-center gap-2">

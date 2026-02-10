@@ -1,4 +1,4 @@
-@section('title', 'Sign In - RegentMarkets')
+@section('title', 'Sign In - ElevateCapital')
 @include('home.header')
 
 <style>

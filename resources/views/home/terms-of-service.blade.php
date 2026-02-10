@@ -1,4 +1,4 @@
-@section('title', 'Terms of Service - RegentMarkets')
+@section('title', 'Terms of Service - ElevateCapital')
 @include('home.header')
 
 <!-- ===================== TERMS OF SERVICE CONTENT ===================== -->
@@ -15,7 +15,7 @@
             
             <div class="space-y-8 text-base leading-relaxed text-black/80 dark:text-[#a5bdd9]">
                 <p>
-                    This Agreement is entered into by and these Terms & Conditions shall regulate the relationship between RegentMarkets LTD (hereinafter referred to as the "Company"), and the user (a natural or legal entity) (hereinafter referred to as the "Client").
+                    This Agreement is entered into by and these Terms & Conditions shall regulate the relationship between ElevateCapital LTD (hereinafter referred to as the "Company"), and the user (a natural or legal entity) (hereinafter referred to as the "Client").
                 </p>
 
                 <p>
@@ -82,7 +82,7 @@
                 </div>
 
                 <p class="pt-4 border-t border-gray-100 dark:border-gray-700 mt-8">
-                    For any questions regarding these Terms of Service, please contact us at <a href="mailto:support@regentmarkets.com" class="text-[var(--primary-link-colour)] hover:underline">support@regentmarkets.com</a>.
+                    For any questions regarding these Terms of Service, please contact us at <a href="mailto:support@ElevateCapital.com" class="text-[var(--primary-link-colour)] hover:underline">support@ElevateCapital.com</a>.
                 </p>
             </div>
 

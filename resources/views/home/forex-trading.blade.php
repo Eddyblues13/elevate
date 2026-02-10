@@ -1,4 +1,4 @@
-@section('title', 'Forex Trading - RegentMarkets')
+@section('title', 'Forex Trading - ElevateCapital')
 @include('home.header')
 
 <!-- ===================== FOREX TRADING CONTENT ===================== -->

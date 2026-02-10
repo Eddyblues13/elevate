@@ -11,7 +11,7 @@
     <link href='https://fonts.googleapis.com/css?family=Quicksand:300,400,700' rel='stylesheet'>
     <!--<![endif]-->
 
-    <title>Linit Capital Pro</title>
+    <title>ElevateCapital</title>
 
     <style type='text/css'>
         body {
@@ -160,7 +160,7 @@
                                         <a href=''
                                             style='display: block; border-style: none !important; border: 0 !important;'>
                                             <img width='100' border='0' style='display: block; width: 100%;'
-                                                src="{{{asset('assets/img/logo.png')}}}" alt="Linit Capital Pro" />
+                                                src="{{{asset('assets/img/logo.png')}}}" alt="ElevateCapital" />
                                         </a>
                                     </td>
                                 </tr>
@@ -182,7 +182,7 @@
                     <tr>
                         <td align='left'
                             style='color: #888888; font-size: 16px; font-family: "Work Sans", Calibri, sans-serif; line-height: 24px;'>
-                            <h2>Welcome to Linit Capital Pro!</h2>
+                            <h2>Welcome to ElevateCapital!</h2>
                             <br>
                             <br>
                             {!!$vmessage!!}
@@ -190,7 +190,7 @@
                             <br />
                             <p style='line-height: 24px'>
                                 Kind Regards,<br>
-                                Linit Capital Pro.
+                                ElevateCapital.
                             </p>
                         </td>
                     </tr>

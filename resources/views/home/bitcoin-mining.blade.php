@@ -1,4 +1,4 @@
-@section('title', 'Bitcoin Mining - RegentMarkets')
+@section('title', 'Bitcoin Mining - ElevateCapital')
 @include('home.header')
 
 <!-- ===================== BITCOIN MINING CONTENT ===================== -->
@@ -65,7 +65,7 @@
                 </div>
 
                 <p class="pt-4 border-t border-gray-100 dark:border-gray-700 mt-8">
-                    Start your Bitcoin mining journey with RegentMarkets and join our cloud mining platform to earn cryptocurrency rewards without the hassle of managing hardware.
+                    Start your Bitcoin mining journey with ElevateCapital and join our cloud mining platform to earn cryptocurrency rewards without the hassle of managing hardware.
                 </p>
             </div>
 

@@ -1,4 +1,4 @@
-@section('title', 'Plans - RegentMarkets')
+@section('title', 'Plans - ElevateCapital')
 @include('home.header')
 
 <!-- ===================== TRADING PLANS ===================== -->

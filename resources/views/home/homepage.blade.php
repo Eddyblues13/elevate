@@ -1,4 +1,4 @@
-@section('title', 'RegentMarkets')
+@section('title', 'ElevateCapital')
 @include('home.header')
 
 
@@ -19,7 +19,7 @@
         <div class="lg:-mt-8 lg:pl-6">
           <h1 class="text-4xl md:text-5xl font-extrabold leading-tight text-black dark:text-white">
             Trading is Better<br />
-            With <span class="text-[#04b3e1]">RegentMarkets</span>
+            With <span class="text-[#04b3e1]">ElevateCapital</span>
           </h1>
 
           <p class="mt-4 text-[15px] leading-7 text-black/80 dark:text-white/80 font-medium">
@@ -749,7 +749,7 @@
         <div class="flex flex-col gap-6">
           <div class="bg-white dark:bg-[#0b1118] p-8 md:p-10 shadow-xl rounded-none border border-gray-100 dark:border-gray-800">
             <p class="text-black dark:text-gray-200 font-medium text-lg leading-relaxed">
-              RegentMarkets stands out for its transparency and user-friendly features. I especially like the customizable dashboards and the fact that they don't overload you with gimmicky offers. It's all about performance.
+              ElevateCapital stands out for its transparency and user-friendly features. I especially like the customizable dashboards and the fact that they don't overload you with gimmicky offers. It's all about performance.
             </p>
           </div>
           <div class="flex items-center gap-4 pl-4">
@@ -764,7 +764,7 @@
         <div class="flex flex-col gap-6">
           <div class="bg-white dark:bg-[#0b1118] p-8 md:p-10 shadow-xl rounded-none border border-gray-100 dark:border-gray-800">
             <p class="text-black dark:text-gray-200 font-medium text-lg leading-relaxed">
-              Any issues I had were quickly resolved by the RegentMarkets support team. They're responsive, polite, and genuinely helpful—something that's rare in this industry. The platform itself is intuitive and perfect for active traders.
+              Any issues I had were quickly resolved by the ElevateCapital support team. They're responsive, polite, and genuinely helpful—something that's rare in this industry. The platform itself is intuitive and perfect for active traders.
             </p>
           </div>
           <div class="flex items-center gap-4 pl-4">
@@ -779,7 +779,7 @@
         <div class="flex flex-col gap-6">
           <div class="bg-white dark:bg-[#0b1118] p-8 md:p-10 shadow-xl rounded-none border border-gray-100 dark:border-gray-800">
             <p class="text-black dark:text-gray-200 font-medium text-lg leading-relaxed">
-              I’ve been using RegentMarkets for the past 8 months, and I couldn’t be happier. The interface is clean and user-friendly, making it easy even for beginners to get started. What really stands out is the fast trade execution and helpful support team. Highly recommended for anyone looking for a reliable trading platform.
+              I’ve been using ElevateCapital for the past 8 months, and I couldn’t be happier. The interface is clean and user-friendly, making it easy even for beginners to get started. What really stands out is the fast trade execution and helpful support team. Highly recommended for anyone looking for a reliable trading platform.
             </p>
           </div>
            <div class="flex items-center gap-4 pl-4 mb-6">
@@ -794,7 +794,7 @@
         <div class="flex flex-col gap-6">
           <div class="bg-white dark:bg-[#0b1118] p-8 md:p-10 shadow-xl rounded-none border border-gray-100 dark:border-gray-800">
             <p class="text-black dark:text-gray-200 font-medium text-lg leading-relaxed">
-              I was initially cautious, but RegentMarkets proved to be a solid and trustworthy platform. Withdrawals are processed on time, and the range of assets available is impressive. I also appreciate the educational resources—they really helped me improve my trading strategy.
+              I was initially cautious, but ElevateCapital proved to be a solid and trustworthy platform. Withdrawals are processed on time, and the range of assets available is impressive. I also appreciate the educational resources—they really helped me improve my trading strategy.
             </p>
           </div>
            <div class="flex items-center gap-4 pl-4 mb-6">

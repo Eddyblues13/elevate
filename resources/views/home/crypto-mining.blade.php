@@ -1,4 +1,4 @@
-@section('title', 'Crypto Mining - RegentMarkets')
+@section('title', 'Crypto Mining - ElevateCapital')
 @include('home.header')
 
 <!-- ===================== CRYPTO MINING CONTENT ===================== -->

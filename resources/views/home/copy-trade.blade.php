@@ -1,4 +1,4 @@
-@section('title', 'Copy Trading - RegentMarkets')
+@section('title', 'Copy Trading - ElevateCapital')
 @include('home.header')
 
 <!-- ===================== COPY TRADING CONTENT ===================== -->

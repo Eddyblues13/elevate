@@ -1,4 +1,4 @@
-@section('title', 'Privacy Policy - RegentMarkets')
+@section('title', 'Privacy Policy - ElevateCapital')
 @include('home.header')
 
 <!-- ===================== PRIVACY POLICY CONTENT ===================== -->
@@ -15,7 +15,7 @@
             
             <div class="space-y-8 text-base leading-relaxed text-black/80 dark:text-[#a5bdd9]">
                 <p>
-                    RegentMarkets ("us", "we" or "Company") respects the privacy of our users (each, "you" or "User") and is committed to protecting the privacy of Users who access, download, install, or register for our mobile application (the "Application"), our website, or any other online services we provide (collectively: the "Services"). The Company has prepared this Privacy Policy to outline our practices with respect to collecting, using, and disclosing your information when you use the Services.
+                    ElevateCapital ("us", "we" or "Company") respects the privacy of our users (each, "you" or "User") and is committed to protecting the privacy of Users who access, download, install, or register for our mobile application (the "Application"), our website, or any other online services we provide (collectively: the "Services"). The Company has prepared this Privacy Policy to outline our practices with respect to collecting, using, and disclosing your information when you use the Services.
                 </p>
 
                 <p>
@@ -67,7 +67,7 @@
                 </div>
 
                 <p class="pt-4 border-t border-gray-100 dark:border-gray-700 mt-8">
-                    If you wish to raise a complaint on how we have handled your Personal Information, please contact us directly at <a href="mailto:support@regentmarkets.com" class="text-[var(--primary-link-colour)] hover:underline">support@regentmarkets.com</a>.
+                    If you wish to raise a complaint on how we have handled your Personal Information, please contact us directly at <a href="mailto:support@ElevateCapital.com" class="text-[var(--primary-link-colour)] hover:underline">support@ElevateCapital.com</a>.
                 </p>
             </div>
 

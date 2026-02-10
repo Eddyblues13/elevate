@@ -1,4 +1,4 @@
-@section('title', 'About Us - RegentMarkets')
+@section('title', 'About Us - ElevateCapital')
 @include('home.header')
 
 <!-- ===================== ABOUT CONTENT ===================== -->
