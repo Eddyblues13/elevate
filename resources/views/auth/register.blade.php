@@ -284,6 +284,67 @@
         background: rgba(34, 197, 94, 0.1);
         border-color: #22c55e;
     }
+
+    /* Profile Photo Upload */
+    .photo-upload-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 28px;
+        gap: 12px;
+    }
+
+    .photo-preview-wrapper {
+        position: relative;
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        overflow: hidden;
+        border: 3px solid #04b3e1;
+        cursor: pointer;
+        background: #edf2f7;
+    }
+
+    .dark .photo-preview-wrapper {
+        background: #2d3748;
+        border-color: #04b3e1;
+    }
+
+    .photo-preview-wrapper img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .photo-preview-wrapper .upload-overlay {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: rgba(0,0,0,0.55);
+        color: #fff;
+        text-align: center;
+        font-size: 0.65rem;
+        padding: 4px 0;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    .photo-upload-label {
+        font-size: 0.8rem;
+        color: #6b7280;
+        cursor: pointer;
+    }
+
+    .dark .photo-upload-label {
+        color: #a5bdd9;
+    }
+
+    .photo-upload-label span {
+        color: #04b3e1;
+        font-weight: 600;
+    }
 </style>
 
 <main class="register-main">
@@ -332,6 +393,18 @@
                     document.getElementById('js_enabled').value = 1;
                     setTimeout(function() { document.getElementById('time_check').value = 1; }, 5000);
                 </script>
+
+                <!-- Profile Photo Upload -->
+                <div class="photo-upload-section">
+                    <div class="photo-preview-wrapper" onclick="document.getElementById('profile_photo').click()">
+                        <img id="photoPreview" src="https://ui-avatars.com/api/?name=User&background=04b3e1&color=fff&size=200" alt="Profile Photo">
+                        <div class="upload-overlay">Upload</div>
+                    </div>
+                    <label class="photo-upload-label" for="profile_photo">
+                        <span>Choose a profile photo</span> (optional)
+                    </label>
+                    <input type="file" name="profile_photo" id="profile_photo" accept="image/jpeg,image/png,image/jpg,image/gif" style="display:none;">
+                </div>
 
                 <div class="form-grid">
                     <!-- Row 1 -->
@@ -458,6 +531,24 @@
         }
     }
 
+    // Profile photo preview
+    document.getElementById('profile_photo').addEventListener('change', function(e) {
+        const file = e.target.files[0];
+        if (file) {
+            // Validate file size (max 2MB)
+            if (file.size > 2 * 1024 * 1024) {
+                toastr.error('Photo must be less than 2MB.');
+                this.value = '';
+                return;
+            }
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                document.getElementById('photoPreview').src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+
     $(document).ready(function () {
         $('#registerForm').on('submit', function (e) {
             e.preventDefault();
@@ -465,10 +556,15 @@
             $('#loadingSpinner').show();
             $('#submitButton').prop('disabled', true);
 
+            // Use FormData to support file uploads
+            var formData = new FormData(this);
+
             $.ajax({
                 url: '{{ route("register") }}',
                 method: 'POST',
-                data: $(this).serialize(),
+                data: formData,
+                processData: false,
+                contentType: false,
                 headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
                 success: function (response) {
                     $('#buttonText').show();

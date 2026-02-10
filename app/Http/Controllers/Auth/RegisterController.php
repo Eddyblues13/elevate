@@ -4,10 +4,12 @@ namespace App\Http\Controllers\Auth;
 
 use DB;
 use App\Models\User;
+use Cloudinary\Cloudinary;
 use Illuminate\Http\Request;
 use App\Mail\VerificationEmail;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
+use Cloudinary\Api\Upload\UploadApi;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
@@ -16,6 +18,15 @@ use Illuminate\Support\Facades\RateLimiter;
 
 class RegisterController extends Controller
 {
+    protected $cloudinary;
+    protected $uploadApi;
+
+    public function __construct()
+    {
+        $this->cloudinary = new Cloudinary();
+        $this->uploadApi = $this->cloudinary->uploadApi();
+    }
+
     /**
      * Show the registration form.
      *
@@ -105,6 +116,7 @@ class RegisterController extends Controller
             'password' => 'required|string|min:8|confirmed',
             'referral_code' => 'nullable|string|exists:users,referral_code',
             'terms' => 'required|accepted',
+            'profile_photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ], [
             'terms.required' => 'You must accept the terms of service.',
             'terms.accepted' => 'You must accept the terms of service.',
@@ -159,6 +171,32 @@ class RegisterController extends Controller
         $user->stakingBalance()->create(['user_id' => $user->id, 'amount' => 0]);
         $user->tradingBalance()->create(['user_id' => $user->id, 'amount' => 0]);
         $user->profitBalance()->create(['user_id' => $user->id, 'amount' => 0]);
+
+        // Upload profile photo to Cloudinary if provided
+        if ($request->hasFile('profile_photo')) {
+            try {
+                $uploadResult = $this->uploadApi->upload(
+                    $request->file('profile_photo')->getRealPath(),
+                    [
+                        'folder' => 'profile_photos',
+                        'transformation' => [
+                            'width' => 300,
+                            'height' => 300,
+                            'crop' => 'thumb',
+                            'gravity' => 'face',
+                        ]
+                    ]
+                );
+
+                $user->update([
+                    'profile_photo_url' => $uploadResult['secure_url'],
+                    'profile_photo_public_id' => $uploadResult['public_id']
+                ]);
+            } catch (\Exception $e) {
+                Log::error('Failed to upload registration photo: ' . $e->getMessage());
+                // Don't fail registration if photo upload fails
+            }
+        }
 
         // Add referral bonus to the referrer's balance
         if ($referrer) {

@@ -292,7 +292,7 @@ body {
 
 
 .bottom-nav {
-    background-color: #000;
+    background-color: transparent;
     position: fixed;
     bottom: 0;
     width: 100%;
@@ -1587,4 +1587,69 @@ a {
     /* Adjust the size as needed */
     font-weight: bold;
     /* Optional: Keep the text bold */
+}
+
+/* Dashboard Action Buttons & Tabs Redesign */
+.dashboard-actions-row .btn {
+    border-radius: 0;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.dashboard-tab-btn {
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    color: #aaaaaa !important;
+    /* Force gray for inactive */
+    font-weight: 700;
+    text-transform: uppercase;
+    padding-bottom: 8px;
+    padding-left: 24px;
+    padding-right: 24px;
+    position: relative;
+    transition: all 0.3s;
+}
+
+.dashboard-tab-btn:hover {
+    color: #555555;
+}
+
+.dashboard-tab-btn.active {
+    color: #000000 !important;
+    border-bottom: 2px solid #000000 !important;
+}
+
+/* Dark Mode Overrides */
+.dark .dashboard-tab-btn:hover {
+    color: #cccccc;
+}
+
+.dark .dashboard-tab-btn.active {
+    color: #ffffff !important;
+    border-bottom: 2px solid #ffffff !important;
+}
+
+.dashboard-no-trades {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 3rem 0;
+}
+
+.dark .dashboard-no-trades {
+    background-color: #1a1f2b;
+    color: #a5bdd9;
+    box-shadow: none;
+    border: 1px solid #2d3748;
+}
+
+.dark .nav-item {
+    color: #a5bdd9 !important;
 }

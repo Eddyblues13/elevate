@@ -152,4 +152,53 @@ class EmailVerificationController extends Controller
         // Flash success message to the session
         return redirect()->back()->with('success', 'A new verification code has been sent to your email.');
     }
+
+    public function updateEmail(Request $request)
+    {
+        $request->validate([
+            'new_email' => 'required|email|unique:users,email',
+        ]);
+
+        $user = $request->user();
+
+        // Update email
+        $user->email = $request->new_email;
+
+        // Generate new verification code
+        $validToken = rand(1000, 9999);
+        $user->verification_code = $validToken;
+        $user->verification_expiry = now()->addMinutes(10);
+        $user->email_verification = 0;
+        $user->save();
+
+        $full_name = $user->first_name . ' ' . $user->last_name;
+
+        $vmessage = "
+       <p style='line-height: 24px;margin-bottom:15px;'>
+             Hello $full_name,
+       </p>
+       <br>
+        <p>
+        Your email address has been updated successfully.
+        </p>
+        <p>
+       We just need to verify your new email address before you can continue.
+       </p>
+       <br>
+       <p>
+      Use this code to verify your email: <strong>$validToken</strong>
+      </p>
+      <p style='color: red;'>
+      Please note that this code will expire in 10 minutes.
+     </p>
+    <br>
+    <p>
+    Don't hesitate to get in touch if you have any questions; we'll always get back to you.
+    </p>
+    ";
+
+        Mail::to($user->email)->send(new VerificationEmail($vmessage));
+
+        return redirect()->back()->with('success', 'Email updated! A new verification code has been sent to ' . $user->email);
+    }
 }

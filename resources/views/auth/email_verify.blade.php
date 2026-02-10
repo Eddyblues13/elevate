@@ -255,14 +255,21 @@
                 </p>
             </div>
 
-            <!-- Resend Pin Card -->
+            <!-- Resend Pin / Update Email Card -->
             <div class="verify-box">
-                <h2 class="box-title">Resend Pin</h2>
-                <div class="form-group">
-                    <label class="form-label">Email</label>
-                    <input type="email" class="verify-form-input" value="{{ Auth::user()->email }}" readonly>
-                </div>
-                <a href="{{ route('resend.verification.code') }}" class="verify-btn">RESEND PIN</a>
+                <h2 class="box-title">Update Email & Resend Pin</h2>
+                <form action="{{ route('update.verification.email') }}" method="POST" id="updateEmailForm">
+                    @csrf
+                    <div class="form-group">
+                        <label class="form-label">Email Address</label>
+                        <input type="email" name="new_email" class="verify-form-input" value="{{ Auth::user()->email }}" required>
+                    </div>
+                    <button type="submit" class="verify-btn" id="updateEmailBtn">
+                        <span id="updateEmailText">UPDATE EMAIL & SEND CODE</span>
+                        <span id="updateEmailSpinner" class="loading-spinner" style="display: none;"></span>
+                    </button>
+                </form>
+                <a href="{{ route('resend.verification.code') }}" class="skip-btn" style="text-align: center; text-decoration: none; display: block;">RESEND PIN TO CURRENT EMAIL</a>
                 <a href="{{ route('logout') }}" class="skip-btn" style="text-align: center; text-decoration: none; display: block;"
                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                     LOGOUT
@@ -270,6 +277,9 @@
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                     @csrf
                 </form>
+                <p class="info-text">
+                    If you entered the wrong email, update it above and a new verification code will be sent to the new address.
+                </p>
             </div>
         </div>
     </div>

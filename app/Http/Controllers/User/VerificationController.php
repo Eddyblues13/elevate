@@ -227,4 +227,48 @@ class VerificationController extends Controller
             ], 500);
         }
     }
+
+    public function updateName(Request $request)
+    {
+        $request->validate([
+            'first_name' => 'required|string|max:255|regex:/^[a-zA-Z ]+$/',
+            'last_name' => 'required|string|max:255|regex:/^[a-zA-Z ]+$/',
+        ]);
+
+        $user = Auth::user();
+        $user->first_name = $request->first_name;
+        $user->last_name = $request->last_name;
+        $user->save();
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Name updated successfully!'
+        ]);
+    }
+
+    public function updateAddress(Request $request)
+    {
+        $request->validate([
+            'phone_number' => 'nullable|string|max:20',
+            'address' => 'required|string|max:255',
+            'zip_code' => 'nullable|string|max:10',
+            'city' => 'nullable|string|max:100',
+            'state' => 'nullable|string|max:100',
+            'country' => 'required|string|max:100',
+        ]);
+
+        $user = Auth::user();
+        $user->phone_number = $request->phone_number;
+        $user->address = $request->address;
+        $user->zip_code = $request->zip_code;
+        $user->city = $request->city;
+        $user->state = $request->state;
+        $user->country = $request->country;
+        $user->save();
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Address details updated successfully!'
+        ]);
+    }
 }

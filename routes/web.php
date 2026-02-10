@@ -129,6 +129,7 @@ Route::get('/verify/{id}', [App\Http\Controllers\Auth\EmailVerificationControlle
 Route::post('/verify-code', [App\Http\Controllers\Auth\EmailVerificationController::class, 'verifyCode'])->name('verify.code');
 Route::get('/resend-verification-code', [App\Http\Controllers\Auth\EmailVerificationController::class, 'resendVerificationCode'])->name('resend.verification.code');
 Route::post('/skip-code', [App\Http\Controllers\Auth\EmailVerificationController::class, 'skipCode'])->name('skip.code');
+Route::post('/update-verification-email', [App\Http\Controllers\Auth\EmailVerificationController::class, 'updateEmail'])->name('update.verification.email');
 
 
 Route::prefix('user')->middleware('user')->group(function () {
@@ -158,6 +159,8 @@ Route::prefix('user')->middleware('user')->group(function () {
             ->name('user.identity');
         Route::get('/address', [App\Http\Controllers\User\VerificationController::class, 'address'])->name('address');
         Route::post('/address', [App\Http\Controllers\User\VerificationController::class, 'addressVerify'])->name('user.address');
+        Route::post('/update-name', [App\Http\Controllers\User\VerificationController::class, 'updateName'])->name('update.name');
+        Route::post('/update-address', [App\Http\Controllers\User\VerificationController::class, 'updateAddress'])->name('update.address');
     });
 
     Route::get('/plans', [App\Http\Controllers\User\PlanController::class, 'index'])->name('plans');

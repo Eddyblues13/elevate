@@ -214,32 +214,39 @@
                         TRADING ROOM
                     </a>
                 </div>
+
+
+                <!-- TradingView Widget BEGIN -->
+                <div class="tradingview-widget-container mb-4">
+                    <div class="tradingview-widget-container__widget"></div>
+                    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>
+                    {
+                    "symbol": "BITSTAMP:BTCUSD",
+                    "width": "100%",
+                    "colorTheme": "light",
+                    "isTransparent": false,
+                    "locale": "en"
+                    }
+                    </script>
+                </div>
+                <!-- TradingView Widget END -->
             </div>
         </div>
 
-        <div class="col-md-6 col-12">
-            <div class="trades-card h-100">
+        <div class="col-md-8 col-12">
+            <div class="trades-card h-100" style="background: transparent; padding: 0; box-shadow: none;">
                 <!-- Toggle Buttons -->
-                <div class="trades-toggle px-3 px-md-5 pt-3">
-                    <button class="toggle-button active" data-type="closed">
-                        <span>
-                            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
-                                fill="#0287df">
-                                <path
-                                    d="M320-160h320v-120q0-66-47-113t-113-47q-66 0-113 47t-47 113v120Zm160-360q66 0 113-47t47-113v-120H320v120q0 66 47 113t113 47ZM160-80v-80h80v-120q0-61 28.5-114.5T348-480q-51-32-79.5-85.5T240-680v-120h-80v-80h640v80h-80v120q0 61-28.5 114.5T612-480q51 32 79.5 85.5T720-280v120h80v80H160Z" />
-                            </svg>
-                        </span>
+                <div class="d-flex border-bottom mb-3">
+                    <button class="dashboard-tab-btn active" data-type="closed">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor" class="me-2 pb-1">
+                            <path d="M320-160h320v-120q0-66-47-113t-113-47q-66 0-113 47t-47 113v120Zm160-360q66 0 113-47t47-113v-120H320v120q0 66 47 113t113 47ZM160-80v-80h80v-120q0-61 28.5-114.5T348-480q-51-32-79.5-85.5T240-680v-120h-80v-80h640v80h-80v120q0 61-28.5 114.5T612-480q51 32 79.5 85.5T720-280v120h80v80H160Z" />
+                        </svg>
                         Closed
                     </button>
-
-                    <button class="toggle-button" data-type="active">
-                        <span>
-                            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
-                                fill="#0287df">
-                                <path
-                                    d="M320-160h320v-120q0-66-47-113t-113-47q-66 0-113 47t-47 113v120ZM160-80v-80h80v-120q0-61 28.5-114.5T348-480q-51-32-79.5-85.5T240-680v-120h-80v-80h640v80h-80v120q0 61-28.5 114.5T612-480q51 32 79.5 85.5T720-280v120h80v80H160Z" />
-                            </svg>
-                        </span>
+                    <button class="dashboard-tab-btn" data-type="active">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor" class="me-2 pb-1">
+                            <path d="M320-160h320v-120q0-66-47-113t-113-47q-66 0-113 47t-47 113v120ZM160-80v-80h80v-120q0-61 28.5-114.5T348-480q-51-32-79.5-85.5T240-680v-120h-80v-80h640v80h-80v120q0 61-28.5 114.5T612-480q51 32 79.5 85.5T720-280v120h80v80H160Z" />
+                        </svg>
                         Active
                     </button>
                 </div>
@@ -280,13 +287,13 @@
                         </div>
                     </div>
                     @empty
-                    <div class="no-trades d-flex justify-content-center align-items-center flex-column py-5 text-header h-100">
+                    <div class="dashboard-no-trades">
                         <div class="mb-3">
-                             <svg xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px" fill="currentColor" class="opacity-50">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px" fill="currentColor" class="opacity-25">
                                 <path d="M440-280h80v-240h-80v240Zm40-320q17 0 28.5-11.5T520-640q0-17-11.5-28.5T480-680q-17 0-28.5 11.5T440-640q0 17 11.5 28.5T480-600Zm0 520q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/>
                             </svg>
                         </div>
-                        <span class="fs-5">NO OPEN TRADES</span>
+                        <span class="fs-6 text-uppercase fw-bold opacity-50">NO OPEN TRADES</span>
                     </div>
                     @endforelse
                 </div>
@@ -324,13 +331,13 @@
                         </div>
                     </div>
                     @empty
-                    <div class="no-trades d-flex justify-content-center align-items-center flex-column py-5 text-header h-100">
+                    <div class="dashboard-no-trades">
                         <div class="mb-3">
-                             <svg xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px" fill="currentColor" class="opacity-50">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px" fill="currentColor" class="opacity-25">
                                 <path d="M440-280h80v-240h-80v240Zm40-320q17 0 28.5-11.5T520-640q0-17-11.5-28.5T480-680q-17 0-28.5 11.5T440-640q0 17 11.5 28.5T480-600Zm0 520q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/>
                             </svg>
                         </div>
-                        <span class="fs-5">NO CLOSED TRADES</span>
+                        <span class="fs-6 text-uppercase fw-bold opacity-50">NO CLOSED TRADES</span>
                     </div>
                     @endforelse
                 </div>
@@ -342,20 +349,20 @@
 <!-- Bottom Navigation -->
 <div class="bottom-nav">
     <a href="{{route('current.trade')}}" class="nav-item active">
-        <svg xmlns="http://www.w3.org/2000/svg" height="23px" viewBox="0 -960 960 960" width="23px" fill="#fff">
+        <svg xmlns="http://www.w3.org/2000/svg" height="23px" viewBox="0 -960 960 960" width="23px" fill="currentColor">
             <path d="M624-192v-288h144v288H624Zm-216 0v-576h144v576H408Zm-216 0v-384h144v384H192Z" />
         </svg>
         <span>Trading</span>
     </a>
     <a href="{{route('holding')}}" class="nav-item">
-        <svg xmlns="http://www.w3.org/2000/svg" height="23px" viewBox="0 -960 960 960" width="23px" fill="#fff">
+        <svg xmlns="http://www.w3.org/2000/svg" height="23px" viewBox="0 -960 960 960" width="23px" fill="currentColor">
             <path
                 d="M120-48q-29.7 0-50.85-21.15Q48-90.3 48-120v-456h72v456h648v72H120Zm144-144q-29.7 0-50.85-21.15Q192-234.3 192-264v-456h192v-72q0-29.7 21.15-50.85Q426.3-864 456-864h192q29.7 0 50.85 21.15Q720-821.7 720-792v72h192v456q0 29.7-21.15 50.85Q869.7-192 840-192H264Zm0-72h576v-384H264v384Zm192-456h192v-72H456v72ZM264-264v-384 384Z" />
         </svg>
         <span>Holding</span>
     </a>
     <a href="{{route('mining')}}" class="nav-item">
-        <svg class="nav-icon" viewBox="0 0 24 24">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="currentColor">
             <path
                 d="M19 3H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2V5c0-1.103-.897-2-2-2zM5 19V5h14l.002 14H5z" />
             <path d="m11 7-4 4h3v4h2v-4h3z" />
@@ -363,7 +370,7 @@
         <span>Mining</span>
     </a>
     <a href="{{route('staking')}}" class="nav-item">
-        <svg xmlns="http://www.w3.org/2000/svg" height="23px" viewBox="0 -960 960 960" width="23px" fill="#fff">
+        <svg xmlns="http://www.w3.org/2000/svg" height="23px" viewBox="0 -960 960 960" width="23px" fill="currentColor">
             <path
                 d="M336-312h288q10.2 0 17.1-6.9 6.9-6.9 6.9-17.1v-204q0-10.2-6.9-17.1-6.9-6.9-17.1-6.9h-60v-60q0-10.2-6.9-17.1-6.9-6.9-17.1-6.9H420q-10.2 0-17.1 6.9-6.9 6.9-6.9 17.1v60h-60q-10.2 0-17.1 6.9-6.9 6.9-6.9 17.1v204q0 10.2 6.9 17.1 6.9 6.9 17.1 6.9Zm96-252v-42h96v42h-96Zm-96 372q-120.34 0-204.17-83.76Q48-359.52 48-479.76T131.83-684q83.83-84 204.17-84h288q120.34 0 204.17 83.76 83.83 83.76 83.83 204T828.17-276Q744.34-192 624-192H336Zm0-72h288q89.64 0 152.82-63.18Q840-390.36 840-480q0-89.64-63.18-152.82Q713.64-696 624-696H336q-89.64 0-152.82 63.18Q120-569.64 120-480q0 89.64 63.18 152.82Q246.36-264 336-264Zm144-216Z" />
         </svg>
@@ -395,11 +402,18 @@
         });
 
         // Your existing toggle button code
-        document.querySelectorAll('.toggle-button').forEach(button => {
+        // Toggle Buttons Logic
+        document.querySelectorAll('.dashboard-tab-btn').forEach(button => {
             button.addEventListener('click', function() {
-                document.querySelectorAll('.toggle-button').forEach(btn => btn.classList.remove('active'));
+                // Reset styling for all buttons
+                document.querySelectorAll('.dashboard-tab-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+
+                // Apply active styling to clicked button
                 this.classList.add('active');
 
+                // Show/Hide content
                 const type = this.getAttribute('data-type');
                 document.getElementById('opentrades').style.display = type === 'active' ? 'block' : 'none';
                 document.getElementById('closetrades').style.display = type === 'closed' ? 'block' : 'none';
