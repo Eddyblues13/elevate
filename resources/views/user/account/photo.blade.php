@@ -20,7 +20,7 @@
 
 <!-- Main Content -->
 <div class="depost-form-main w-100">
-    <h2 class="heading text-white fs-4 py-3">Update Photo</h2>
+    <h2 class="heading text-header fs-4 py-3 fw-bold">Update Photo</h2>
     <div class="fund-same-card">
         <form id="uploadForm" enctype="multipart/form-data">
             @csrf

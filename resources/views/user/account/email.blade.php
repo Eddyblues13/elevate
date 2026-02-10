@@ -21,7 +21,7 @@
 
 <!-- Main Content -->
 <div class="depost-form-main w-100">
-    <h1 class="heading text-white text-uppercase">Update Email</h1>
+    <h1 class="heading text-header text-uppercase fw-bold">Update Email</h1>
     <span class="view-pricing text-header">{{ Auth::user()->email }}</span>
 
     <div class="fund-same-card">

@@ -21,6 +21,7 @@
 
 <!-- Main Content -->
 <div class="depost-form-main w-100">
+    <h2 class="heading text-header fs-4 py-3 fw-bold">Update Password</h2>
     <div class="fund-same-card">
         <form id="updatePasswordForm">
             @csrf

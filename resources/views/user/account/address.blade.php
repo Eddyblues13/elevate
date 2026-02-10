@@ -21,7 +21,7 @@
 
 <!-- Main Content -->
 <div class="depost-form-main w-100">
-    <h2 class="heading text-white fs-4 py-3">Update Contact Info</h2>
+    <h2 class="heading text-header fs-4 py-3 fw-bold">Update Contact Info</h2>
     <div class="fund-same-card">
         <form id="updateContactInfoForm">
             @csrf
@@ -29,34 +29,34 @@
                 <div class="col-md-6">
                     <div class="input-group">
                         <div class="input-label">Mobile Number</div>
-                        <input type="text" name="mobile_number" class="amount-input text-header"
+                        <input type="text" name="mobile_number" class="amount-input"
                             value="{{ $user->contactInfo->mobile_number ?? '' }}" required>
                     </div>
                     <div class="input-group">
                         <div class="input-label">Zip Code</div>
-                        <input type="text" name="zip_code" class="amount-input text-header"
+                        <input type="text" name="zip_code" class="amount-input"
                             value="{{ $user->contactInfo->zip_code ?? '' }}" required>
                     </div>
                     <div class="input-group">
                         <div class="input-label">State</div>
-                        <input type="text" name="state" class="amount-input text-header"
+                        <input type="text" name="state" class="amount-input"
                             value="{{ $user->contactInfo->state ?? '' }}" required>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="input-group">
                         <div class="input-label">Street Address</div>
-                        <input type="text" name="street_address" class="amount-input text-header"
+                        <input type="text" name="street_address" class="amount-input"
                             value="{{ $user->contactInfo->street_address ?? '' }}" required>
                     </div>
                     <div class="input-group">
                         <div class="input-label">City</div>
-                        <input type="text" name="city" class="amount-input text-header"
+                        <input type="text" name="city" class="amount-input"
                             value="{{ $user->contactInfo->city ?? '' }}" required>
                     </div>
                     <div class="input-group">
                         <div class="input-label">Country</div>
-                        <select name="country" class="select-account text-header" required>
+                        <select name="country" class="select-account" required>
                             @php
                             $countries = [
                             "Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Antigua and Barbuda",

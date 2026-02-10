@@ -7,7 +7,7 @@
         <!-- Left Section -->
         <div class="col-lg-4">
             <div class="balance-section py-4">
-                <div class="balance-amount text-white fs-5">{{ config('currencies.' .
+                <div class="balance-amount fs-5">{{ config('currencies.' .
                     Auth::user()->currency, '$') }}{{ number_format($stakingBalance, 1) }}</div>
                 <div class="balance-label">STAKING BALANCE</div>
             </div>
@@ -21,7 +21,7 @@
         <!-- Right Section -->
         <div class="col-lg-8">
             <!-- ETH -->
-            <div class="asset-card mt-3">
+            <div class="asset-card mt-3 theme-card-bg p-3 rounded">
                 <img src="https://s3-symbol-logo.tradingview.com/crypto/XTVCETH--big.svg" alt="ETH"
                     class="asset-icon bg-primary">
                 <div class="asset-info">
@@ -39,7 +39,7 @@
                 </div>
             </div>
 
-            <div class="asset-card mt-3">
+            <div class="asset-card mt-3 theme-card-bg p-3 rounded">
                 <img src="https://s3-symbol-logo.tradingview.com/crypto/XTVCETH--big.svg" alt="ETH"
                     class="asset-icon bg-primary">
                 <div class="asset-info">
