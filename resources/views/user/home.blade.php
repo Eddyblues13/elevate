@@ -283,47 +283,51 @@
                 <div id="opentrades" style="display: none;" class="px-2">
                     @forelse($openTrades as $trade)
                     <a href="{{ route('trade.detail', $trade->id) }}" class="text-decoration-none">
-                    <div class="asset-card mt-3 d-flex align-items-center p-2 border rounded theme-card-bg" style="cursor: pointer;">
-                        <div class="date-section text-center me-3 asset-date-col">
-                            <div class="month fs-6 fw-bold text-header">{{ $trade->entry_date->format('M') }}</div>
-                            <div class="day fs-3 text-header">{{ $trade->entry_date->format('d') }}</div>
-                        </div>
-                        @php
-                        $flagMap =
-                        ['AUD'=>'au','BRL'=>'br','CAD'=>'ca','CHF'=>'ch','EUR'=>'eu','GBP'=>'gb','JPY'=>'jp','NZD'=>'nz','USD'=>'us','ZAR'=>'za'];
-                        @endphp
-                        @if($trade->symbol_icon === 'forex')
-                        @php
-                        $base = substr(strtoupper($trade->symbol), 0, 3);
-                        $quote = substr(strtoupper($trade->symbol), 3, 3);
-                        @endphp
-                        <div class="d-flex align-items-center me-3 asset-flag-col">
-                            <img src="https://flagcdn.com/w40/{{ $flagMap[$base] ?? 'us' }}.png" alt="{{ $base }}"
-                                class="rounded-circle asset-flag-img">
-                            <img src="https://flagcdn.com/w40/{{ $flagMap[$quote] ?? 'us' }}.png" alt="{{ $quote }}"
-                                class="rounded-circle asset-flag-img overlap">
-                        </div>
-                        @elseif($trade->symbol_icon !== '')
-                        <img src="{{ $trade->symbol_icon }}" alt="{{ $trade->symbol }}"
-                            class="asset-icon rounded-circle me-3 asset-icon-img"
-                            onerror="this.style.display='none';this.nextElementSibling.classList.remove('d-none');this.nextElementSibling.style.display='flex';">
-                        <div class="rounded-circle me-3 d-none asset-icon-fallback">{{ substr($trade->symbol, 0, 1) }}
-                        </div>
-                        @else
-                        <div class="rounded-circle me-3 asset-icon-fallback">{{ substr($trade->symbol, 0, 1) }}</div>
-                        @endif
-                        <div class="asset-info flex-grow-1">
-                            <div class="d-flex justify-content-between align-items-center mb-1">
-                                <div class="section-label fw-bold text-header">{{ strtoupper($trade->direction) }} {{
-                                    $trade->formattedAmount }} {{ $trade->symbol }}</div>
-                                <div
-                                    class="usd-value fw-bold {{ $trade->profit >= 0 ? 'text-success' : 'text-danger' }}">
-                                    {{ $trade->formattedProfit }}
-                                </div>
+                        <div class="asset-card mt-3 d-flex align-items-center p-2 border rounded theme-card-bg"
+                            style="cursor: pointer;">
+                            <div class="date-section text-center me-3 asset-date-col">
+                                <div class="month fs-6 fw-bold text-header">{{ $trade->entry_date->format('M') }}</div>
+                                <div class="day fs-3 text-header">{{ $trade->entry_date->format('d') }}</div>
                             </div>
-                            <div class="crypto-amount small text-muted">{{ $trade->trader_name ?? 'N/A' }}</div>
+                            @php
+                            $flagMap =
+                            ['AUD'=>'au','BRL'=>'br','CAD'=>'ca','CHF'=>'ch','EUR'=>'eu','GBP'=>'gb','JPY'=>'jp','NZD'=>'nz','USD'=>'us','ZAR'=>'za'];
+                            @endphp
+                            @if($trade->symbol_icon === 'forex')
+                            @php
+                            $base = substr(strtoupper($trade->symbol), 0, 3);
+                            $quote = substr(strtoupper($trade->symbol), 3, 3);
+                            @endphp
+                            <div class="d-flex align-items-center me-3 asset-flag-col">
+                                <img src="https://flagcdn.com/w40/{{ $flagMap[$base] ?? 'us' }}.png" alt="{{ $base }}"
+                                    class="rounded-circle asset-flag-img">
+                                <img src="https://flagcdn.com/w40/{{ $flagMap[$quote] ?? 'us' }}.png" alt="{{ $quote }}"
+                                    class="rounded-circle asset-flag-img overlap">
+                            </div>
+                            @elseif($trade->symbol_icon !== '')
+                            <img src="{{ $trade->symbol_icon }}" alt="{{ $trade->symbol }}"
+                                class="asset-icon rounded-circle me-3 asset-icon-img"
+                                onerror="this.style.display='none';this.nextElementSibling.classList.remove('d-none');this.nextElementSibling.style.display='flex';">
+                            <div class="rounded-circle me-3 d-none asset-icon-fallback">{{ substr($trade->symbol, 0, 1)
+                                }}
+                            </div>
+                            @else
+                            <div class="rounded-circle me-3 asset-icon-fallback">{{ substr($trade->symbol, 0, 1) }}
+                            </div>
+                            @endif
+                            <div class="asset-info flex-grow-1">
+                                <div class="d-flex justify-content-between align-items-center mb-1">
+                                    <div class="section-label fw-bold text-header">{{ strtoupper($trade->direction) }}
+                                        {{
+                                        $trade->formattedAmount }} {{ $trade->symbol }}</div>
+                                    <div
+                                        class="usd-value fw-bold {{ $trade->profit >= 0 ? 'text-success' : 'text-danger' }}">
+                                        {{ $trade->formattedProfit }}
+                                    </div>
+                                </div>
+                                <div class="crypto-amount small text-muted">{{ $trade->trader_name ?? 'N/A' }}</div>
+                            </div>
                         </div>
-                    </div>
                     </a>
                     @empty
                     <div class="dashboard-no-trades">
@@ -343,43 +347,47 @@
                 <div id="closetrades" class="px-2">
                     @forelse($closedTrades as $trade)
                     <a href="{{ route('trade.detail', $trade->id) }}" class="text-decoration-none">
-                    <div class="asset-card mt-3 d-flex align-items-center p-2 border rounded theme-card-bg" style="cursor: pointer;">
-                        <div class="date-section text-center me-3 asset-date-col">
-                            <div class="month fs-6 fw-bold text-header">{{ $trade->exit_date->format('M') }}</div>
-                            <div class="day fs-3 text-header">{{ $trade->exit_date->format('d') }}</div>
-                        </div>
-                        @if($trade->symbol_icon === 'forex')
-                        @php
-                        $base = substr(strtoupper($trade->symbol), 0, 3);
-                        $quote = substr(strtoupper($trade->symbol), 3, 3);
-                        @endphp
-                        <div class="d-flex align-items-center me-3 asset-flag-col">
-                            <img src="https://flagcdn.com/w40/{{ $flagMap[$base] ?? 'us' }}.png" alt="{{ $base }}"
-                                class="rounded-circle asset-flag-img">
-                            <img src="https://flagcdn.com/w40/{{ $flagMap[$quote] ?? 'us' }}.png" alt="{{ $quote }}"
-                                class="rounded-circle asset-flag-img overlap">
-                        </div>
-                        @elseif($trade->symbol_icon !== '')
-                        <img src="{{ $trade->symbol_icon }}" alt="{{ $trade->symbol }}"
-                            class="asset-icon rounded-circle me-3 asset-icon-img"
-                            onerror="this.style.display='none';this.nextElementSibling.classList.remove('d-none');this.nextElementSibling.style.display='flex';">
-                        <div class="rounded-circle me-3 d-none asset-icon-fallback">{{ substr($trade->symbol, 0, 1) }}
-                        </div>
-                        @else
-                        <div class="rounded-circle me-3 asset-icon-fallback">{{ substr($trade->symbol, 0, 1) }}</div>
-                        @endif
-                        <div class="asset-info flex-grow-1">
-                            <div class="d-flex justify-content-between align-items-center mb-1">
-                                <div class="section-label fw-bold text-header">{{ strtoupper($trade->direction) }} {{
-                                    $trade->formattedAmount }} {{ $trade->symbol }}</div>
-                                <div
-                                    class="usd-value fw-bold {{ $trade->profit >= 0 ? 'text-success' : 'text-danger' }}">
-                                    {{ $trade->formattedProfit }}
-                                </div>
+                        <div class="asset-card mt-3 d-flex align-items-center p-2 border rounded theme-card-bg"
+                            style="cursor: pointer;">
+                            <div class="date-section text-center me-3 asset-date-col">
+                                <div class="month fs-6 fw-bold text-header">{{ $trade->exit_date->format('M') }}</div>
+                                <div class="day fs-3 text-header">{{ $trade->exit_date->format('d') }}</div>
                             </div>
-                            <div class="crypto-amount small text-muted">{{ $trade->trader_name ?? 'N/A' }}</div>
+                            @if($trade->symbol_icon === 'forex')
+                            @php
+                            $base = substr(strtoupper($trade->symbol), 0, 3);
+                            $quote = substr(strtoupper($trade->symbol), 3, 3);
+                            @endphp
+                            <div class="d-flex align-items-center me-3 asset-flag-col">
+                                <img src="https://flagcdn.com/w40/{{ $flagMap[$base] ?? 'us' }}.png" alt="{{ $base }}"
+                                    class="rounded-circle asset-flag-img">
+                                <img src="https://flagcdn.com/w40/{{ $flagMap[$quote] ?? 'us' }}.png" alt="{{ $quote }}"
+                                    class="rounded-circle asset-flag-img overlap">
+                            </div>
+                            @elseif($trade->symbol_icon !== '')
+                            <img src="{{ $trade->symbol_icon }}" alt="{{ $trade->symbol }}"
+                                class="asset-icon rounded-circle me-3 asset-icon-img"
+                                onerror="this.style.display='none';this.nextElementSibling.classList.remove('d-none');this.nextElementSibling.style.display='flex';">
+                            <div class="rounded-circle me-3 d-none asset-icon-fallback">{{ substr($trade->symbol, 0, 1)
+                                }}
+                            </div>
+                            @else
+                            <div class="rounded-circle me-3 asset-icon-fallback">{{ substr($trade->symbol, 0, 1) }}
+                            </div>
+                            @endif
+                            <div class="asset-info flex-grow-1">
+                                <div class="d-flex justify-content-between align-items-center mb-1">
+                                    <div class="section-label fw-bold text-header">{{ strtoupper($trade->direction) }}
+                                        {{
+                                        $trade->formattedAmount }} {{ $trade->symbol }}</div>
+                                    <div
+                                        class="usd-value fw-bold {{ $trade->profit >= 0 ? 'text-success' : 'text-danger' }}">
+                                        {{ $trade->formattedProfit }}
+                                    </div>
+                                </div>
+                                <div class="crypto-amount small text-muted">{{ $trade->trader_name ?? 'N/A' }}</div>
+                            </div>
                         </div>
-                    </div>
                     </a>
                     @empty
                     <div class="dashboard-no-trades">
