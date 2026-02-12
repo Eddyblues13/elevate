@@ -1,113 +1,88 @@
 @include('admin.header')
-<div class="main-panel bg-dark">
-	<div class="content bg-dark">
-		<div class="page-inner">
-			<div class="mt-2 mb-4">
-				<h1 class="title1 text-light">Referral/Other Bonus Settings</h1>
-			</div>
-			<div>
-			</div>
-			<div>
-			</div>
-			<div class="row">
-				<div class="col-md-8 offset-md-2">
-					<form method="post" action="javascript:void(0)" id="refform">
-						<input type="hidden" name="_token" value="s195WfZZZJb3SUAWuuGNZ9Eo2OT4S0jZ1ogZrdon"> <input
-							type="hidden" name="_method" value="PUT">
-						<div class="form-group">
-							<h5 class="text-light">Direct Referral Commission (%) </h5>
-							<input type="text" class="form-control bg-dark text-light" name="ref_commission" value="40"
-								required>
-						</div>
 
-						<div class="form-group">
-							<h5 class="text-light">Indirect Referral Commission 1 (%) </h5>
-							<input type="text" class="form-control bg-dark text-light" name="ref_commission1" value="30"
-								required>
-						</div>
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <div>
+                <h4 class="admin-page-title">Referral/Bonus Settings</h4>
+                <p class="admin-page-subtitle">Configure referral commissions and registration bonus</p>
+            </div>
+        </div>
 
-						<div class="form-group">
-							<h5 class="text-light">Indirect Referral Commission 2 (%) </h5>
-							<input type="text" class="form-control bg-dark text-light" name="ref_commission2" value="20"
-								required>
-						</div>
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="admin-card">
+                    <form method="post" action="javascript:void(0)" id="refform">
+                        @csrf
+                        @method('PUT')
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label class="form-label" style="color:var(--heading-color);">Direct Referral Commission
+                                    (%)</label>
+                                <input type="text" class="admin-form-control" name="ref_commission" value="40" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label" style="color:var(--heading-color);">Indirect Referral
+                                    Commission 1 (%)</label>
+                                <input type="text" class="admin-form-control" name="ref_commission1" value="30"
+                                    required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label" style="color:var(--heading-color);">Indirect Referral
+                                    Commission 2 (%)</label>
+                                <input type="text" class="admin-form-control" name="ref_commission2" value="20"
+                                    required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label" style="color:var(--heading-color);">Indirect Referral
+                                    Commission 3 (%)</label>
+                                <input type="text" class="admin-form-control" name="ref_commission3" value="10"
+                                    required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label" style="color:var(--heading-color);">Indirect Referral
+                                    Commission 4 (%)</label>
+                                <input type="text" class="admin-form-control" name="ref_commission4" value="5" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label" style="color:var(--heading-color);">Indirect Referral
+                                    Commission 5 (%)</label>
+                                <input type="text" class="admin-form-control" name="ref_commission5" value="1" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label" style="color:var(--heading-color);">Registration Bonus
+                                    ($)</label>
+                                <input type="text" class="admin-form-control" name="signup_bonus" value="0" required>
+                            </div>
+                            <input type="hidden" name="id" value="1">
+                            <div class="col-12 mt-3">
+                                <button type="submit" class="btn btn-admin-primary"><i class="fas fa-save me-1"></i>
+                                    Update</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-						<div class="form-group">
-							<h5 class="text-light">Indirect Referral Commission 3 (%) </h5>
-							<input type="text" class="form-control bg-dark text-light" name="ref_commission3" value="10"
-								required>
-						</div>
+<script>
+    $('#refform').on('submit', function() {
+    $.ajax({
+        url: "account/admin/dashboard/update-bonus",
+        type: 'POST',
+        data: $('#refform').serialize(),
+        success: function(response) {
+            if (response.status === 200) {
+                toastr.success(response.success);
+            }
+        },
+        error: function(error) {
+            console.log(error);
+        },
+    });
+});
+</script>
 
-						<div class="form-group">
-							<h5 class="text-light">Indirect Referral Commission 4 (%) </h5>
-							<input type="text" class="form-control bg-dark text-light" name="ref_commission4" value="5"
-								required>
-						</div>
-
-						<div class="form-group">
-							<h5 class="text-light">Indirect Referral Commission 5 (%) </h5>
-							<input type="text" class="form-control  bg-dark text-light" name="ref_commission5" value="1"
-								required>
-						</div>
-
-						<div class="form-group">
-							<h5 class="text-light">Registration Bonus(R)</h5>
-							<input type="text" class="form-control bg-dark text-light" name="signup_bonus" value="0"
-								required>
-						</div>
-						<div class="form-group">
-							<input type="submit" class="px-5 btn btn-primary btn-lg" value="Update">
-							<input type="hidden" name="id" value="1">
-						</div>
-					</form>
-				</div>
-			</div>
-		</div>
-	</div>
-	<script>
-		// Submit email preference form
-	$('#refform').on('submit', function() {
-		//alert('love');
-		$.ajax({
-			url: "account/admin/dashboard/update-bonus",
-			type: 'POST',
-			data: $('#refform').serialize(),
-			success: function(response) {
-				if (response.status === 200) {
-					$.notify({
-						// options
-						icon: 'flaticon-alarm-1',
-						title: 'Success',
-						message: response.success,
-					},{
-						// settings
-						type: 'success',
-						allow_dismiss: true,
-						newest_on_top: false,
-						placement: {
-							from: "top",
-							align: "right"
-						},
-						offset: 20,
-						spacing: 10,
-						z_index: 1031,
-						delay: 5000,
-						timer: 1000,
-						animate: {
-							enter: 'animated fadeInDown',
-							exit: 'animated fadeOutUp'
-						},
-	
-					});
-				} else {
-					
-				}
-			},
-			error: function(error) {
-				console.log(error);
-			},
-		});
-	});
-	</script>
-
-	@include('admin.footer')
+@include('admin.footer')

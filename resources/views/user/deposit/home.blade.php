@@ -12,7 +12,7 @@
     </div>
     @endif
     @if($deposits->isEmpty())
-    <div class="deposit-card text-white text-center py-5">
+    <div class="deposit-card text-center py-5" style="color: var(--text-color);">
         No Deposits yet
     </div>
     @else
@@ -106,23 +106,24 @@
 
 <style>
     .deposit-card {
-        background-color: #1E1E2D;
+        background-color: var(--card-bg);
         border-radius: 8px;
     }
 
     .transaction-card {
         display: flex;
         align-items: center;
-        background-color: #1E1E2D;
+        background-color: var(--card-bg);
         border-radius: 8px;
         padding: 15px;
         margin-bottom: 10px;
+        border: 1px solid var(--border-color);
     }
 
     .date-section {
         text-align: center;
         padding: 0 15px;
-        color: white;
+        color: var(--heading-color);
     }
 
     .transaction-details {
@@ -136,7 +137,7 @@
     }
 
     .deposit-description {
-        color: #6C757D;
+        color: var(--text-color);
         font-size: 0.9rem;
     }
 
@@ -163,20 +164,21 @@
 
     .notification {
         position: relative;
-        background-color: #2D2D42;
-        color: white;
+        background-color: var(--card-bg);
+        color: var(--text-color);
         padding: 15px;
         margin: 15px;
         border-radius: 8px;
         display: flex;
         justify-content: space-between;
         align-items: center;
+        border: 1px solid var(--border-color);
     }
 
     .close-button {
         background: none;
         border: none;
-        color: white;
+        color: var(--text-color);
         font-size: 1.5rem;
         cursor: pointer;
     }
@@ -206,7 +208,7 @@
     }
 
     .text-silverish {
-        color: #B8B8B8;
+        color: var(--text-color);
     }
 </style>
 

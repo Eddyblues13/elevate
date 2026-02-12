@@ -1,28 +1,25 @@
 @include('admin.header')
 
-<div class="main-panel bg-dark">
-    <div class="content bg-dark">
-        <div class="page-inner">
-            <div class="mt-2 mb-5">
-                <h1 class="title1 d-inline text-light">View Deposit Screenshot</h1>
-                <div class="d-inline">
-                    <div class="float-right btn-group">
-                        <a class="btn btn-primary btn-sm" href="{{url('admin/manage-deposit')}}"> <i
-                                class="fa fa-arrow-left"></i> back</a>
-                    </div>
-                </div>
-            </div>
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="d-flex justify-content-between align-items-center mb-4">
             <div>
+                <h4 class="admin-page-title">Deposit Proof</h4>
+                <p class="admin-page-subtitle">View payment screenshot</p>
             </div>
-            <div>
-            </div>
-            <div class="mb-5 row">
-                <div class="col-lg-8 offset-lg-2 card p-4 bg-dark shadow">
-                    <img src="{{ asset($proof->proof) }}" alt="Proof of Payment" class="img-fluid" />
+            <a class="btn btn-sm btn-outline-secondary" href="{{ url('admin/manage-deposit') }}"><i
+                    class="fas fa-arrow-left me-1"></i> Back</a>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="admin-card text-center">
+                    <img src="{{ asset($proof->proof) }}" alt="Proof of Payment" class="img-fluid rounded"
+                        style="max-width:100%;">
                 </div>
             </div>
         </div>
     </div>
+</div>
 
-
-    @include('admin.footer')
+@include('admin.footer')

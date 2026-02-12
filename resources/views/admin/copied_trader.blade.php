@@ -1,71 +1,72 @@
 @include('admin.header')
-<div class="main-panel">
-			<div class="content bg-dark">
-				<div class="page-inner">
-            @if(session('message'))
-  <div class="alert alert-success mb-2">{{session('message')}}</div>
-         @endif
-					<div class="mt-2 mb-4">
-						<h1 class="title1 text-light d-inline"> Coppied traders</h1>
-						<div class="d-inline">
-							<div class="float-right btn-group">
-								<a class="btn btn-primary btn-sm" "> <i class="fa fa-arrow-left"></i> back</a>
-							</div>
-						</div>
-					</div>
-					<div>
-    </div>                    <div>
-    </div>					<div class="mb-5 row">
-						<div class="col card p-3 shadow bg-dark">
-							<div class="bs-example widget-shadow table-responsive" data-example-id="hoverable-table"> 
-								<span style="margin:3px;">
-								<table id="ShipTable" class="table table-hover text-light"> 
-									<thead> 
-										<tr> 
-											<th>Client name</th> 
-											<th>Trader Name</th>
-											<th>Amount</th>
-											<th>Active</th>
-											<th>Duration</th>
-											<th>Created on</th>
-											<th>Expire At</th>
-											<th>Option</th>
-										</tr> 
-									</thead> 
-									<tbody> 
-                                        @foreach($trade as $trader)
-											<tr> 
-											<td>{{$trader->name}}</td> 
-											<td>{{$trader->trader_name}}</td> 
-											<td>${{number_format($trader->amount, 2, '.', ',')}}</td> 
-											<td>
-                                            @if($trader->status==='1')
-											<span class="badge badge-danger">expired</span>
-											@elseif($trader->status==='0')
-											<span class="badge badge-success">yes</span>
-											@endif
-											</td> 
-											<td>{{$trader->trade_duration}}</td> 
-											<td>{{ \Carbon\Carbon::parse($trader->created_at)->format('D, M j, Y g:i A') }}</td> 
-											<td>{{ \Carbon\Carbon::parse($trader->expired_at)->format('D, M j, Y g:i A') }}</td> 
-											<td>
-									<a href="{{url('delete-trade/'.$trader->id)}}" class="m-1 btn btn-info btn-sm"> Delete 	Plan</a>
-                                    @if($trader->status==='0')
-                                    <a href="{{url('expired-trade/'.$trader->id)}}" class="m-1 btn btn-danger btn-sm">Mark as Expired</a>
-									@elseif($trader->status==='1')
-                                    <a href="{{url('active-trade/'.$trader->id)}}" class="m-1 btn btn-success btn-sm">Mark as Active</a>
-									@endif
-                                   
-																							
-                            </td> 
-										</tr> 
-										@endforeach			
-									</tbody> 
-								</table>
-							</div>
-						</div>
-					</div>
-				</div>	
-			</div>
+
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <div>
+                <h4 class="admin-page-title">Copied Traders</h4>
+                <p class="admin-page-subtitle">All copy trade subscriptions</p>
+            </div>
+        </div>
+
+        <div class="admin-card p-0">
+            <div class="table-responsive">
+                <table class="admin-table" id="ShipTable">
+                    <thead>
+                        <tr>
+                            <th>Client Name</th>
+                            <th>Trader Name</th>
+                            <th>Amount</th>
+                            <th>Status</th>
+                            <th>Duration</th>
+                            <th>Created</th>
+                            <th>Expired</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($trade as $trader)
+                        <tr>
+                            <td>{{ $trader->client_name }}</td>
+                            <td>{{ $trader->trader_name }}</td>
+                            <td>{{ $trader->amount }}</td>
+                            <td>
+                                @if($trader->active == 1)
+                                <span class="admin-badge-success">Active</span>
+                                @else
+                                <span class="admin-badge-danger">Expired</span>
+                                @endif
+                            </td>
+                            <td>{{ $trader->trade_duration }}</td>
+                            <td>{{ $trader->created_at }}</td>
+                            <td>{{ $trader->expired_at }}</td>
+                            <td>
+                                <div class="d-flex gap-1">
+                                    <a href="{{ url('delete-trade/'.$trader->id) }}" class="btn btn-sm btn-danger"
+                                        title="Delete"><i class="fa fa-trash"></i></a>
+                                    <a href="{{ url('expired-trade/'.$trader->id) }}" class="btn btn-sm btn-warning"
+                                        title="Mark Expired"><i class="fa fa-times-circle"></i></a>
+                                    <a href="{{ url('active-trade/'.$trader->id) }}" class="btn btn-sm btn-success"
+                                        title="Mark Active"><i class="fa fa-check-circle"></i></a>
+                                </div>
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function(){
+    $('#ShipTable').DataTable({
+        order:[[0,'desc']],
+        responsive:true,
+        language:{search:"",searchPlaceholder:"Search..."}
+    });
+});
+</script>
+
 @include('admin.footer')
-				

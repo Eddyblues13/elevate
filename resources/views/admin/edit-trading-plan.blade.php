@@ -1,48 +1,53 @@
 @include('admin.header')
 
-<div class="main-panel">
-    <div class="content bg-dark">
-        <div class="page-inner">
-            @if(session('message'))
-            <div class="alert alert-success mb-2">{{ session('message') }}</div>
-            @endif
-            <div class="mt-2 mb-4">
-                <h1 class="title1 text-light">Edit Trading Plan</h1>
+<div class="main-content">
+    <div class="container-fluid">
+        @if(session('message'))
+        <div class="alert alert-success alert-dismissible fade show mb-3">
+            {{ session('message') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+        @endif
+
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <div>
+                <h4 class="admin-page-title">Edit Trading Plan</h4>
+                <p class="admin-page-subtitle">Update account plan details</p>
             </div>
-            <div class="mb-5 row">
-                <div class="col-lg-12">
-                    <div class="p-3 card bg-dark">
-                        <form action="{{ route('admin.update-trading-plan', $tradingPlan->id) }}" method="POST">
-                            @csrf
-                            <div class="form-row">
-                                <div class="form-group col-md-6">
-                                    <h5 class="text-light">Plan Name</h5>
-                                    <input class="form-control text-light bg-dark" value="{{ $tradingPlan->name }}"
-                                        type="text" name="name" required>
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <h5 class="text-light">Minimum Amount ($)</h5>
-                                    <input class="form-control text-light bg-dark"
-                                        value="{{ $tradingPlan->min_amount }}" type="number" name="min_amount" required>
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <h5 class="text-light">Maximum Amount ($)</h5>
-                                    <input class="form-control text-light bg-dark"
-                                        value="{{ $tradingPlan->max_amount }}" type="number" name="max_amount" required>
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <h5 class="text-light">Investment Duration</h5>
-                                    <input class="form-control text-light bg-dark" value="{{ $tradingPlan->duration }}"
-                                        type="text" name="duration" required>
-                                </div>
-                                <div class="form-group col-md-12">
-                                    <input type="submit" class="btn btn-primary" value="Update Plan">
-                                </div>
-                            </div>
-                        </form>
+            <a href="{{ route('admin.view-trading-plans') }}" class="btn btn-sm btn-outline-secondary"><i
+                    class="fas fa-arrow-left me-1"></i> Back</a>
+        </div>
+
+        <div class="admin-card">
+            <form action="{{ route('admin.update-trading-plan', $tradingPlan->id) }}" method="POST">
+                @csrf
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <label class="form-label" style="color:var(--heading-color);">Plan Name</label>
+                        <input class="admin-form-control" value="{{ $tradingPlan->name }}" type="text" name="name"
+                            required>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label" style="color:var(--heading-color);">Minimum Amount ($)</label>
+                        <input class="admin-form-control" value="{{ $tradingPlan->min_amount }}" type="number"
+                            name="min_amount" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label" style="color:var(--heading-color);">Maximum Amount ($)</label>
+                        <input class="admin-form-control" value="{{ $tradingPlan->max_amount }}" type="number"
+                            name="max_amount" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label" style="color:var(--heading-color);">Investment Duration</label>
+                        <input class="admin-form-control" value="{{ $tradingPlan->duration }}" type="text"
+                            name="duration" required>
+                    </div>
+                    <div class="col-12 mt-3">
+                        <button type="submit" class="btn btn-admin-primary"><i class="fas fa-save me-1"></i> Update
+                            Plan</button>
                     </div>
                 </div>
-            </div>
+            </form>
         </div>
     </div>
 </div>

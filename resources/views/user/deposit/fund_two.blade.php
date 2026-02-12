@@ -2,7 +2,7 @@
 <!-- Main Content -->
 <div class="deposit-succes-main-content">
     <div class="total-label">FUND {{ strtoupper($account) }} BALANCE TOTAL</div>
-    <div class="amount text-white" style="font-size: 4rem; color: white !important;">{{ config('currencies.' .
+    <div class="amount text-header" style="font-size: 4rem;">{{ config('currencies.' .
         auth()->user()->currency, '$') }}{{ number_format($amount, 2) }}
     </div>
 

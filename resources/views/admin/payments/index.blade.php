@@ -1,104 +1,76 @@
 @include('admin.header')
 
-<div class="main-panel bg-dark">
-    <div class="content bg-dark">
-        <div class="page-inner">
+<div class="main-content">
+    <div class="container-fluid">
+        @if(session('message'))
+        <div class="alert alert-success alert-dismissible fade show">{{ session('message') }}<button type="button"
+                class="btn-close" data-bs-dismiss="alert"></button></div>
+        @endif
 
-            @if(session('message'))
-            <div class="alert alert-success mb-2">{{ session('message') }}</div>
-            @endif
-
-            <div class="mt-2 mb-4">
-                <h1 class="title1 text-light">Payment Setting</h1>
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <div>
+                <h4 class="admin-page-title">Payment Methods</h4>
+                <p class="admin-page-subtitle">Manage cryptocurrency payment options</p>
             </div>
+            <a href="{{ route('payment.create') }}" class="btn btn-admin-primary"><i
+                    class="fas fa-plus-circle me-1"></i> Add New</a>
+        </div>
 
-            <div class="mb-5 row">
-                <div class="col-12">
-                    <div class="card p-md-5 p-2 shadow-lg bg-dark">
-                        <div class="d-flex justify-content-between align-items-center mb-4">
-                            <h3 class="text-light d-inline">Payment Methods</h3>
-                            <a href="{{ route('payment.create') }}" class="btn btn-primary btn-sm">
-                                <i class="fas fa-plus-circle"></i> Add New
-                            </a>
+        @if($payments->isEmpty())
+        <div class="admin-card text-center py-5">
+            <i class="fas fa-wallet fa-3x mb-3" style="color:var(--text-color);opacity:0.3;"></i>
+            <h5 style="color:var(--heading-color);">No payment methods found</h5>
+        </div>
+        @else
+        <div class="row g-4">
+            @foreach($payments as $payment)
+            <div class="col-md-6 col-lg-4">
+                <div class="admin-card h-100"
+                    style="border-left: 3px solid {{ $payment->status === 'enabled' ? '#10b981' : '#ef4444' }};">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <div class="d-flex align-items-center gap-2">
+                            @if($payment->icon)
+                            <img src="{{ asset('storage/' . $payment->icon) }}" alt="{{ $payment->wallet_name }}"
+                                style="max-height:28px;max-width:28px;">
+                            @endif
+                            <strong style="color:var(--heading-color);">{{ $payment->wallet_name }}</strong>
                         </div>
-
-                        @if($payments->isEmpty())
-                        <div class="text-center text-light py-3">No payment methods found.</div>
+                        <span class="admin-badge-{{ $payment->status === 'enabled' ? 'success' : 'danger' }}">{{
+                            ucfirst($payment->status) }}</span>
+                    </div>
+                    <div style="color:var(--text-color);font-size:0.9rem;">
+                        <div class="mb-1"><small style="opacity:0.7;">Coin Code:</small><br>{{ $payment->coin_code }}
+                        </div>
+                        <div class="mb-1"><small style="opacity:0.7;">Coin Name:</small><br>{{ $payment->coin_name }}
+                        </div>
+                        <div class="mb-1"><small style="opacity:0.7;">Wallet Type:</small><br>{{ $payment->wallet_type
+                            }}</div>
+                        <div class="mb-1"><small style="opacity:0.7;">Network:</small><br>{{
+                            ucfirst($payment->network_type) }}</div>
+                        <div class="mb-1"><small style="opacity:0.7;">Address:</small><br><span
+                                class="text-truncate d-block" style="max-width:100%;">{{ $payment->wallet_address
+                                }}</span></div>
+                    </div>
+                    <div class="d-flex justify-content-between mt-3 pt-3 border-top"
+                        style="border-color:var(--border-color) !important;">
+                        <a href="{{ route('payment.edit', $payment->id) }}" class="btn btn-sm btn-admin-primary"><i
+                                class="fa fa-edit me-1"></i>Edit</a>
+                        @if(in_array($payment->wallet_name, ['Ethereum', 'Bitcoin', 'Litecoin']))
+                        <button class="btn btn-sm btn-outline-secondary" disabled>Default</button>
                         @else
-                        <div class="row">
-                            @foreach($payments as $payment)
-                            <div class="col-md-6 col-lg-4 mb-4">
-                                <div
-                                    class="card bg-dark shadow border-{{ $payment->status === 'enabled' ? 'success' : 'danger' }}">
-                                    <div class="card-header d-flex justify-content-between align-items-center">
-                                        <div>
-                                            @if($payment->icon)
-                                            <img src="{{ asset('storage/' . $payment->icon) }}"
-                                                alt="{{ $payment->wallet_name }}" class="img-fluid"
-                                                style="max-height: 30px; max-width: 30px;">
-                                            @endif
-                                            <strong class="ml-2 text-light">{{ $payment->wallet_name }}</strong>
-                                        </div>
-                                        <span
-                                            class="badge badge-{{ $payment->status === 'enabled' ? 'success' : 'danger' }}">
-                                            {{ ucfirst($payment->status) }}
-                                        </span>
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="mb-2">
-                                            <small class="text-muted">Coin Code:</small>
-                                            <p class="text-light">{{ $payment->coin_code }}</p>
-                                        </div>
-                                        <div class="mb-2">
-                                            <small class="text-muted">Coin Name:</small>
-                                            <p class="text-light">{{ $payment->coin_name }}</p>
-                                        </div>
-                                        <div class="mb-2">
-                                            <small class="text-muted">Wallet Type:</small>
-                                            <p class="text-light">{{ $payment->wallet_type }}</p>
-                                        </div>
-                                        <div class="mb-2">
-                                            <small class="text-muted">Network Type:</small>
-                                            <p class="text-light">{{ ucfirst($payment->network_type) }}</p>
-                                        </div>
-                                        <div class="mb-2">
-                                            <small class="text-muted">Wallet Address:</small>
-                                            <p class="text-light text-truncate">{{ $payment->wallet_address }}</p>
-                                        </div>
-                                    </div>
-                                    <div class="card-footer bg-dark">
-                                        <div class="d-flex justify-content-between">
-                                            <a href="{{ route('payment.edit', $payment->id) }}"
-                                                class="btn btn-primary btn-sm">
-                                                <i class="fa fa-edit"></i> Edit
-                                            </a>
-
-                                            @if(in_array($payment->wallet_name, ['Ethereum', 'Bitcoin', 'Litecoin']))
-                                            <button class="btn btn-danger btn-sm" disabled>
-                                                <i class="fa fa-trash"></i> Default
-                                            </button>
-                                            @else
-                                            <form action="{{ route('payment.destroy', $payment->id) }}" method="POST">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button class="btn btn-danger btn-sm" type="submit"
-                                                    onclick="return confirm('Are you sure you want to delete this payment method?')">
-                                                    <i class="fa fa-trash"></i> Delete
-                                                </button>
-                                            </form>
-                                            @endif
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            @endforeach
-                        </div>
+                        <form action="{{ route('payment.destroy', $payment->id) }}" method="POST">
+                            @csrf @method('DELETE')
+                            <button class="btn btn-sm btn-danger" type="submit"
+                                onclick="return confirm('Delete this payment method?')"><i
+                                    class="fa fa-trash me-1"></i>Delete</button>
+                        </form>
                         @endif
                     </div>
                 </div>
             </div>
-
+            @endforeach
         </div>
+        @endif
     </div>
 </div>
 

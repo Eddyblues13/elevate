@@ -1,7 +1,7 @@
 @include('user.layouts.header')
 <!-- Main Content -->
 <div class="depost-form-main px-2">
-    <h1 class="amount text-white" style="font-size: 4rem; color: white !important;">PAY {{ config('currencies.' .
+    <h1 class="amount text-header" style="font-size: 4rem;">PAY {{ config('currencies.' .
         auth()->user()->currency, '$') }}{{ request('amount') }}</h1>
     <a href="#" class="view-pricing text-secondary">Send Crypto</a>
 

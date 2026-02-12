@@ -1,238 +1,199 @@
 @include('admin.header')
-<div class="main-panel">
-    <div class="content bg-dark">
-        <div class="panel-header bg-dark-gradient ">
-            <div class="py-5 page-inner">
-                <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row">
+
+<div class="main-content">
+    <div class="mb-4">
+        <h2 class="admin-page-title">Dashboard</h2>
+        <p class="admin-page-subtitle">Welcome, {{ Auth::guard('admin')->user()->name }}</p>
+    </div>
+
+    <!-- Quick Actions -->
+    <div class="d-flex flex-wrap gap-2 mb-4">
+        <a href="{{ route('manage.deposits.page') }}" class="btn btn-success btn-sm" style="border-radius:8px;">
+            <i class="bi bi-box-arrow-in-down me-1"></i> Deposits
+        </a>
+        <a href="{{ route('manage.withdrawals.page') }}" class="btn btn-danger btn-sm" style="border-radius:8px;">
+            <i class="bi bi-box-arrow-up me-1"></i> Withdrawals
+        </a>
+        <a href="{{ route('manage.users.page') }}" class="btn btn-secondary btn-sm" style="border-radius:8px;">
+            <i class="bi bi-people me-1"></i> Users
+        </a>
+    </div>
+
+    <!-- Stats Row 1 -->
+    <div class="row g-3 mb-3">
+        <div class="col-6 col-md-3">
+            <div class="admin-stat-card">
+                <div class="d-flex align-items-center gap-3">
+                    <div class="stat-icon" style="background: rgba(234,179,8,0.15); color:#eab308;">
+                        <i class="bi bi-box-arrow-in-down"></i>
+                    </div>
                     <div>
-                        <h2 class="pb-2 text-white fw-bold">Dashboard</h2>
-                        <h5 class="mb-2 text-white op-7">Welcome, {{Auth::guard('admin')->user()->name }}</h5>
-                    </div>
-                    <div class="py-2 ml-md-auto py-md-0">
-                        <a href="{{route('manage.deposits.page')}}"
-                            class="mr-2 btn btn-success btn-border ">Deposits</a>
-                        <a href="{{route('manage.withdrawals.page')}}"
-                            class="mr-2 btn btn-danger btn-border ">Withdrawals</a>
-                        <a href="{{route('manage.users.page')}}" class="btn btn-secondary ">Users</a>
+                        <div class="stat-label">Total Deposit</div>
+                        <div class="stat-value">${{ number_format($total_deposits, 2) }}</div>
                     </div>
                 </div>
             </div>
         </div>
-        <div>
-        </div>
-        <div>
-        </div>
-        <div class="page-inner mt--5">
-            <!-- Beginning of  Dashboard Stats  -->
-            <div class="row row-card-no-pd bg-dark shadow-lg mt--2">
-                <div class="col-sm-6 col-md-3">
-                    <div class="card card-stats card-round bg-dark full-height">
-                        <div class="card-body ">
-                            <div class="row">
-                                <div class="col-4">
-                                    <div class="text-center icon-big">
-                                        <i class="fa fa-download text-warning"></i>
-                                    </div>
-                                </div>
-                                <div class="col-8 col-stats">
-                                    <div class="numbers">
-                                        <p class="card-category">Total Deposit</p>
-                                        ${{
-                                        number_format($total_deposits, 2) }}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+        <div class="col-6 col-md-3">
+            <div class="admin-stat-card">
+                <div class="d-flex align-items-center gap-3">
+                    <div class="stat-icon" style="background: rgba(59,130,246,0.15); color:#3b82f6;">
+                        <i class="bi bi-hourglass-split"></i>
                     </div>
-                </div>
-                <div class="col-sm-6 col-md-3">
-                    <div class="card card-stats card-round bg-dark full-height">
-                        <div class="card-body ">
-                            <div class="row">
-                                <div class="col-4">
-                                    <div class="text-center icon-big">
-                                        <i class="flaticon-download text-info"></i>
-                                    </div>
-                                </div>
-                                <div class="col-8 col-stats">
-                                    <div class="numbers">
-                                        <p class="card-category">Pending Deposit(s)</p>
-                                        ${{
-                                        number_format($pending_deposits_sum, 2) }}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-3">
-                    <div class="card card-stats card-round bg-dark full-height">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-4">
-                                    <div class="text-center icon-big">
-                                        <i class="flaticon-arrows-1 text-danger"></i>
-                                    </div>
-                                </div>
-                                <div class="col-8 col-stats">
-                                    <div class="numbers">
-                                        <p class="card-category">Total Withdrawal</p>
-                                        ${{
-                                        number_format($total_withdrawals, 2) }}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-3">
-                    <div class="card card-stats card-round bg-dark full-height">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-4">
-                                    <div class="text-center icon-big">
-                                        <i class="flaticon-arrow text-secondary"></i>
-                                    </div>
-                                </div>
-                                <div class="col-8 col-stats">
-                                    <div class="numbers">
-                                        <p class="card-category">Pending Withdrawal</p>
-                                        ${{
-                                        number_format($pending_withdrawals_sum, 2) }}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-3">
-                    <div class="card card-stats card-round bg-dark">
-                        <div class="card-body ">
-                            <div class="row">
-                                <div class="col-4">
-                                    <div class="text-center icon-big">
-                                        <i class="flaticon-users text-success"></i>
-                                    </div>
-                                </div>
-                                <div class="col-8 col-stats">
-                                    <div class="numbers">
-                                        <p class="card-category">Total Users</p>
-                                        <h4 class="card-title text-light">{{$total_users}}</h4>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-3">
-                    <div class="card card-stats card-round bg-dark">
-                        <div class="card-body ">
-                            <div class="row">
-                                <div class="col-4">
-                                    <div class="text-center icon-big">
-                                        <i class="flaticon-remove-user text-danger"></i>
-                                    </div>
-                                </div>
-                                <div class="col-8 col-stats">
-                                    <div class="numbers">
-                                        <p class="card-category">Block Users</p>
-                                        <h4 class="card-title text-light">{{$suspended_users}}</h4>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-3">
-                    <div class="card card-stats card-round bg-dark">
-                        <div class="card-body ">
-                            <div class="row">
-                                <div class="col-4">
-                                    <div class="text-center icon-big">
-                                        <i class="flaticon-user-2 text-success"></i>
-                                    </div>
-                                </div>
-                                <div class="col-8 col-stats">
-                                    <div class="numbers">
-                                        <p class="card-category">Active Users</p>
-                                        <h4 class="card-title text-light"></h4>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-sm-6 col-md-3">
-                    <div class="card card-stats card-round bg-dark">
-                        <div class="card-body ">
-                            <div class="row">
-                                <div class="col-4">
-                                    <div class="text-center icon-big">
-                                        <i class="flaticon-diagram text-warning"></i>
-                                    </div>
-                                </div>
-                                <div class="col-8 col-stats">
-                                    <div class="numbers">
-                                        <p class="card-category">Investment Plans</p>
-                                        <h4 class="card-title text-light"></h4>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                    <div>
+                        <div class="stat-label">Pending Deposits</div>
+                        <div class="stat-value">${{ number_format($pending_deposits_sum, 2) }}</div>
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="overflow-auto">
-                        <canvas id="myChart" height="100" class="text-light"></canvas>
+        </div>
+        <div class="col-6 col-md-3">
+            <div class="admin-stat-card">
+                <div class="d-flex align-items-center gap-3">
+                    <div class="stat-icon" style="background: rgba(239,68,68,0.15); color:#ef4444;">
+                        <i class="bi bi-box-arrow-up"></i>
                     </div>
-
-                    <script>
-                        var ctx = document.getElementById('myChart').getContext('2d');
-                            var myChart = new Chart(ctx, {
-                                type: 'bar',
-                                data: {
-                                    labels: ['Deposit', 'Pending Deposit', 'Withdrawal', 'Pending Withdrawal', 'Total Transactions'],
-                                    datasets: [{
-                                        label: "# System Statistics in $",
-                                        data: [
-                                            "2803458880", 
-                                            "203000",
-                                            "1040200", 
-                                            "500", 
-                                            "10052830559675.262"
-                                            ],
-                                        backgroundColor: [
-                                            'rgba(255, 99, 132, 0.2)',
-                                            'rgba(54, 162, 235, 0.2)',
-                                            'rgba(255, 206, 86, 0.2)',
-                                            'rgba(75, 192, 192, 0.2)',
-                                            'rgba(153, 102, 255, 0.2)'
-                                        ],
-                                        borderColor: [
-                                            'rgba(255, 99, 132, 1)',
-                                            'rgba(54, 162, 235, 1)',
-                                            'rgba(255, 206, 86, 1)',
-                                            'rgba(75, 192, 192, 1)',
-                                            'rgba(153, 102, 255, 1)'
-                                        ],
-                                        borderWidth: 1
-                                    }]
-                                },
-                                options: {
-                                    scales: {
-                                        y: {
-                                            beginAtZero: true
-                                        }
-                                    }
-                                }
-                            });
-                    </script>
+                    <div>
+                        <div class="stat-label">Total Withdrawal</div>
+                        <div class="stat-value">${{ number_format($total_withdrawals, 2) }}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-6 col-md-3">
+            <div class="admin-stat-card">
+                <div class="d-flex align-items-center gap-3">
+                    <div class="stat-icon" style="background: rgba(168,85,247,0.15); color:#a855f7;">
+                        <i class="bi bi-hourglass-bottom"></i>
+                    </div>
+                    <div>
+                        <div class="stat-label">Pending Withdrawal</div>
+                        <div class="stat-value">${{ number_format($pending_withdrawals_sum, 2) }}</div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
-    @include('admin.footer')
+    <!-- Stats Row 2 -->
+    <div class="row g-3 mb-4">
+        <div class="col-6 col-md-3">
+            <div class="admin-stat-card">
+                <div class="d-flex align-items-center gap-3">
+                    <div class="stat-icon" style="background: rgba(34,197,94,0.15); color:#22c55e;">
+                        <i class="bi bi-people-fill"></i>
+                    </div>
+                    <div>
+                        <div class="stat-label">Total Users</div>
+                        <div class="stat-value">{{ $total_users }}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-6 col-md-3">
+            <div class="admin-stat-card">
+                <div class="d-flex align-items-center gap-3">
+                    <div class="stat-icon" style="background: rgba(239,68,68,0.15); color:#ef4444;">
+                        <i class="bi bi-person-x-fill"></i>
+                    </div>
+                    <div>
+                        <div class="stat-label">Blocked Users</div>
+                        <div class="stat-value">{{ $suspended_users }}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-6 col-md-3">
+            <div class="admin-stat-card">
+                <div class="d-flex align-items-center gap-3">
+                    <div class="stat-icon" style="background: rgba(34,197,94,0.15); color:#22c55e;">
+                        <i class="bi bi-person-check-fill"></i>
+                    </div>
+                    <div>
+                        <div class="stat-label">Active Users</div>
+                        <div class="stat-value">{{ $total_users - $suspended_users }}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-6 col-md-3">
+            <div class="admin-stat-card">
+                <div class="d-flex align-items-center gap-3">
+                    <div class="stat-icon" style="background: rgba(234,179,8,0.15); color:#eab308;">
+                        <i class="bi bi-diagram-3-fill"></i>
+                    </div>
+                    <div>
+                        <div class="stat-label">Investment Plans</div>
+                        <div class="stat-value">-</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Chart -->
+    <div class="admin-card mb-4">
+        <h6 class="fw-bold mb-3" style="color: var(--heading-color);">System Statistics</h6>
+        <div style="overflow-x:auto;">
+            <canvas id="myChart" height="100"></canvas>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var ctx = document.getElementById('myChart').getContext('2d');
+            var isDark = document.documentElement.classList.contains('dark');
+            var textColor = isDark ? '#a5bdd9' : '#4a4a4a';
+            var gridColor = isDark ? 'rgba(255,255,255,0.06)' : 'rgba(0,0,0,0.06)';
+
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Deposit', 'Pending Deposit', 'Withdrawal', 'Pending Withdrawal'],
+                    datasets: [{
+                        label: 'Amount ($)',
+                        data: [
+                            {{ $total_deposits }},
+                            {{ $pending_deposits_sum }},
+                            {{ $total_withdrawals }},
+                            {{ $pending_withdrawals_sum }}
+                        ],
+                        backgroundColor: [
+                            'rgba(34, 197, 94, 0.2)',
+                            'rgba(59, 130, 246, 0.2)',
+                            'rgba(239, 68, 68, 0.2)',
+                            'rgba(234, 179, 8, 0.2)'
+                        ],
+                        borderColor: [
+                            'rgba(34, 197, 94, 1)',
+                            'rgba(59, 130, 246, 1)',
+                            'rgba(239, 68, 68, 1)',
+                            'rgba(234, 179, 8, 1)'
+                        ],
+                        borderWidth: 2,
+                        borderRadius: 8
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: { labels: { color: textColor } }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: { color: textColor },
+                            grid: { color: gridColor }
+                        },
+                        x: {
+                            ticks: { color: textColor },
+                            grid: { color: gridColor }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</div>
+
+@include('admin.footer')

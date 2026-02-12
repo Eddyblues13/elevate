@@ -1,7 +1,7 @@
 @include('user.layouts.header')
 
 <!-- Main Content -->
-<div class="container py-4 bg-blend-darken">
+<div class="container py-4">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card crypto-purchase-card">
@@ -75,8 +75,8 @@
                         </div>
                     </div>
 
-                    <div class="notice mt-4 p-3 bg-light rounded">
-                        <p class="mb-0 small text-muted">
+                    <div class="notice mt-4 p-3 rounded">
+                        <p class="mb-0 small">
                             <i class="fas fa-info-circle"></i> After purchasing crypto from these exchanges, you can
                             transfer funds to your account wallet for trading.
                         </p>
@@ -93,7 +93,8 @@
     .crypto-purchase-card {
         border-radius: 10px;
         box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-        border: none;
+        border: 1px solid var(--border-color);
+        background-color: var(--card-bg);
     }
 
     .card-header {
@@ -101,11 +102,16 @@
         padding: 1.5rem;
     }
 
+    .card-body {
+        background-color: var(--card-bg);
+        border-radius: 0 0 10px 10px;
+    }
+
     .section-title {
-        color: #333;
+        color: var(--heading-color);
         margin-bottom: 1.5rem;
         padding-bottom: 0.5rem;
-        border-bottom: 1px solid #eee;
+        border-bottom: 1px solid var(--border-color);
     }
 
     .payment-method {
@@ -113,13 +119,13 @@
         align-items: center;
         padding: 1rem;
         margin-bottom: 1rem;
-        background: #f9f9f9;
+        background: var(--input-bg);
         border-radius: 8px;
         transition: all 0.3s ease;
     }
 
     .payment-method:hover {
-        background: #f0f0f0;
+        opacity: 0.85;
         transform: translateY(-2px);
     }
 
@@ -143,15 +149,21 @@
 
     .method-info h5 {
         margin-bottom: 0.2rem;
-        color: #333;
+        color: var(--heading-color);
     }
 
     .method-info p {
         margin-bottom: 0;
         font-size: 0.85rem;
+        color: var(--text-color);
     }
 
     .notice {
         font-size: 0.9rem;
+        background-color: var(--input-bg) !important;
+    }
+
+    .notice .text-muted {
+        color: var(--text-color) !important;
     }
 </style>

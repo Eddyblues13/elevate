@@ -1,272 +1,107 @@
 @include('admin.header')
-<!-- Sidebar -->
-<div class="sidebar sidebar-style-2" data-background-color="dark">
-    <div class="sidebar-wrapper scrollbar scrollbar-inner">
-        <div class="sidebar-content">
-            <div class="user">
-                <div class="info">
-                    <a data-toggle="collapse" href="#collapseExample" aria-expanded="true">
-                        <span>
-                            Admin Test
-                            <span class="user-level"> Admin</span>
 
-                        </span>
-                    </a>
-                </div>
+<div class="main-content">
+    <div class="container-fluid">
+        {{-- Page Header --}}
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <div>
+                <h4 class="admin-page-title">MT4 Subscription Settings</h4>
+                <p class="admin-page-subtitle">Configure subscription service and fee settings</p>
             </div>
+        </div>
 
-            <ul class="nav nav-primary">
-                <li class="nav-item ">
-                    <a href="account/admin/dashboard">
-                        <i class="fas fa-home"></i>
-                        <p>Dashboard</p>
-                    </a>
-                </li>
+        {{-- Success/Error Alerts --}}
+        <div id="alertContainer"></div>
 
-                <li class="nav-item   ">
-                    <a href="account/admin/dashboard/plans">
-                        <i class="fas fa-cubes " aria-hidden="true"></i>
-                        <p>Add copy Trader</p>
-                    </a>
-                </li>
-                <li class="nav-item ">
-                    <a href="account/admin/dashboard/userplansx">
-                        <i class="fas fa-cubes " aria-hidden="true"></i>
-                        <p>Coppied Traders Investment</p>
-                    </a>
-                </li>
+        {{-- Subscription Settings Card --}}
+        <div class="admin-card p-4">
+            <form id="subform">
+                @csrf
+                <input type="hidden" name="id" value="1">
 
-                <li class="nav-item   ">
-                    <a href="account/admin/dashboard/stock">
-                        <i class="fas fa-cubes " aria-hidden="true"></i>
-                        <p>Add Stock</p>
-                    </a>
-                </li>
-                <li class="nav-item ">
-                    <a href="account/admin/dashboard/userstock">
-                        <i class="fas fa-cubes " aria-hidden="true"></i>
-                        <p>Purchased Stock</p>
-                    </a>
-                </li>
-
-
-                <li class="nav-item    ">
-                    <a href="account/admin/dashboard/manageusers">
-                        <i class="fa fa-user-circle" aria-hidden="true"></i>
-                        <p>Manage Users</p>
-                    </a>
-                </li>
-
-                <li class="nav-item   ">
-                    <a href="account/admin/dashboard/mdeposits">
-                        <i class="fa fa-download" aria-hidden="true"></i>
-                        <p>Manage Deposits</p>
-                    </a>
-                </li>
-
-                <li class="nav-item    ">
-                    <a href="account/admin/dashboard/mwithdrawals">
-                        <i class="fa fa-arrow-alt-circle-up" aria-hidden="true"></i>
-                        <p>Manage Withdrawal</p>
-                    </a>
-                </li>
-
-
-                <li class="nav-item  ">
-                    <a data-toggle="collapse" href="#adm">
-                        <i class="fa fa-user"></i>
-                        <p>Administrator(s)</p>
-                        <span class="caret"></span>
-                    </a>
-                    <div class="collapse" id="adm">
-                        <ul class="nav nav-collapse">
-                            <li>
-                                <a href="account/admin/dashboard/addmanager">
-                                    <span class="sub-item">Add Manager</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="account/admin/dashboard/madmin">
-                                    <span class="sub-item">Manage Administrator(s)</span>
-                                </a>
-                            </li>
-                        </ul>
+                {{-- Subscription Service Toggle --}}
+                <div class="mb-4">
+                    <label class="form-label fw-semibold" style="color:var(--heading-color);">Subscription
+                        Service</label>
+                    <div class="d-flex gap-4 mt-2">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="subscription_service" id="subscriptonoff"
+                                value="on">
+                            <label class="form-check-label" for="subscriptonoff"
+                                style="color:var(--text-color);">On</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="subscription_service"
+                                id="subscriptonoff2" value="off">
+                            <label class="form-check-label" for="subscriptonoff2"
+                                style="color:var(--text-color);">Off</label>
+                        </div>
                     </div>
-                </li>
+                </div>
 
-                <li class="nav-item     active     ">
-                    <a data-toggle="collapse" href="#settings">
-                        <i class="fa fa-cog"></i>
-                        <p>Settings</p>
-                        <span class="caret"></span>
-                    </a>
-                    <div class="collapse" id="settings">
-                        <ul class="nav nav-collapse">
-                            <li>
-                                <a href="account/admin/dashboard/settings/app-settings">
-                                    <span class="sub-item">App Settings</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="account/admin/dashboard/settings/referral-settings">
-                                    <span class="sub-item">Referral Settings</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="account/admin/dashboard/settings/payment-settings">
-                                    <span class="sub-item">Payment Settings</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="account/admin/dashboard/manage-crypto-assets">
-                                    <span class="sub-item">Exchange Settings</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="account/admin/dashboard/settings/subscription-settings">
-                                    <span class="sub-item">Subscription Settings</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="account/admin/dashboard/frontpage">
-                                    <span class="sub-item">Frontend Settings</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="account/admin/dashboard/privacy-policy">
-                                    <span class="sub-item">Terms and Privacy</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="account/admin/dashboard/ipaddress">
-                                    <span class="sub-item">IP Address</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
+                {{-- Monthly Fee --}}
+                <div class="mb-3">
+                    <label for="monthlyfee" class="form-label" style="color:var(--heading-color);">Monthly Fee
+                        ($)</label>
+                    <input type="number" class="form-control admin-form-control" id="monthlyfee" name="monthlyfee"
+                        value="30" step="0.01" min="0">
+                </div>
 
+                {{-- Quarterly Fee --}}
+                <div class="mb-3">
+                    <label for="quaterlyfee" class="form-label" style="color:var(--heading-color);">Quarterly Fee
+                        ($)</label>
+                    <input type="number" class="form-control admin-form-control" id="quaterlyfee" name="quaterlyfee"
+                        value="40" step="0.01" min="0">
+                </div>
 
-                <!--   <li class="nav-item ">
-                    <a href="account/admin/dashboard/about">
-                        <i class=" fa fa-info-circle" aria-hidden="true"></i>
-                        <p>About Onlinetrader</p>
-                    </a>
-                </li>-->
+                {{-- Yearly Fee --}}
+                <div class="mb-3">
+                    <label for="yearlyfee" class="form-label" style="color:var(--heading-color);">Yearly Fee ($)</label>
+                    <input type="number" class="form-control admin-form-control" id="yearlyfee" name="yearlyfee"
+                        value="80" step="0.01" min="0">
+                </div>
 
-            </ul>
+                {{-- Submit --}}
+                <div class="mt-4">
+                    <button type="submit" class="btn btn-admin-primary px-4" id="submitBtn">
+                        <i class="fas fa-save me-1"></i> Save Settings
+                    </button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
-<!-- End Sidebar -->
-<div class="main-panel bg-dark">
-    <div class="content bg-dark">
-        <div class="page-inner">
-            <div class="mt-2 mb-4">
-                <h1 class="title1 text-light">MT4 Subscription Settings</h1>
-            </div>
-            <div>
-            </div>
-            <div>
-            </div>
-            <div class="mb-5 row">
-                <div class="col-md-8 offset-md-2">
-                    <div class="card p-1 p-md-5 shadow-lg bg-dark">
-                        <form method="post" action="javascript:void(0)" id="subform">
-                            <input type="hidden" name="_token" value="s195WfZZZJb3SUAWuuGNZ9Eo2OT4S0jZ1ogZrdon"> <input
-                                type="hidden" name="_method" value="PUT">
-                            <div class="form-group">
-                                <h5 class="text-light">Use MT4 Subscription Feature</h5>
-                                <div class="selectgroup">
-                                    <label class="selectgroup-item">
-                                        <input type="radio" name="subscription_service" id="subscripton" value="on"
-                                            class="selectgroup-input" checked="">
-                                        <span class="selectgroup-button">On</span>
-                                    </label>
-                                    <label class="selectgroup-item">
-                                        <input type="radio" name="subscription_service" id="subscriptonoff" value="off"
-                                            class="selectgroup-input">
-                                        <span class="selectgroup-button">Off</span>
-                                    </label>
-                                </div>
-                                <div>
-                                    <small class="text-light">Your users will not be able to see/use this service if
-                                        turned off</small>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <h4 class="text-light">Monthly Subscription Fee:</h4>
-                                <input type="text" name="monthlyfee" class="form-control bg-dark text-light" value="30">
-                            </div>
 
-                            <div class="form-group">
-                                <h4 class="text-light">Quaterly Subscription Fee:</h4>
-                                <input type="text" name="quaterlyfee" class="form-control bg-dark text-light"
-                                    value="40">
-                            </div>
+<script>
+    // Set default subscription state to On
+    document.getElementById("subscriptonoff").checked = true;
 
-                            <div class="form-group">
-                                <h4 class="text-light">Yearly Subscription Fee:</h4>
-                                <input type="text" name="yearlyfee" class="form-control bg-dark text-light" value="80">
-                            </div>
+    $('#subform').on('submit', function(e) {
+        e.preventDefault();
 
-                            <div class="form-group">
-                                <input type="submit" class="px-5 btn btn-primary btn-lg" value="Save">
-                                <input type="hidden" name="id" value="1">
-                            </div>
+        let btn = $('#submitBtn');
+        let originalText = btn.html();
+        btn.html('<span class="spinner-border spinner-border-sm me-1"></span> Saving...').prop('disabled', true);
 
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <script>
-        document.getElementById("subscriptonoff").checked= true;
-    </script>
-    <script>
-        // Submit email preference form
-	$('#subform').on('submit', function() {
-		//alert('love');
-		$.ajax({
-			url: "account/admin/dashboard/updatesubfee",
-			type: 'POST',
-			data: $('#subform').serialize(),
-			success: function(response) {
-				if (response.status === 200) {
-					$.notify({
-						// options
-						icon: 'flaticon-alarm-1',
-						title: 'Success',
-						message: response.success,
-					},{
-						// settings
-						type: 'success',
-						allow_dismiss: true,
-						newest_on_top: false,
-						placement: {
-							from: "top",
-							align: "right"
-						},
-						offset: 20,
-						spacing: 10,
-						z_index: 1031,
-						delay: 5000,
-						timer: 1000,
-						animate: {
-							enter: 'animated fadeInDown',
-							exit: 'animated fadeOutUp'
-						},
-	
-					});
-				} else {
-					
-				}
-			},
-			error: function(error) {
-				console.log(error);
-			},
-		});
-	});
-    </script>
-    @include('admin.footer')
+        $.ajax({
+            url: "{{ url('account/admin/dashboard/updatesubfee') }}",
+            type: "POST",
+            data: $('#subform').serialize(),
+            headers: {
+                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+            },
+            success: function(response) {
+                toastr.success('Subscription settings updated successfully!');
+            },
+            error: function(xhr) {
+                toastr.error('Failed to update subscription settings. Please try again.');
+            },
+            complete: function() {
+                btn.html(originalText).prop('disabled', false);
+            }
+        });
+    });
+</script>
+
+@include('admin.footer')

@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Models\User\Profit;
+use App\Models\User\MiningBalance;
 use App\Models\User\HoldingBalance;
 use App\Models\User\StakingBalance;
 use App\Models\User\TradingBalance;
@@ -124,6 +125,11 @@ class User extends Authenticatable
     public function profitBalance()
     {
         return $this->hasOne(Profit::class);
+    }
+
+    public function miningBalance()
+    {
+        return $this->hasOne(MiningBalance::class);
     }
 
 

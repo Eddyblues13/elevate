@@ -78,9 +78,9 @@
                         alt="1inch">
                 </div>
                 <div class="t-t-asset-info">
-                    <div class="t-asset-name text-white">1inch</div>
+                    <div class="t-asset-name">1inch</div>
                     <div class="t-asset-symbol text-header">1INCHUSD | Crypto</div>
-                    <div class="t-asset-price text-white">0.262</div>
+                    <div class="t-asset-price">0.262</div>
                 </div>
                 <div class="desktop-performance d-none d-md-flex">
                     <div class="desktop-performance-cell">
@@ -112,9 +112,9 @@
                         alt="Apple">
                 </div>
                 <div class="t-asset-info">
-                    <div class="t-asset-name text-white">Apple Inc.</div>
+                    <div class="t-asset-name">Apple Inc.</div>
                     <div class="t-asset-symbol text-header">AAPL | Stock</div>
-                    <div class="t-asset-price text-white">245.27</div>
+                    <div class="t-asset-price">245.27</div>
                 </div>
                 <div class="desktop-performance d-none d-md-flex">
                     <div class="desktop-performance-cell">
@@ -146,9 +146,9 @@
                         alt="Bitcoin">
                 </div>
                 <div class="t-asset-info">
-                    <div class="t-asset-name text-white">Bitcoin</div>
+                    <div class="t-asset-name">Bitcoin</div>
                     <div class="t-asset-symbol text-header">BTCUSD | Crypto</div>
-                    <div class="t-asset-price text-white">42,856.12</div>
+                    <div class="t-asset-price">42,856.12</div>
                 </div>
                 <div class="desktop-performance d-none d-md-flex">
                     <div class="desktop-performance-cell">
@@ -180,9 +180,9 @@
                         alt="Tesla">
                 </div>
                 <div class="t-asset-info">
-                    <div class="t-asset-name text-white">Tesla Inc</div>
+                    <div class="t-asset-name">Tesla Inc</div>
                     <div class="t-asset-symbol text-header">TSLA | Stock</div>
-                    <div class="t-asset-price text-white">187.65</div>
+                    <div class="t-asset-price">187.65</div>
                 </div>
                 <div class="desktop-performance d-none d-md-flex">
                     <div class="desktop-performance-cell">
@@ -214,9 +214,9 @@
                         alt="Gold">
                 </div>
                 <div class="t-asset-info">
-                    <div class="t-asset-name text-white">Gold</div>
+                    <div class="t-asset-name">Gold</div>
                     <div class="t-asset-symbol text-header">XAUUSD | Commodity</div>
-                    <div class="t-asset-price text-white">2,034.50</div>
+                    <div class="t-asset-price">2,034.50</div>
                 </div>
                 <div class="desktop-performance d-none d-md-flex">
                     <div class="desktop-performance-cell">
@@ -248,9 +248,9 @@
                         alt="Microsoft">
                 </div>
                 <div class="t-asset-info">
-                    <div class="t-asset-name text-white">Microsoft</div>
+                    <div class="t-asset-name">Microsoft</div>
                     <div class="t-asset-symbol text-header">MSFT | Stock</div>
-                    <div class="t-asset-price text-white">403.78</div>
+                    <div class="t-asset-price">403.78</div>
                 </div>
                 <div class="desktop-performance d-none d-md-flex">
                     <div class="desktop-performance-cell">
@@ -282,9 +282,9 @@
                         alt="Ethereum">
                 </div>
                 <div class="t-asset-info">
-                    <div class="t-asset-name text-white">Ethereum</div>
+                    <div class="t-asset-name">Ethereum</div>
                     <div class="t-asset-symbol text-header">ETHUSD | Crypto</div>
-                    <div class="t-asset-price text-white">2,345.67</div>
+                    <div class="t-asset-price">2,345.67</div>
                 </div>
                 <div class="desktop-performance d-none d-md-flex">
                     <div class="desktop-performance-cell">
@@ -316,9 +316,9 @@
                         alt="Amazon">
                 </div>
                 <div class="t-asset-info">
-                    <div class="t-asset-name text-white">Amazon</div>
+                    <div class="t-asset-name">Amazon</div>
                     <div class="t-asset-symbol text-header">AMZN | Stock</div>
-                    <div class="t-asset-price text-white">175.89</div>
+                    <div class="t-asset-price">175.89</div>
                 </div>
                 <div class="desktop-performance d-none d-md-flex">
                     <div class="desktop-performance-cell">
@@ -350,9 +350,9 @@
                         alt="DXY">
                 </div>
                 <div class="t-asset-info">
-                    <div class="t-asset-name text-white">US Dollar Index</div>
+                    <div class="t-asset-name">US Dollar Index</div>
                     <div class="t-asset-symbol text-header">DXY | Forex</div>
-                    <div class="t-asset-price text-white">103.45</div>
+                    <div class="t-asset-price">103.45</div>
                 </div>
                 <div class="desktop-performance d-none d-md-flex">
                     <div class="desktop-performance-cell">
@@ -384,9 +384,9 @@
                         alt="NVIDIA">
                 </div>
                 <div class="t-asset-info">
-                    <div class="t-asset-name text-white">NVIDIA</div>
+                    <div class="t-asset-name">NVIDIA</div>
                     <div class="t-asset-symbol text-header">NVDA | Stock</div>
-                    <div class="t-asset-price text-white">865.32</div>
+                    <div class="t-asset-price">865.32</div>
                 </div>
                 <div class="desktop-performance d-none d-md-flex">
                     <div class="desktop-performance-cell">
@@ -418,9 +418,9 @@
                         alt="Crude Oil">
                 </div>
                 <div class="t-asset-info">
-                    <div class="t-asset-name text-white">Crude Oil</div>
+                    <div class="t-asset-name">Crude Oil</div>
                     <div class="t-asset-symbol text-header">CL1! | Commodity</div>
-                    <div class="t-asset-price text-white">78.45</div>
+                    <div class="t-asset-price">78.45</div>
                 </div>
                 <div class="desktop-performance d-none d-md-flex">
                     <div class="desktop-performance-cell">
@@ -452,9 +452,9 @@
                         alt="S&P 500">
                 </div>
                 <div class="t-asset-info">
-                    <div class="t-asset-name text-white">S&P 500</div>
+                    <div class="t-asset-name">S&P 500</div>
                     <div class="t-asset-symbol text-header">SPX | Index</div>
-                    <div class="t-asset-price text-white">5,123.45</div>
+                    <div class="t-asset-price">5,123.45</div>
                 </div>
                 <div class="desktop-performance d-none d-md-flex">
                     <div class="desktop-performance-cell">
@@ -486,9 +486,9 @@
                         alt="EUR/USD">
                 </div>
                 <div class="t-asset-info">
-                    <div class="t-asset-name text-white">Euro/Dollar</div>
+                    <div class="t-asset-name">Euro/Dollar</div>
                     <div class="t-asset-symbol text-header">EURUSD | Forex</div>
-                    <div class="t-asset-price text-white">1.0856</div>
+                    <div class="t-asset-price">1.0856</div>
                 </div>
                 <div class="desktop-performance d-none d-md-flex">
                     <div class="desktop-performance-cell">
@@ -520,9 +520,9 @@
                         alt="Silver">
                 </div>
                 <div class="t-asset-info">
-                    <div class="t-asset-name text-white">Silver</div>
+                    <div class="t-asset-name">Silver</div>
                     <div class="t-asset-symbol text-header">XAGUSD | Commodity</div>
-                    <div class="t-asset-price text-white">22.89</div>
+                    <div class="t-asset-price">22.89</div>
                 </div>
                 <div class="desktop-performance d-none d-md-flex">
                     <div class="desktop-performance-cell">
@@ -554,9 +554,9 @@
                         alt="Google">
                 </div>
                 <div class="t-asset-info">
-                    <div class="t-asset-name text-white">Alphabet (Google)</div>
+                    <div class="t-asset-name">Alphabet (Google)</div>
                     <div class="t-asset-symbol text-header">GOOGL | Stock</div>
-                    <div class="t-asset-price text-white">156.78</div>
+                    <div class="t-asset-price">156.78</div>
                 </div>
                 <div class="desktop-performance d-none d-md-flex">
                     <div class="desktop-performance-cell">
@@ -588,9 +588,9 @@
                         alt="BNB">
                 </div>
                 <div class="t-asset-info">
-                    <div class="t-asset-name text-white">Binance Coin</div>
+                    <div class="t-asset-name">Binance Coin</div>
                     <div class="t-asset-symbol text-header">BNBUSD | Crypto</div>
-                    <div class="t-asset-price text-white">356.78</div>
+                    <div class="t-asset-price">356.78</div>
                 </div>
                 <div class="desktop-performance d-none d-md-flex">
                     <div class="desktop-performance-cell">
@@ -622,9 +622,9 @@
                         alt="NASDAQ">
                 </div>
                 <div class="t-asset-info">
-                    <div class="t-asset-name text-white">NASDAQ 100</div>
+                    <div class="t-asset-name">NASDAQ 100</div>
                     <div class="t-asset-symbol text-header">NDX | Index</div>
-                    <div class="t-asset-price text-white">18,234.56</div>
+                    <div class="t-asset-price">18,234.56</div>
                 </div>
                 <div class="desktop-performance d-none d-md-flex">
                     <div class="desktop-performance-cell">
@@ -656,9 +656,9 @@
                         alt="USD/JPY">
                 </div>
                 <div class="t-asset-info">
-                    <div class="t-asset-name text-white">Dollar/Yen</div>
+                    <div class="t-asset-name">Dollar/Yen</div>
                     <div class="t-asset-symbol text-header">USDJPY | Forex</div>
-                    <div class="t-asset-price text-white">151.23</div>
+                    <div class="t-asset-price">151.23</div>
                 </div>
                 <div class="desktop-performance d-none d-md-flex">
                     <div class="desktop-performance-cell">
@@ -690,9 +690,9 @@
                         alt="Meta">
                 </div>
                 <div class="t-asset-info">
-                    <div class="t-asset-name text-white">Meta Platforms</div>
+                    <div class="t-asset-name">Meta Platforms</div>
                     <div class="t-asset-symbol text-header">META | Stock</div>
-                    <div class="t-asset-price text-white">485.67</div>
+                    <div class="t-asset-price">485.67</div>
                 </div>
                 <div class="desktop-performance d-none d-md-flex">
                     <div class="desktop-performance-cell">
@@ -724,9 +724,9 @@
                         alt="Solana">
                 </div>
                 <div class="t-asset-info">
-                    <div class="t-asset-name text-white">Solana</div>
+                    <div class="t-asset-name">Solana</div>
                     <div class="t-asset-symbol text-header">SOLUSD | Crypto</div>
-                    <div class="t-asset-price text-white">102.34</div>
+                    <div class="t-asset-price">102.34</div>
                 </div>
                 <div class="desktop-performance d-none d-md-flex">
                     <div class="desktop-performance-cell">
@@ -758,9 +758,9 @@
                         alt="VOO">
                 </div>
                 <div class="t-asset-info">
-                    <div class="t-asset-name text-white">Vanguard S&P 500 ETF</div>
+                    <div class="t-asset-name">Vanguard S&P 500 ETF</div>
                     <div class="t-asset-symbol text-header">VOO | ETF</div>
-                    <div class="t-asset-price text-white">456.78</div>
+                    <div class="t-asset-price">456.78</div>
                 </div>
                 <div class="desktop-performance d-none d-md-flex">
                     <div class="desktop-performance-cell">
@@ -792,9 +792,9 @@
                         alt="1inch">
                 </div>
                 <div class="t-t-asset-info">
-                    <div class="t-asset-name text-white">1inch</div>
+                    <div class="t-asset-name">1inch</div>
                     <div class="t-asset-symbol text-header">1INCHUSD | Crypto</div>
-                    <div class="t-asset-price text-white">0.262</div>
+                    <div class="t-asset-price">0.262</div>
                 </div>
                 <div class="desktop-performance d-none d-md-flex">
                     <div class="desktop-performance-cell">
@@ -826,9 +826,9 @@
                         alt="Apple">
                 </div>
                 <div class="t-asset-info">
-                    <div class="t-asset-name text-white">Apple Inc.</div>
+                    <div class="t-asset-name">Apple Inc.</div>
                     <div class="t-asset-symbol text-header">AAPL | Stock</div>
-                    <div class="t-asset-price text-white">245.27</div>
+                    <div class="t-asset-price">245.27</div>
                 </div>
                 <div class="desktop-performance d-none d-md-flex">
                     <div class="desktop-performance-cell">
@@ -860,9 +860,9 @@
                         alt="Bitcoin">
                 </div>
                 <div class="t-asset-info">
-                    <div class="t-asset-name text-white">Bitcoin</div>
+                    <div class="t-asset-name">Bitcoin</div>
                     <div class="t-asset-symbol text-header">BTCUSD | Crypto</div>
-                    <div class="t-asset-price text-white">42,856.12</div>
+                    <div class="t-asset-price">42,856.12</div>
                 </div>
                 <div class="desktop-performance d-none d-md-flex">
                     <div class="desktop-performance-cell">
@@ -894,9 +894,9 @@
                         alt="Tesla">
                 </div>
                 <div class="t-asset-info">
-                    <div class="t-asset-name text-white">Tesla Inc</div>
+                    <div class="t-asset-name">Tesla Inc</div>
                     <div class="t-asset-symbol text-header">TSLA | Stock</div>
-                    <div class="t-asset-price text-white">187.65</div>
+                    <div class="t-asset-price">187.65</div>
                 </div>
                 <div class="desktop-performance d-none d-md-flex">
                     <div class="desktop-performance-cell">
@@ -928,9 +928,9 @@
                         alt="Gold">
                 </div>
                 <div class="t-asset-info">
-                    <div class="t-asset-name text-white">Gold</div>
+                    <div class="t-asset-name">Gold</div>
                     <div class="t-asset-symbol text-header">XAUUSD | Commodity</div>
-                    <div class="t-asset-price text-white">2,034.50</div>
+                    <div class="t-asset-price">2,034.50</div>
                 </div>
                 <div class="desktop-performance d-none d-md-flex">
                     <div class="desktop-performance-cell">
@@ -962,9 +962,9 @@
                         alt="Microsoft">
                 </div>
                 <div class="t-asset-info">
-                    <div class="t-asset-name text-white">Microsoft</div>
+                    <div class="t-asset-name">Microsoft</div>
                     <div class="t-asset-symbol text-header">MSFT | Stock</div>
-                    <div class="t-asset-price text-white">403.78</div>
+                    <div class="t-asset-price">403.78</div>
                 </div>
                 <div class="desktop-performance d-none d-md-flex">
                     <div class="desktop-performance-cell">
@@ -996,9 +996,9 @@
                         alt="Ethereum">
                 </div>
                 <div class="t-asset-info">
-                    <div class="t-asset-name text-white">Ethereum</div>
+                    <div class="t-asset-name">Ethereum</div>
                     <div class="t-asset-symbol text-header">ETHUSD | Crypto</div>
-                    <div class="t-asset-price text-white">2,345.67</div>
+                    <div class="t-asset-price">2,345.67</div>
                 </div>
                 <div class="desktop-performance d-none d-md-flex">
                     <div class="desktop-performance-cell">
@@ -1030,9 +1030,9 @@
                         alt="Amazon">
                 </div>
                 <div class="t-asset-info">
-                    <div class="t-asset-name text-white">Amazon</div>
+                    <div class="t-asset-name">Amazon</div>
                     <div class="t-asset-symbol text-header">AMZN | Stock</div>
-                    <div class="t-asset-price text-white">175.89</div>
+                    <div class="t-asset-price">175.89</div>
                 </div>
                 <div class="desktop-performance d-none d-md-flex">
                     <div class="desktop-performance-cell">
@@ -1064,9 +1064,9 @@
                         alt="DXY">
                 </div>
                 <div class="t-asset-info">
-                    <div class="t-asset-name text-white">US Dollar Index</div>
+                    <div class="t-asset-name">US Dollar Index</div>
                     <div class="t-asset-symbol text-header">DXY | Forex</div>
-                    <div class="t-asset-price text-white">103.45</div>
+                    <div class="t-asset-price">103.45</div>
                 </div>
                 <div class="desktop-performance d-none d-md-flex">
                     <div class="desktop-performance-cell">
@@ -1098,9 +1098,9 @@
                         alt="NVIDIA">
                 </div>
                 <div class="t-asset-info">
-                    <div class="t-asset-name text-white">NVIDIA</div>
+                    <div class="t-asset-name">NVIDIA</div>
                     <div class="t-asset-symbol text-header">NVDA | Stock</div>
-                    <div class="t-asset-price text-white">865.32</div>
+                    <div class="t-asset-price">865.32</div>
                 </div>
                 <div class="desktop-performance d-none d-md-flex">
                     <div class="desktop-performance-cell">
@@ -1132,9 +1132,9 @@
                         alt="Crude Oil">
                 </div>
                 <div class="t-asset-info">
-                    <div class="t-asset-name text-white">Crude Oil</div>
+                    <div class="t-asset-name">Crude Oil</div>
                     <div class="t-asset-symbol text-header">CL1! | Commodity</div>
-                    <div class="t-asset-price text-white">78.45</div>
+                    <div class="t-asset-price">78.45</div>
                 </div>
                 <div class="desktop-performance d-none d-md-flex">
                     <div class="desktop-performance-cell">
@@ -1166,9 +1166,9 @@
                         alt="S&P 500">
                 </div>
                 <div class="t-asset-info">
-                    <div class="t-asset-name text-white">S&P 500</div>
+                    <div class="t-asset-name">S&P 500</div>
                     <div class="t-asset-symbol text-header">SPX | Index</div>
-                    <div class="t-asset-price text-white">5,123.45</div>
+                    <div class="t-asset-price">5,123.45</div>
                 </div>
                 <div class="desktop-performance d-none d-md-flex">
                     <div class="desktop-performance-cell">
@@ -1200,9 +1200,9 @@
                         alt="EUR/USD">
                 </div>
                 <div class="t-asset-info">
-                    <div class="t-asset-name text-white">Euro/Dollar</div>
+                    <div class="t-asset-name">Euro/Dollar</div>
                     <div class="t-asset-symbol text-header">EURUSD | Forex</div>
-                    <div class="t-asset-price text-white">1.0856</div>
+                    <div class="t-asset-price">1.0856</div>
                 </div>
                 <div class="desktop-performance d-none d-md-flex">
                     <div class="desktop-performance-cell">
@@ -1234,9 +1234,9 @@
                         alt="Silver">
                 </div>
                 <div class="t-asset-info">
-                    <div class="t-asset-name text-white">Silver</div>
+                    <div class="t-asset-name">Silver</div>
                     <div class="t-asset-symbol text-header">XAGUSD | Commodity</div>
-                    <div class="t-asset-price text-white">22.89</div>
+                    <div class="t-asset-price">22.89</div>
                 </div>
                 <div class="desktop-performance d-none d-md-flex">
                     <div class="desktop-performance-cell">
@@ -1268,9 +1268,9 @@
                         alt="Google">
                 </div>
                 <div class="t-asset-info">
-                    <div class="t-asset-name text-white">Alphabet (Google)</div>
+                    <div class="t-asset-name">Alphabet (Google)</div>
                     <div class="t-asset-symbol text-header">GOOGL | Stock</div>
-                    <div class="t-asset-price text-white">156.78</div>
+                    <div class="t-asset-price">156.78</div>
                 </div>
                 <div class="desktop-performance d-none d-md-flex">
                     <div class="desktop-performance-cell">
@@ -1302,9 +1302,9 @@
                         alt="BNB">
                 </div>
                 <div class="t-asset-info">
-                    <div class="t-asset-name text-white">Binance Coin</div>
+                    <div class="t-asset-name">Binance Coin</div>
                     <div class="t-asset-symbol text-header">BNBUSD | Crypto</div>
-                    <div class="t-asset-price text-white">356.78</div>
+                    <div class="t-asset-price">356.78</div>
                 </div>
                 <div class="desktop-performance d-none d-md-flex">
                     <div class="desktop-performance-cell">
@@ -1336,9 +1336,9 @@
                         alt="NASDAQ">
                 </div>
                 <div class="t-asset-info">
-                    <div class="t-asset-name text-white">NASDAQ 100</div>
+                    <div class="t-asset-name">NASDAQ 100</div>
                     <div class="t-asset-symbol text-header">NDX | Index</div>
-                    <div class="t-asset-price text-white">18,234.56</div>
+                    <div class="t-asset-price">18,234.56</div>
                 </div>
                 <div class="desktop-performance d-none d-md-flex">
                     <div class="desktop-performance-cell">
@@ -1370,9 +1370,9 @@
                         alt="USD/JPY">
                 </div>
                 <div class="t-asset-info">
-                    <div class="t-asset-name text-white">Dollar/Yen</div>
+                    <div class="t-asset-name">Dollar/Yen</div>
                     <div class="t-asset-symbol text-header">USDJPY | Forex</div>
-                    <div class="t-asset-price text-white">151.23</div>
+                    <div class="t-asset-price">151.23</div>
                 </div>
                 <div class="desktop-performance d-none d-md-flex">
                     <div class="desktop-performance-cell">
@@ -1404,9 +1404,9 @@
                         alt="Meta">
                 </div>
                 <div class="t-asset-info">
-                    <div class="t-asset-name text-white">Meta Platforms</div>
+                    <div class="t-asset-name">Meta Platforms</div>
                     <div class="t-asset-symbol text-header">META | Stock</div>
-                    <div class="t-asset-price text-white">485.67</div>
+                    <div class="t-asset-price">485.67</div>
                 </div>
                 <div class="desktop-performance d-none d-md-flex">
                     <div class="desktop-performance-cell">
@@ -1438,9 +1438,9 @@
                         alt="Solana">
                 </div>
                 <div class="t-asset-info">
-                    <div class="t-asset-name text-white">Solana</div>
+                    <div class="t-asset-name">Solana</div>
                     <div class="t-asset-symbol text-header">SOLUSD | Crypto</div>
-                    <div class="t-asset-price text-white">102.34</div>
+                    <div class="t-asset-price">102.34</div>
                 </div>
                 <div class="desktop-performance d-none d-md-flex">
                     <div class="desktop-performance-cell">
@@ -1472,9 +1472,9 @@
                         alt="VOO">
                 </div>
                 <div class="t-asset-info">
-                    <div class="t-asset-name text-white">Vanguard S&P 500 ETF</div>
+                    <div class="t-asset-name">Vanguard S&P 500 ETF</div>
                     <div class="t-asset-symbol text-header">VOO | ETF</div>
-                    <div class="t-asset-price text-white">456.78</div>
+                    <div class="t-asset-price">456.78</div>
                 </div>
                 <div class="desktop-performance d-none d-md-flex">
                     <div class="desktop-performance-cell">
@@ -1507,9 +1507,9 @@
                         alt="BRK.A">
                 </div>
                 <div class="t-asset-info">
-                    <div class="t-asset-name text-white">Berkshire Hathaway</div>
+                    <div class="t-asset-name">Berkshire Hathaway</div>
                     <div class="t-asset-symbol text-header">BRK.A | Stock</div>
-                    <div class="t-asset-price text-white">620,850.00</div>
+                    <div class="t-asset-price">620,850.00</div>
                 </div>
                 <div class="desktop-performance d-none d-md-flex">
                     <div class="desktop-performance-cell">
@@ -1541,9 +1541,9 @@
                         alt="ADA">
                 </div>
                 <div class="t-asset-info">
-                    <div class="t-asset-name text-white">Cardano</div>
+                    <div class="t-asset-name">Cardano</div>
                     <div class="t-asset-symbol text-header">ADAUSD | Crypto</div>
-                    <div class="t-asset-price text-white">0.45</div>
+                    <div class="t-asset-price">0.45</div>
                 </div>
                 <div class="desktop-performance d-none d-md-flex">
                     <div class="desktop-performance-cell">
@@ -1575,9 +1575,9 @@
                         alt="PFE">
                 </div>
                 <div class="t-asset-info">
-                    <div class="t-asset-name text-white">Pfizer</div>
+                    <div class="t-asset-name">Pfizer</div>
                     <div class="t-asset-symbol text-header">PFE | Stock</div>
-                    <div class="t-asset-price text-white">27.45</div>
+                    <div class="t-asset-price">27.45</div>
                 </div>
                 <div class="desktop-performance d-none d-md-flex">
                     <div class="desktop-performance-cell">
@@ -1609,9 +1609,9 @@
                         alt="USDCAD">
                 </div>
                 <div class="t-asset-info">
-                    <div class="t-asset-name text-white">Dollar/Loonie</div>
+                    <div class="t-asset-name">Dollar/Loonie</div>
                     <div class="t-asset-symbol text-header">USDCAD | Forex</div>
-                    <div class="t-asset-price text-white">1.3567</div>
+                    <div class="t-asset-price">1.3567</div>
                 </div>
                 <div class="desktop-performance d-none d-md-flex">
                     <div class="desktop-performance-cell">
@@ -1643,9 +1643,9 @@
                         alt="XRP">
                 </div>
                 <div class="t-asset-info">
-                    <div class="t-asset-name text-white">Ripple</div>
+                    <div class="t-asset-name">Ripple</div>
                     <div class="t-asset-symbol text-header">XRPUSD | Crypto</div>
-                    <div class="t-asset-price text-white">0.5678</div>
+                    <div class="t-asset-price">0.5678</div>
                 </div>
                 <div class="desktop-performance d-none d-md-flex">
                     <div class="desktop-performance-cell">
@@ -1677,9 +1677,9 @@
                         alt="DIS">
                 </div>
                 <div class="t-asset-info">
-                    <div class="t-asset-name text-white">Walt Disney</div>
+                    <div class="t-asset-name">Walt Disney</div>
                     <div class="t-asset-symbol text-header">DIS | Stock</div>
-                    <div class="t-asset-price text-white">112.34</div>
+                    <div class="t-asset-price">112.34</div>
                 </div>
                 <div class="desktop-performance d-none d-md-flex">
                     <div class="desktop-performance-cell">
@@ -1711,9 +1711,9 @@
                         alt="NG1!">
                 </div>
                 <div class="t-asset-info">
-                    <div class="t-asset-name text-white">Natural Gas</div>
+                    <div class="t-asset-name">Natural Gas</div>
                     <div class="t-asset-symbol text-header">NG1! | Commodity</div>
-                    <div class="t-asset-price text-white">2.34</div>
+                    <div class="t-asset-price">2.34</div>
                 </div>
                 <div class="desktop-performance d-none d-md-flex">
                     <div class="desktop-performance-cell">
@@ -1745,9 +1745,9 @@
                         alt="BA">
                 </div>
                 <div class="t-asset-info">
-                    <div class="t-asset-name text-white">Boeing</div>
+                    <div class="t-asset-name">Boeing</div>
                     <div class="t-asset-symbol text-header">BA | Stock</div>
-                    <div class="t-asset-price text-white">203.45</div>
+                    <div class="t-asset-price">203.45</div>
                 </div>
                 <div class="desktop-performance d-none d-md-flex">
                     <div class="desktop-performance-cell">
@@ -1779,9 +1779,9 @@
                         alt="DOT">
                 </div>
                 <div class="t-asset-info">
-                    <div class="t-asset-name text-white">Polkadot</div>
+                    <div class="t-asset-name">Polkadot</div>
                     <div class="t-asset-symbol text-header">DOTUSD | Crypto</div>
-                    <div class="t-asset-price text-white">6.78</div>
+                    <div class="t-asset-price">6.78</div>
                 </div>
                 <div class="desktop-performance d-none d-md-flex">
                     <div class="desktop-performance-cell">
@@ -1813,9 +1813,9 @@
                         alt="SBUX">
                 </div>
                 <div class="t-asset-info">
-                    <div class="t-asset-name text-white">Starbucks</div>
+                    <div class="t-asset-name">Starbucks</div>
                     <div class="t-asset-symbol text-header">SBUX | Stock</div>
-                    <div class="t-asset-price text-white">98.76</div>
+                    <div class="t-asset-price">98.76</div>
                 </div>
                 <div class="desktop-performance d-none d-md-flex">
                     <div class="desktop-performance-cell">
@@ -1847,9 +1847,9 @@
                         alt="USDCHF">
                 </div>
                 <div class="t-asset-info">
-                    <div class="t-asset-name text-white">Dollar/Franc</div>
+                    <div class="t-asset-name">Dollar/Franc</div>
                     <div class="t-asset-symbol text-header">USDCHF | Forex</div>
-                    <div class="t-asset-price text-white">0.8765</div>
+                    <div class="t-asset-price">0.8765</div>
                 </div>
                 <div class="desktop-performance d-none d-md-flex">
                     <div class="desktop-performance-cell">
@@ -1881,9 +1881,9 @@
                         alt="Copper">
                 </div>
                 <div class="t-asset-info">
-                    <div class="t-asset-name text-white">Copper</div>
+                    <div class="t-asset-name">Copper</div>
                     <div class="t-asset-symbol text-header">HG1! | Commodity</div>
-                    <div class="t-asset-price text-white">3.89</div>
+                    <div class="t-asset-price">3.89</div>
                 </div>
                 <div class="desktop-performance d-none d-md-flex">
                     <div class="desktop-performance-cell">
@@ -1915,9 +1915,9 @@
                         alt="JPM">
                 </div>
                 <div class="t-asset-info">
-                    <div class="t-asset-name text-white">JPMorgan Chase</div>
+                    <div class="t-asset-name">JPMorgan Chase</div>
                     <div class="t-asset-symbol text-header">JPM | Stock</div>
-                    <div class="t-asset-price text-white">198.76</div>
+                    <div class="t-asset-price">198.76</div>
                 </div>
                 <div class="desktop-performance d-none d-md-flex">
                     <div class="desktop-performance-cell">
@@ -1949,9 +1949,9 @@
                         alt="LINK">
                 </div>
                 <div class="t-asset-info">
-                    <div class="t-asset-name text-white">Chainlink</div>
+                    <div class="t-asset-name">Chainlink</div>
                     <div class="t-asset-symbol text-header">LINKUSD | Crypto</div>
-                    <div class="t-asset-price text-white">14.56</div>
+                    <div class="t-asset-price">14.56</div>
                 </div>
                 <div class="desktop-performance d-none d-md-flex">
                     <div class="desktop-performance-cell">
@@ -1983,9 +1983,9 @@
                         alt="KO">
                 </div>
                 <div class="t-asset-info">
-                    <div class="t-asset-name text-white">Coca-Cola</div>
+                    <div class="t-asset-name">Coca-Cola</div>
                     <div class="t-asset-symbol text-header">KO | Stock</div>
-                    <div class="t-asset-price text-white">60.45</div>
+                    <div class="t-asset-price">60.45</div>
                 </div>
                 <div class="desktop-performance d-none d-md-flex">
                     <div class="desktop-performance-cell">
@@ -2017,9 +2017,9 @@
                         alt="AUDUSD">
                 </div>
                 <div class="t-asset-info">
-                    <div class="t-asset-name text-white">Aussie/Dollar</div>
+                    <div class="t-asset-name">Aussie/Dollar</div>
                     <div class="t-asset-symbol text-header">AUDUSD | Forex</div>
-                    <div class="t-asset-price text-white">0.6543</div>
+                    <div class="t-asset-price">0.6543</div>
                 </div>
                 <div class="desktop-performance d-none d-md-flex">
                     <div class="desktop-performance-cell">
@@ -2051,9 +2051,9 @@
                         alt="Wheat">
                 </div>
                 <div class="t-asset-info">
-                    <div class="t-asset-name text-white">Wheat</div>
+                    <div class="t-asset-name">Wheat</div>
                     <div class="t-asset-symbol text-header">ZW1! | Commodity</div>
-                    <div class="t-asset-price text-white">5.67</div>
+                    <div class="t-asset-price">5.67</div>
                 </div>
                 <div class="desktop-performance d-none d-md-flex">
                     <div class="desktop-performance-cell">
@@ -2085,9 +2085,9 @@
                         alt="WMT">
                 </div>
                 <div class="t-asset-info">
-                    <div class="t-asset-name text-white">Walmart</div>
+                    <div class="t-asset-name">Walmart</div>
                     <div class="t-asset-symbol text-header">WMT | Stock</div>
-                    <div class="t-asset-price text-white">165.78</div>
+                    <div class="t-asset-price">165.78</div>
                 </div>
                 <div class="desktop-performance d-none d-md-flex">
                     <div class="desktop-performance-cell">
@@ -2119,9 +2119,9 @@
                         alt="LTC">
                 </div>
                 <div class="t-asset-info">
-                    <div class="t-asset-name text-white">Litecoin</div>
+                    <div class="t-asset-name">Litecoin</div>
                     <div class="t-asset-symbol text-header">LTCUSD | Crypto</div>
-                    <div class="t-asset-price text-white">78.90</div>
+                    <div class="t-asset-price">78.90</div>
                 </div>
                 <div class="desktop-performance d-none d-md-flex">
                     <div class="desktop-performance-cell">
@@ -2152,9 +2152,9 @@
                     alt="BABA">
             </div>
             <div class="t-asset-info">
-                <div class="t-asset-name text-white">Alibaba</div>
+                <div class="t-asset-name">Alibaba</div>
                 <div class="t-asset-symbol text-header">BABA | Stock</div>
-                <div class="t-asset-price text-white">78.45</div>
+                <div class="t-asset-price">78.45</div>
             </div>
             <div class="desktop-performance d-none d-md-flex">
                 <div class="desktop-performance-cell">
@@ -2186,9 +2186,9 @@
                     alt="UNI">
             </div>
             <div class="t-asset-info">
-                <div class="t-asset-name text-white">Uniswap</div>
+                <div class="t-asset-name">Uniswap</div>
                 <div class="t-asset-symbol text-header">UNIUSD | Crypto</div>
-                <div class="t-asset-price text-white">6.78</div>
+                <div class="t-asset-price">6.78</div>
             </div>
             <div class="desktop-performance d-none d-md-flex">
                 <div class="desktop-performance-cell">
@@ -2220,9 +2220,9 @@
                     alt="SHEL">
             </div>
             <div class="t-asset-info">
-                <div class="t-asset-name text-white">Shell</div>
+                <div class="t-asset-name">Shell</div>
                 <div class="t-asset-symbol text-header">SHEL | Stock</div>
-                <div class="t-asset-price text-white">65.43</div>
+                <div class="t-asset-price">65.43</div>
             </div>
             <div class="desktop-performance d-none d-md-flex">
                 <div class="desktop-performance-cell">
@@ -2254,9 +2254,9 @@
                     alt="GBPUSD">
             </div>
             <div class="t-asset-info">
-                <div class="t-asset-name text-white">Pound/Dollar</div>
+                <div class="t-asset-name">Pound/Dollar</div>
                 <div class="t-asset-symbol text-header">GBPUSD | Forex</div>
-                <div class="t-asset-price text-white">1.2654</div>
+                <div class="t-asset-price">1.2654</div>
             </div>
             <div class="desktop-performance d-none d-md-flex">
                 <div class="desktop-performance-cell">
@@ -2288,9 +2288,9 @@
                     alt="DOGE">
             </div>
             <div class="t-asset-info">
-                <div class="t-asset-name text-white">Dogecoin</div>
+                <div class="t-asset-name">Dogecoin</div>
                 <div class="t-asset-symbol text-header">DOGEUSD | Crypto</div>
-                <div class="t-asset-price text-white">0.0876</div>
+                <div class="t-asset-price">0.0876</div>
             </div>
             <div class="desktop-performance d-none d-md-flex">
                 <div class="desktop-performance-cell">
@@ -2322,9 +2322,9 @@
                     alt="005930.KS">
             </div>
             <div class="t-asset-info">
-                <div class="t-asset-name text-white">Samsung</div>
+                <div class="t-asset-name">Samsung</div>
                 <div class="t-asset-symbol text-header">005930.KS | Stock</div>
-                <div class="t-asset-price text-white">72,500</div>
+                <div class="t-asset-price">72,500</div>
             </div>
             <div class="desktop-performance d-none d-md-flex">
                 <div class="desktop-performance-cell">
@@ -2356,9 +2356,9 @@
                     alt="Palladium">
             </div>
             <div class="t-asset-info">
-                <div class="t-asset-name text-white">Palladium</div>
+                <div class="t-asset-name">Palladium</div>
                 <div class="t-asset-symbol text-header">XPDUSD | Commodity</div>
-                <div class="t-asset-price text-white">1,023.45</div>
+                <div class="t-asset-price">1,023.45</div>
             </div>
             <div class="desktop-performance d-none d-md-flex">
                 <div class="desktop-performance-cell">
@@ -2390,9 +2390,9 @@
                     alt="NFLX">
             </div>
             <div class="t-asset-info">
-                <div class="t-asset-name text-white">Netflix</div>
+                <div class="t-asset-name">Netflix</div>
                 <div class="t-asset-symbol text-header">NFLX | Stock</div>
-                <div class="t-asset-price text-white">560.78</div>
+                <div class="t-asset-price">560.78</div>
             </div>
             <div class="desktop-performance d-none d-md-flex">
                 <div class="desktop-performance-cell">
@@ -2424,9 +2424,9 @@
                     alt="USDMXN">
             </div>
             <div class="t-asset-info">
-                <div class="t-asset-name text-white">Dollar/Peso</div>
+                <div class="t-asset-name">Dollar/Peso</div>
                 <div class="t-asset-symbol text-header">USDMXN | Forex</div>
-                <div class="t-asset-price text-white">16.7890</div>
+                <div class="t-asset-price">16.7890</div>
             </div>
             <div class="desktop-performance d-none d-md-flex">
                 <div class="desktop-performance-cell">
@@ -2458,9 +2458,9 @@
                     alt="TM">
             </div>
             <div class="t-asset-info">
-                <div class="t-asset-name text-white">Toyota</div>
+                <div class="t-asset-name">Toyota</div>
                 <div class="t-asset-symbol text-header">TM | Stock</div>
-                <div class="t-asset-price text-white">245.67</div>
+                <div class="t-asset-price">245.67</div>
             </div>
             <div class="desktop-performance d-none d-md-flex">
                 <div class="desktop-performance-cell">
@@ -2492,9 +2492,9 @@
                     alt="AVAX">
             </div>
             <div class="t-asset-info">
-                <div class="t-asset-name text-white">Avalanche</div>
+                <div class="t-asset-name">Avalanche</div>
                 <div class="t-asset-symbol text-header">AVAXUSD | Crypto</div>
-                <div class="t-asset-price text-white">36.78</div>
+                <div class="t-asset-price">36.78</div>
             </div>
             <div class="desktop-performance d-none d-md-flex">
                 <div class="desktop-performance-cell">
@@ -2526,9 +2526,9 @@
                     alt="NESN.SW">
             </div>
             <div class="t-asset-info">
-                <div class="t-asset-name text-white">Nestle</div>
+                <div class="t-asset-name">Nestle</div>
                 <div class="t-asset-symbol text-header">NESN.SW | Stock</div>
-                <div class="t-asset-price text-white">105.45</div>
+                <div class="t-asset-price">105.45</div>
             </div>
             <div class="desktop-performance d-none d-md-flex">
                 <div class="desktop-performance-cell">
@@ -2560,9 +2560,9 @@
                         alt="XOM">
                 </div>
                 <div class="t-asset-info">
-                    <div class="t-asset-name text-white">Exxon Mobil</div>
+                    <div class="t-asset-name">Exxon Mobil</div>
                     <div class="t-asset-symbol text-header">XOM | Stock</div>
-                    <div class="t-asset-price text-white">118.76</div>
+                    <div class="t-asset-price">118.76</div>
                 </div>
                 <div class="desktop-performance d-none d-md-flex">
                     <div class="desktop-performance-cell">

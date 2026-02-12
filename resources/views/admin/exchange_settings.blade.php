@@ -1,297 +1,92 @@
 @include('admin.header')
-<!-- End Sidebar -->
-<div class="main-panel bg-dark">
-    <div class="content bg-dark">
-        <div class="page-inner">
-            <div class="mt-2 mb-4">
-                <h1 class="title1 text-light">Crypto Assets/Exchnage Settings</h1>
-            </div>
-            <div>
-            </div>
-            <div>
-            </div>
-            <div class="mb-5 row">
-                <div class="col-md-12">
-                    <div class="card p-3 p-md-5 shadow-lg bg-dark">
-                        <div class="row">
-                            <div class="form-group col-12 d-inline">
-                                <h5 class="text-light">Use this Feature</h5>
-                                <div class="selectgroup">
-                                    <label class="selectgroup-item">
-                                        <input type="radio" name="crypto" id="cryptoyes" value="true"
-                                            class="selectgroup-input" checked="">
-                                        <span class="selectgroup-button">On</span>
-                                    </label>
-                                    <label class="selectgroup-item">
-                                        <input type="radio" name="crypto" id="cryptono" value="false"
-                                            class="selectgroup-input">
-                                        <span class="selectgroup-button">Off</span>
-                                    </label>
-                                </div>
-                                <div>
-                                    <small class="text-light">Your users will not be able to see/use this service if
-                                        turned off</small>
-                                </div>
-                                <script>
-                                    document.getElementById("cryptoyes").checked= true;
-                                </script>
-                            </div>
-                            <div class="col-md-6 offset-md-3">
 
-                                <form action="account/admin/dashboard/exchangefee" method="post">
-                                    <input type="hidden" name="_token" value="s195WfZZZJb3SUAWuuGNZ9Eo2OT4S0jZ1ogZrdon">
-                                    <div class=" form-group">
-                                        <h5 class="text-light">Exchange Fee</h5>
-                                        <input type="text" name="fee" value="2" class="text-light form-control bg-dark"
-                                            id="">
-                                    </div>
-                                    <div class=" form-group">
-                                        <h5 class="text-light">ZAR/USD Rate</h5>
-                                        <input type="number" name="rate" value="500" step=".0"
-                                            class="text-light form-control bg-dark" placeholder="450">
-                                        <small class="text-light">This rate will be used to calculate your users crypto
-                                            equivilent in your chosen currency.</small>
-                                    </div>
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <div>
+                <h4 class="admin-page-title">Crypto Assets/Exchange Settings</h4>
+                <p class="admin-page-subtitle">Configure exchange fees and manage crypto assets</p>
+            </div>
+        </div>
 
-                                    <div class=" form-group">
-                                        <button type="submit" class="btn btn-primary">Save</button>
-                                    </div>
-                                </form>
-                            </div>
-                            <div class="mt-3 col-12">
-                                <div class=" table-responsive">
-                                    <table class="table table-hover text-light">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col">Asset Name</th>
-                                                <th scope="col">Asset Symbol</th>
-                                                <th scope="col">Status</th>
-                                                <th scope="col">Option</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>Bitcoin</td>
-                                                <td>BTC</td>
-                                                <td>
-                                                    <span class="badge badge-success">enabled </span>
-                                                </td>
-                                                <td>
-                                                    <a href="account/admin/dashboard/setcryptostatus/btc/disabled"
-                                                        class="btn btn-danger btn-sm">Disable</a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Ethereum</td>
-                                                <td>ETH</td>
-                                                <td>
-                                                    <span class="badge badge-success">enabled </span>
-                                                </td>
-                                                <td>
-                                                    <a href="account/admin/dashboard/setcryptostatus/eth/disabled"
-                                                        class="btn btn-danger btn-sm">Disable</a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Litecoin</td>
-                                                <td>LTC</td>
-                                                <td>
-                                                    <span class="badge badge-success">enabled </span>
-                                                </td>
-                                                <td>
-                                                    <a href="account/admin/dashboard/setcryptostatus/ltc/disabled"
-                                                        class="btn btn-danger btn-sm">Disable</a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Chainlink</td>
-                                                <td>LINK</td>
-                                                <td>
-                                                    <span class="badge badge-success">enabled </span>
-                                                </td>
-                                                <td>
-                                                    <a href="account/admin/dashboard/setcryptostatus/link/disabled"
-                                                        class="btn btn-danger btn-sm">Disable</a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Binance Coin</td>
-                                                <td>BNB</td>
-                                                <td>
-                                                    <span class="badge badge-success">enabled </span>
-                                                </td>
-                                                <td>
-                                                    <a href="account/admin/dashboard/setcryptostatus/bnb/disabled"
-                                                        class="btn btn-danger btn-sm">Disable</a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Aave</td>
-                                                <td>AAVE</td>
-                                                <td>
-                                                    <span class="badge badge-success">enabled </span>
-                                                </td>
-                                                <td>
-                                                    <a href="account/admin/dashboard/setcryptostatus/aave/disabled"
-                                                        class="btn btn-danger btn-sm">Disable</a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Tether</td>
-                                                <td>USDT</td>
-                                                <td>
-                                                    <span class="badge badge-success">enabled </span>
-                                                </td>
-                                                <td>
-                                                    <a href="account/admin/dashboard/setcryptostatus/usdt/disabled"
-                                                        class="btn btn-danger btn-sm">Disable</a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Bitcoin Cash</td>
-                                                <td>BCH</td>
-                                                <td>
-                                                    <span class="badge badge-success">enabled </span>
-                                                </td>
-                                                <td>
-                                                    <a href="account/admin/dashboard/setcryptostatus/bch/disabled"
-                                                        class="btn btn-danger btn-sm">Disable</a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Ripple</td>
-                                                <td>XRP</td>
-                                                <td>
-                                                    <span class="badge badge-success">enabled </span>
-                                                </td>
-                                                <td>
-                                                    <a href="account/admin/dashboard/setcryptostatus/xrp/disabled"
-                                                        class="btn btn-danger btn-sm">Disable</a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Stellar</td>
-                                                <td>XLM</td>
-                                                <td>
-                                                    <span class="badge badge-success">enabled </span>
-                                                </td>
-                                                <td>
-                                                    <a href="account/admin/dashboard/setcryptostatus/xlm/disabled"
-                                                        class="btn btn-danger btn-sm">Disable</a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Ada</td>
-                                                <td>ADA</td>
-                                                <td>
-                                                    <span class="badge badge-success">enabled </span>
-                                                </td>
-                                                <td>
-                                                    <a href="account/admin/dashboard/setcryptostatus/ada/disabled"
-                                                        class="btn btn-danger btn-sm">Disable</a>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <div>
-                                    <small class="text-light">Be sure that non of your users have balances greater than
-                                        0 in thier asset account before you disable the asset.</small>
-                                </div>
-                            </div>
+        <div class="admin-card">
+            <div class="row">
+                <div class="col-12 mb-4">
+                    <label class="form-label" style="color:var(--heading-color);">Use This Feature</label>
+                    <div class="d-flex gap-2">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="crypto" id="cryptoyes" value="true"
+                                checked>
+                            <label class="form-check-label" for="cryptoyes" style="color:var(--text-color);">On</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="crypto" id="cryptono" value="false">
+                            <label class="form-check-label" for="cryptono" style="color:var(--text-color);">Off</label>
                         </div>
                     </div>
+                    <small style="color:var(--text-color);opacity:0.7;">Users won't be able to see/use this service if
+                        turned off</small>
+                </div>
+
+                <div class="col-md-6 offset-md-3 mb-4">
+                    <form action="account/admin/dashboard/exchangefee" method="post">
+                        @csrf
+                        <div class="mb-3">
+                            <label class="form-label" style="color:var(--heading-color);">Exchange Fee</label>
+                            <input type="text" name="fee" value="2" class="admin-form-control">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" style="color:var(--heading-color);">ZAR/USD Rate</label>
+                            <input type="number" name="rate" value="500" step=".0" class="admin-form-control"
+                                placeholder="450">
+                            <small style="color:var(--text-color);opacity:0.7;">This rate will be used to calculate
+                                crypto equivalent in your chosen currency.</small>
+                        </div>
+                        <button type="submit" class="btn btn-admin-primary"><i class="fas fa-save me-1"></i>
+                            Save</button>
+                    </form>
+                </div>
+
+                <div class="col-12">
+                    <div class="table-responsive">
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>Asset Name</th>
+                                    <th>Asset Symbol</th>
+                                    <th>Status</th>
+                                    <th>Option</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @php
+                                $assets = [
+                                ['Bitcoin','BTC','btc'],['Ethereum','ETH','eth'],['Litecoin','LTC','ltc'],
+                                ['Chainlink','LINK','link'],['Binance Coin','BNB','bnb'],['Aave','AAVE','aave'],
+                                ['Tether','USDT','usdt'],['Bitcoin Cash','BCH','bch'],['Ripple','XRP','xrp'],
+                                ['Stellar','XLM','xlm'],['Ada','ADA','ada']
+                                ];
+                                @endphp
+                                @foreach($assets as $asset)
+                                <tr>
+                                    <td>{{ $asset[0] }}</td>
+                                    <td>{{ $asset[1] }}</td>
+                                    <td><span class="admin-badge-success">enabled</span></td>
+                                    <td>
+                                        <a href="account/admin/dashboard/setcryptostatus/{{ $asset[2] }}/disabled"
+                                            class="btn btn-sm btn-danger">Disable</a>
+                                    </td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                    <small style="color:var(--text-color);opacity:0.7;">Be sure that none of your users have balances
+                        greater than 0 in their asset account before you disable the asset.</small>
                 </div>
             </div>
         </div>
     </div>
-    <script>
-        $('#cryptoyes').on('click', function() {
-                // let truevalue = $('#cryptoyes').val()
-                let uurl = "account/admin/dashboard/useexchange"  + '/' + 'true';
-                $.ajax({
-                    url: uurl,
-                    type: 'GET',
-                    
-                    success: function(response) {
-                        if (response.status === 200) {
-                            $.notify({
-                                // options
-                                icon: 'flaticon-alarm-1',
-                                title: 'Success',
-                                message: response.success,
-                            },{
-                                // settings
-                                type: 'success',
-                                allow_dismiss: true,
-                                newest_on_top: false,
-                                placement: {
-                                    from: "top",
-                                    align: "right"
-                                },
-                                offset: 20,
-                                spacing: 10,
-                                z_index: 1031,
-                                delay: 5000,
-                                timer: 1000,
-                                animate: {
-                                    enter: 'animated fadeInDown',
-                                    exit: 'animated fadeOutUp'
-                                },
-            
-                            });
-                        } else {
-                            
-                        }
-                    },
-                    error: function(error) {
-                        console.log(error);
-                    },
-                });
-            });
+</div>
 
-            $('#cryptono').on('click', function() {
-                // let truevalue = $('#cryptoyes').val()
-                let uurl = "account/admin/dashboard/useexchange"  + '/' + 'false';
-                $.ajax({
-                    url: uurl,
-                    type: 'GET',
-                    
-                    success: function(response) {
-                        if (response.status === 200) {
-                            $.notify({
-                                // options
-                                icon: 'flaticon-alarm-1',
-                                title: 'Success',
-                                message: response.success,
-                            },{
-                                // settings
-                                type: 'success',
-                                allow_dismiss: true,
-                                newest_on_top: false,
-                                placement: {
-                                    from: "top",
-                                    align: "right"
-                                },
-                                offset: 20,
-                                spacing: 10,
-                                z_index: 1031,
-                                delay: 5000,
-                                timer: 1000,
-                                animate: {
-                                    enter: 'animated fadeInDown',
-                                    exit: 'animated fadeOutUp'
-                                },
-            
-                            });
-                        } else {
-                            
-                        }
-                    },
-                    error: function(error) {
-                        console.log(error);
-                    },
-                });
-            });
-    </script>
-    @include('admin.footer')
+@include('admin.footer')

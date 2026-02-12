@@ -59,12 +59,12 @@
             linear-gradient(to bottom, #ef4444 0%, #ef4444 100%),
             linear-gradient(to bottom, #ef4444 0%, #ef4444 100%),
             /* Wicks */
-            linear-gradient(to bottom, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.15) 100%),
-            linear-gradient(to bottom, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.15) 100%),
-            linear-gradient(to bottom, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.15) 100%),
-            linear-gradient(to bottom, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.15) 100%),
-            linear-gradient(to bottom, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.15) 100%),
-            linear-gradient(to bottom, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.15) 100%);
+            linear-gradient(to bottom, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.15) 100%),
+            linear-gradient(to bottom, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.15) 100%),
+            linear-gradient(to bottom, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.15) 100%),
+            linear-gradient(to bottom, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.15) 100%),
+            linear-gradient(to bottom, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.15) 100%),
+            linear-gradient(to bottom, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.15) 100%);
         background-size:
             8px 35px, 8px 25px, 8px 40px,
             8px 30px, 8px 20px, 8px 35px,
@@ -278,7 +278,7 @@
     }
 
     .asset-list-item:hover {
-        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
         cursor: pointer;
     }
 
@@ -384,7 +384,7 @@
         left: 0;
         right: 0;
         bottom: 0;
-        background: rgba(0,0,0,0.5);
+        background: rgba(0, 0, 0, 0.5);
         z-index: 200;
         align-items: center;
         justify-content: center;
@@ -402,7 +402,7 @@
         max-width: 420px;
         width: 100%;
         position: relative;
-        box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
     }
 
     .asset-modal-close {
@@ -504,17 +504,21 @@
         .holdings-row {
             flex-direction: column;
         }
+
         .holdings-left {
             flex: none;
             max-width: 100%;
         }
+
         .portfolio-value {
             font-size: 2rem;
         }
+
         .asset-price-col {
             flex: 0 0 65px;
             font-size: 0.8rem;
         }
+
         .asset-change-col {
             flex: 0 0 55px;
             font-size: 0.78rem;
@@ -531,7 +535,8 @@
             <!-- Left Column - Portfolio Value Card -->
             <div class="holdings-left">
                 <div class="portfolio-card">
-                    <div class="portfolio-value">{{ config('currencies.' . Auth::user()->currency, '$') }}{{ number_format($holdingBalance, 2) }}</div>
+                    <div class="portfolio-value">{{ config('currencies.' . Auth::user()->currency, '$') }}{{
+                        number_format($holdingBalance, 2) }}</div>
                     <div class="portfolio-label">portfolio value</div>
                 </div>
             </div>
@@ -539,25 +544,40 @@
             <!-- Right Column - Balance + Empty State -->
             <div class="holdings-right">
                 @php
-                    $countryCode = strtolower(Auth::user()->country ?? 'us');
-                    $countryMap = [
-                        'canada' => 'ca', 'united states' => 'us', 'united kingdom' => 'gb',
-                        'australia' => 'au', 'nigeria' => 'ng', 'south africa' => 'za',
-                        'ghana' => 'gh', 'kenya' => 'ke', 'india' => 'in',
-                        'germany' => 'de', 'france' => 'fr', 'brazil' => 'br',
-                        'japan' => 'jp', 'china' => 'cn', 'mexico' => 'mx',
-                    ];
-                    $code = $countryMap[$countryCode] ?? (strlen($countryCode) === 2 ? $countryCode : 'us');
+                $currencyCode = strtoupper(Auth::user()->currency ?? 'USD');
+                // Map currency codes to flag country codes (ISO 3166-1 alpha-2)
+                $currencyFlagMap = [
+                'USD' => 'us', 'EUR' => 'eu', 'GBP' => 'gb', 'JPY' => 'jp',
+                'AUD' => 'au', 'CAD' => 'ca', 'CHF' => 'ch', 'CNY' => 'cn',
+                'INR' => 'in', 'NGN' => 'ng', 'ZAR' => 'za', 'GHS' => 'gh',
+                'KES' => 'ke', 'BRL' => 'br', 'MXN' => 'mx', 'AED' => 'ae',
+                'SAR' => 'sa', 'SGD' => 'sg', 'HKD' => 'hk', 'NZD' => 'nz',
+                'SEK' => 'se', 'NOK' => 'no', 'DKK' => 'dk', 'PLN' => 'pl',
+                'TRY' => 'tr', 'RUB' => 'ru', 'KRW' => 'kr', 'THB' => 'th',
+                'IDR' => 'id', 'MYR' => 'my', 'PHP' => 'ph', 'VND' => 'vn',
+                'EGP' => 'eg', 'PKR' => 'pk', 'BDT' => 'bd', 'UAH' => 'ua',
+                'COP' => 'co', 'ARS' => 'ar', 'CLP' => 'cl', 'PEN' => 'pe',
+                'CZK' => 'cz', 'HUF' => 'hu', 'RON' => 'ro', 'BGN' => 'bg',
+                'ISK' => 'is', 'JMD' => 'jm', 'TTD' => 'tt', 'KWD' => 'kw',
+                'QAR' => 'qa', 'OMR' => 'om', 'BHD' => 'bh', 'JOD' => 'jo',
+                'LKR' => 'lk', 'MMK' => 'mm', 'KZT' => 'kz', 'UGX' => 'ug',
+                'TZS' => 'tz', 'RWF' => 'rw', 'ETB' => 'et', 'XOF' => 'sn',
+                'XAF' => 'cm', 'XCD' => 'ag', 'TWD' => 'tw', 'ILS' => 'il',
+                ];
+                // Try explicit map first, then derive from first 2 chars of currency code
+                $flagCode = $currencyFlagMap[$currencyCode] ?? strtolower(substr($currencyCode, 0, 2));
                 @endphp
 
                 <!-- Balance Row -->
                 <div class="balance-row">
                     <div class="balance-row-left">
                         <div class="flag-icon">
-                            <img src="https://flagcdn.com/w80/{{ $code }}.png" alt="{{ Auth::user()->country }}" onerror="this.src='https://flagcdn.com/w80/us.png'">
+                            <img src="https://flagcdn.com/w80/{{ $flagCode }}.png" alt="{{ $currencyCode }}"
+                                onerror="this.src='https://flagcdn.com/w80/us.png'">
                         </div>
                         <div class="balance-info">
-                            <span class="balance-amount">{{ config('currencies.' . Auth::user()->currency, '$') }}{{ number_format($holdingBalance, 2) }}</span>
+                            <span class="balance-amount">{{ config('currencies.' . Auth::user()->currency, '$') }}{{
+                                number_format($holdingBalance, 2) }}</span>
                             <span class="balance-label-text">Holding Balance</span>
                         </div>
                     </div>
@@ -565,69 +585,71 @@
                 </div>
 
                 <!-- Empty State / Holdings Content -->
-                @if($holdingBalance <= 0)
-                <div class="empty-state-card">
+                @if($holdingBalance <= 0) <div class="empty-state-card">
                     <p class="empty-state-text">
-                        YOU ARE NOT CURRENTLY HOLDING ANY ASSETS, CLICK <a href="{{ route('deposit.one') }}">HERE</a> TO BUY ASSETS
+                        YOU ARE NOT CURRENTLY HOLDING ANY ASSETS, CLICK <a href="{{ route('deposit.one') }}">HERE</a> TO
+                        BUY ASSETS
                     </p>
-                </div>
-                @endif
             </div>
+            @endif
         </div>
     </div>
+</div>
 
-    <!-- ========== ASSETS LIST VIEW ========== -->
-    <div id="assetsView" class="assets-view">
-        <!-- Filter Dropdowns -->
-        <div class="filters-row">
-            <select class="filter-select" id="categoryFilter">
-                <option value="all">DEFAULT</option>
-                <option value="crypto">Crypto</option>
-                <option value="stock">Stocks</option>
-                <option value="forex">Forex</option>
-            </select>
-            <select class="filter-select" id="sortFilter">
-                <option value="default">DEFAULT</option>
-                <option value="name_asc">Name A-Z</option>
-                <option value="name_desc">Name Z-A</option>
-                <option value="price_asc">Price Low-High</option>
-                <option value="price_desc">Price High-Low</option>
-            </select>
-        </div>
-
-        <!-- Search Bar -->
-        <input type="text" class="search-bar" id="assetSearch" placeholder="Search">
-
-        <!-- Pagination -->
-        <div class="pagination-row">
-            <span id="paginationInfo">(1 / 1)</span>
-            <button id="nextPage">&gt;</button>
-        </div>
-
-        <!-- Assets List -->
-        <div id="assetsList">
-            <!-- Assets loaded dynamically via JS -->
-        </div>
+<!-- ========== ASSETS LIST VIEW ========== -->
+<div id="assetsView" class="assets-view">
+    <!-- Filter Dropdowns -->
+    <div class="filters-row">
+        <select class="filter-select" id="categoryFilter">
+            <option value="all">DEFAULT</option>
+            <option value="crypto">Crypto</option>
+            <option value="stock">Stocks</option>
+            <option value="forex">Forex</option>
+        </select>
+        <select class="filter-select" id="sortFilter">
+            <option value="default">DEFAULT</option>
+            <option value="name_asc">Name A-Z</option>
+            <option value="name_desc">Name Z-A</option>
+            <option value="price_asc">Price Low-High</option>
+            <option value="price_desc">Price High-Low</option>
+        </select>
     </div>
+
+    <!-- Search Bar -->
+    <input type="text" class="search-bar" id="assetSearch" placeholder="Search">
+
+    <!-- Pagination -->
+    <div class="pagination-row">
+        <span id="paginationInfo">(1 / 1)</span>
+        <button id="nextPage">&gt;</button>
+    </div>
+
+    <!-- Assets List -->
+    <div id="assetsList">
+        <!-- Assets loaded dynamically via JS -->
+    </div>
+</div>
 </div>
 
 <!-- Bottom Tab Bar -->
 <div class="bottom-tab-bar">
     <button class="tab-item active" id="holdingsTab" onclick="switchTab('holdings')">
         <!-- Wallet Icon -->
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="2" y="5" width="20" height="15" rx="2"/>
-            <path d="M16 12h.01"/>
-            <path d="M2 10h20"/>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round">
+            <rect x="2" y="5" width="20" height="15" rx="2" />
+            <path d="M16 12h.01" />
+            <path d="M2 10h20" />
         </svg>
         My Holdings
     </button>
     <button class="tab-item" id="assetsTab" onclick="switchTab('assets')">
         <!-- Bar Chart Icon -->
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <line x1="18" y1="20" x2="18" y2="10"/>
-            <line x1="12" y1="20" x2="12" y2="4"/>
-            <line x1="6" y1="20" x2="6" y2="14"/>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round">
+            <line x1="18" y1="20" x2="18" y2="10" />
+            <line x1="12" y1="20" x2="12" y2="4" />
+            <line x1="6" y1="20" x2="6" y2="14" />
         </svg>
         Assets List
     </button>

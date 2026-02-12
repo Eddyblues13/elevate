@@ -1,82 +1,63 @@
 @include('admin.header')
-<div class="main-panel bg-dark">
-        <div class="content bg-dark">
-            <div class="page-inner">
-                <div class="mt-2 mb-4">
-                <h1 class="title1 text-light">Add New Manager</h1>
-                </div>
-                <div>
-    </div>            <div>
-    </div>                <div class="mb-5 row">
-                    <div class="col-lg-8 offset-lg-2 card p-3 bg-dark shadow">
-                        <form method="POST" action="https://stockmarket-hq.com/account/admin/dashboard/saveadmin">
-                            <input type="hidden" name="_token" value="EqGt2txdTJHMwXVRjoCB9yNMVUEKJvIhyXqL7wBp">
 
-                            <div class="form-group">
-                                <h4 class="text-light">First Name</h4>
-                                <div>
-                                    <input id="name" type="text" class="form-control bg-dark text-light" name="fname" value="" required>
-                                                                    </div>
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <div>
+                <h4 class="admin-page-title">Add New Manager</h4>
+                <p class="admin-page-subtitle">Create a new administrator account</p>
+            </div>
+            <a href="{{ url('admin/manage-administrator') }}" class="btn btn-sm btn-outline-secondary"><i
+                    class="fas fa-arrow-left me-1"></i> Back</a>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="admin-card">
+                    <form method="POST" action="{{ url('account/admin/dashboard/saveadmin') }}">
+                        @csrf
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label class="form-label" style="color:var(--heading-color);">First Name</label>
+                                <input type="text" class="admin-form-control" name="fname" required>
                             </div>
-                            <div class="form-group">
-                                <h4 class="text-light">Last Name</h4>
-                                <div>
-                                    <input id="name" type="text" class="form-control bg-dark text-light" name="l_name" value="" required>
-                                                                    </div>
+                            <div class="col-md-6">
+                                <label class="form-label" style="color:var(--heading-color);">Last Name</label>
+                                <input type="text" class="admin-form-control" name="l_name" required>
                             </div>
-
-                            <div class="form-group">
-                                <h4 class="text-light">E-Mail Address</h4>
-
-                                <div>
-                                    <input id="email" type="email" class="form-control bg-dark text-light" name="email" value="" required>
-
-                                                                    </div>
+                            <div class="col-md-6">
+                                <label class="form-label" style="color:var(--heading-color);">E-Mail Address</label>
+                                <input type="email" class="admin-form-control" name="email" required>
                             </div>
-                            
-                            <div class="form-group">
-                                <h4 class="text-light">Phone number</h4>
-                                <div>
-                                    <input id="phone" type="number" class="form-control bg-dark text-light" name="phone" value="" required>
-
-                                                                    </div>
+                            <div class="col-md-6">
+                                <label class="form-label" style="color:var(--heading-color);">Phone Number</label>
+                                <input type="number" class="admin-form-control" name="phone" required>
                             </div>
-                            <div class="form-group">
-                                <h4 class="text-light">Type</h4>
-                                <select class="form-control bg-dark text-light" name="type">
-                                    <option>Super Admin</option>
-                                    <option>Admin</option>
-                                </select><br>
+                            <div class="col-md-6">
+                                <label class="form-label" style="color:var(--heading-color);">Type</label>
+                                <select class="admin-form-control" name="type">
+                                    <option value="Super Admin">Super Admin</option>
+                                    <option value="Admin">Admin</option>
+                                </select>
                             </div>
-
-                            <div class="form-group">
-                                
-                                <h4 class="text-light">Password</h4>
-                                <div>
-                                    <input id="password" type="password" class="form-control bg-dark text-light" name="password" required>
-
-                                                                    </div>
+                            <div class="col-md-6">
+                                <label class="form-label" style="color:var(--heading-color);">Password</label>
+                                <input type="password" class="admin-form-control" name="password" required>
                             </div>
-
-                            <div class="form-group">
-                                <h4 class="text-light">Confirm Password</h4>
-                                <div>
-                                    <input id="password-confirm" type="password" class="form-control bg-dark text-light" name="password_confirmation" required>
-
-                                                                    </div>
+                            <div class="col-md-6">
+                                <label class="form-label" style="color:var(--heading-color);">Confirm Password</label>
+                                <input type="password" class="admin-form-control" name="password_confirmation" required>
                             </div>
-
-                            <div class="form-group">
-                                <div>
-                                    <button type="submit" class="px-3 btn btn-primary btn-lg">
-                                        <i class="fa fa-plus"></i> Save User
-                                    </button>
-                                </div>
+                            <div class="col-12 mt-3">
+                                <button type="submit" class="btn btn-admin-primary"><i class="fas fa-plus me-1"></i>
+                                    Save User</button>
                             </div>
-                        </form>
-                    </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
+    </div>
+</div>
+
 @include('admin.footer')
-				

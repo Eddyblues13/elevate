@@ -4,6 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\User;
 use App\Models\User\Deposit;
+use App\Models\User\HoldingBalance;
+use App\Models\User\TradingBalance;
+use App\Models\User\MiningBalance;
+use App\Models\User\StakingBalance;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -29,13 +33,45 @@ class DepositController extends Controller
 
             $deposit->update(['status' => 'approved']);
 
-            // Credit only the trading account
+            // Credit user's account based on account type using firstOrCreate
             $user = User::findOrFail($deposit->user_id);
-            $user->tradingBalance()->increment('amount', $deposit->amount);
+
+            switch ($deposit->account_type) {
+                case 'holding':
+                    $balance = HoldingBalance::firstOrCreate(
+                        ['user_id' => $user->id],
+                        ['amount' => 0]
+                    );
+                    $balance->increment('amount', $deposit->amount);
+                    break;
+                case 'trading':
+                    $balance = TradingBalance::firstOrCreate(
+                        ['user_id' => $user->id],
+                        ['amount' => 0]
+                    );
+                    $balance->increment('amount', $deposit->amount);
+                    break;
+                case 'mining':
+                    $balance = MiningBalance::firstOrCreate(
+                        ['user_id' => $user->id],
+                        ['amount' => 0]
+                    );
+                    $balance->increment('amount', $deposit->amount);
+                    break;
+                case 'staking':
+                    $balance = StakingBalance::firstOrCreate(
+                        ['user_id' => $user->id],
+                        ['amount' => 0]
+                    );
+                    $balance->increment('amount', $deposit->amount);
+                    break;
+                default:
+                    throw new \Exception("Unknown account type: {$deposit->account_type}");
+            }
 
             return response()->json([
                 'status' => 'success',
-                'message' => 'Deposit approved and trading balance credited successfully!'
+                'message' => 'Deposit approved and ' . $deposit->account_type . ' balance credited successfully!'
             ]);
         } catch (\Exception $e) {
             return response()->json([
@@ -44,53 +80,6 @@ class DepositController extends Controller
             ], 500);
         }
     }
-
-
-    // public function approve($id)
-    // {
-    //     try {
-    //         $deposit = Deposit::findOrFail($id);
-
-    //         if ($deposit->status != 'pending') {
-    //             return response()->json([
-    //                 'status' => 'error',
-    //                 'message' => 'Deposit has already been processed'
-    //             ], 400);
-    //         }
-
-    //         $deposit->update(['status' => 'approved']);
-
-    //         // Credit user's account based on account type
-    //         $user = User::findOrFail($deposit->user_id);
-
-    //         switch ($deposit->account_type) {
-    //             case 'holding':
-    //                 $user->holdingBalance()->increment('amount', $deposit->amount);
-    //                 break; 
-    //             case 'trading':
-    //                 $user->tradingBalance()->increment('amount', $deposit->amount);
-    //                 break;
-    //             case 'mining': // Note: Make sure this matches your actual account type spelling
-    //                 $user->miningBalance()->increment('amount', $deposit->amount);
-    //                 break;
-    //             case 'staking':
-    //                 $user->stakingBalance()->increment('amount', $deposit->amount);
-    //                 break;
-    //             default:
-    //                 throw new \Exception("Unknown account type: {$deposit->account_type}");
-    //         }
-
-    //         return response()->json([
-    //             'status' => 'success',
-    //             'message' => 'Deposit approved successfully!'
-    //         ]);
-    //     } catch (\Exception $e) {
-    //         return response()->json([
-    //             'status' => 'error',
-    //             'message' => 'Error approving deposit: ' . $e->getMessage()
-    //         ], 500);
-    //     }
-    // }
 
     public function reject($id)
     {

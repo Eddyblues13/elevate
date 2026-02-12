@@ -1,75 +1,89 @@
 @include('admin.header')
-<div class="main-panel bg-dark">
-    <div class="content bg-dark">
-        <div class="page-inner">
-            @if(session('message'))
-            <div class="alert alert-success mb-2">{{ session('message') }}</div>
-            @endif
 
-            <div class="mt-2 mb-4">
-                <h1 class="title1 text-light">Payment Settings</h1>
+<div class="main-content">
+    <div class="container-fluid">
+        @if(session('message'))
+        <div class="alert alert-success alert-dismissible fade show">{{ session('message') }}<button type="button"
+                class="btn-close" data-bs-dismiss="alert"></button></div>
+        @endif
+        @if(session('error'))
+        <div class="alert alert-danger alert-dismissible fade show">{{ session('error') }}<button type="button"
+                class="btn-close" data-bs-dismiss="alert"></button></div>
+        @endif
+
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <div>
+                <h4 class="admin-page-title">Payment Settings</h4>
+                <p class="admin-page-subtitle">Configure payment method settings</p>
             </div>
+            <a href="{{ route('payment.create') }}" class="btn btn-admin-primary"><i
+                    class="fas fa-plus-circle me-1"></i> Add Method</a>
+        </div>
 
-            <div class="mb-5 row">
-                <div class="col-12">
-                    <div class="card p-md-5 p-2 shadow-lg bg-dark">
-                        <h3 class="text-light d-inline">Payment Methods</h3>
-                        <a href="{{ route('payment.create') }}" class="btn btn-primary btn-sm float-right">
-                            <i class="fas fa-plus-circle"></i> Add New
-                        </a>
-
-                        <div class="mt-4 table-responsive bg-dark text-light">
-                            <table class="table table-hover">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">Method Name</th>
-                                        <th scope="col">Type</th>
-                                        <th scope="col">Used for</th>
-                                        <th scope="col">Status</th>
-                                        <th scope="col">Option</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach($payments as $payment)
-                                    <tr>
-                                        <td>{{ $payment->name }}</td>
-                                        <td>{{ $payment->type }}</td>
-                                        <td>{{ ucfirst($payment->type_for) }}</td>
-                                        <td>
-                                            <span
-                                                class="badge {{ $payment->status === 'enabled' ? 'badge-success' : 'badge-danger' }}">
-                                                {{ ucfirst($payment->status) }}
-                                            </span>
-                                        </td>
-                                        <td>
-                                            <a href="{{ route('payment.edit', $payment->id) }}"
-                                                class="btn btn-primary btn-sm">
-                                                <i class="fa fa-edit"></i> Edit
-                                            </a>
-                                            @if(in_array($payment->name, ['Ethereum', 'Bitcoin', 'Litecoin']))
-                                            <button class="btn btn-danger btn-sm" disabled>
-                                                <i class="fa fa-trash"></i> Default
-                                            </button>
-                                            @else
-                                            <form action="{{ route('payment.destroy', $payment->id) }}" method="POST"
-                                                class="d-inline">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button class="btn btn-danger btn-sm" type="submit">
-                                                    <i class="fa fa-trash"></i> Delete
-                                                </button>
-                                            </form>
-                                            @endif
-                                        </td>
-                                    </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
+        <div class="admin-card">
+            <div class="admin-table">
+                <div class="table-responsive">
+                    <table class="table" id="paymentSettingsTable">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Name</th>
+                                <th>Type</th>
+                                <th>Used For</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @forelse($payments as $key => $pm)
+                            <tr>
+                                <td>{{ $key + 1 }}</td>
+                                <td style="color:var(--heading-color);font-weight:500;">{{ $pm->name ?? $pm->wallet_name
+                                    }}</td>
+                                <td>{{ ucfirst($pm->type ?? $pm->wallet_type ?? '-') }}</td>
+                                <td>{{ ucfirst($pm->type_for ?? 'Both') }}</td>
+                                <td>
+                                    <span class="admin-badge-{{ $pm->status === 'enabled' ? 'success' : 'danger' }}">{{
+                                        ucfirst($pm->status) }}</span>
+                                </td>
+                                <td>
+                                    <div class="d-flex gap-1">
+                                        <a href="{{ route('payment.edit', $pm->id) }}"
+                                            class="btn btn-sm btn-admin-primary"><i class="fa fa-edit"></i></a>
+                                        <form action="{{ route('payment.destroy', $pm->id) }}" method="POST"
+                                            class="d-inline">
+                                            @csrf @method('DELETE')
+                                            <button class="btn btn-sm btn-danger" type="submit"
+                                                onclick="return confirm('Delete this payment method?')"><i
+                                                    class="fa fa-trash"></i></button>
+                                        </form>
+                                    </div>
+                                </td>
+                            </tr>
+                            @empty
+                            <tr>
+                                <td colspan="6" class="text-center py-4" style="color:var(--text-color);opacity:0.5;">No
+                                    payment settings found</td>
+                            </tr>
+                            @endforelse
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
 @include('admin.footer')
+
+<script>
+    $(document).ready(function(){
+    if($.fn.DataTable){
+        $('#paymentSettingsTable').DataTable({
+            responsive: true,
+            pageLength: 25,
+            language: { search: "", searchPlaceholder: "Search..." }
+        });
+    }
+});
+</script>

@@ -1,7 +1,7 @@
 @include('user.layouts.header')
 <!-- Main Content -->
 <div class="depost-form-main">
-    <h1 class="heading text-white">Fund Account</h1>
+    <h1 class="heading text-header">Fund Account</h1>
     <a href="#" class="view-pricing">VIEW PRICING</a>
 
     <div class="fund-card">

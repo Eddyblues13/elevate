@@ -118,7 +118,7 @@ class DepositController extends Controller
         // Validate input
         $request->validate([
             'amount' => 'required|numeric|min:1',
-            'account' => 'required|in:trading,holding,staking',
+            'account' => 'required|in:trading,holding,staking,mining',
         ]);
 
         // Process the data (e.g., save to database)
@@ -153,7 +153,7 @@ class DepositController extends Controller
         // Validate input
         $request->validate([
             'amount' => 'required|numeric|min:1',
-            'account' => 'required|in:trading,holding,staking',
+            'account' => 'required|in:trading,holding,staking,mining',
         ]);
 
         // Process the data (e.g., save to database)
@@ -181,16 +181,32 @@ class DepositController extends Controller
         ]);
 
         try {
+            // Retrieve the deposit from session and update with payment details
+            $depositId = session('deposit_id');
+            if (!$depositId) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Deposit session expired. Please start over.'
+                ], 400);
+            }
 
+            $deposit = Deposit::where('id', $depositId)
+                ->where('user_id', auth()->id())
+                ->where('status', 'pending')
+                ->firstOrFail();
+
+            $deposit->update([
+                'payment_method' => $request->payment_method,
+                'crypto_amount' => $request->crypto_amount,
+            ]);
 
             return response()->json([
                 'success' => true,
                 'message' => 'Deposit initiated successfully',
                 'redirect_url' => route('pay.crypto', [
-                    'txn_id' => 'txn_id',
+                    'txn_id' => $deposit->id,
                     'crypto' => $request->payment_method,
                     'amount' => $request->crypto_amount,
-                    'address' => 'tysyysu'
                 ])
             ]);
         } catch (\Exception $e) {

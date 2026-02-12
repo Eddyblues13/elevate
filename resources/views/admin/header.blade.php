@@ -2,325 +2,394 @@
 <html lang="en">
 
 <head>
-    <script type="text/javascript" src="https://js.stripe.com/v3/"></script>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- App favicon -->
-    <!-- CSRF Token -->
+    <meta charset="UTF-8">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ElevateCapital - Admin</title>
     <meta name="robots" content="noindex, nofollow">
     <meta name="googlebot" content="noindex, nofollow">
-    <meta name="bingbot" content="noindex, nofollow">
-    <meta name="scam-advisor" content="noindex, nofollow">
-    <meta name="scam-adviser" content="noindex, nofollow">
-    <meta name="scamadviser" content="noindex, nofollow">
-    <meta name="google" content="noindex, nofollow">
-    <link rel="icon" href="{{asset('user/account/storage/app/public/photos/uPYDzhfavicon.png1677339254')}}"
-        type="image/png" />
-    <link rel="icon" href="{{ asset('account/cloud/uploads/favicon.png')}}" type="image/png" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="icon" type="image/png" href="{{ asset('assets/img/logo.png') }}">
-
-    <!-- Fonts and icons -->
-    <script src="{{asset('user/account/dash/js/plugin/webfont/webfont.min.js')}}"></script>
-    <!-- Sweet Alert -->
-    <script src="{{asset('user/account/dash/js/plugin/sweetalert/sweetalert.min.js ')}}"></script>
-    <!-- CSS Files -->
-    <link rel="stylesheet" href="{{asset('user/account/dash/css/bootstrap.min.css')}}">
-    <link rel="stylesheet" href="{{asset('user/account/dash/css/fonts.min.css')}}">
-    <link rel="stylesheet" href="{{asset('user/account/dash/css/atlantis.min.css')}}">
-    <link rel="stylesheet" href="{{asset('user/account/dash/css/customs.css')}}">
-    <link rel="stylesheet" href="{{asset('user/account/dash/css/style.css')}}">
-    <link rel="stylesheet" href="{{asset('user/account/dash/css/atlantis.min.css')}}">
-    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.6.2/css/buttons.dataTables.min.css')}}">
-    <link rel="stylesheet" type="text/css"
-        href="https://cdn.datatables.net/v/bs4/dt-1.10.21/af-2.3.5/b-1.6.3/b-flash-1.6.3/b-html5-1.6.3/b-print-1.6.3/r-2.2.5/datatables.min.css" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <!-- Bootstrap Notify -->
-    <script src="{{asset('user/account/dash/js/plugin/bootstrap-notify/bootstrap-notify.min.js ')}}"></script>
-    <script src="{{asset('user/account/dash/js/plugin/sweetalert/sweetalert.min.js ')}}"></script>
-    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.1/dist/alpine.min.js" defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.2.1/dist/chart.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <!-- Livewire Styles -->
-    <link rel="stylesheet" href="{{asset('user/font-awesome/css/font-awesome.min.css')}}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-
-
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('assets/css/styles.css') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
+    <link rel="stylesheet" type="text/css"
+        href="https://cdn.datatables.net/buttons/2.4.1/css/buttons.bootstrap5.min.css">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            corePlugins: { preflight: false },
+            darkMode: 'class',
+            theme: { extend: {} }
+        }
+    </script>
+    <script>
+        if (localStorage.theme === 'dark') {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+
+        function toggleTheme() {
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                localStorage.theme = 'light';
+                updateThemeButton('Light');
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.theme = 'dark';
+                updateThemeButton('Dark');
+            }
+            window.dispatchEvent(new CustomEvent('themeChanged', { detail: { theme: localStorage.theme } }));
+        }
+
+        function updateThemeButton(mode) {
+            const btnText = document.getElementById('theme-toggle-text');
+            const icon = document.getElementById('theme-toggle-icon');
+            if (mode === 'Dark') {
+                btnText.innerText = 'Light Mode';
+                icon.innerHTML = '<path d="M480-120q-150 0-255-105T120-480q0-150 105-255t255-105q14 0 27.5 1t26.5 3q-41 29-65.5 75.5T444-660q0 90 63 153t153 63q55 0 101-24.5t75-65.5q2 13 3 26.5t1 27.5q0 150-105 255T480-120Z"/>';
+            } else {
+                btnText.innerText = 'Dark Mode';
+                icon.innerHTML = '<path d="M480-360q50 0 85-35t35-85q0-50-35-85t-85-35q-50 0-85 35t-35 85q0 50 35 85t85 35Z"/>';
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            if (localStorage.theme === 'dark') { updateThemeButton('Dark'); }
+            else { updateThemeButton('Light'); }
+        });
+    </script>
+
     <style>
-        [wire\:loading],
-        [wire\:loading\.delay],
-        [wire\:loading\.inline-block],
-        [wire\:loading\.inline],
-        [wire\:loading\.block],
-        [wire\:loading\.flex],
-        [wire\:loading\.table],
-        [wire\:loading\.grid] {
-            display: none;
+        .admin-table {
+            border-radius: 12px;
+            overflow: hidden;
         }
 
-        [wire\:offline] {
-            display: none;
+        .admin-table .table {
+            margin-bottom: 0;
+            color: var(--text-color) !important;
         }
 
-        [wire\:dirty]:not(textarea):not(input):not(select) {
-            display: none;
+        .admin-table .table thead th {
+            background-color: var(--card-bg);
+            color: var(--heading-color);
+            border-bottom: 2px solid var(--border-color);
+            font-weight: 600;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 14px 16px;
         }
 
-        input:-webkit-autofill,
-        select:-webkit-autofill,
-        textarea:-webkit-autofill {
-            animation-duration: 50000s;
-            animation-name: livewireautofill;
+        .admin-table .table tbody td {
+            padding: 14px 16px;
+            border-bottom: 1px solid var(--border-color);
+            vertical-align: middle;
+            color: var(--text-color);
         }
 
-        @keyframes livewireautofill {
-            from {}
+        .admin-table .table tbody tr:hover {
+            background-color: rgba(99, 102, 241, 0.04);
         }
-    </style>
 
-    <script src="https://www.paypal.com/sdk/js?client-id=iidjdjdj"></script>
-    <style type="text/css">
-        .footer {
-            position: fixed;
-            left: 0;
-            bottom: 0;
-            width: 100%;
+        .admin-stat-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 14px;
+            padding: 20px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
 
-            color: white;
+        .admin-stat-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .admin-stat-card .stat-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .admin-stat-card .stat-label {
+            color: var(--text-color);
+            font-size: 13px;
+            font-weight: 500;
+            margin-bottom: 4px;
+        }
+
+        .admin-stat-card .stat-value {
+            color: var(--heading-color);
+            font-size: 22px;
+            font-weight: 700;
+        }
+
+        .admin-page-title {
+            color: var(--heading-color);
+            font-weight: 700;
+            font-size: 24px;
+        }
+
+        .admin-page-subtitle {
+            color: var(--text-color);
+            font-size: 14px;
+        }
+
+        .admin-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 14px;
+            padding: 24px;
+        }
+
+        .dataTables_wrapper .dataTables_length label,
+        .dataTables_wrapper .dataTables_filter label,
+        .dataTables_wrapper .dataTables_info,
+        .dataTables_wrapper .dataTables_paginate {
+            color: var(--text-color) !important;
+            font-size: 13px;
+        }
+
+        .dataTables_wrapper .dataTables_length select,
+        .dataTables_wrapper .dataTables_filter input {
+            background-color: var(--input-bg) !important;
+            color: var(--input-text) !important;
+            border: 1px solid var(--border-color) !important;
+            border-radius: 8px !important;
+            padding: 6px 10px;
+        }
+
+        .dataTables_wrapper .dataTables_paginate .paginate_button {
+            color: var(--text-color) !important;
+            border: 1px solid var(--border-color) !important;
+            border-radius: 6px !important;
+            background: var(--card-bg) !important;
+            margin: 0 2px;
+        }
+
+        .dataTables_wrapper .dataTables_paginate .paginate_button.current {
+            background: linear-gradient(135deg, #6366f1, #8b5cf6) !important;
+            color: #fff !important;
+            border-color: #6366f1 !important;
+        }
+
+        .admin-form-control {
+            background-color: var(--input-bg) !important;
+            color: var(--input-text) !important;
+            border: 1px solid var(--border-color) !important;
+            border-radius: 10px;
+            padding: 10px 14px;
+        }
+
+        .admin-form-control:focus {
+            border-color: #6366f1 !important;
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15) !important;
+        }
+
+        .btn-admin-primary {
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            padding: 10px 24px;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .btn-admin-primary:hover {
+            background: linear-gradient(135deg, #4f46e5, #7c3aed);
+            color: #fff;
+            transform: translateY(-1px);
+        }
+
+        .admin-badge {
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .admin-badge-success {
+            background: rgba(34, 197, 94, 0.15);
+            color: #22c55e;
+        }
+
+        .admin-badge-danger {
+            background: rgba(239, 68, 68, 0.15);
+            color: #ef4444;
+        }
+
+        .admin-badge-warning {
+            background: rgba(234, 179, 8, 0.15);
+            color: #eab308;
+        }
+
+        .admin-badge-info {
+            background: rgba(59, 130, 246, 0.15);
+            color: #3b82f6;
+        }
+
+        .admin-nav-item {
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--sidebar-text);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            border-radius: 10px;
+            margin: 2px 10px;
+            transition: all 0.2s;
+        }
+
+        .admin-nav-item:hover {
+            background: rgba(99, 102, 241, 0.08);
+            color: #6366f1;
+        }
+
+        .admin-nav-item.active {
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            color: #fff !important;
+        }
+
+        .admin-nav-item i {
+            width: 22px;
             text-align: center;
+            font-size: 16px;
+        }
+
+        .admin-nav-divider {
+            height: 1px;
+            background: var(--border-color);
+            margin: 8px 20px;
+        }
+
+        .admin-nav-label {
+            padding: 10px 20px 4px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-color);
+            opacity: 0.6;
         }
     </style>
-
 </head>
 
-<body data-background-color="dark">
-    <div id="app">
-
-        <!--/PayPal-->
-
-        <!--Start of Tawk.to Script-->
-        <script type="text/javascript">
-            {tawk to codess}
-        </script>
-        <!--End of Tawk.to Script-->
-        <div class="wrapper">
-            <div class="main-header">
-                <!-- Logo Header -->
-                <div class="logo-header" data-background-color="dark">
-                    <a href="{{route('admin.home')}}" class="logo" style="font-size: 27px; color:#fff;">
-                        <img class="logo-light logo-img logo-img-lg" height="40" width="100"
-                            src="{{asset('assets/img/logo.png')}}" alt="logo">
-                    </a>
-                    <button class="ml-auto navbar-toggler sidenav-toggler" type="button" data-toggle="collapse"
-                        data-target="collapse" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon">
-                            <i class="fa fa-bars"></i>
-                        </span>
-                    </button>
-                    <button class="topbar-toggler more"><i class="icon-options-vertical "></i></button>
-                    <div class="nav-toggle">
-                        <button class="btn btn-toggle toggle-sidebar">
-                            <i class="fa fa-bars"></i>
-                        </button>
-                    </div>
-
-                </div>
-                <!-- End Logo Header -->
-
-                <!-- Navbar Header -->
-                <nav class="navbar navbar-header navbar-expand-lg" data-background-color="dark">
-
-                    <div class="container-fluid">
-                        <div class="collapse" id="search-nav">
-
-                            <script>
-                                document.getElementById('searchform').addEventListener('subit' searchuser);
-                   function searchuser(){
-                       console.log('ddj');
-                       let url = "{{route('manage.users.page')}}";
-                       window.location.href = url;
-                   }
-                            </script>
-                        </div>
-                        <ul class="navbar-nav topbar-nav ml-md-auto align-items-center">
-                            <li>
-                                <form action="javascript:void(0)" method="post" id="styleform">
-                                    <div class="form-group">
-                                        <label class="style_switch">
-                                            <input name="style" id="style" type="checkbox" value="true" class="modes">
-                                            <span class="slider round"></span>
-                                        </label>
-                                    </div>
-                                    <script>
-                                        document.getElementById("style").checked= true;
-                                    </script>
-                                    <input type="hidden" name="_token" value="XJqa5hhY3cHbkWs5f3RwEgAuiPZvVNy9oH1FuvnJ">
-                                </form>
-
-                            </li>
-                            <li class="nav-item dropdown hidden-caret">
-                                <div id="google_translate_element"></div>
-                            </li>
-                            <li class="nav-item dropdown hidden-caret">
-                                <a class="nav-link" data-toggle="dropdown" href="#" aria-expanded="false">
-                                    <i class="text-white fas fa-user"></i>
-                                </a>
-
-                                <ul class="dropdown-menu dropdown-user animated fadeIn">
-                                    <div class="dropdown-user-scroll scrollbar-outer">
-                                        <li>
-                                            <a class="dropdown-item" href="#">Account Settings</a>
-                                            <a class="dropdown-item" href="#">Change Password</a>
-                                            <div class="dropdown-divider"></div>
-                                            <a class="dropdown-item" href="{{route('logout')}}">
-                                                Logout
-                                            </a>
-                                            <form id="logoutform" action="{{route('logout')}}" method="POST"
-                                                style="display: none;">
-                                                <input type="hidden" name="_token"
-                                                    value="XJqa5hhY3cHbkWs5f3RwEgAuiPZvVNy9oH1FuvnJ">
-                                            </form>
-                                        </li>
-                                    </div>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
-                </nav>
-                <!-- End Navbar -->
+<body>
+    <!-- Top Navigation -->
+    <div class="top-nav">
+        <div class="d-flex align-items-center">
+            <button class="btn mobile-menu me-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#adminSidebar"
+                aria-controls="adminSidebar">
+                <i class="bi bi-list fs-4"></i>
+            </button>
+            <div class="mt-1">
+                <a href="{{ route('admin.home') }}" class="text-decoration-none text-white fw-bold fs-5">
+                    ElevateCapital <span class="admin-badge admin-badge-info ms-1" style="font-size:10px;">ADMIN</span>
+                </a>
             </div>
+        </div>
+        <div class="text-white d-flex align-items-center gap-3">
+            <span class="d-none d-md-block" style="font-size:14px;">{{ Auth::guard('admin')->user()->name ?? 'Admin'
+                }}</span>
+            <a href="{{ route('logout') }}" class="btn btn-sm"
+                style="background: rgba(239,68,68,0.15); color:#ef4444; border-radius:8px; font-size:12px; font-weight:600;">
+                <i class="bi bi-box-arrow-right me-1"></i>Logout
+            </a>
+        </div>
+    </div>
 
-
-            <script type="text/javascript">
-                //create investment
-        $("#styleform").on('change',function(){
-        $.ajax({
-            url: "https://stockmarket-hq.com/account/admin/dashboard/changestyle",
-            type: 'POST',
-            data:$("#styleform").serialize(),
-            success: function (data) {
-				location.reload(true);
-            },
-            error: function (data) {
-                console.log('Something went wrong');
-            },
-
-        });
-    });
-    
-            </script>
-            <!-- Stored in resources/views/child.blade.php -->
-
-            <!-- Sidebar -->
-            <div class="sidebar sidebar-style-2" data-background-color="dark">
-                <div class="sidebar-wrapper scrollbar scrollbar-inner">
-                    <div class="sidebar-content">
-                        <div class="user">
-                            <div class="info">
-                                <a data-toggle="collapse" href="#collapseExample" aria-expanded="true">
-                                    <span>
-                                        Admin Test
-                                        <span class="user-level"> Admin</span>
-
-                                    </span>
-                                </a>
-                            </div>
-                        </div>
-
-                        <ul class="nav nav-primary">
-                            <li class="nav-item active">
-                                <a href="{{route('admin.home')}}">
-                                    <i class="fas fa-home"></i>
-                                    <p>Dashboard</p>
-                                </a>
-                            </li>
-                            <li class="nav-item ">
-                                <a href="{{route('admin.plans.index')}}">
-                                    <i class="fas fa-cubes " aria-hidden="true"></i>
-                                    <p>Manage Plans</p>
-                                </a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a href="{{route('traders.index')}}">
-                                    <i class="fas fa-cubes" aria-hidden="true"></i>
-                                    <p>Manage Copy Trader</p>
-                                </a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a href="{{route('manage.users.page')}}">
-                                    <i class="fa fa-user-circle" aria-hidden="true"></i>
-                                    <p>Manage Users</p>
-                                </a>
-                            </li>
-
-                            {{-- <li class="nav-item">
-                                <a href="{{route('manage.kyc.page')}}">
-                                    <i class="fa fa-user-circle" aria-hidden="true"></i>
-                                    <p>Manage KYC</p>
-                                </a>
-                            </li> --}}
-
-                            <li class="nav-item">
-                                <a href="{{route('admin.deposits.index')}}">
-                                    <i class="fa fa-download" aria-hidden="true"></i>
-                                    <p>Manage Deposits</p>
-                                </a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a href="{{route('admin.withdrawals.index')}}">
-                                    <i class="fa fa-arrow-alt-circle-up" aria-hidden="true"></i>
-                                    <p>Manage Withdrawal</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="{{ route('admin.trading-histories.index') }}">
-                                    <i class="fa fa-cog" aria-hidden="true"></i>
-                                    <p>Trading History</p>
-                                </a>
-                            </li>
-
-
-                            <li class="nav-item  ">
-                                <a data-toggle="collapse" href="#adm">
-                                    <i class="fa fa-user"></i>
-                                    <p>Administrator(s)</p>
-                                    <span class="caret"></span>
-                                </a>
-                                <div class="collapse" id="adm">
-                                    <ul class="nav nav-collapse">
-                                        <li>
-                                            <a href="">
-                                                <span class="sub-item">Add Manager</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="">
-                                                <span class="sub-item">Manage Administrator(s)</span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li>
-
-                            <li class="nav-item">
-                                <a href="{{ route('payment.index') }}">
-                                    <i class="fa fa-cog" aria-hidden="true"></i>
-                                    <p>Payment Settings</p>
-                                </a>
-                            </li>
-                        </ul>
+    <!-- Admin Sidebar -->
+    <div class="sidebar offcanvas offcanvas-start" tabindex="-1" id="adminSidebar" data-bs-scroll="true"
+        data-bs-backdrop="true">
+        <div
+            class="profile-section mb-0 d-flex flex-column align-items-center justify-content-center border-bottom border-light border-opacity-10">
+            <div class="d-block align-items-center text-center gap-3 w-100">
+                <div class="d-flex justify-content-end p-2">
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"
+                        aria-label="Close"></button>
+                </div>
+                <div class="py-2">
+                    <div
+                        style="width:50px;height:50px;border-radius:50%;background:linear-gradient(135deg,#6366f1,#8b5cf6);display:inline-flex;align-items:center;justify-content:center;">
+                        <i class="bi bi-shield-lock-fill text-white fs-4"></i>
                     </div>
                 </div>
+                <div class="mb-3">
+                    <div class="fw-bold text-white fs-5">{{ Auth::guard('admin')->user()->name ?? 'Admin' }}</div>
+                    <div class="small text-white opacity-75">Administrator</div>
+                </div>
             </div>
+        </div>
+
+        <!-- Theme Toggle -->
+        <div class="nav-section mt-2 cursor-pointer" onclick="toggleTheme()" style="cursor: pointer;">
+            <div class="nav-section-title d-flex align-items-center">
+                <svg id="theme-toggle-icon" xmlns="http://www.w3.org/2000/svg" height="23px" viewBox="0 -960 960 960"
+                    width="23px" fill="currentColor">
+                    <path d="M480-360q50 0 85-35t35-85q0-50-35-85t-85-35q-50 0-85 35t-35 85q0 50 35 85t85 35Z" />
+                </svg>
+                <span class="px-2" id="theme-toggle-text">Dark Mode</span>
+            </div>
+        </div>
+
+        <div class="admin-nav-label">Main</div>
+        <a href="{{ route('admin.home') }}"
+            class="admin-nav-item {{ request()->routeIs('admin.home') ? 'active' : '' }}">
+            <i class="bi bi-grid-1x2-fill"></i> Dashboard
+        </a>
+
+        <div class="admin-nav-label">Management</div>
+        <a href="{{ route('manage.users.page') }}"
+            class="admin-nav-item {{ request()->routeIs('manage.users.page') ? 'active' : '' }}">
+            <i class="bi bi-people-fill"></i> Manage Users
+        </a>
+        <a href="{{ route('admin.deposits.index') }}"
+            class="admin-nav-item {{ request()->routeIs('admin.deposits.*') ? 'active' : '' }}">
+            <i class="bi bi-box-arrow-in-down"></i> Manage Deposits
+        </a>
+        <a href="{{ route('admin.withdrawals.index') }}"
+            class="admin-nav-item {{ request()->routeIs('admin.withdrawals.*') ? 'active' : '' }}">
+            <i class="bi bi-box-arrow-up"></i> Manage Withdrawals
+        </a>
+
+        <div class="admin-nav-label">Trading</div>
+        <a href="{{ route('admin.plans.index') }}"
+            class="admin-nav-item {{ request()->routeIs('admin.plans.*') ? 'active' : '' }}">
+            <i class="bi bi-layers-fill"></i> Manage Plans
+        </a>
+        <a href="{{ route('traders.index') }}"
+            class="admin-nav-item {{ request()->routeIs('traders.*') ? 'active' : '' }}">
+            <i class="bi bi-arrow-left-right"></i> Manage Copy Traders
+        </a>
+        <a href="{{ route('admin.trading-histories.index') }}"
+            class="admin-nav-item {{ request()->routeIs('admin.trading-histories.*') ? 'active' : '' }}">
+            <i class="bi bi-clock-history"></i> Trading History
+        </a>
+
+        <div class="admin-nav-label">Settings</div>
+        <a href="{{ route('payment.index') }}"
+            class="admin-nav-item {{ request()->routeIs('payment.*') ? 'active' : '' }}">
+            <i class="bi bi-credit-card-fill"></i> Payment Settings
+        </a>
+
+        <div class="admin-nav-divider"></div>
+        <a href="{{ route('logout') }}" class="admin-nav-item" style="color: #ef4444;">
+            <i class="bi bi-box-arrow-right"></i> Logout
+        </a>
+    </div>

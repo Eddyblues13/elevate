@@ -774,11 +774,11 @@ a {
 
 /* deposit styles */
 .deposit-card {
-    background-color: #1a1f2b;
+    background-color: var(--card-bg);
     border-radius: 10px;
     padding: 20px;
     margin-bottom: 10px;
-    color: #a5bdd9;
+    color: var(--text-color);
 }
 
 .notification {
@@ -793,35 +793,37 @@ a {
 }
 
 .notification-text {
-    color: #a5bdd9;
+    color: var(--text-color);
 }
 
 .close-button {
     background: none;
     border: none;
-    color: #93c5fd;
+    color: var(--text-color);
     cursor: pointer;
     font-size: 1.2rem;
     padding: 5px;
 }
 
 .transaction-card {
-    background-color: rgba(59, 130, 246, 0.1);
-    color: #a5bdd9;
+    background-color: var(--card-bg);
+    color: var(--text-color);
     margin: 20px;
     padding: 20px;
     border-radius: 12px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    border: 1px solid var(--border-color);
 }
 
 .no-transaction-card {
-    background-color: rgba(59, 130, 246, 0.1);
-    color: #a5bdd9;
+    background-color: var(--card-bg);
+    color: var(--text-color);
     margin: 20px;
     padding: 20px;
     border-radius: 12px;
+    border: 1px solid var(--border-color);
 }
 
 .date-section {
@@ -831,8 +833,7 @@ a {
 }
 
 .month {
-    color: #a5bdd9;
-    ;
+    color: var(--text-color);
     font-size: 0.8rem;
     margin-bottom: 5px;
 }
@@ -840,6 +841,7 @@ a {
 .day {
     font-size: 1.5rem;
     font-weight: 600;
+    color: var(--heading-color);
 }
 
 .transaction-details {
@@ -850,20 +852,20 @@ a {
 .amount {
     font-size: 1.1rem;
     margin-bottom: 5px;
-    color: #a5bdd9;
+    color: var(--heading-color);
 }
 
 .deposit-description {
-    color: #a5bdd9;
+    color: var(--text-color);
     font-size: 0.9rem;
 }
 
 .text-silverish {
-    color: #a5bdd9 !important;
+    color: var(--text-color) !important;
 }
 
 .deposit-status {
-    color: #93c5fd;
+    color: #0d6efd;
     padding: 5px 12px;
     border-radius: 15px;
     font-size: 0.8rem;
@@ -923,19 +925,21 @@ a {
 }
 
 .fund-card {
-    background-color: #1a1f2b;
+    background-color: var(--card-bg);
     border-radius: 10px;
     padding: 30px;
     width: 100%;
     max-width: 400px;
+    border: 1px solid var(--border-color);
 }
 
 .fund-same-card {
-    background-color: #1a1f2b;
+    background-color: var(--card-bg);
     border-radius: 10px;
     padding: 30px;
     width: 100%;
     max-width: 600px;
+    border: 1px solid var(--border-color);
 }
 
 .input-group {
@@ -943,16 +947,16 @@ a {
 }
 
 .input-label {
-    color: #6c757d;
+    color: var(--text-color);
     font-size: 14px;
     margin-bottom: 8px;
 }
 
 .amount-input {
-    background-color: #1a1f2b;
-    border: 1px solid #2a2f3b;
+    background-color: var(--input-bg);
+    border: 1px solid var(--border-color);
     border-radius: 5px;
-    color: white;
+    color: var(--input-text);
     padding: 10px;
     width: 100%;
     font-size: 16px;
@@ -965,10 +969,10 @@ a {
 }
 
 .select-account {
-    background-color: #1a1f2b;
-    border: 1px solid #2a2f3b;
+    background-color: var(--input-bg);
+    border: 1px solid var(--border-color);
     border-radius: 5px;
-    color: white;
+    color: var(--input-text);
     padding: 10px;
     width: 100%;
     font-size: 16px;
@@ -1019,17 +1023,18 @@ a {
 }
 
 .payment-card {
-    background-color: #1a1f2b;
+    background-color: var(--card-bg);
     border-radius: 10px;
     padding: 20px;
     width: 100%;
     max-width: 400px;
     cursor: pointer;
     transition: background-color 0.3s;
+    border: 1px solid var(--border-color);
 }
 
 .payment-card:hover {
-    background-color: #2a2f3b;
+    opacity: 0.85;
 }
 
 .payment-title {
@@ -1039,7 +1044,7 @@ a {
 }
 
 .payment-description {
-    color: #6c757d;
+    color: var(--text-color);
     font-size: 14px;
 }
 
@@ -1056,14 +1061,15 @@ a {
 }
 
 .coin-card {
-    background-color: #1a1f2b;
+    background-color: var(--card-bg);
     border-radius: 10px;
     padding: 10px 0;
     width: 100%;
     max-width: 400px;
     cursor: pointer;
     transition: background-color 0.3s;
-    color: #039be5;
+    color: #0d6efd;
+    border: 1px solid var(--border-color);
 }
 
 .coin-text {
@@ -1071,7 +1077,7 @@ a {
     width: 100%;
     max-width: 500px;
     transition: background-color 0.3s;
-    color: #a5bdd9;
+    color: var(--text-color);
 }
 
 /* withdrawal styles */
@@ -1102,11 +1108,12 @@ a {
 }
 
 .withdraw-card {
-    background-color: #1a1f2b;
+    background-color: var(--card-bg);
     border-radius: 10px;
     padding: 30px;
     width: 100%;
     max-width: 700px;
+    border: 1px solid var(--border-color);
 }
 
 /* pay-crypto styles */
@@ -1119,12 +1126,13 @@ a {
 }
 
 .pay-crypto-payment-card {
-    background-color: #1a1f2b;
+    background-color: var(--card-bg);
     border-radius: 10px;
     padding: 30px;
     width: 100%;
     max-width: 500px;
     text-align: center;
+    border: 1px solid var(--border-color);
 }
 
 .send-amount {
@@ -1133,14 +1141,14 @@ a {
 }
 
 .instruction {
-    color: #6c757d;
+    color: var(--text-color);
     font-size: 14px;
     margin-bottom: 20px;
 }
 
 .wallet-address {
     font-family: monospace;
-    color: #6c757d;
+    color: var(--text-color);
     margin-bottom: 20px;
     word-break: break-all;
 }
@@ -1160,7 +1168,7 @@ a {
 }
 
 .status {
-    color: #6c757d;
+    color: var(--text-color);
     margin-bottom: 30px;
 }
 
@@ -1183,7 +1191,7 @@ a {
 }
 
 .diff-button {
-    color: white;
+    color: var(--heading-color);
     padding: 12px 0;
     background: transparent;
     border-radius: 5px;
@@ -1192,7 +1200,7 @@ a {
     margin-bottom: 10px;
     transition: opacity 0.3s;
     border-radius: 15px;
-    border: 1px solid #0287df;
+    border: 1px solid #0d6efd;
 }
 
 /* Copy trad styles */
@@ -1670,7 +1678,7 @@ a {
 }
 
 .time-tabs {
-    background-color: #1a1f2b;
+    background-color: var(--card-bg);
     border-radius: 8px;
     overflow: hidden;
     margin: 1rem 0;
@@ -1685,11 +1693,11 @@ a {
 
 .time-tabs .nav-link.active {
     background-color: transparent;
-    color: white;
+    color: var(--heading-color);
 }
 
 .t-asset-card {
-    background-color: #1a1f2b;
+    background-color: var(--card-bg);
     border-radius: 8px;
     padding: 1.25rem;
     margin-bottom: 0.75rem;
@@ -1702,7 +1710,7 @@ a {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #2a3042;
+    background-color: var(--input-bg);
 }
 
 .t-asset-icon img {
@@ -1713,6 +1721,7 @@ a {
 .t-asset-name {
     font-weight: 500;
     margin-bottom: 0.25rem;
+    color: var(--heading-color);
 }
 
 .t-asset-symbol {
@@ -1722,6 +1731,7 @@ a {
 
 .t-asset-price {
     font-weight: 500;
+    color: var(--heading-color);
 }
 
 .performance-row {
@@ -1802,28 +1812,30 @@ a {
 }
 
 .content-area .form-control {
-    background-color: transparent !important;
+    background-color: var(--card-bg) !important;
     border-radius: 0;
-    border: 1px solid #30363d !important;
+    border: 1px solid var(--border-color) !important;
     font-size: 0.7rem;
+    color: var(--text-color) !important;
 }
 
 .content-area .form-select {
-    background-color: transparent !important;
+    background-color: var(--card-bg) !important;
     border-radius: 0;
-    border: 1px solid #30363d !important;
+    border: 1px solid var(--border-color) !important;
     font-size: 1rem;
+    color: var(--text-color) !important;
 }
 
 .content-area .form-select:focus,
 .form-control:focus {
-    background-color: transparent !important;
-    border-color: #30363d !important;
+    background-color: var(--card-bg) !important;
+    border-color: var(--border-color) !important;
     box-shadow: none !important;
 }
 
 .chart-container {
-    background-color: #0a0d14;
+    background-color: var(--card-bg);
     position: relative;
     height: 400px;
     overflow: hidden;
@@ -1871,7 +1883,7 @@ a {
 }
 
 .ct-trades-card {
-    background-color: #1a1f2b;
+    background-color: var(--card-bg);
     border-radius: 8px;
     padding: 1.5rem;
     height: 100px;
@@ -1882,8 +1894,8 @@ a {
 }
 
 .ct-input-group-text {
-    background-color: #1a1f2b;
-    border: 1px solid #30363d;
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
     color: #6c757d;
 }
 
@@ -1924,6 +1936,7 @@ a {
     font-size: 2.5rem;
     font-weight: 500;
     margin: 1rem 0;
+    color: var(--heading-color);
 }
 
 /* Mobile specific styles */

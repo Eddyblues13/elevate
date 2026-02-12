@@ -2,206 +2,266 @@
 <html lang="en">
 
 <head>
-
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="csrf-token" content="CrATpF4qseMdsrhXsXdzV2Al8jdRp6y5CWKqFYER">
-    <title>Vault Capital | User Login</title>
-
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <title>Admin Login</title>
 
     <link rel="icon" href="account/storage/app/public/photos/uPYDzhfavicon.png1677339254" type="image/png" />
-
-    <link href="account/temp/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <!-- Icons -->
-    <link href="account/temp/css/materialdesignicons.min.css" rel="stylesheet" type="text/css" />
-
-    <link rel="stylesheet" href="account/temp/css/line.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-    <!-- Main Css -->
-    <link href="account/temp/css/style.css" rel="stylesheet" type="text/css" />
-    <link href="account/temp/css/colors/default.css" rel="stylesheet">
 
+    <style>
+        :root {
+            --login-bg: #0f1117;
+            --card-bg: #1a1d27;
+            --input-bg: #12141c;
+            --border-color: #2a2d3a;
+            --text-color: #a0a3b1;
+            --heading-color: #e8e9ed;
+            --accent-color: #635bff;
+            --accent-hover: #524ae0;
+        }
 
-    <!-- Smartsupp Live Chat script -->
-    <!-- Smartsupp Live Chat script -->
-    <script type="text/javascript">
-        var _smartsupp = _smartsupp || {};
-_smartsupp.key = '907279d3e1f7b31de6faf1c3c2bb727ec043dc74';
-window.smartsupp||(function(d) {
-  var s,c,o=smartsupp=function(){ o._.push(arguments)};o._=[];
-  s=d.getElementsByTagName('script')[0];c=d.createElement('script');
-  c.type='text/javascript';c.charset='utf-8';c.async=true;
-  c.src='https://www.smartsuppchat.com/loader.js?';s.parentNode.insertBefore(c,s);
-})(document);
-    </script>
-    <noscript> Powered by <a href=“https://www.smartsupp.com” target=“_blank”>Smartsupp</a></noscript>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: var(--login-bg);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-color);
+        }
+
+        .login-wrapper {
+            width: 100%;
+            max-width: 440px;
+            padding: 20px;
+        }
+
+        .login-logo {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .login-logo img {
+            max-width: 180px;
+            height: auto;
+        }
+
+        .login-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 2.5rem 2rem;
+        }
+
+        .login-card h4 {
+            color: var(--heading-color);
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 0.25rem;
+            font-size: 1.5rem;
+        }
+
+        .login-subtitle {
+            text-align: center;
+            color: var(--text-color);
+            margin-bottom: 1.75rem;
+            font-size: 0.9rem;
+        }
+
+        .login-form .form-label {
+            color: var(--heading-color);
+            font-weight: 500;
+            font-size: 0.875rem;
+            margin-bottom: 0.4rem;
+        }
+
+        .login-form .form-control {
+            background: var(--input-bg);
+            border: 1px solid var(--border-color);
+            color: var(--heading-color);
+            border-radius: 8px;
+            padding: 0.65rem 0.85rem 0.65rem 2.5rem;
+            font-size: 0.9rem;
+            transition: border-color 0.2s;
+        }
+
+        .login-form .form-control:focus {
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 3px rgba(99, 91, 255, 0.15);
+            background: var(--input-bg);
+            color: var(--heading-color);
+        }
+
+        .login-form .form-control::placeholder {
+            color: #555;
+        }
+
+        .input-icon-wrap {
+            position: relative;
+        }
+
+        .input-icon-wrap .input-icon {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-color);
+            font-size: 0.9rem;
+        }
+
+        .btn-login {
+            background: var(--accent-color);
+            border: none;
+            color: #fff;
+            font-weight: 600;
+            padding: 0.7rem;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            width: 100%;
+            transition: background 0.2s;
+        }
+
+        .btn-login:hover {
+            background: var(--accent-hover);
+            color: #fff;
+        }
+
+        .form-check-input {
+            background-color: var(--input-bg);
+            border-color: var(--border-color);
+        }
+
+        .form-check-input:checked {
+            background-color: var(--accent-color);
+            border-color: var(--accent-color);
+        }
+
+        .form-check-label {
+            color: var(--text-color);
+            font-size: 0.85rem;
+        }
+
+        .login-link {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .login-link:hover {
+            color: var(--accent-hover);
+            text-decoration: underline;
+        }
+
+        .alert {
+            font-size: 0.85rem;
+            border-radius: 8px;
+        }
+
+        .login-footer {
+            text-align: center;
+            margin-top: 1.5rem;
+            font-size: 0.8rem;
+            color: #555;
+        }
+    </style>
 </head>
 
-<body class="h-100 bg-soft-primary">
-
-    <!-- Smartsupp Live Chat script -->
-    <script type="text/javascript">
-        var _smartsupp = _smartsupp || {};
-_smartsupp.key = '907279d3e1f7b31de6faf1c3c2bb727ec043dc74';
-window.smartsupp||(function(d) {
-  var s,c,o=smartsupp=function(){ o._.push(arguments)};o._=[];
-  s=d.getElementsByTagName('script')[0];c=d.createElement('script');
-  c.type='text/javascript';c.charset='utf-8';c.async=true;
-  c.src='https://www.smartsuppchat.com/loader.js?';s.parentNode.insertBefore(c,s);
-})(document);
-    </script>
-    <noscript> Powered by <a href=“https://www.smartsupp.com” target=“_blank”>Smartsupp</a></noscript>
-
-
-    <section class=" auth" style="background-color:black">
-        <div class="container">
-            <div class="pb-3 row justify-content-center">
-
-                <div class="col-12 col-md-6 col-lg-6 col-sm-10 col-xl-6">
-                    <div class="text-center">
-                        <a href="/"><img src="account/storage/app/public/photos/uPYDzhlogo.jpg1677339253" alt=""
-                                class="mb-3 img-fluid auth__logo" style="width:180px"></a>
-                    </div>
-
-                    <div class="bg-white shadow card login-page roundedd border-1 ">
-                        <div class="card-body">
-                            <x-validation-errors class="mb-4" />
-                            @if ($errors->any())
-                            <div class="alert alert-danger">
-                                <ul>
-                                    @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                            @endif
-
-                            @if(Session::has('error-message'))
-                            <p class="alert alert-info">{{ Session::get('error-message') }}</p>
-                            @endif
-                            @if (session('status'))
-                            <div class="mb-4 font-medium text-sm text-green-600">
-                                {{ session('status') }}
-                            </div>
-                            @endif
-                            <h4 class="text-center card-title">Admin Login</h4>
-                            <form method="POST" action="{{ route('admin.login.store') }}">
-                                @csrf
-                                <div class="row">
-                                    <div class="col-lg-12">
-                                        <div class="form-group">
-                                            <label>
-                                                <h4>Enter Email <span class="text-danger">*</span></h4>
-                                            </label>
-                                            <div class="position-relative">
-                                                <i data-feather="mail" class="fea icon-sm icons"></i>
-                                                <input type="email" class="pl-5 form-control" name="email"
-                                                    :value="old('email')" id="email" placeholder="" required>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!--end col-->
-
-                                    <div class="col-lg-12">
-                                        <div class="form-group">
-                                            <label>
-                                                <h4>Enter Password <span class="text-danger">*</span></h4>
-                                            </label>
-                                            <div class="position-relative">
-                                                <i data-feather="key" class="fea icon-sm icons"></i>
-                                                <input type="password" class="pl-5 form-control" name="password"
-                                                    id="password" placeholder="Enter Password" required>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!--end col-->
-
-                                    <div class="col-lg-12">
-                                        <div class="d-flex justify-content-between">
-                                            <div class="form-group">
-                                                <div class="custom-control custom-checkbox">
-                                                    <input type="checkbox" class="custom-control-input"
-                                                        id="customCheck1" name="remember">
-                                                    <label class="custom-control-label" for="customCheck1">Remember
-                                                        me</label>
-                                                </div>
-                                            </div>
-                                            <p class="mb-0 forgot-pass">
-                                                @if (Route::has('password.request'))
-                                                <a href="{{ route('password.request') }}"
-                                                    class="text-dark font-weight-bold">Forgot password ?</a>
-
-                                                @endif
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <!--end col-->
-
-                                    <div class="mb-0 col-lg-12">
-                                        <button class="btn btn-primary btn-block pad" type="submit">Sign in</button>
-                                    </div>
-                                    <!--end col-->
-
-                                    <div class="mt-4 text-center col-lg-12">
-                                        <h6>Or Login With</h6>
-                                        <div class="row">
-
-                                            <!--end col-->
-                                            <!--  <div class="mt-3 col-12">
-                                                <a href="account/auth/google/redirect" class="btn btn-block btn-light"><i
-                                                        class="mdi mdi-google text-danger"></i> Google</a>
-                                            </div>-->
-                                            <!--end col-->
-                                        </div>
-                                    </div>
-                                    <!--end col-->
-                                    <!--end col-->
-
-                                    <div class="text-center col-12">
-                                        <p class="mt-3 mb-0"><small class="mr-2 text-dark">Don't have an account
-                                                ?</small> <a href="{{route('register')}}"
-                                                class="text-dark font-weight-bold">Sign Up</a></p>
-                                    </div>
-                                    <!--end col-->
-
-                                    <div class="text-center col-12">
-                                        <p class="mt-4 mb-0"><small class="mr-2 text-dark">&copy; Copyright 2023 &nbsp;
-                                                Vault Capital &nbsp; All Rights Reserved.</small>
-                                        </p>
-                                    </div>
-                                </div>
-                                <!--end row-->
-                            </form>
-                        </div>
-                    </div>
-                    <!---->
-                </div>
-                <!--end col-->
-            </div>
-            <!--end row-->
+<body>
+    <div class="login-wrapper">
+        {{-- Logo --}}
+        <div class="login-logo">
+            <a href="/"><img src="account/storage/app/public/photos/uPYDzhlogo.jpg1677339253" alt="Logo"></a>
         </div>
-        <!--end container-->
-    </section>
-    <!--end section-->
 
+        {{-- Login Card --}}
+        <div class="login-card">
+            <h4>Admin Login</h4>
+            <p class="login-subtitle">Sign in to access your admin dashboard</p>
 
+            {{-- Validation Errors --}}
+            @if ($errors->any())
+            <div class="alert alert-danger py-2 mb-3">
+                <ul class="mb-0 ps-3">
+                    @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+            @endif
 
+            @if(Session::has('error-message'))
+            <div class="alert alert-info py-2 mb-3">{{ Session::get('error-message') }}</div>
+            @endif
 
-    <script src="account/temp/js/jquery-3.5.1.min.js"></script>
-    <script src="account/temp/js/bootstrap.bundle.min.js"></script>
+            @if (session('status'))
+            <div class="alert alert-success py-2 mb-3">{{ session('status') }}</div>
+            @endif
 
-    <!-- SLIDER -->
-    <script src="account/temp/js/owl.carousel.min.js"></script>
-    <script src="account/temp/js/owl.init.js"></script>
-    <!-- Icons -->
-    <script src="account/temp/js/feather.min.js"></script>
-    <script src="account/temp/js/bundle.js"></script>
+            <form method="POST" action="{{ route('admin.login.store') }}" class="login-form">
+                @csrf
 
-    <script src="account/temp/js/app.js"></script>
-    <script src="account/temp/js/widget.js"></script>
+                {{-- Email --}}
+                <div class="mb-3">
+                    <label class="form-label">Email Address</label>
+                    <div class="input-icon-wrap">
+                        <i class="fas fa-envelope input-icon"></i>
+                        <input type="email" class="form-control" name="email" value="{{ old('email') }}" id="email"
+                            placeholder="Enter your email" required autofocus>
+                    </div>
+                </div>
 
+                {{-- Password --}}
+                <div class="mb-3">
+                    <label class="form-label">Password</label>
+                    <div class="input-icon-wrap">
+                        <i class="fas fa-lock input-icon"></i>
+                        <input type="password" class="form-control" name="password" id="password"
+                            placeholder="Enter your password" required>
+                    </div>
+                </div>
 
+                {{-- Remember / Forgot --}}
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" id="remember" name="remember">
+                        <label class="form-check-label" for="remember">Remember me</label>
+                    </div>
+                    @if (Route::has('password.request'))
+                    <a href="{{ route('password.request') }}" class="login-link" style="font-size:0.85rem;">Forgot
+                        password?</a>
+                    @endif
+                </div>
+
+                {{-- Submit --}}
+                <button type="submit" class="btn btn-login">
+                    <i class="fas fa-sign-in-alt me-1"></i> Sign In
+                </button>
+
+                {{-- Register Link --}}
+                <div class="text-center mt-3">
+                    <span style="color:var(--text-color);font-size:0.85rem;">Don't have an account?</span>
+                    <a href="{{ route('register') }}" class="login-link" style="font-size:0.85rem;">Sign Up</a>
+                </div>
+            </form>
+        </div>
+
+        {{-- Footer --}}
+        <div class="login-footer">
+            &copy; {{ date('Y') }} All Rights Reserved.
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

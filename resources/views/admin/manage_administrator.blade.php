@@ -1,168 +1,220 @@
 @include('admin.header')
-<div class="main-panel bg-dark">
-            <div class="content bg-dark">
-                <div class="page-inner">
-                    <div class="mt-2 mb-4">
-                    <h1 class="title1 text-light">Managers List</h1>
-                    </div>
-                    <div>
-    </div>            <div>
-    </div>                   
-                    <div class="mb-5 row">
-                        <div class="col p-4 shadow card bg-dark">
-                            <div class="table-responsive" data-example-id="hoverable-table">
-                                <table id="ShipTable" class="table table-hover text-light"> 
-                                    <thead> 
-                                        <tr> 
-                                            <th>USER ID</th>
-                                            <th>FIRSTNAME</th>
-                                            <th>LASTNAME</th>
-                                            <th>EMAIL</th>
-                                            <th>PHONE</th>
-                                            <th>TYPE</th>
-                                            <th>STATUS</th>
-                                            <th>ACTION</th>
-                                        </tr> 
-                                    </thead> 
-                                    <tbody> 
-                                                                        <tr>
-                                        <td>1</td>
-                                        <td>Admin</td>
-                                        <td>Test</td>
-                                        <td>admin@admin.com</td>
-                                        <td>34444443</td>
-                                        <td>Super Admin</td>
-                                        <td>active</td>
-                                        <td>
-                                            <div class="dropdown">
-                                                <a class="btn btn-secondary btn-sm dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                Actions
-                                                </a>
-                                                <div class="dropdown-menu bg-dark" aria-labelledby="dropdownMenuLink">
 
-                                                                                                        <a class="m-1 btn btn-danger btn-sm" href="https://stockmarket-hq.com/account/admin/dashboard/ublock/1">Block</a>
-                                                                                                        <a href="#" data-toggle="modal" data-target="#resetpswdModal1"  class="m-1 btn btn-warning btn-sm">Reset Password</a>
-                                                    
-                                                    <a href="#" data-toggle="modal" data-target="#deleteModal1" class="m-1 btn btn-danger btn-sm">Delete</a>
-                                                    <a href="#" data-toggle="modal" data-target="#edituser1" class="m-1 btn btn-secondary btn-sm">Edit</a>
-                                                    <a href="#" data-toggle="modal" data-target="#sendmailModal1" class="m-1 btn btn-info btn-sm">Send Email</a>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <div>
+                <h4 class="admin-page-title">Managers List</h4>
+                <p class="admin-page-subtitle">All administrator accounts</p>
+            </div>
+            <a href="{{ url('admin/add-manager') }}" class="btn btn-admin-primary"><i
+                    class="fas fa-plus-circle me-1"></i> New Manager</a>
+        </div>
 
+        <div class="admin-card p-0">
+            <div class="table-responsive">
+                <table class="admin-table" id="ShipTable">
+                    <thead>
+                        <tr>
+                            <th>User ID</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>Type</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($managers as $manager)
+                        <tr>
+                            <td>{{ $manager->id }}</td>
+                            <td>{{ $manager->fname }}</td>
+                            <td>{{ $manager->l_name }}</td>
+                            <td>{{ $manager->email }}</td>
+                            <td>{{ $manager->phone }}</td>
+                            <td>{{ $manager->type }}</td>
+                            <td>
+                                @if($manager->status == 'active')
+                                <span class="admin-badge-success">Active</span>
+                                @else
+                                <span class="admin-badge-danger">Blocked</span>
+                                @endif
+                            </td>
+                            <td>
+                                <div class="dropdown">
+                                    <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button"
+                                        data-bs-toggle="dropdown">Actions</button>
+                                    <ul class="dropdown-menu"
+                                        style="background:var(--card-bg);border:1px solid var(--border-color);">
+                                        @if($manager->status == 'active')
+                                        <li><a class="dropdown-item" style="color:var(--text-color);"
+                                                href="{{ url('account/admin/dashboard/ublock/'.$manager->id) }}">Block</a>
+                                        </li>
+                                        @else
+                                        <li><a class="dropdown-item" style="color:var(--text-color);"
+                                                href="{{ url('account/admin/dashboard/ublock/'.$manager->id) }}">Unblock</a>
+                                        </li>
+                                        @endif
+                                        <li><a class="dropdown-item" style="color:var(--text-color);" href="#"
+                                                data-bs-toggle="modal"
+                                                data-bs-target="#resetpswdModal{{ $manager->id }}">Reset Password</a>
+                                        </li>
+                                        <li><a class="dropdown-item" style="color:var(--text-color);" href="#"
+                                                data-bs-toggle="modal"
+                                                data-bs-target="#edituser{{ $manager->id }}">Edit</a></li>
+                                        <li><a class="dropdown-item" style="color:var(--text-color);" href="#"
+                                                data-bs-toggle="modal"
+                                                data-bs-target="#sendmailModal{{ $manager->id }}">Send Email</a></li>
+                                        <li>
+                                            <hr class="dropdown-divider" style="border-color:var(--border-color);">
+                                        </li>
+                                        <li><a class="dropdown-item text-danger" href="#" data-bs-toggle="modal"
+                                                data-bs-target="#deleteModal{{ $manager->id }}">Delete</a></li>
+                                    </ul>
+                                </div>
+                            </td>
+                        </tr>
 
-                                    <!-- Reset user password Modal -->
-										<div id="resetpswdModal1" class="modal fade" role="dialog">
-                                            <div class="modal-dialog">
-            
-                                                <!-- Modal content-->
-                                                <div class="modal-content">
-                                                <div class="modal-header bg-dark ">
-                                                    
-                                                    <h4 class="modal-title text-light">Reset Password</strong></h4>
-                                                    <button type="button" class="close text-light" data-dismiss="modal">&times;</button>
-                                                </div>
-                                                <div class="modal-body bg-dark p-3">
-                                                    <p class="text-light">Are you sure you want to reset password for Admin to <span class="text-primary font-weight-bolder">admin01236</span></p>
-                                                    <a class="btn btn-danger" href="https://stockmarket-hq.com/account/admin/dashboard/resetadpwd/1">Reset Now</a>
-                                                </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- /Reset user password Modal -->
-
-                                        <!-- Delete user Modal -->
-										<div id="deleteModal1" class="modal fade" role="dialog">
-                                            <div class="modal-dialog">
-            
-                                                <!-- Modal content-->
-                                                <div class="modal-content">
-                                                <div class="modal-header bg-dark">
-                                                    
-                                                    <h4 class="modal-title text-light">Delete Manager</strong></h4>
-                                                    <button type="button" class="close text-light" data-dismiss="modal">&times;</button>
-                                                </div>
-                                                <div class="modal-body bg-dark p-3">
-                                                    <p class="text-light">Are you sure you want to delete Admin</p>
-                                                    <a class="btn btn-danger" href="https://stockmarket-hq.com/account/admin/dashboard/deleletadmin/1">Yes i'm sure</a>
-                                                </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- /Delete user Modal -->
-                                        
-								<!-- Edit user Modal -->
-                                    <div id="edituser1" class="modal fade" role="dialog">
-                                        <div class="modal-dialog">
-                                                <!-- Modal content-->
-                                            <div class="modal-content">
-                                                <div class="modal-header bg-dark">
-                                                    
-                                                    <h4 class="modal-title text-light">Edit user details.</strong></h4>
-                                                    <button type="button" class="close text-light" data-dismiss="modal">&times;</button>
-                                                </div>
-                                                <div class="modal-body bg-dark">
-                                                        <form style="padding:3px;" role="form" method="post" action="https://stockmarket-hq.com/account/admin/dashboard/editadmin">
-                                                            <h5 class=" text-light">Firstname</h5>
-                                                            <input style="padding:5px;" class="form-control bg-dark text-light" value="Admin" type="text" name="fname" required><br/>
-                                                            <h5 class=" text-light">Lastname</h5>
-                                                            <input style="padding:5px;" class="form-control bg-dark text-light" value="Test" type="text" name="l_name" required><br/>
-                                                            <h5 class=" text-light">Email</h5>
-                                                            <input style="padding:5px;" class="form-control bg-dark text-light" value="admin@admin.com" type="email" name="email" required><br/>
-                                                            <h5 class=" text-light">Phone Number</h5>
-                                                            <input style="padding:5px;" class="form-control bg-dark text-light" value="34444443" type="text" name="phone" required>
-                                                            <br>
-                                                            <h5 class=" text-light">Type</h5>
-                                                            <select class="form-control bg-dark text-light" name="type">
-                                                                <option>Super Admin</option>
-                                                                <option>Super Admin</option>
-                                                                <option>Admin</option>
-                                                            </select><br>
-                                                            <input type="hidden" name="_token" value="EqGt2txdTJHMwXVRjoCB9yNMVUEKJvIhyXqL7wBp">
-                                                            <input type="hidden" name="user_id" value="1">
-                                                            <input type="submit" class="btn btn-info" value="Update account">
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
+                        <!-- Reset Password Modal -->
+                        <div class="modal fade" id="resetpswdModal{{ $manager->id }}" tabindex="-1">
+                            <div class="modal-dialog">
+                                <div class="modal-content"
+                                    style="background:var(--card-bg);color:var(--text-color);border:1px solid var(--border-color);">
+                                    <div class="modal-header" style="border-color:var(--border-color);">
+                                        <h5 class="modal-title" style="color:var(--heading-color);">Reset Password</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                                     </div>
-                                    <!-- /Edit user Modal -->
-                                    <!-- send a single user email Modal-->
-                                    <div id="sendmailModal1" class="modal fade" role="dialog">
-                                        <div class="modal-dialog">
-                                            <!-- Modal content-->
-                                            <div class="modal-content">
-                                                <div class="modal-header bg-dark">
-                                                    <h4 class="modal-title text-light">Send Email Message</h4>
-                                                    <button type="button" class="close text-light" data-dismiss="modal">&times;</button>
-                                                </div>
-                                                
-                                                <div class="modal-body bg-dark">
-                                                    <p class="text-light">This message will be sent to Admin Test </p>
-                                                    <form role="form" method="post" action="https://stockmarket-hq.com/account/admin/dashboard/sendmail">
-                                                        <input type="hidden" name="user_id" value="1">
-                                                        <div class="form-group">
-                                                            <input type="text" name="subject" class="form-control bg-dark text-light" placeholder="Enter Email Subject">
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <textarea class="form-control bg-dark text-light" name="message " row="3" placeholder="Type your message here" required></textarea>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <input type="hidden" name="_token" value="EqGt2txdTJHMwXVRjoCB9yNMVUEKJvIhyXqL7wBp">
-                                                            <input type="submit" class="btn btn-primary" value="Send"> 
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
+                                    <div class="modal-body">
+                                        <p>Are you sure you want to reset password for {{ $manager->fname }} to <span
+                                                class="text-primary fw-bold">admin01236</span>?</p>
+                                        <a class="btn btn-danger"
+                                            href="{{ url('account/admin/dashboard/resetadpwd/'.$manager->id) }}">Reset
+                                            Now</a>
                                     </div>
-    
-                                                                        </tbody> 
-                                </table>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>   
+
+                        <!-- Delete Modal -->
+                        <div class="modal fade" id="deleteModal{{ $manager->id }}" tabindex="-1">
+                            <div class="modal-dialog">
+                                <div class="modal-content"
+                                    style="background:var(--card-bg);color:var(--text-color);border:1px solid var(--border-color);">
+                                    <div class="modal-header" style="border-color:var(--border-color);">
+                                        <h5 class="modal-title" style="color:var(--heading-color);">Delete Manager</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>Are you sure you want to delete {{ $manager->fname }}?</p>
+                                        <a class="btn btn-danger"
+                                            href="{{ url('account/admin/dashboard/deleletadmin/'.$manager->id) }}">Yes,
+                                            I'm sure</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Edit Modal -->
+                        <div class="modal fade" id="edituser{{ $manager->id }}" tabindex="-1">
+                            <div class="modal-dialog">
+                                <div class="modal-content"
+                                    style="background:var(--card-bg);color:var(--text-color);border:1px solid var(--border-color);">
+                                    <div class="modal-header" style="border-color:var(--border-color);">
+                                        <h5 class="modal-title" style="color:var(--heading-color);">Edit Manager Details
+                                        </h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form method="post" action="{{ url('account/admin/dashboard/editadmin') }}">
+                                            @csrf
+                                            <input type="hidden" name="user_id" value="{{ $manager->id }}">
+                                            <div class="mb-3">
+                                                <label class="form-label" style="color:var(--heading-color);">First
+                                                    Name</label>
+                                                <input class="admin-form-control" value="{{ $manager->fname }}"
+                                                    type="text" name="fname" required>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="form-label" style="color:var(--heading-color);">Last
+                                                    Name</label>
+                                                <input class="admin-form-control" value="{{ $manager->l_name }}"
+                                                    type="text" name="l_name" required>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="form-label"
+                                                    style="color:var(--heading-color);">Email</label>
+                                                <input class="admin-form-control" value="{{ $manager->email }}"
+                                                    type="email" name="email" required>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="form-label" style="color:var(--heading-color);">Phone
+                                                    Number</label>
+                                                <input class="admin-form-control" value="{{ $manager->phone }}"
+                                                    type="text" name="phone" required>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="form-label"
+                                                    style="color:var(--heading-color);">Type</label>
+                                                <select class="admin-form-control" name="type">
+                                                    <option value="{{ $manager->type }}">{{ $manager->type }}</option>
+                                                    <option value="Super Admin">Super Admin</option>
+                                                    <option value="Admin">Admin</option>
+                                                </select>
+                                            </div>
+                                            <button type="submit" class="btn btn-admin-primary">Update Account</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Send Email Modal -->
+                        <div class="modal fade" id="sendmailModal{{ $manager->id }}" tabindex="-1">
+                            <div class="modal-dialog">
+                                <div class="modal-content"
+                                    style="background:var(--card-bg);color:var(--text-color);border:1px solid var(--border-color);">
+                                    <div class="modal-header" style="border-color:var(--border-color);">
+                                        <h5 class="modal-title" style="color:var(--heading-color);">Send Email Message
+                                        </h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>This message will be sent to {{ $manager->fname }} {{ $manager->l_name }}</p>
+                                        <form method="post" action="{{ url('account/admin/dashboard/sendmail') }}">
+                                            @csrf
+                                            <input type="hidden" name="user_id" value="{{ $manager->id }}">
+                                            <div class="mb-3">
+                                                <input type="text" name="subject" class="admin-form-control"
+                                                    placeholder="Enter Email Subject">
+                                            </div>
+                                            <div class="mb-3">
+                                                <textarea class="admin-form-control" name="message" rows="3"
+                                                    placeholder="Type your message here" required></textarea>
+                                            </div>
+                                            <button type="submit" class="btn btn-admin-primary">Send</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        @endforeach
+                    </tbody>
+                </table>
             </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function(){
+    $('#ShipTable').DataTable({
+        order:[[0,'desc']],
+        responsive:true,
+        language:{search:"",searchPlaceholder:"Search..."}
+    });
+});
+</script>
+
 @include('admin.footer')

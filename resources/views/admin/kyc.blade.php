@@ -1,117 +1,125 @@
 @include('admin.header')
 
-<div class="main-panel bg-dark">
-	<div class="content bg-dark">
-		<div class="page-inner">
-			@if(session('message'))
-			<div class="alert alert-success mb-2">{{session('message')}}</div>
-			@endif
-			<div class="mt-2 mb-4">
-				<h1 class="title1 text-light">Vault Capital account verification list</h1>
-			</div>
+<div class="main-content">
+    <div class="container-fluid">
+        @if(session('message'))
+        <div class="alert alert-success alert-dismissible fade show">{{ session('message') }}<button type="button"
+                class="btn-close" data-bs-dismiss="alert"></button></div>
+        @endif
 
-			<div class="mb-5 row">
-				<div class="col-12">
-					<small class="text-light">if you can't see the image, try switching your uploaded location to
-						another option from your admin settings page.</small>
-				</div>
-				<div class="col-12 card p-4 bg-dark shadow">
-					<div class="bs-example widget-shadow table-responsive" data-example-id="hoverable-table">
-						<table id="ShipTable" class="table table-hover text-light">
-							<thead>
-								<tr>
-									<th>ID</th>
-									<th>Full Name</th>
-									<th>Email</th>
-									<th>KYC Status</th>
-									<th>Action</th>
-								</tr>
-							</thead>
-							<tbody>
-								@foreach($kyc as $kyc)
-								<tr>
-									<th scope="row">{{ $kyc->real_user_id }}</th>
-									<td>{{ $kyc->name }}</td>
-									<td>{{ $kyc->email }}</td>
-									@if($kyc->kyc_status === '1')
-									<td>Verified</td>
-									@elseif($kyc->kyc_status === '0')
-									<td>Not Verified</td>
-									@elseif($kyc->kyc_status === '2')
-									<td>Declined</td>
-									@else
-									<td>Pending</td>
-									@endif
-									<td>
-										<a href="#" data-toggle="modal" data-target="#viewkycIModal{{ $kyc->id }}"
-											class="btn btn-light btn-sm"><i class="fa fa-eye"></i> ID</a>
-										<a href="#" data-toggle="modal" data-target="#viewkycPModal{{ $kyc->id }}"
-											class="btn btn-light btn-sm"><i class="fa fa-eye"></i> Passport</a>
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <div>
+                <h4 class="admin-page-title">KYC Verification List</h4>
+                <p class="admin-page-subtitle">Review and process identity verifications</p>
+            </div>
+        </div>
 
-										<a href="{{ url('admin/accept-kyc/'.$kyc->real_user_id) }}"
-											class="btn btn-primary btn-sm">Accept</a>
+        <div class="admin-card">
+            <small style="color:var(--text-color);opacity:0.7;" class="d-block mb-3">If you can't see the image, try
+                switching your uploaded location from admin settings.</small>
+            <div class="admin-table">
+                <div class="table-responsive">
+                    <table id="ShipTable" class="table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Full Name</th>
+                                <th>Email</th>
+                                <th>KYC Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($kyc as $k)
+                            <tr>
+                                <td>{{ $k->real_user_id }}</td>
+                                <td style="color:var(--heading-color);font-weight:500;">{{ $k->name }}</td>
+                                <td>{{ $k->email }}</td>
+                                <td>
+                                    @if($k->kyc_status === '1')
+                                    <span class="admin-badge-success">Verified</span>
+                                    @elseif($k->kyc_status === '0')
+                                    <span class="admin-badge-danger">Not Verified</span>
+                                    @elseif($k->kyc_status === '2')
+                                    <span class="admin-badge-warning">Declined</span>
+                                    @else
+                                    <span class="admin-badge-info">Pending</span>
+                                    @endif
+                                </td>
+                                <td>
+                                    <div class="d-flex gap-1 flex-wrap">
+                                        <button class="btn btn-sm btn-admin-primary" data-bs-toggle="modal"
+                                            data-bs-target="#viewkycIModal{{ $k->id }}"><i
+                                                class="fa fa-eye me-1"></i>ID</button>
+                                        <button class="btn btn-sm btn-admin-primary" data-bs-toggle="modal"
+                                            data-bs-target="#viewkycPModal{{ $k->id }}"><i
+                                                class="fa fa-eye me-1"></i>Passport</button>
+                                        <a href="{{ url('admin/accept-kyc/'.$k->real_user_id) }}"
+                                            class="btn btn-sm btn-success">Accept</a>
+                                        <a href="{{ url('admin/reject-kyc/'.$k->real_user_id) }}"
+                                            class="btn btn-sm btn-danger">Reject</a>
+                                    </div>
+                                </td>
+                            </tr>
 
-										<a href="{{ url('admin/reject-kyc/'.$kyc->real_user_id) }}"
-											class="btn btn-danger btn-sm">Reject</a>
-									</td>
-								</tr>
+                            <!-- View KYC ID Modal -->
+                            <div class="modal fade" id="viewkycIModal{{ $k->id }}" tabindex="-1">
+                                <div class="modal-dialog">
+                                    <div class="modal-content"
+                                        style="background:var(--card-bg);color:var(--text-color);border:1px solid var(--border-color);">
+                                        <div class="modal-header" style="border-color:var(--border-color);">
+                                            <h5 class="modal-title" style="color:var(--heading-color);">KYC - ID Card
+                                            </h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            @if($k->id_card_path)
+                                            <img src="{{ asset('uploads/documents/id_cards/'.$k->id_card_path) }}"
+                                                alt="ID Card" class="img-fluid">
+                                            @else
+                                            <p>No ID card uploaded.</p>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
-								<!-- View KYC ID Modal -->
-								<div id="viewkycIModal{{ $kyc->id }}" class="modal fade" role="dialog">
-									<div class="modal-dialog">
+                            <!-- View KYC Passport Modal -->
+                            <div class="modal fade" id="viewkycPModal{{ $k->id }}" tabindex="-1">
+                                <div class="modal-dialog">
+                                    <div class="modal-content"
+                                        style="background:var(--card-bg);color:var(--text-color);border:1px solid var(--border-color);">
+                                        <div class="modal-header" style="border-color:var(--border-color);">
+                                            <h5 class="modal-title" style="color:var(--heading-color);">KYC - Passport
+                                            </h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            @if($k->passport_photo_path)
+                                            <img src="{{ asset('uploads/documents/passport_photos/'.$k->passport_photo_path) }}"
+                                                alt="Passport" class="img-fluid">
+                                            @else
+                                            <p>No passport uploaded.</p>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-										<!-- Modal content-->
-										<div class="modal-content">
-											<div class="modal-header bg-dark">
-												<h4 class="modal-title text-light">KYC Verification - ID Card View</h4>
-												<button type="button" class="close text-light"
-													data-dismiss="modal">&times;</button>
-											</div>
-											<div class="modal-body bg-dark">
-												@if($kyc->id_card_path)
-												<img src="{{ asset('uploads/documents/id_cards/'.$kyc->id_card_path) }}"
-													alt="ID Card" class="img-fluid" />
-												@else
-												<p class="text-light">No ID card uploaded.</p>
-												@endif
-											</div>
-										</div>
-									</div>
-								</div>
-								<!-- /View KYC ID Modal -->
+@include('admin.footer')
 
-								<!-- View KYC Passport Modal -->
-								<div id="viewkycPModal{{ $kyc->id }}" class="modal fade" role="dialog">
-									<div class="modal-dialog">
-
-										<!-- Modal content-->
-										<div class="modal-content">
-											<div class="modal-header bg-dark">
-												<h4 class="modal-title text-light">KYC Verification - Passport View</h4>
-												<button type="button" class="close text-light"
-													data-dismiss="modal">&times;</button>
-											</div>
-											<div class="modal-body bg-dark">
-												@if($kyc->passport_photo_path)
-												<img src="{{ asset('uploads/documents/passport_photos/'.$kyc->passport_photo_path) }}"
-													alt="Passport" class="img-fluid" />
-												@else
-												<p class="text-light">No passport uploaded.</p>
-												@endif
-											</div>
-										</div>
-									</div>
-								</div>
-								<!-- /View KYC Passport Modal -->
-								@endforeach
-							</tbody>
-						</table>
-
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-
-
-	@include('admin.footer')
+<script>
+    $(document).ready(function(){
+    if($.fn.DataTable){
+        $('#ShipTable').DataTable({ responsive:true, language:{search:"",searchPlaceholder:"Search..."} });
+    }
+});
+</script>

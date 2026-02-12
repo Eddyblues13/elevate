@@ -38,17 +38,18 @@
         align-items: center;
         min-height: 80vh;
         padding: 20px;
-        background-color: #f8f9fa;
+        background-color: var(--bg-color);
     }
 
     .payment-failed-card {
-        background: #ffffff;
+        background: var(--card-bg);
         border-radius: 12px;
         padding: 40px;
         text-align: center;
         max-width: 500px;
         width: 100%;
         box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        border: 1px solid var(--border-color);
     }
 
     .failed-icon {
@@ -64,20 +65,20 @@
     }
 
     .reason {
-        color: #333;
+        color: var(--heading-color);
         font-size: 18px;
         margin-bottom: 10px;
         font-weight: 500;
     }
 
     .details {
-        color: #666;
+        color: var(--text-color);
         margin-bottom: 25px;
         font-size: 16px;
     }
 
     .transaction-details {
-        background: #f8f9fa;
+        background: var(--input-bg);
         border-radius: 8px;
         padding: 15px;
         margin: 25px 0;
@@ -86,7 +87,7 @@
 
     .transaction-details p {
         margin: 5px 0;
-        color: #555;
+        color: var(--text-color);
     }
 
     .action-buttons {
@@ -120,14 +121,13 @@
     }
 
     .btn-home {
-        background-color: white;
-        color: #495057;
-        border: 2px solid #dee2e6;
+        background-color: var(--card-bg);
+        color: var(--text-color);
+        border: 2px solid var(--border-color);
     }
 
     .btn-home:hover {
-        background-color: #f8f9fa;
-        border-color: #adb5bd;
+        opacity: 0.85;
     }
 </style>
 
