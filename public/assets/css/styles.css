@@ -6,7 +6,184 @@ body {
     font-weight: 400;
     font-style: normal;
     min-height: 100vh;
+}
 
+/* ===================== THEME VARIABLES ===================== */
+:root {
+    --bg-color: #E6F3FD;
+    --text-color: #4a4a4a;
+    --heading-color: #000000;
+    --card-bg: #ffffff;
+    --sidebar-bg: #ffffff;
+    --sidebar-text: #02194a;
+    --nav-bg: #ffffff;
+    --border-color: #dbdcdf;
+    --input-bg: #f3f4f6;
+    --input-text: #1a1f2b;
+}
+
+.dark {
+    --bg-color: #000000;
+    --text-color: #a5bdd9;
+    --heading-color: #ffffff;
+    --card-bg: #1a1f2b;
+    --sidebar-bg: #000000;
+    --sidebar-text: #ffffff;
+    --nav-bg: #1a1f2b;
+    --border-color: #363c4e;
+    --input-bg: #1a1f2b;
+    --input-text: #ffffff;
+}
+
+/* Override defaults with variables */
+body {
+    background-color: var(--bg-color) !important;
+    color: var(--text-color) !important;
+}
+
+/* ===================== SIDEBAR OVERRIDES ===================== */
+.sidebar {
+    background: var(--sidebar-bg) !important;
+    border-right: 1px solid var(--border-color);
+}
+
+.nav-section-title {
+    background: var(--sidebar-bg) !important;
+    color: var(--sidebar-text) !important;
+}
+
+.nav-section .nav-link {
+    color: var(--sidebar-text) !important;
+}
+
+.nav-section-title span,
+.nav-section-title svg,
+.nav-section-title a {
+    color: var(--sidebar-text) !important;
+    fill: var(--sidebar-text) !important;
+}
+
+/* ===================== TOP NAV OVERRIDES ===================== */
+.top-nav {
+    background-color: var(--nav-bg) !important;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.top-nav .text-white,
+.top-nav a {
+    color: var(--heading-color) !important;
+}
+
+/* ===================== CARD OVERRIDES ===================== */
+.dashboard-balance-card,
+.ref-balance-card,
+.trades-card,
+.pricing-card,
+.deposit-card,
+.transaction-card,
+.no-transaction-card,
+.fund-card,
+.fund-same-card,
+.pay-crypto-payment-card,
+.withdraw-card,
+.coin-card,
+.notification {
+    background-color: var(--card-bg) !important;
+    color: var(--text-color) !important;
+    border: 1px solid var(--border-color);
+}
+
+/* Ensure Balance Card Text is Always White */
+.dashboard-balance-card,
+.dashboard-balance-card .dashboard-balance-label,
+.dashboard-balance-card .dashboard-balance-amount,
+.dashboard-balance-card .signal-label {
+    color: white !important;
+}
+
+.usd-amount,
+.payment-description,
+.status,
+.instruction,
+.wallet-address,
+.text-silverish,
+.deposit-description,
+.no-trades {
+    color: var(--text-color) !important;
+}
+
+.no-trades {
+    margin-top: 50px;
+}
+
+.amount,
+.plan-name,
+.feature-item,
+.payment-title,
+.heading,
+.send-amount,
+.timer {
+    color: var(--heading-color) !important;
+}
+
+/* ===================== INPUT OVERRIDES ===================== */
+.amount-input,
+.select-account {
+    background-color: var(--input-bg) !important;
+    color: var(--input-text) !important;
+    border: 1px solid var(--border-color) !important;
+}
+
+/* ===================== TRADES TOGGLE ===================== */
+.trades-toggle {
+    background-color: var(--card-bg) !important;
+}
+
+.trades-toggle button {
+    color: var(--text-color) !important;
+}
+
+.trades-toggle button.active {
+    color: var(--heading-color) !important;
+    border-bottom: 2px solid #0d6efd;
+}
+
+/* ===================== MOBILE MENU ===================== */
+.mobile-menu {
+    color: var(--heading-color) !important;
+}
+
+/* ===================== BOTTOM NAV OVERRIDES ===================== */
+.bottom-nav {
+    background-color: var(--nav-bg) !important;
+    border-top: 1px solid var(--border-color);
+}
+
+.bottom-nav .nav-item {
+    color: var(--text-color) !important;
+}
+
+.bottom-nav .nav-item.active {
+    color: #0d6efd !important;
+}
+
+.bottom-nav svg {
+    fill: var(--text-color) !important;
+}
+
+.bottom-nav .nav-item.active svg {
+    fill: #0d6efd !important;
+}
+
+/* ===================== TEXT HEADER ===================== */
+.text-header {
+    color: var(--heading-color) !important;
+}
+
+/* Transparent backdrop so page doesn't look blurry */
+.offcanvas-backdrop {
+    background-color: transparent !important;
+    opacity: 0 !important;
 }
 
 .top-nav {
@@ -114,6 +291,7 @@ body {
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
+    padding-bottom: 100px;
 }
 
 .dashboard {
@@ -272,6 +450,89 @@ body {
     color: #0d6efd;
 }
 
+/* Dashboard tab buttons */
+.dashboard-tab-btn {
+    background: none;
+    border: none;
+    padding: 10px 16px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #6b7280;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    border-bottom: 2px solid transparent;
+    transition: color 0.2s, border-color 0.2s;
+}
+
+.dashboard-tab-btn.active {
+    color: #0d6efd;
+    border-bottom: 2px solid #0d6efd;
+}
+
+.dashboard-tab-btn:hover {
+    color: #0d6efd;
+}
+
+/* Dashboard no trades state */
+.dashboard-no-trades {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 20px;
+    text-align: center;
+}
+
+/* Dashboard trades card container */
+.dashboard-trades-card-container {
+    min-height: 400px;
+}
+
+/* Theme card bg for trade items */
+.theme-card-bg {
+    background-color: var(--card-bg, #ffffff);
+    border-color: var(--border-color, #dbdcdf) !important;
+}
+
+/* Asset card responsive pieces */
+.asset-date-col {
+    min-width: 50px;
+}
+
+.asset-flag-img {
+    width: 28px;
+    height: 28px;
+    object-fit: cover;
+}
+
+.asset-flag-img.overlap {
+    margin-left: -10px;
+}
+
+.asset-icon-img {
+    width: 36px;
+    height: 36px;
+    object-fit: cover;
+}
+
+.asset-icon-fallback {
+    width: 36px;
+    height: 36px;
+    background: #0d6efd;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+/* Small balance amount for dashboard */
+.small-amount {
+    font-size: 1.5rem;
+}
+
 @media (max-width: 768px) {
     .dashboard {
         grid-template-columns: 1fr;
@@ -286,7 +547,96 @@ body {
     }
 
     .mining .chart-bg {
-        height: 25% !important
+        height: 25% !important;
+    }
+
+    .main-content {
+        padding: 12px;
+        padding-bottom: 90px;
+    }
+
+    .small-amount {
+        font-size: 1.2rem;
+    }
+
+    .dashboard-balance-label {
+        font-size: 0.7rem;
+    }
+
+    .dashboard-balance-card {
+        padding: 16px;
+    }
+
+    .dashboard-action-grid {
+        gap: 10px;
+        margin-top: 14px;
+    }
+
+    .dashboard-action-button {
+        padding: 8px 10px;
+        font-size: 11px;
+        gap: 6px;
+    }
+
+    .dashboard-action-button svg {
+        width: 20px;
+        height: 20px;
+    }
+
+    .dashboard-actions-row .btn {
+        font-size: 12px;
+        padding: 8px 4px !important;
+    }
+
+    .dashboard-trades-card-container {
+        min-height: 300px;
+    }
+
+    .dashboard-tab-btn {
+        font-size: 0.85rem;
+        padding: 8px 12px;
+    }
+
+    .dashboard-no-trades {
+        padding: 40px 16px;
+    }
+
+    .asset-date-col {
+        min-width: 40px;
+    }
+
+    .asset-flag-img {
+        width: 22px;
+        height: 22px;
+    }
+
+    .asset-icon-img {
+        width: 30px;
+        height: 30px;
+    }
+
+    .asset-icon-fallback {
+        width: 30px;
+        height: 30px;
+        font-size: 0.85rem;
+    }
+
+    .section-label {
+        font-size: 0.8rem;
+    }
+
+    .bottom-nav {
+        padding: 10px 0;
+    }
+
+    .nav-item {
+        font-size: 11px;
+        gap: 3px;
+    }
+
+    .nav-item svg {
+        width: 20px;
+        height: 20px;
     }
 }
 
@@ -892,55 +1242,82 @@ a {
     text-align: center;
     margin-bottom: 10px;
     margin-top: 19px;
-    border-radius: 10px;
+    border-radius: 16px;
+    padding: 40px 20px;
 }
 
 .balance-amount {
-    font-size: 2.5rem;
+    font-size: 2rem;
+    font-weight: 700;
     margin-bottom: 5px;
+    color: var(--heading-color);
 }
 
 .balance-label {
     color: #6c757d;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
 }
 
 .action-buttons {
     display: flex;
-    gap: 20px;
+    gap: 15px;
     justify-content: center;
-    margin: 30px 0;
+    margin: 20px 0;
 }
 
 .action-button {
     background: transparent;
-    border: 1px solid #0d6efd;
-    color: #0d6efd;
-    padding: 15px 10px;
-    border-radius: none;
-    min-width: 169px;
+    border: 1px solid var(--primary-link-colour, #0d6efd);
+    color: var(--primary-link-colour, #0d6efd);
+    padding: 12px 10px;
+    border-radius: 8px;
+    min-width: 150px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    text-align: center;
+    text-decoration: none;
     transition: all 0.3s;
+    display: inline-block;
 }
 
 .action-button:hover {
-    background: #0d6efd;
+    background: var(--primary-link-colour, #0d6efd);
     color: white;
 }
 
 .asset-card {
-    background-color: #1a1f2b;
-    border-radius: 10px;
-    padding: 20px;
-    margin-bottom: 10px;
+    border-radius: 12px;
+    padding: 16px 20px;
+    margin-bottom: 8px;
     display: flex;
     align-items: center;
+    gap: 16px;
+}
+
+.asset-icon-wrapper {
+    width: 50px;
+    height: 50px;
+    min-width: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.asset-icon-wrapper img {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
 }
 
 .asset-icon {
     width: 50px;
     height: 50px;
-    border-radius: 5px;
-    margin-right: 20px;
+    border-radius: 50%;
+    object-fit: cover;
 }
 
 .asset-info {
@@ -948,6 +1325,7 @@ a {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 10px;
 }
 
 .staked-section,
@@ -957,26 +1335,30 @@ a {
 
 .section-label {
     color: #6c757d;
-    font-size: 0.8rem;
-    margin-bottom: 5px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    margin-bottom: 4px;
+    letter-spacing: 0.3px;
 }
 
 .amount {
-    color: white;
-    font-size: 0.9rem;
-    margin-bottom: 3px;
+    color: var(--heading-color);
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 2px;
 }
 
 .crypto-amount {
-    color: #6c757d;
+    color: var(--text-color);
     font-size: 0.8rem;
 }
 
 .usd-value {
-    color: white;
-    font-size: 0.9rem;
+    color: var(--heading-color);
+    font-weight: 700;
+    font-size: 0.85rem;
     text-align: right;
-    min-width: 100px;
+    min-width: 50px;
 }
 
 /* account styles*/
@@ -1824,72 +2206,154 @@ a {
     background-color: var(--border-color);
 }
 
-/* Staking Page Styles */
+/* Staking Page Styles - Theme overrides */
 .balance-section {
-    background: var(--card-bg);
-    border: 1px solid var(--border-color);
-    border-radius: 12px;
-    padding: 20px;
-    margin-bottom: 20px;
+    background-image: url("../img/DashboardMining.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    border: none;
+    border-radius: 16px;
+    padding: 40px 20px;
+    margin-bottom: 10px;
+    margin-top: 19px;
     text-align: center;
 }
 
 .balance-amount {
     color: var(--heading-color) !important;
+    font-size: 2rem;
     font-weight: 700;
     margin-bottom: 5px;
 }
 
 .balance-label {
-    color: var(--text-color);
-    font-size: 0.9rem;
-    letter-spacing: 1px;
+    color: #6c757d;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
 }
 
 .action-buttons {
     display: flex;
-    gap: 10px;
+    gap: 15px;
+    justify-content: center;
+    margin: 20px 0;
 }
 
 .action-button {
     flex: 1;
-    background: var(--card-bg);
-    color: var(--heading-color);
-    border: 1px solid var(--border-color);
-    padding: 10px;
+    background: transparent;
+    color: var(--primary-link-colour, #0d6efd);
+    border: 1px solid var(--primary-link-colour, #0d6efd);
+    padding: 12px 10px;
     text-align: center;
     border-radius: 8px;
     text-decoration: none;
-    font-weight: 600;
+    font-weight: 700;
+    font-size: 0.9rem;
     transition: all 0.3s;
+    display: inline-block;
 }
 
 .action-button:hover {
-    background: var(--border-color);
-    color: var(--heading-color);
+    background: var(--primary-link-colour, #0d6efd);
+    color: white;
+}
+
+.asset-card {
+    border-radius: 12px;
+    padding: 16px 20px;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.asset-icon-wrapper {
+    width: 50px;
+    height: 50px;
+    min-width: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.asset-icon-wrapper img {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+}
+
+.asset-info {
+    flex-grow: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
 }
 
 .staked-section,
 .earned-section {
-    margin-bottom: 10px;
+    text-align: left;
+    margin-bottom: 0;
 }
 
 .section-label {
-    color: var(--text-color);
-    font-size: 0.8rem;
+    color: #6c757d;
+    font-size: 0.75rem;
+    font-weight: 600;
+    margin-bottom: 4px;
+    letter-spacing: 0.3px;
+}
+
+.amount {
+    color: var(--heading-color);
+    font-size: 0.85rem;
     font-weight: 600;
     margin-bottom: 2px;
 }
 
 .crypto-amount {
     color: var(--text-color);
-    font-size: 0.9rem;
+    font-size: 0.8rem;
 }
 
 .usd-value {
     color: var(--heading-color);
     font-weight: 700;
-    margin-top: 10px;
-    border-top: 1px solid var(--border-color);
-    padding-top: 10px;
+    font-size: 0.85rem;
+    text-align: right;
+    min-width: 50px;
+    margin-top: 0;
+    border-top: none;
+    padding-top: 0;
+}
+
+/* Staking mobile responsive */
+@media (max-width: 576px) {
+    .asset-info {
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+    
+    .staked-section,
+    .earned-section {
+        min-width: 80px;
+    }
+    
+    .usd-value {
+        min-width: auto;
+    }
+
+    .balance-amount {
+        font-size: 1.5rem;
+    }
+
+    .action-button {
+        padding: 10px 8px;
+        font-size: 0.8rem;
+        min-width: unset;
+    }
 }

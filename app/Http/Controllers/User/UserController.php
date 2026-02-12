@@ -19,21 +19,109 @@ class UserController extends Controller
     // Allowed trading symbols
     private $allowedSymbols = [
         // Forex
-        'AUDBRL','AUDCAD','AUDCHF','AUDJPY','AUDNZD','AUDUSD','CADJPY','CHFZAR',
-        'EURAUD','EURBRL','EURCAD','EURCHF','EURGBP','EURJPY','EURUSD','GBPAUD',
-        'GBPCAD','GBPCHF','GBPJPY','GBPUSD','NZDUSD','USDCAD','USDCHF','USDJPY','USDZAR',
+        'AUDBRL',
+        'AUDCAD',
+        'AUDCHF',
+        'AUDJPY',
+        'AUDNZD',
+        'AUDUSD',
+        'CADJPY',
+        'CHFZAR',
+        'EURAUD',
+        'EURBRL',
+        'EURCAD',
+        'EURCHF',
+        'EURGBP',
+        'EURJPY',
+        'EURUSD',
+        'GBPAUD',
+        'GBPCAD',
+        'GBPCHF',
+        'GBPJPY',
+        'GBPUSD',
+        'NZDUSD',
+        'USDCAD',
+        'USDCHF',
+        'USDJPY',
+        'USDZAR',
         // Crypto
-        'BTCUSD','ETHUSD','XRPUSD','SOLUSD','BNBUSD','ADAUSD','DOGEUSD','TRXUSD',
-        'DOTUSD','LINKUSD','MATICUSD','AVAXUSD','LTCUSD','ATOMUSD','UNIUSD','XLMUSD',
-        'ALGOUSD','NEARUSD','FILUSD','AAVEUSD','APTUSD','ARBUSD','OPUSD','MKRUSD',
-        'INJUSD','RNDRUSD','SUIUSD','SHIBUSD','PEPEUSD','TONUSD',
+        'BTCUSD',
+        'ETHUSD',
+        'XRPUSD',
+        'SOLUSD',
+        'BNBUSD',
+        'ADAUSD',
+        'DOGEUSD',
+        'TRXUSD',
+        'DOTUSD',
+        'LINKUSD',
+        'MATICUSD',
+        'AVAXUSD',
+        'LTCUSD',
+        'ATOMUSD',
+        'UNIUSD',
+        'XLMUSD',
+        'ALGOUSD',
+        'NEARUSD',
+        'FILUSD',
+        'AAVEUSD',
+        'APTUSD',
+        'ARBUSD',
+        'OPUSD',
+        'MKRUSD',
+        'INJUSD',
+        'RNDRUSD',
+        'SUIUSD',
+        'SHIBUSD',
+        'PEPEUSD',
+        'TONUSD',
         // Stocks
-        'AAPL','MSFT','TSLA','NVDA','AMZN','GOOGL','META','BRK.B','LLY','V',
-        'JPM','WMT','MA','PG','HD','XOM','JNJ','COST','ABBV','CRM',
-        'NFLX','ORCL','AMD','INTC','DIS','BA','UBER','PYPL','SQ','COIN',
+        'AAPL',
+        'MSFT',
+        'TSLA',
+        'NVDA',
+        'AMZN',
+        'GOOGL',
+        'META',
+        'BRK.B',
+        'LLY',
+        'V',
+        'JPM',
+        'WMT',
+        'MA',
+        'PG',
+        'HD',
+        'XOM',
+        'JNJ',
+        'COST',
+        'ABBV',
+        'CRM',
+        'NFLX',
+        'ORCL',
+        'AMD',
+        'INTC',
+        'DIS',
+        'BA',
+        'UBER',
+        'PYPL',
+        'SQ',
+        'COIN',
         // ETFs
-        'SPY','QQQ','IWM','DIA','VTI','VOO','VEA','VWO','GLD','SLV',
-        'TLT','XLF','XLK','ARKK','EEM',
+        'SPY',
+        'QQQ',
+        'IWM',
+        'DIA',
+        'VTI',
+        'VOO',
+        'VEA',
+        'VWO',
+        'GLD',
+        'SLV',
+        'TLT',
+        'XLF',
+        'XLK',
+        'ARKK',
+        'EEM',
     ];
 
     public function index(Request $request)
@@ -161,9 +249,33 @@ class UserController extends Controller
         }
 
         // Determine asset type
-        $forexPairs = ['AUDBRL','AUDCAD','AUDCHF','AUDJPY','AUDNZD','AUDUSD','CADJPY','CHFZAR',
-            'EURAUD','EURBRL','EURCAD','EURCHF','EURGBP','EURJPY','EURUSD','GBPAUD',
-            'GBPCAD','GBPCHF','GBPJPY','GBPUSD','NZDUSD','USDCAD','USDCHF','USDJPY','USDZAR'];
+        $forexPairs = [
+            'AUDBRL',
+            'AUDCAD',
+            'AUDCHF',
+            'AUDJPY',
+            'AUDNZD',
+            'AUDUSD',
+            'CADJPY',
+            'CHFZAR',
+            'EURAUD',
+            'EURBRL',
+            'EURCAD',
+            'EURCHF',
+            'EURGBP',
+            'EURJPY',
+            'EURUSD',
+            'GBPAUD',
+            'GBPCAD',
+            'GBPCHF',
+            'GBPJPY',
+            'GBPUSD',
+            'NZDUSD',
+            'USDCAD',
+            'USDCHF',
+            'USDJPY',
+            'USDZAR'
+        ];
 
         if (in_array($symbol, $forexPairs)) {
             $type = 'forex';
@@ -215,6 +327,33 @@ class UserController extends Controller
         $totalBalance = $holdingBalance + $stakingBalance + $tradingBalance;
 
         return view('user.staking', compact('stakingBalance'));
+    }
+
+    public function stakingDetail($pair)
+    {
+        $user = Auth::user();
+        $stakingBalance = StakingBalance::where('user_id', $user->id)->sum('amount') ?? 0;
+
+        return view('user.staking_detail', compact('pair', 'stakingBalance'));
+    }
+
+    public function stakingSubmit(Request $request, $pair)
+    {
+        $user = Auth::user();
+        $stakingBalance = StakingBalance::where('user_id', $user->id)->sum('amount') ?? 0;
+
+        $amount = $request->input('amount');
+        $period = $request->input('period', 30);
+
+        if ($amount <= 0) {
+            return back()->with('error', 'Please enter a valid amount.');
+        }
+
+        if ($amount > $stakingBalance) {
+            return back()->with('error', 'Insufficient staking balance.');
+        }
+
+        return back()->with('success', 'Staking request submitted successfully.');
     }
 
     public function currentTrade()
