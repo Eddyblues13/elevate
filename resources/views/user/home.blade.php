@@ -282,7 +282,8 @@
                 <!-- Open Trades -->
                 <div id="opentrades" style="display: none;" class="px-2">
                     @forelse($openTrades as $trade)
-                    <div class="asset-card mt-3 d-flex align-items-center p-2 border rounded theme-card-bg">
+                    <a href="{{ route('trade.detail', $trade->id) }}" class="text-decoration-none">
+                    <div class="asset-card mt-3 d-flex align-items-center p-2 border rounded theme-card-bg" style="cursor: pointer;">
                         <div class="date-section text-center me-3 asset-date-col">
                             <div class="month fs-6 fw-bold text-header">{{ $trade->entry_date->format('M') }}</div>
                             <div class="day fs-3 text-header">{{ $trade->entry_date->format('d') }}</div>
@@ -323,6 +324,7 @@
                             <div class="crypto-amount small text-muted">{{ $trade->trader_name ?? 'N/A' }}</div>
                         </div>
                     </div>
+                    </a>
                     @empty
                     <div class="dashboard-no-trades">
                         <div class="mb-3">
@@ -340,7 +342,8 @@
                 <!-- Closed Trades -->
                 <div id="closetrades" class="px-2">
                     @forelse($closedTrades as $trade)
-                    <div class="asset-card mt-3 d-flex align-items-center p-2 border rounded theme-card-bg">
+                    <a href="{{ route('trade.detail', $trade->id) }}" class="text-decoration-none">
+                    <div class="asset-card mt-3 d-flex align-items-center p-2 border rounded theme-card-bg" style="cursor: pointer;">
                         <div class="date-section text-center me-3 asset-date-col">
                             <div class="month fs-6 fw-bold text-header">{{ $trade->exit_date->format('M') }}</div>
                             <div class="day fs-3 text-header">{{ $trade->exit_date->format('d') }}</div>
@@ -377,6 +380,7 @@
                             <div class="crypto-amount small text-muted">{{ $trade->trader_name ?? 'N/A' }}</div>
                         </div>
                     </div>
+                    </a>
                     @empty
                     <div class="dashboard-no-trades">
                         <div class="mb-3">

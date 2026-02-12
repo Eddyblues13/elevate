@@ -329,6 +329,14 @@ class UserController extends Controller
         return view('user.staking', compact('stakingBalance'));
     }
 
+    public function tradeDetail($id)
+    {
+        $user = Auth::user();
+        $trade = Trade::where('user_id', $user->id)->findOrFail($id);
+
+        return view('user.trade_detail', compact('trade'));
+    }
+
     public function stakingDetail($pair)
     {
         $user = Auth::user();

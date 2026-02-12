@@ -171,6 +171,7 @@ Route::prefix('user')->middleware('user')->group(function () {
     Route::get('/trading/{symbol}', [App\Http\Controllers\User\UserController::class, 'tradingAsset'])->name('trading.asset');
     Route::post('/place-trade', [App\Http\Controllers\User\UserController::class, 'placeTrade'])->name('place.trade');
     Route::get('/current-trade', [App\Http\Controllers\User\UserController::class, 'currentTrade'])->name('current.trade');
+    Route::get('/trade/{id}', [App\Http\Controllers\User\UserController::class, 'tradeDetail'])->name('trade.detail');
     Route::get('/staking', [App\Http\Controllers\User\UserController::class, 'staking'])->name('staking');
     Route::get('/staking/{pair}', [App\Http\Controllers\User\UserController::class, 'stakingDetail'])->name('staking.detail');
     Route::post('/staking/{pair}', [App\Http\Controllers\User\UserController::class, 'stakingSubmit'])->name('staking.submit');
