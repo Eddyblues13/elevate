@@ -16,7 +16,21 @@ class DepositController extends Controller
     public function index()
     {
         $deposits = Deposit::with('user')->latest()->get();
-        return view('admin.deposits.index', compact('deposits'));
+
+        $totalDeposits = $deposits->count();
+        $pendingCount = $deposits->where('status', 'pending')->count();
+        $approvedCount = $deposits->where('status', 'approved')->count();
+        $rejectedCount = $deposits->where('status', 'rejected')->count();
+        $approvedVolume = $deposits->where('status', 'approved')->sum('amount');
+
+        return view('admin.deposits.index', compact(
+            'deposits',
+            'totalDeposits',
+            'pendingCount',
+            'approvedCount',
+            'rejectedCount',
+            'approvedVolume'
+        ));
     }
 
     public function approve($id)
@@ -33,9 +47,9 @@ class DepositController extends Controller
 
             $deposit->update(['status' => 'approved']);
 
-            // Credit user's account based on account type using firstOrCreate
             $user = User::findOrFail($deposit->user_id);
 
+            // 1. Credit the specific account type balance
             switch ($deposit->account_type) {
                 case 'holding':
                     $balance = HoldingBalance::firstOrCreate(
@@ -69,9 +83,19 @@ class DepositController extends Controller
                     throw new \Exception("Unknown account type: {$deposit->account_type}");
             }
 
+            // 2. Also increment the deposit balance (so deposit balance total goes up)
+            $depositBalance = Deposit::firstOrCreate(
+                ['user_id' => $user->id, 'account_type' => $deposit->account_type, 'status' => 'approved'],
+                ['amount' => 0]
+            );
+            // Only increment if this is a different record than the one we just approved
+            if ($depositBalance->id !== $deposit->id) {
+                $depositBalance->increment('amount', $deposit->amount);
+            }
+
             return response()->json([
                 'status' => 'success',
-                'message' => 'Deposit approved and ' . $deposit->account_type . ' balance credited successfully!'
+                'message' => 'Deposit approved! ' . ucfirst($deposit->account_type) . ' balance and deposit balance credited with $' . number_format($deposit->amount, 2)
             ]);
         } catch (\Exception $e) {
             return response()->json([

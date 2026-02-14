@@ -20,6 +20,7 @@ body {
     --border-color: #dbdcdf;
     --input-bg: #f3f4f6;
     --input-text: #1a1f2b;
+    --accent-color: #6366f1;
 }
 
 .dark {
@@ -33,6 +34,7 @@ body {
     --border-color: #363c4e;
     --input-bg: #1a1f2b;
     --input-text: #ffffff;
+    --accent-color: #818cf8;
 }
 
 /* Override defaults with variables */

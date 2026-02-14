@@ -23,6 +23,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\TransactionNotificationMail;
+use App\Mail\AdminDetailUpdatedMail;
 use Illuminate\Support\Facades\Validator;
 
 class AdminController extends Controller
@@ -362,19 +363,22 @@ class AdminController extends Controller
             ->where('status', 'pending')
             ->sum('amount');
 
-        // Sum of successful deposits
-        $data['successful_deposits_sum'] = Deposit::where('user_id', $id)
-            ->where('status', 'successful')
+        // Sum of approved deposits (deposit_balance - matches user dashboard)
+        $data['deposit_balance'] = Deposit::where('user_id', $id)
+            ->where('status', 'approved')
             ->sum('amount');
+
+        // Also store as successful_deposits_sum for backward compat
+        $data['successful_deposits_sum'] = $data['deposit_balance'];
 
         // Sum of pending withdrawals
         $data['pending_withdrawals_sum'] = Withdrawal::where('user_id', $id)
             ->where('status', 'pending')
             ->sum('amount');
 
-        // Sum of successful withdrawals
+        // Sum of approved withdrawals
         $data['successful_withdrawals_sum'] = Withdrawal::where('user_id', $id)
-            ->where('status', 'successful')
+            ->where('status', 'approved')
             ->sum('amount');
 
         // Sum of holding balance
@@ -397,7 +401,9 @@ class AdminController extends Controller
         $data['profit_balance'] = Profit::where('user_id', $id)
             ->sum('amount');
 
-
+        // Sum of staking balance
+        $data['staking_balance'] = StakingBalance::where('user_id', $id)
+            ->sum('amount');
 
         // Total sum of all balances
         $data['total_balance'] =
@@ -405,7 +411,8 @@ class AdminController extends Controller
             ($data['trading_balance'] ?? 0) +
             ($data['referral_balance'] ?? 0) +
             ($data['mining_balance'] ?? 0) +
-            ($data['profit_balance'] ?? 0);
+            ($data['profit_balance'] ?? 0) +
+            ($data['staking_balance'] ?? 0);
 
 
 
@@ -553,7 +560,7 @@ class AdminController extends Controller
     {
         // Retrieve the authenticated admin using the 'admin' guard
         $admin = Auth::guard('admin')->user();
-        return view('admin.admin_profile', compact('admin')); // Profile Blade file
+        return view('admin.settings', compact('admin'));
     }
 
     // Method to handle the profile update
@@ -577,12 +584,30 @@ class AdminController extends Controller
 
         // Update the profile of the authenticated admin
         $admin = Auth::guard('admin')->user();
+
+        $changedFields = [];
+        if ($admin->name !== $request->firstname) $changedFields['Name'] = $request->firstname;
+        if ($admin->email !== $request->email) $changedFields['Email'] = $request->email;
+        if (($admin->phone ?? '') !== ($request->phone ?? '')) $changedFields['Phone'] = $request->phone;
+
         $admin->name = $request->firstname;
-        // $admin->middlename = $request->middlename;
-        // $admin->lastname = $request->lastname;
-        // $admin->phone = $request->phone;
         $admin->email = $request->email;
+        $admin->phone = $request->phone;
         $admin->save();
+
+        // Send email notification if anything changed
+        if (!empty($changedFields)) {
+            try {
+                Mail::to($admin->email)->send(new AdminDetailUpdatedMail(
+                    $admin->name,
+                    'Profile Updated',
+                    $changedFields,
+                    $admin->name
+                ));
+            } catch (\Exception $e) {
+                // Log but don't fail
+            }
+        }
 
         return response()->json([
             'status' => 'success',
@@ -620,6 +645,18 @@ class AdminController extends Controller
         // Update the new password
         $admin->password = Hash::make($request->new_password);
         $admin->save();
+
+        // Send email notification
+        try {
+            Mail::to($admin->email)->send(new AdminDetailUpdatedMail(
+                $admin->name,
+                'Password Changed',
+                ['Action' => 'Your password was changed successfully'],
+                $admin->name
+            ));
+        } catch (\Exception $e) {
+            // Log but don't fail
+        }
 
         return response()->json([
             'status' => 'success',

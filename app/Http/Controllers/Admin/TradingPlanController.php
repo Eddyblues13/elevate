@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Plan;
-use App\Models\TradingPlan;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -12,27 +11,43 @@ class TradingPlanController extends Controller
     public function index()
     {
         $plans = Plan::all();
-        return view('admin.plans.index', compact('plans'));
+
+        $totalPlans = $plans->count();
+        $avgPrice   = $plans->avg('price') ?? 0;
+        $minPrice   = $plans->min('price') ?? 0;
+        $maxPrice   = $plans->max('price') ?? 0;
+
+        return view('admin.plans.index', compact(
+            'plans',
+            'totalPlans',
+            'avgPrice',
+            'minPrice',
+            'maxPrice'
+        ));
     }
 
     public function create()
     {
-        return view('admin.plans.create');
+        // Modals are used on the index page now
+        return redirect()->route('admin.plans.index');
     }
 
     public function store(Request $request)
     {
-        $request->validate([
+        $validated = $request->validate([
             'name' => 'required|string|max:255',
             'price' => 'required|numeric|min:0',
-            'swap_fee' => 'boolean',
+            'swap_fee' => 'nullable|boolean',
             'pairs' => 'required|integer|min:1',
             'leverage' => 'nullable|string|max:50',
             'spread' => 'nullable|string|max:50',
         ]);
 
+        // Ensure swap_fee defaults to false if not sent
+        $validated['swap_fee'] = $request->has('swap_fee') ? (bool) $request->input('swap_fee') : false;
+
         try {
-            Plan::create($request->all());
+            Plan::create($validated);
             return response()->json([
                 'status' => 'success',
                 'message' => 'Plan created successfully!',
@@ -48,22 +63,25 @@ class TradingPlanController extends Controller
 
     public function edit(Plan $plan)
     {
-        return view('admin.plans.edit', compact('plan'));
+        // Modals are used on the index page now
+        return redirect()->route('admin.plans.index');
     }
 
     public function update(Request $request, Plan $plan)
     {
-        $request->validate([
+        $validated = $request->validate([
             'name' => 'required|string|max:255',
             'price' => 'required|numeric|min:0',
-            'swap_fee' => 'boolean',
+            'swap_fee' => 'nullable|boolean',
             'pairs' => 'required|integer|min:1',
             'leverage' => 'nullable|string|max:50',
             'spread' => 'nullable|string|max:50',
         ]);
 
+        $validated['swap_fee'] = $request->has('swap_fee') ? (bool) $request->input('swap_fee') : false;
+
         try {
-            $plan->update($request->all());
+            $plan->update($validated);
             return response()->json([
                 'status' => 'success',
                 'message' => 'Plan updated successfully!',

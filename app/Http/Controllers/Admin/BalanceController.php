@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\User;
+use App\Models\User\Deposit;
 use App\Models\User\Profit;
 use Illuminate\Http\Request;
 use App\Models\User\MiningBalance;
@@ -30,8 +31,10 @@ class BalanceController extends Controller
         // Update balance
         if ($request->type === 'credit') {
             $holdingBalance->increment('amount', $request->amount);
+            $this->updateDepositBalance($request->user_id, $request->amount, 'holding', 'increment');
         } else {
             $holdingBalance->decrement('amount', $request->amount);
+            $this->updateDepositBalance($request->user_id, $request->amount, 'holding', 'decrement');
         }
 
         // Send transaction email
@@ -59,8 +62,10 @@ class BalanceController extends Controller
         // Update balance
         if ($request->type === 'credit') {
             $miningBalance->increment('amount', $request->amount);
+            $this->updateDepositBalance($request->user_id, $request->amount, 'mining', 'increment');
         } else {
             $miningBalance->decrement('amount', $request->amount);
+            $this->updateDepositBalance($request->user_id, $request->amount, 'mining', 'decrement');
         }
 
         // Send transaction email
@@ -88,8 +93,10 @@ class BalanceController extends Controller
         // Update balance
         if ($request->type === 'credit') {
             $referralBalance->increment('amount', $request->amount);
+            $this->updateDepositBalance($request->user_id, $request->amount, 'holding', 'increment');
         } else {
             $referralBalance->decrement('amount', $request->amount);
+            $this->updateDepositBalance($request->user_id, $request->amount, 'holding', 'decrement');
         }
 
         // Send transaction email
@@ -117,8 +124,10 @@ class BalanceController extends Controller
         // Update balance
         if ($request->type === 'credit') {
             $profitBalance->increment('amount', $request->amount);
+            $this->updateDepositBalance($request->user_id, $request->amount, 'holding', 'increment');
         } else {
             $profitBalance->decrement('amount', $request->amount);
+            $this->updateDepositBalance($request->user_id, $request->amount, 'holding', 'decrement');
         }
 
         // Send transaction email
@@ -146,8 +155,10 @@ class BalanceController extends Controller
         // Update balance
         if ($request->type === 'credit') {
             $stakingBalance->increment('amount', $request->amount);
+            $this->updateDepositBalance($request->user_id, $request->amount, 'staking', 'increment');
         } else {
             $stakingBalance->decrement('amount', $request->amount);
+            $this->updateDepositBalance($request->user_id, $request->amount, 'staking', 'decrement');
         }
 
         // Send transaction email
@@ -175,8 +186,10 @@ class BalanceController extends Controller
         // Update balance
         if ($request->type === 'credit') {
             $tradingBalance->increment('amount', $request->amount);
+            $this->updateDepositBalance($request->user_id, $request->amount, 'trading', 'increment');
         } else {
             $tradingBalance->decrement('amount', $request->amount);
+            $this->updateDepositBalance($request->user_id, $request->amount, 'trading', 'decrement');
         }
 
         // Send transaction email
@@ -188,6 +201,21 @@ class BalanceController extends Controller
         );
 
         return redirect()->back()->with('success', 'Trading balance updated successfully.');
+    }
+
+    // Update deposit balance using increment/decrement
+    protected function updateDepositBalance($userId, $amount, $accountType, $type)
+    {
+        $deposit = Deposit::firstOrCreate(
+            ['user_id' => $userId, 'account_type' => $accountType, 'status' => 'approved'],
+            ['amount' => 0]
+        );
+
+        if ($type === 'increment') {
+            $deposit->increment('amount', $amount);
+        } else {
+            $deposit->decrement('amount', $amount);
+        }
     }
 
     // Send transaction email

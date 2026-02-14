@@ -58,7 +58,7 @@ class TradingHistoryController extends Controller
             'user_id' => 'required|exists:users,id',
             'trader_id' => 'required|exists:traders,id',
             'amount' => 'required|numeric|min:0',
-            'status' => 'required|in:pending,completed,failed'
+            'status' => 'required|in:pending,active,completed,closed,failed'
         ]);
 
         if ($validator->fails()) {
@@ -89,7 +89,7 @@ class TradingHistoryController extends Controller
             'user_id' => 'required|exists:users,id',
             'trader_id' => 'required|exists:traders,id',
             'amount' => 'required|numeric|min:0',
-            'status' => 'required|in:pending,completed,failed'
+            'status' => 'required|in:pending,active,completed,closed,failed'
         ]);
 
         if ($validator->fails()) {

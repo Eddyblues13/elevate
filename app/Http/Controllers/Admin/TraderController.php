@@ -32,8 +32,12 @@ class TraderController extends Controller
      */
     public function index()
     {
-        $traders = Trader::latest()->paginate(10);
-        return view('admin.traders.index', compact('traders'));
+        $traders = Trader::latest()->paginate(12);
+        $verifiedCount = Trader::where('is_verified', true)->count();
+        $avgReturnRate = Trader::avg('return_rate') ?? 0;
+        $totalFollowers = Trader::sum('followers');
+
+        return view('admin.traders.index', compact('traders', 'verifiedCount', 'avgReturnRate', 'totalFollowers'));
     }
 
     /**
@@ -61,6 +65,9 @@ class TraderController extends Controller
         ]);
 
         if ($validator->fails()) {
+            if ($request->expectsJson()) {
+                return response()->json(['errors' => $validator->errors()], 422);
+            }
             return redirect()->back()
                 ->withErrors($validator)
                 ->withInput();
@@ -144,6 +151,9 @@ class TraderController extends Controller
         ]);
 
         if ($validator->fails()) {
+            if ($request->expectsJson()) {
+                return response()->json(['errors' => $validator->errors()], 422);
+            }
             return redirect()->back()
                 ->withErrors($validator)
                 ->withInput();
@@ -215,10 +225,25 @@ class TraderController extends Controller
 
             $trader->delete();
 
-            return redirect()->route('admin.traders.index')
+            if (request()->expectsJson()) {
+                return response()->json([
+                    'success' => true,
+                    'message' => 'Trader deleted successfully!'
+                ]);
+            }
+
+            return redirect()->route('traders.index')
                 ->with('success', 'Trader deleted successfully!');
         } catch (\Exception $e) {
             Log::error('Trader deletion failed: ' . $e->getMessage());
+
+            if (request()->expectsJson()) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Failed to delete trader.'
+                ], 500);
+            }
+
             return back()->with('error', 'Failed to delete trader. Please try again.');
         }
     }

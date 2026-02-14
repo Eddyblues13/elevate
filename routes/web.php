@@ -319,6 +319,14 @@ Route::prefix('admin')->group(function () {
         Route::get('/smtp-settings', [App\Http\Controllers\Admin\SmtpSettingController::class, 'index'])->name('smtp.settings');
         Route::post('/smtp-settings', [App\Http\Controllers\Admin\SmtpSettingController::class, 'update'])->name('smtp.update');
 
+        // Admin Management Routes (super_admin only)
+        Route::get('/administrators', [App\Http\Controllers\Admin\AdminManagementController::class, 'index'])->name('admin.administrators.index');
+        Route::post('/administrators', [App\Http\Controllers\Admin\AdminManagementController::class, 'store'])->name('admin.administrators.store');
+        Route::put('/administrators/{id}', [App\Http\Controllers\Admin\AdminManagementController::class, 'update'])->name('admin.administrators.update');
+        Route::post('/administrators/{id}/reset-password', [App\Http\Controllers\Admin\AdminManagementController::class, 'resetPassword'])->name('admin.administrators.reset-password');
+        Route::post('/administrators/{id}/toggle-status', [App\Http\Controllers\Admin\AdminManagementController::class, 'toggleStatus'])->name('admin.administrators.toggle-status');
+        Route::delete('/administrators/{id}', [App\Http\Controllers\Admin\AdminManagementController::class, 'destroy'])->name('admin.administrators.destroy');
+
         // Wallet resource routes
         Route::resource('wallets', App\Http\Controllers\Admin\WalletController::class);
         // Deposit resource routes

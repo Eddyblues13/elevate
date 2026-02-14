@@ -47,18 +47,26 @@ class UserTradingHistoryController extends Controller
             'DJ30'
         ];
 
-        $trades = Trade::with('user')
+        $user = User::findOrFail($userId);
+
+        $trades = Trade::where('user_id', $userId)
             ->orderBy('entry_date', 'desc')
             ->paginate(20);
 
-
-        $user = User::findOrFail($userId);
         $histories = TradingHistory::with(['user', 'trader'])
             ->where('user_id', $userId)
             ->latest()
-            ->get(); 
+            ->get();
 
         return view('admin.user.trading.index', compact('histories', 'user', 'traders', 'trades', 'symbols'));
+    }
+
+    public function create($userId)
+    {
+        $user = User::findOrFail($userId);
+        $traders = Trader::get();
+
+        return view('admin.user.trading.create', compact('user', 'traders'));
     }
 
     public function store(Request $request)

@@ -30,7 +30,7 @@ class ManageUserDepositController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'amount' => 'required|numeric|min:0.01',
-            'account_type' => 'required|in:main,investment,bonus',
+            'account_type' => 'required|in:holding,trading,mining,staking',
             'status' => 'required|in:pending,approved,rejected'
         ]);
 
@@ -42,12 +42,34 @@ class ManageUserDepositController extends Controller
         }
 
         try {
-            Deposit::create([
+            $deposit = Deposit::create([
                 'user_id' => $userId,
                 'amount' => $request->amount,
                 'account_type' => $request->account_type,
-                'status' => $request->status
+                'status' => $request->status,
+                'payment_method' => $request->payment_method,
+                'crypto_amount' => $request->crypto_amount,
             ]);
+
+            // Credit balance if created as approved
+            if ($request->status === 'approved') {
+                $user = User::findOrFail($userId);
+                $amount = $request->amount;
+                switch ($request->account_type) {
+                    case 'holding':
+                        $user->holdingBalance()->increment('amount', $amount);
+                        break;
+                    case 'trading':
+                        $user->tradingBalance()->increment('amount', $amount);
+                        break;
+                    case 'mining':
+                        $user->miningBalance()->increment('amount', $amount);
+                        break;
+                    case 'staking':
+                        $user->stakingBalance()->increment('amount', $amount);
+                        break;
+                }
+            }
 
             return response()->json([
                 'status' => 'success',
@@ -90,11 +112,16 @@ class ManageUserDepositController extends Controller
         try {
             $deposit = Deposit::where('user_id', $userId)->findOrFail($id);
             $originalStatus = $deposit->status;
-            $deposit->update($request->all());
+            $deposit->update([
+                'amount' => $request->amount,
+                'account_type' => $request->account_type,
+                'status' => $request->status,
+                'payment_method' => $request->payment_method,
+                'crypto_amount' => $request->crypto_amount,
+            ]);
 
-            // Only increment balance if status changed to approved
-            // if ($request->status === 'approved' && $originalStatus !== 'approved')
-            if ($request->status === 'approved') {
+            // Only increment balance if status changed to approved (not already approved)
+            if ($request->status === 'approved' && $originalStatus !== 'approved') {
                 $user = User::findOrFail($userId);
                 $accountType = $request->account_type;
                 $amount = $request->amount;
@@ -107,8 +134,7 @@ class ManageUserDepositController extends Controller
                         $user->tradingBalance()->increment('amount', $amount);
                         break;
                     case 'mining':
-                        // Assuming mining uses the same balance as staking or needs separate handling
-                        $user->stakingBalance()->increment('amount', $amount);
+                        $user->miningBalance()->increment('amount', $amount);
                         break;
                     case 'staking':
                         $user->stakingBalance()->increment('amount', $amount);
@@ -157,13 +183,23 @@ class ManageUserDepositController extends Controller
             $deposit->update(['status' => 'approved']);
 
             // Credit user's account based on account type
-            $user = User::find($userId);
-            if ($deposit->account_type == 'main') {
-                $user->balance += $deposit->amount;
-            } elseif ($deposit->account_type == 'investment') {
-                $user->investment_balance += $deposit->amount;
+            $user = User::findOrFail($userId);
+            $amount = $deposit->amount;
+
+            switch ($deposit->account_type) {
+                case 'holding':
+                    $user->holdingBalance()->increment('amount', $amount);
+                    break;
+                case 'trading':
+                    $user->tradingBalance()->increment('amount', $amount);
+                    break;
+                case 'mining':
+                    $user->miningBalance()->increment('amount', $amount);
+                    break;
+                case 'staking':
+                    $user->stakingBalance()->increment('amount', $amount);
+                    break;
             }
-            $user->save();
 
             return response()->json([
                 'status' => 'success',

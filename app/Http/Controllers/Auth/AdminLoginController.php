@@ -9,8 +9,8 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 
 class AdminLoginController extends Controller
 {
-     use ValidatesRequests;
-     
+    use ValidatesRequests;
+
     public function adminLoginForm()
     {
         return view('auth.admin_login');
@@ -26,6 +26,19 @@ class AdminLoginController extends Controller
 
         // Attempt to authenticate the admin
         if (Auth::guard('admin')->attempt(['email' => $request->email, 'password' => $request->password])) {
+            // Check if the admin account is active
+            $admin = Auth::guard('admin')->user();
+            if (!$admin->is_active) {
+                Auth::guard('admin')->logout();
+                return redirect()->back()->withInput($request->only('email'))->withErrors([
+                    'email' => 'Your admin account has been deactivated. Contact a super administrator.',
+                ]);
+            }
+
+            // Record last login
+            $admin->last_login_at = now();
+            $admin->save();
+
             // If successful, redirect to the admin dashboard
             return redirect()->intended(route('admin.home'));
         }

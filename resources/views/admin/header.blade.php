@@ -287,6 +287,71 @@
             color: var(--text-color);
             opacity: 0.6;
         }
+
+        /* ── Dark-mode global helpers ─────────────────── */
+        .dark .btn-close {
+            filter: invert(1) grayscale(100%) brightness(200%);
+        }
+
+        .dark .modal-content {
+            background: var(--card-bg) !important;
+            color: var(--text-color) !important;
+            border-color: var(--border-color) !important;
+        }
+
+        .dark .modal-header,
+        .dark .modal-footer {
+            border-color: var(--border-color) !important;
+        }
+
+        .dark .table {
+            --bs-table-bg: transparent;
+            --bs-table-color: var(--text-color);
+            --bs-table-border-color: var(--border-color);
+            --bs-table-striped-bg: rgba(255, 255, 255, .02);
+            --bs-table-hover-bg: rgba(99, 102, 241, .06);
+        }
+
+        .dark .table> :not(caption)>*>* {
+            background-color: transparent !important;
+            color: var(--text-color);
+            border-bottom-color: var(--border-color);
+        }
+
+        .dark .table thead th {
+            background-color: var(--card-bg) !important;
+            color: var(--heading-color) !important;
+        }
+
+        .dark .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+            background: rgba(99, 102, 241, .15) !important;
+            color: #818cf8 !important;
+        }
+
+        .dark .btn-outline-secondary {
+            color: var(--text-color);
+            border-color: var(--border-color);
+        }
+
+        .dark .btn-outline-secondary:hover {
+            background: var(--input-bg);
+            color: var(--heading-color);
+            border-color: var(--border-color);
+        }
+
+        .dark .alert {
+            border-color: var(--border-color);
+        }
+
+        .dark .form-check-input {
+            background-color: var(--input-bg);
+            border-color: var(--border-color);
+        }
+
+        .dark .form-check-input:checked {
+            background-color: #6366f1;
+            border-color: #6366f1;
+        }
     </style>
 </head>
 
@@ -387,6 +452,16 @@
             class="admin-nav-item {{ request()->routeIs('payment.*') ? 'active' : '' }}">
             <i class="bi bi-credit-card-fill"></i> Payment Settings
         </a>
+        <a href="{{ route('admin.profile') }}"
+            class="admin-nav-item {{ request()->routeIs('admin.profile') ? 'active' : '' }}">
+            <i class="bi bi-gear-fill"></i> Admin Settings
+        </a>
+        @if(Auth::guard('admin')->user()->role === 'super_admin')
+        <a href="{{ route('admin.administrators.index') }}"
+            class="admin-nav-item {{ request()->routeIs('admin.administrators.*') ? 'active' : '' }}">
+            <i class="bi bi-person-fill-lock"></i> Manage Admins
+        </a>
+        @endif
 
         <div class="admin-nav-divider"></div>
         <a href="{{ route('logout') }}" class="admin-nav-item" style="color: #ef4444;">
