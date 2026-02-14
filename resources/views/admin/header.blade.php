@@ -352,6 +352,188 @@
             background-color: #6366f1;
             border-color: #6366f1;
         }
+
+        /* ── Notification Bell ────────────────── */
+        .notif-bell {
+            position: relative;
+            cursor: pointer;
+            padding: 6px;
+            border-radius: 8px;
+            transition: background 0.2s;
+        }
+
+        .notif-bell:hover {
+            background: rgba(255, 255, 255, 0.12);
+        }
+
+        .notif-badge {
+            position: absolute;
+            top: 2px;
+            right: 2px;
+            min-width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: #ef4444;
+            color: #fff;
+            font-size: 10px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            line-height: 1;
+            padding: 0 4px;
+        }
+
+        .notif-dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            width: 380px;
+            max-height: 460px;
+            background: var(--card-bg, #fff);
+            border: 1px solid var(--border-color, #e5e7eb);
+            border-radius: 14px;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+            z-index: 9999;
+            display: none;
+            overflow: hidden;
+        }
+
+        .notif-dropdown.show {
+            display: block;
+        }
+
+        .notif-dropdown-header {
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid var(--border-color, #e5e7eb);
+        }
+
+        .notif-dropdown-header h6 {
+            margin: 0;
+            font-weight: 700;
+            font-size: 15px;
+            color: var(--heading-color, #1e1b4b);
+        }
+
+        .notif-dropdown-body {
+            max-height: 360px;
+            overflow-y: auto;
+        }
+
+        .notif-item {
+            padding: 14px 20px;
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+            border-bottom: 1px solid var(--border-color, #f0f0f0);
+            transition: background 0.15s;
+            cursor: pointer;
+        }
+
+        .notif-item:hover {
+            background: rgba(99, 102, 241, 0.04);
+        }
+
+        .notif-item.unread {
+            background: rgba(99, 102, 241, 0.06);
+        }
+
+        .notif-item-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 16px;
+        }
+
+        .notif-item-content {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .notif-item-title {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--heading-color, #1e1b4b);
+            margin-bottom: 2px;
+        }
+
+        .notif-item-msg {
+            font-size: 12px;
+            color: var(--text-color, #6b7280);
+            line-height: 1.4;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .notif-item-time {
+            font-size: 11px;
+            color: #9ca3af;
+            margin-top: 3px;
+        }
+
+        .notif-empty {
+            padding: 40px 20px;
+            text-align: center;
+            color: var(--text-color, #9ca3af);
+        }
+
+        .notif-empty i {
+            font-size: 32px;
+            margin-bottom: 8px;
+            opacity: 0.4;
+        }
+
+        @media (max-width: 480px) {
+            .notif-dropdown {
+                width: calc(100vw - 24px);
+                right: -60px;
+            }
+        }
+
+        /* Toast popup */
+        .notif-toast {
+            position: fixed;
+            top: 70px;
+            right: 20px;
+            width: 360px;
+            background: var(--card-bg, #fff);
+            border: 1px solid var(--border-color, #e5e7eb);
+            border-radius: 14px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+            z-index: 99999;
+            padding: 16px 20px;
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+            animation: slideInRight 0.35s ease;
+            transition: opacity 0.3s, transform 0.3s;
+        }
+
+        .notif-toast.hide {
+            opacity: 0;
+            transform: translateX(40px);
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(40px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
     </style>
 </head>
 
@@ -370,6 +552,28 @@
             </div>
         </div>
         <div class="text-white d-flex align-items-center gap-3">
+            <!-- Notification Bell -->
+            <div class="position-relative" id="notifBellWrap">
+                <div class="notif-bell" onclick="toggleNotifDropdown(event)">
+                    <i class="bi bi-bell-fill" style="font-size:18px;"></i>
+                    <span class="notif-badge" id="notifBadge" style="display:none;">0</span>
+                </div>
+                <div class="notif-dropdown" id="notifDropdown">
+                    <div class="notif-dropdown-header">
+                        <h6><i class="bi bi-bell me-1"></i> Notifications</h6>
+                        <button class="btn btn-sm" onclick="markAllRead()"
+                            style="font-size:12px;color:#6366f1;font-weight:600;background:none;border:none;padding:0;">Mark
+                            all read</button>
+                    </div>
+                    <div class="notif-dropdown-body" id="notifList">
+                        <div class="notif-empty">
+                            <i class="bi bi-bell-slash d-block"></i>
+                            <span style="font-size:13px;">No notifications yet</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <span class="d-none d-md-block" style="font-size:14px;">{{ Auth::guard('admin')->user()->name ?? 'Admin'
                 }}</span>
             <a href="{{ route('logout') }}" class="btn btn-sm"

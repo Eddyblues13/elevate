@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\AdminActionNotificationMail;
+use App\Models\AdminNotification;
 
 class PlanController extends Controller
 {
@@ -116,6 +117,13 @@ class PlanController extends Controller
         } catch (\Exception $e) {
             \Log::error('Admin plan purchase notification email failed: ' . $e->getMessage());
         }
+
+        // Create in-app admin notification
+        AdminNotification::create([
+            'type' => 'Plan Purchase',
+            'title' => 'New Plan Purchase',
+            'message' => ($user->first_name . ' ' . $user->last_name) . ' purchased ' . ($plan->name ?? 'Plan #' . $plan->id) . ' for $' . number_format($request->amount, 2) . '.',
+        ]);
 
         return response()->json(['success' => true, 'message' => 'Funds transferred successfully!']);
     }

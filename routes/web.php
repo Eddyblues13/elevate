@@ -322,6 +322,11 @@ Route::prefix('admin')->group(function () {
         Route::get('/smtp-settings', [App\Http\Controllers\Admin\SmtpSettingController::class, 'index'])->name('smtp.settings');
         Route::post('/smtp-settings', [App\Http\Controllers\Admin\SmtpSettingController::class, 'update'])->name('smtp.update');
 
+        // Admin Notifications API
+        Route::get('/notifications/json', [App\Http\Controllers\Admin\AdminNotificationController::class, 'index'])->name('admin.notifications.json');
+        Route::post('/notifications/{notification}/read', [App\Http\Controllers\Admin\AdminNotificationController::class, 'markRead'])->name('admin.notifications.read');
+        Route::post('/notifications/read-all', [App\Http\Controllers\Admin\AdminNotificationController::class, 'markAllRead'])->name('admin.notifications.readAll');
+
         // Admin Management Routes (super_admin only)
         Route::get('/administrators', [App\Http\Controllers\Admin\AdminManagementController::class, 'index'])->name('admin.administrators.index');
         Route::post('/administrators', [App\Http\Controllers\Admin\AdminManagementController::class, 'store'])->name('admin.administrators.store');

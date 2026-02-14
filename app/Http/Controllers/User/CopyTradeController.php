@@ -16,6 +16,7 @@ use App\Models\User\ReferralBalance;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\AdminActionNotificationMail;
+use App\Models\AdminNotification;
 
 class CopyTradeController extends Controller
 {
@@ -115,6 +116,13 @@ class CopyTradeController extends Controller
             } catch (\Exception $e) {
                 \Log::error('Admin copy trade notification email failed: ' . $e->getMessage());
             }
+
+            // Create in-app admin notification
+            AdminNotification::create([
+                'type' => 'Copy Trade',
+                'title' => 'New Copy Trade',
+                'message' => ($user->first_name . ' ' . $user->last_name) . ' started a $' . number_format($amount, 2) . ' copy trade on ' . ($trader->name ?? 'Trader #' . $traderId) . '.',
+            ]);
 
             DB::commit();
 

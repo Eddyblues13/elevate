@@ -1,299 +1,112 @@
-<!DOCTYPE html>
-<html lang="pl">
-
+﻿<!DOCTYPE html>
+<html lang="en">
 <head>
-	<meta charset="UTF-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
-	<title>ElevateCapital</title>
-
-	<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&display=swap"
-		rel="stylesheet" />
-
-	<style>
-		.proton-body {
-			display: block;
-			padding: 0px;
-			margin: 0px;
-		}
-
-		.proton-wrapper {
-			width: 100%;
-			display: block;
-			overflow: hidden;
-			box-sizing: border-box;
-			color: #222;
-			background: #f2f2fd;
-			font-size: 18px;
-			font-weight: normal;
-			font-family: 'Baloo 2', 'Open Sans', 'Roboto', 'Segoe UI', 'Helvetica Neue', Helvetica, Tahoma, Arial, monospace, sans-serif;
-		}
-
-		.proton-table {
-			border-collapse: collapse;
-			border-spacing: 0;
-			border: 0px;
-			width: 640px;
-			max-width: 90%;
-			margin: 100px auto;
-			box-shadow: 0px 20px 48px rgba(0, 0, 0, 0.2);
-			border-radius: 10px;
-			overflow: hidden;
-		}
-
-		.proton-table tr {
-			background: #ffffff;
-		}
-
-		.proton-table td,
-		.proton-table th {
-			border: 0px;
-			border-spacing: 0;
-			border-collapse: collapse;
-		}
-
-		.proton-table tr td {
-			padding: 0px 40px;
-			box-sizing: border-box;
-		}
-
-		.proton-margin {
-			float: left;
-			width: 100%;
-			overflow: hidden;
-			height: 40px;
-			padding-bottom: 0px;
-			box-sizing: border-box;
-		}
-
-		.proton-div {
-			float: left;
-			width: 100%;
-			overflow: hidden;
-			box-sizing: border-box;
-		}
-
-		.proton-table h1,
-		.proton-table h2,
-		.proton-table h3,
-		.proton-table h4 {
-			float: left;
-			width: 100%;
-			margin: 0px 0px 20px 0px !important;
-			padding: 0px;
-		}
-
-		.proton-table h1 {
-			font-size: 33px;
-		}
-
-		.proton-table h2 {
-			font-size: 26px;
-		}
-
-		.proton-table h3 {
-			font-size: 23px;
-		}
-
-		.proton-table p {
-			float: left;
-			width: 100%;
-			font-size: 18px;
-			margin: 0px 0px 20px 0px !important;
-		}
-
-		.proton-table h4 {
-			font-size: 20px;
-		}
-
-		.proton-table a {
-			color: #6d49fc;
-			font-weight: bold;
-		}
-
-		.proton-table a:hover {
-			color: #55cc55;
-		}
-
-		.proton-table a:active {
-			color: #ff6600;
-		}
-
-		.proton-table a:visited {
-			color: #ff00ff;
-		}
-
-		.proton-table a.proton-link {
-			display: inline-block;
-			width: auto !important;
-			outline: none !important;
-			text-decoration: none !important;
-		}
-
-		.proton-table img,
-		.proton-table a img {
-			display: block;
-			max-width: 100%;
-			margin-bottom: 20px;
-			border: 0px;
-			border-radius: 10px;
-			overflow: hidden;
-		}
-
-		.proton-table a.proton-button {
-			display: inline-block;
-			font-weight: bold;
-			font-size: 17px;
-			padding: 15px 40px;
-			margin: 20px 0px;
-			color: #ffffff !important;
-			background: #6d49fc !important;
-			border-radius: 10px;
-			text-decoration: none;
-			outline: none;
-		}
-
-		.proton-table a.proton-button:hover {
-			color: #ffffff !important;
-			background: #55cc55 !important;
-		}
-
-		.proton-code {
-			float: left;
-			width: 100%;
-			overflow: hidden;
-			box-sizing: border-box;
-			padding: 15px 40px;
-			margin: 20px 0px;
-			border: 1px dashed #6d49fcaa;
-			background: #6d49fc11;
-			color: #6d49fc;
-			font-weight: 700;
-			font-size: 23px;
-		}
-
-		.proton-flex {
-			float: left;
-			width: 100%;
-			text-align: center;
-		}
-
-		.proton-divider {
-			float: left;
-			width: 100%;
-			overflow: hidden;
-			margin: 20px 0px;
-			border-top: 2px solid #f2f2fd;
-		}
-	</style>
-
-	<style>
-		.proton-flex img {
-			margin: 10px;
-			max-width: 15%;
-			width: 40px;
-		}
-	</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ElevateCapital</title>
+    <style>
+        body { margin: 0; padding: 0; background-color: #f4f6f9; font-family: 'Segoe UI', Arial, sans-serif; }
+        .wrapper { width: 100%; background-color: #f4f6f9; padding: 40px 0; }
+        .card { max-width: 560px; margin: 0 auto; background: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 24px rgba(0,0,0,0.06); }
+        .header { background: linear-gradient(135deg, #6366f1 0%, #818cf8 100%); padding: 32px 40px; text-align: center; }
+        .header h1 { margin: 0; color: #ffffff; font-size: 22px; font-weight: 700; letter-spacing: 0.5px; }
+        .header p { margin: 6px 0 0; color: rgba(255,255,255,0.85); font-size: 13px; }
+        .body-content { padding: 36px 40px; }
+        .body-content h2 { margin: 0 0 16px; color: #1e1b4b; font-size: 20px; font-weight: 700; }
+        .body-content p { color: #4b5563; font-size: 15px; line-height: 1.7; margin: 0 0 14px; }
+        .body-content ul { color: #4b5563; font-size: 15px; line-height: 1.7; padding-left: 20px; margin: 0 0 14px; }
+        .body-content li { margin-bottom: 6px; }
+        .info-box { background: #f8f9fa; border-radius: 10px; padding: 20px; margin: 16px 0; }
+        .info-row { padding: 10px 0; border-bottom: 1px solid #f0f0f0; }
+        .info-row:last-child { border-bottom: none; }
+        .info-label { color: #9ca3af; font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600; }
+        .info-value { color: #1e1b4b; font-size: 15px; font-weight: 600; margin-top: 2px; }
+        .highlight-box { background: linear-gradient(135deg, #eef2ff 0%, #e0e7ff 100%); border-radius: 10px; padding: 24px; text-align: center; margin: 20px 0; }
+        .highlight-amount { color: #4338ca; font-size: 28px; font-weight: 700; margin: 4px 0; }
+        .highlight-label { color: #6366f1; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; }
+        .code-box { background: #eef2ff; border: 2px dashed #6366f1; border-radius: 10px; padding: 20px; text-align: center; margin: 20px 0; }
+        .code-value { color: #4338ca; font-size: 28px; font-weight: 700; letter-spacing: 4px; }
+        .btn { display: inline-block; background-color: #6366f1; color: #ffffff !important; font-size: 14px; font-weight: 600; text-decoration: none; padding: 12px 30px; border-radius: 8px; letter-spacing: 0.5px; }
+        .badge { display: inline-block; padding: 6px 16px; border-radius: 20px; font-size: 13px; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; }
+        .badge-deposit { background-color: #d1fae5; color: #065f46; }
+        .badge-withdrawal { background-color: #fee2e2; color: #991b1b; }
+        .badge-plan { background-color: #e0e7ff; color: #3730a3; }
+        .badge-copy-trade { background-color: #fef3c7; color: #92400e; }
+        .badge-debit { background-color: #fee2e2; color: #991b1b; }
+        .badge-credit { background-color: #d1fae5; color: #065f46; }
+        .divider { height: 1px; background: #e5e7eb; margin: 24px 0; }
+        .footer { background: #f9fafb; padding: 24px 40px; text-align: center; border-top: 1px solid #e5e7eb; }
+        .footer p { margin: 0; color: #9ca3af; font-size: 12px; line-height: 1.6; }
+        .security-tip { background: #fffbeb; border-left: 3px solid #f59e0b; padding: 12px 16px; border-radius: 0 8px 8px 0; margin: 16px 0; font-size: 13px; color: #92400e; }
+        @media only screen and (max-width: 600px) {
+            .card { margin: 0 16px; }
+            .header, .body-content, .footer { padding-left: 24px; padding-right: 24px; }
+        }
+    </style>
 </head>
+<body>
+    <div class="wrapper">
+        <table width="100%" cellpadding="0" cellspacing="0" role="presentation"><tr><td align="center">
+            <div class="card">
+                <div class="header">
+                    <h1>ElevateCapital</h1>
+                    <p>Debit Alert</p>
+                </div>
+                <div class="body-content">
+                    <h2>Debit Alert</h2>
+                    <p>Hello <strong>{{$user['full_name']}}</strong>,</p>
+                    <p>Your account has been debited.</p>
 
-<body class="proton-body">
-	<div class="proton-wrapper">
-		<table class="proton-table">
-			<tbody>
-				<tr class="proton-tr">
-					<td class="proton-td" colspan="10" style="">
-						<div class="proton-margin"></div>
-						<center>
-							<h1>Greetings!, {{$user['full_name']}}</h1>
-							<img src="{{asset('assets/img/logo.png')}}" alt="Image" />
-						</center>
+                    <div class="highlight-box" style="background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);">
+                        <div class="highlight-label" style="color: #991b1b;">Amount Debited</div>
+                        <div class="highlight-amount" style="color: #dc2626;">{{$user['currency']}}{{$user['amount']}}</div>
+                    </div>
 
-						<br>
-						<center>
-							<p>
-								Your account has been Debited
-							</p>
-							<br>
+                    <div class="info-box">
+                        <div class="info-row">
+                            <div class="info-label">Account Number</div>
+                            <div class="info-value">{{$user['account_number']}}</div>
+                        </div>
+                        <div class="info-row">
+                            <div class="info-label">Account Name</div>
+                            <div class="info-value">{{$user['account_name']}}</div>
+                        </div>
+                        <div class="info-row">
+                            <div class="info-label">Description</div>
+                            <div class="info-value">{{$user['description']}}</div>
+                        </div>
+                        <div class="info-row">
+                            <div class="info-label">Total Amount</div>
+                            <div class="info-value">{{$user['currency']}}{{$user['amount']}}</div>
+                        </div>
+                        <div class="info-row">
+                            <div class="info-label">Reference</div>
+                            <div class="info-value">{{$user['ref']}}</div>
+                        </div>
+                        <div class="info-row">
+                            <div class="info-label">Date</div>
+                            <div class="info-value">{{$user['date']}}</div>
+                        </div>
+                        <div class="info-row">
+                            <div class="info-label">Available Balance</div>
+                            <div class="info-value">{{$user['currency']}}{{$user['balance']}}</div>
+                        </div>
+                    </div>
 
-							<h2>With</h2>
-							<h1>{{$user['currency']}}{{$user['amount']}}</h1>
-
-						</center>
-						<p>
-							Details of the transaction are shown below:
-						</p>
-						<p>
-							Account Number: {{$user['account_number']}}
-						</p>
-						<p>
-							Account Name: {{$user['account_name']}}
-						</p>
-
-						<p>
-							Description: {{$user['description']}}
-						</p>
-
-						<p>
-							Total Amount: {{$user['currency']}}{{$user['amount']}}
-						</p>
-						<br>
-
-
-						<p>
-							Reference : {{$user['ref']}}
-						</p>
-						<br>
-						<p>
-							Date : {{$user['date']}}
-						</p>
-						<p>
-							Available Balance : {{$user['currency']}}{{$user['balance']}}
-						</p>
-						<br>
-						<br />
-						<p style='line-height: 24px'>
-							Security Tips:</br>
-							<hr>*Never give your login access to anyone.
-							<hr>*This message is automated do not reply.
-
-						</p>
-					</td>
-				</tr>
-
-
-				<tr class="proton-tr">
-					<td class="proton-td" colspan="10" style="">
-						<h3>Kind Regards,</h3>
-						<p>ElevateCapital</p>
-					</td>
-				</tr>
-
-				<tr class="proton-tr">
-					<td class="proton-td" colspan="10" style="">
-						<div class="proton-divider"></div>
-						<center>
-							<span style="color: #706d6b"> © 2023 ElevateCapital</span>
-						</center>
-						<div class="proton-flex">
-							<a href="https://proton.me" class="proton-link">
-								<img src="https://img.icons8.com/?size=64&id=LPcVDft9Isqt&format=png" alt="Image" />
-							</a>
-							<a href="https://proton.me" class="proton-link">
-								<img src="https://img.icons8.com/?size=64&id=LPcVDft9Isqt&format=png" alt="Image" />
-							</a>
-							<a href="https://proton.me" class="proton-link">
-								<img src="https://img.icons8.com/?size=64&id=LPcVDft9Isqt&format=png" alt="Image" />
-							</a>
-							<a href="https://proton.me" class="proton-link">
-								<img src="https://img.icons8.com/?size=64&id=LPcVDft9Isqt&format=png" alt="Image" />
-							</a>
-						</div>
-						<div class="proton-margin"></div>
-					</td>
-				</tr>
-			</tbody>
-		</table>
-	</div>
+                    <div class="security-tip">
+                        <strong>Security Tips:</strong><br>
+                        &bull; Never share your login credentials with anyone.<br>
+                        &bull; ElevateCapital will never ask for your password via email.
+                    </div>
+                    <div class="divider"></div>
+                    <p style="margin-bottom:0;">Kind Regards,<br><strong style="color:#1e1b4b;">ElevateCapital</strong></p>
+                </div>
+                <div class="footer">
+                    <p>&copy; {{ date('Y') }} ElevateCapital. All rights reserved.</p>
+                    <p style="margin-top:4px;">This is an automated message &mdash; please do not reply.</p>
+                </div>
+            </div>
+        </td></tr></table>
+    </div>
 </body>
-
 </html>

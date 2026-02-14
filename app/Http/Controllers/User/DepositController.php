@@ -13,6 +13,7 @@ use App\Models\User\ReferralBalance;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\AdminActionNotificationMail;
+use App\Models\AdminNotification;
 
 class DepositController extends Controller
 {
@@ -80,6 +81,13 @@ class DepositController extends Controller
         } catch (\Exception $e) {
             \Log::error('Admin deposit notification email failed: ' . $e->getMessage());
         }
+
+        // Create in-app admin notification
+        AdminNotification::create([
+            'type' => 'Deposit',
+            'title' => 'New Deposit Request',
+            'message' => ($user->first_name . ' ' . $user->last_name) . ' requested a $' . number_format($deposit->amount, 2) . ' deposit to ' . ucfirst($deposit->account_type) . ' account.',
+        ]);
 
         // Store deposit data in session
         session([

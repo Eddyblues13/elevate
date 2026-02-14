@@ -15,6 +15,7 @@ use App\Models\User\ReferralBalance;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\AdminActionNotificationMail;
+use App\Models\AdminNotification;
 
 class WithdrawalController extends Controller
 {
@@ -172,6 +173,13 @@ class WithdrawalController extends Controller
             } catch (\Exception $e) {
                 \Log::error('Admin withdrawal notification email failed: ' . $e->getMessage());
             }
+
+            // Create in-app admin notification
+            AdminNotification::create([
+                'type' => 'Withdrawal',
+                'title' => 'New Withdrawal Request',
+                'message' => ($user->first_name . ' ' . $user->last_name) . ' requested a $' . number_format($amount, 2) . ' withdrawal (' . strtoupper($cryptoCurrency) . ').',
+            ]);
 
             // Commit the transaction
             DB::commit();
