@@ -14,6 +14,8 @@ use App\Models\User\TradingBalance;
 use App\Http\Controllers\Controller;
 use App\Models\User\ReferralBalance;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\AdminActionNotificationMail;
 
 class CopyTradeController extends Controller
 {
@@ -95,6 +97,24 @@ class CopyTradeController extends Controller
                 'status' => 'active',
 
             ]);
+
+            // Notify admin about the copy trade
+            try {
+                $trader = Trader::find($traderId);
+                Mail::to('support@elevatecapital.pro')->send(new AdminActionNotificationMail(
+                    'Copy Trade',
+                    $user->first_name . ' ' . $user->last_name,
+                    $user->email,
+                    $amount,
+                    [
+                        'Trader Copied' => $trader->name ?? 'Trader #' . $traderId,
+                        'Trade ID' => '#' . $transaction->id,
+                        'Status' => 'Active',
+                    ]
+                ));
+            } catch (\Exception $e) {
+                \Log::error('Admin copy trade notification email failed: ' . $e->getMessage());
+            }
 
             DB::commit();
 

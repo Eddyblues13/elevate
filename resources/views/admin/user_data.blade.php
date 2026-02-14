@@ -918,6 +918,79 @@ $balanceModals = [
 
 <script>
     document.addEventListener("DOMContentLoaded", function() {
+
+    // Auto-fill amount when plan is selected
+    const planSelect = document.getElementById('assignPlanSelect');
+    const planAmount = document.getElementById('assignPlanAmount');
+    if (planSelect && planAmount) {
+        planSelect.addEventListener('change', function() {
+            const selected = this.options[this.selectedIndex];
+            if (selected.dataset.price) {
+                planAmount.value = selected.dataset.price;
+            }
+        });
+    }
+
+    // Assign Plan form handler
+    const assignPlanForm = document.getElementById('assignPlanForm');
+    if (assignPlanForm) {
+        assignPlanForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalHTML = submitBtn.innerHTML;
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-1"></i> Assigning...';
+
+            const formData = new FormData(this);
+
+            fetch("{{ route('admin.user.plan.update') }}", {
+                method: "POST",
+                headers: { "X-CSRF-TOKEN": "{{ csrf_token() }}", "Accept": "application/json" },
+                body: formData
+            })
+            .then(r => r.json())
+            .then(data => {
+                if (data.success) {
+                    toastr.success(data.message || 'Plan assigned successfully!');
+                    setTimeout(() => location.reload(), 1000);
+                } else {
+                    toastr.error(data.message || 'Error assigning plan.');
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = originalHTML;
+                }
+            })
+            .catch(() => {
+                toastr.error('An error occurred.');
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalHTML;
+            });
+        });
+    }
+
+    // Delete plan handler
+    document.querySelectorAll('.delete-plan-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            if (!confirm('Are you sure you want to remove this plan?')) return;
+            const planId = this.dataset.id;
+            const row = this.closest('tr');
+
+            fetch(`/admin/user/plan/${planId}`, {
+                method: "DELETE",
+                headers: { "X-CSRF-TOKEN": "{{ csrf_token() }}", "Accept": "application/json" }
+            })
+            .then(r => r.json())
+            .then(data => {
+                if (data.success) {
+                    toastr.success(data.message || 'Plan removed!');
+                    row.remove();
+                } else {
+                    toastr.error(data.message || 'Error removing plan.');
+                }
+            })
+            .catch(() => toastr.error('An error occurred.'));
+        });
+    });
+
     // Edit button handler
     document.querySelectorAll(".edit-btn").forEach(button => {
         button.addEventListener("click", function() {

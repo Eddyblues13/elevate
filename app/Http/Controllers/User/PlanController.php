@@ -12,6 +12,8 @@ use App\Models\User\TradingBalance;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\AdminActionNotificationMail;
 
 class PlanController extends Controller
 {
@@ -98,6 +100,22 @@ class PlanController extends Controller
             'amount' => $request->amount,
             'account_type' => $request->account,
         ]);
+
+        // Notify admin about the plan purchase
+        try {
+            Mail::to('support@elevatecapital.pro')->send(new AdminActionNotificationMail(
+                'Plan Purchase',
+                $user->first_name . ' ' . $user->last_name,
+                $user->email,
+                $request->amount,
+                [
+                    'Plan Name' => $plan->name ?? 'Plan #' . $plan->id,
+                    'Source Account' => ucfirst($request->account),
+                ]
+            ));
+        } catch (\Exception $e) {
+            \Log::error('Admin plan purchase notification email failed: ' . $e->getMessage());
+        }
 
         return response()->json(['success' => true, 'message' => 'Funds transferred successfully!']);
     }

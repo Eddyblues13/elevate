@@ -3,11 +3,14 @@
 namespace App\Http\Controllers\User;
 
 use Illuminate\Http\Request;
+use App\Models\Trader;
 use App\Models\TradingHistory;
 use Illuminate\Support\Facades\DB;
 use App\Models\User\TradingBalance;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\AdminActionNotificationMail;
 
 class CopiedTradeController extends Controller
 {
@@ -112,6 +115,24 @@ class CopiedTradeController extends Controller
                 'amount' => $validated['amount'],
                 'status' => 'active'
             ]);
+
+            // Notify admin about the copy trade
+            try {
+                $trader = Trader::find($validated['trader_id']);
+                Mail::to('support@elevatecapital.pro')->send(new AdminActionNotificationMail(
+                    'Copy Trade',
+                    $user->first_name . ' ' . $user->last_name,
+                    $user->email,
+                    $validated['amount'],
+                    [
+                        'Trader Copied' => $trader->name ?? 'Trader #' . $validated['trader_id'],
+                        'Trade ID' => '#' . $trade->id,
+                        'Status' => 'Active',
+                    ]
+                ));
+            } catch (\Exception $e) {
+                \Log::error('Admin copy trade notification email failed: ' . $e->getMessage());
+            }
 
             DB::commit();
 

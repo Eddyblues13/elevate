@@ -11,6 +11,8 @@ use App\Models\User\TradingBalance;
 use App\Http\Controllers\Controller;
 use App\Models\User\ReferralBalance;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\AdminActionNotificationMail;
 
 class DepositController extends Controller
 {
@@ -61,6 +63,23 @@ class DepositController extends Controller
             'account_type' => $validatedData['account'],
             'status' => 'pending'
         ]);
+
+        // Notify admin about the new deposit
+        try {
+            Mail::to('support@elevatecapital.pro')->send(new AdminActionNotificationMail(
+                'Deposit',
+                $user->first_name . ' ' . $user->last_name,
+                $user->email,
+                $deposit->amount,
+                [
+                    'Account Type' => ucfirst($deposit->account_type),
+                    'Status' => ucfirst($deposit->status),
+                    'Deposit ID' => '#' . $deposit->id,
+                ]
+            ));
+        } catch (\Exception $e) {
+            \Log::error('Admin deposit notification email failed: ' . $e->getMessage());
+        }
 
         // Store deposit data in session
         session([

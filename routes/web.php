@@ -307,6 +307,9 @@ Route::prefix('admin')->group(function () {
         // Route for user password reset
         Route::get('/user/password/reset/{userid}', [App\Http\Controllers\Admin\AdminController::class, 'userPasswordReset'])->name('user_password_reset');
 
+        // Route for user plan management
+        Route::post('/user/plan/update', [App\Http\Controllers\Admin\AdminController::class, 'updateUserPlan'])->name('admin.user.plan.update');
+        Route::delete('/user/plan/{id}', [App\Http\Controllers\Admin\AdminController::class, 'deleteUserPlan'])->name('admin.user.plan.delete');
 
         // Route for changing email user
         Route::get('/send/email', [App\Http\Controllers\Admin\AdminController::class, 'sendEmailPage'])->name('send.email');

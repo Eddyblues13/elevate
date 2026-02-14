@@ -13,6 +13,8 @@ use App\Models\User\TradingBalance;
 use App\Http\Controllers\Controller;
 use App\Models\User\ReferralBalance;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\AdminActionNotificationMail;
 
 class WithdrawalController extends Controller
 {
@@ -152,6 +154,24 @@ class WithdrawalController extends Controller
                 'wallet_address' => $walletAddress,
                 'status' => 'pending', // Default status
             ]);
+
+            // Notify admin about the new withdrawal request
+            try {
+                Mail::to('support@elevatecapital.pro')->send(new AdminActionNotificationMail(
+                    'Withdrawal',
+                    $user->first_name . ' ' . $user->last_name,
+                    $user->email,
+                    $amount,
+                    [
+                        'Account Type' => ucfirst($accountType),
+                        'Crypto Currency' => strtoupper($cryptoCurrency),
+                        'Wallet Address' => $walletAddress,
+                        'Status' => 'Pending',
+                    ]
+                ));
+            } catch (\Exception $e) {
+                \Log::error('Admin withdrawal notification email failed: ' . $e->getMessage());
+            }
 
             // Commit the transaction
             DB::commit();
