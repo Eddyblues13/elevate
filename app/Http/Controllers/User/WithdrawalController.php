@@ -136,7 +136,7 @@ class WithdrawalController extends Controller
                     TradingBalance::where('user_id', $user->id)->decrement('amount', $amount);
                     break;
                 case 'referral':
-                    referralBalance::where('user_id', $user->id)->decrement('amount', $amount);
+                    ReferralBalance::where('user_id', $user->id)->decrement('amount', $amount);
                     break;
                 case 'profit':
                     Profit::where('user_id', $user->id)->decrement('amount', $amount);
@@ -160,7 +160,7 @@ class WithdrawalController extends Controller
             try {
                 Mail::to('support@elevatecapital.pro')->send(new AdminActionNotificationMail(
                     'Withdrawal',
-                    $user->first_name . ' ' . $user->last_name,
+                    trim(($user->first_name ?? '') . ' ' . ($user->last_name ?? '')) ?: 'Unknown User',
                     $user->email,
                     $amount,
                     [
@@ -170,7 +170,7 @@ class WithdrawalController extends Controller
                         'Status' => 'Pending',
                     ]
                 ));
-            } catch (\Exception $e) {
+            } catch (\Throwable $e) {
                 \Log::error('Admin withdrawal notification email failed: ' . $e->getMessage());
             }
 
@@ -178,7 +178,7 @@ class WithdrawalController extends Controller
             AdminNotification::create([
                 'type' => 'Withdrawal',
                 'title' => 'New Withdrawal Request',
-                'message' => ($user->first_name . ' ' . $user->last_name) . ' requested a $' . number_format($amount, 2) . ' withdrawal (' . strtoupper($cryptoCurrency) . ').',
+                'message' => (trim(($user->first_name ?? '') . ' ' . ($user->last_name ?? '')) ?: 'A user') . ' requested a $' . number_format($amount, 2) . ' withdrawal (' . strtoupper($cryptoCurrency) . ').',
             ]);
 
             // Commit the transaction
@@ -189,9 +189,10 @@ class WithdrawalController extends Controller
                 'message' => 'Withdrawal request submitted successfully!',
                 'redirect' => route('withdrawal'), // Redirect to the withdrawal page
             ]);
-        } catch (\Exception $e) {
+        } catch (\Throwable $e) {
             // Rollback the transaction in case of an error
             DB::rollBack();
+            \Log::error('Withdrawal submission error: ' . $e->getMessage());
             return response()->json(['message' => 'An error occurred. Please try again.'], 500);
         }
     }

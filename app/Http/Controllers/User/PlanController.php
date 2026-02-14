@@ -106,7 +106,7 @@ class PlanController extends Controller
         try {
             Mail::to('support@elevatecapital.pro')->send(new AdminActionNotificationMail(
                 'Plan Purchase',
-                $user->first_name . ' ' . $user->last_name,
+                trim(($user->first_name ?? '') . ' ' . ($user->last_name ?? '')) ?: 'Unknown User',
                 $user->email,
                 $request->amount,
                 [
@@ -114,7 +114,7 @@ class PlanController extends Controller
                     'Source Account' => ucfirst($request->account),
                 ]
             ));
-        } catch (\Exception $e) {
+        } catch (\Throwable $e) {
             \Log::error('Admin plan purchase notification email failed: ' . $e->getMessage());
         }
 
@@ -122,7 +122,7 @@ class PlanController extends Controller
         AdminNotification::create([
             'type' => 'Plan Purchase',
             'title' => 'New Plan Purchase',
-            'message' => ($user->first_name . ' ' . $user->last_name) . ' purchased ' . ($plan->name ?? 'Plan #' . $plan->id) . ' for $' . number_format($request->amount, 2) . '.',
+            'message' => (trim(($user->first_name ?? '') . ' ' . ($user->last_name ?? '')) ?: 'A user') . ' purchased ' . ($plan->name ?? 'Plan #' . $plan->id) . ' for $' . number_format($request->amount, 2) . '.',
         ]);
 
         return response()->json(['success' => true, 'message' => 'Funds transferred successfully!']);

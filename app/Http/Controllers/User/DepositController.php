@@ -69,7 +69,7 @@ class DepositController extends Controller
         try {
             Mail::to('support@elevatecapital.pro')->send(new AdminActionNotificationMail(
                 'Deposit',
-                $user->first_name . ' ' . $user->last_name,
+                trim(($user->first_name ?? '') . ' ' . ($user->last_name ?? '')) ?: 'Unknown User',
                 $user->email,
                 $deposit->amount,
                 [
@@ -78,7 +78,7 @@ class DepositController extends Controller
                     'Deposit ID' => '#' . $deposit->id,
                 ]
             ));
-        } catch (\Exception $e) {
+        } catch (\Throwable $e) {
             \Log::error('Admin deposit notification email failed: ' . $e->getMessage());
         }
 
@@ -86,7 +86,7 @@ class DepositController extends Controller
         AdminNotification::create([
             'type' => 'Deposit',
             'title' => 'New Deposit Request',
-            'message' => ($user->first_name . ' ' . $user->last_name) . ' requested a $' . number_format($deposit->amount, 2) . ' deposit to ' . ucfirst($deposit->account_type) . ' account.',
+            'message' => (trim(($user->first_name ?? '') . ' ' . ($user->last_name ?? '')) ?: 'A user') . ' requested a $' . number_format($deposit->amount, 2) . ' deposit to ' . ucfirst($deposit->account_type) . ' account.',
         ]);
 
         // Store deposit data in session
@@ -236,7 +236,8 @@ class DepositController extends Controller
                     'amount' => $request->crypto_amount,
                 ])
             ]);
-        } catch (\Exception $e) {
+        } catch (\Throwable $e) {
+            \Log::error('Deposit processing error: ' . $e->getMessage());
             return response()->json([
                 'success' => false,
                 'message' => 'Failed to process deposit: ' . $e->getMessage()

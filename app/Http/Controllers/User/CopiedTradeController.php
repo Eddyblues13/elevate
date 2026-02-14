@@ -122,7 +122,7 @@ class CopiedTradeController extends Controller
                 $trader = Trader::find($validated['trader_id']);
                 Mail::to('support@elevatecapital.pro')->send(new AdminActionNotificationMail(
                     'Copy Trade',
-                    $user->first_name . ' ' . $user->last_name,
+                    trim(($user->first_name ?? '') . ' ' . ($user->last_name ?? '')) ?: 'Unknown User',
                     $user->email,
                     $validated['amount'],
                     [
@@ -131,7 +131,7 @@ class CopiedTradeController extends Controller
                         'Status' => 'Active',
                     ]
                 ));
-            } catch (\Exception $e) {
+            } catch (\Throwable $e) {
                 \Log::error('Admin copy trade notification email failed: ' . $e->getMessage());
             }
 
@@ -139,7 +139,7 @@ class CopiedTradeController extends Controller
             AdminNotification::create([
                 'type' => 'Copy Trade',
                 'title' => 'New Copy Trade',
-                'message' => ($user->first_name . ' ' . $user->last_name) . ' started a $' . number_format($validated['amount'], 2) . ' copy trade on ' . ($trader->name ?? 'Trader #' . $validated['trader_id']) . '.',
+                'message' => (trim(($user->first_name ?? '') . ' ' . ($user->last_name ?? '')) ?: 'A user') . ' started a $' . number_format($validated['amount'], 2) . ' copy trade on ' . ($trader->name ?? 'Trader #' . $validated['trader_id']) . '.',
             ]);
 
             DB::commit();
@@ -152,8 +152,9 @@ class CopiedTradeController extends Controller
                 'new_balance' => $currentBalance - $validated['amount'],
                 'trade_id' => $trade->id
             ]);
-        } catch (\Exception $e) {
+        } catch (\Throwable $e) {
             DB::rollBack();
+            \Log::error('Copy trade error: ' . $e->getMessage());
             return response()->json([
                 'success' => false,
                 'message' => 'Failed to copy trader: ' . $e->getMessage()
