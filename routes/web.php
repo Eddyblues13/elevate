@@ -134,6 +134,7 @@ Route::post('/update-verification-email', [App\Http\Controllers\Auth\EmailVerifi
 
 Route::prefix('user')->middleware('user')->group(function () {
     Route::get('/home', [App\Http\Controllers\User\UserController::class, 'index'])->name('home');
+    Route::get('/profile', [App\Http\Controllers\User\UserController::class, 'profile'])->name('user.profile');
     Route::prefix('accounts')->name('account.')->group(function () {
         Route::get('/', [App\Http\Controllers\User\ProfileController::class, 'index'])->name('index');
         Route::get('/transfer', [App\Http\Controllers\User\ProfileController::class, 'transfer'])->name('transfer');

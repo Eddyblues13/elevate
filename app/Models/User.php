@@ -42,6 +42,7 @@ class User extends Authenticatable
         'address_verification',
         'plain',
         'signal_strength',
+        'active_plan',
         'user_status',
         'top_up_mail',
         'notification_status',

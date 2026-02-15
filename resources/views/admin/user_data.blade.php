@@ -600,6 +600,132 @@
         </div>
 
         <!-- User Information -->
+        <div class="row g-3 mb-4">
+            <!-- Plan Management -->
+            <div class="col-12">
+                <div class="info-section mb-0">
+                    <div class="info-section-header">
+                        <h6><i class="fas fa-layer-group me-2" style="color:var(--accent-color);"></i>Plan Management
+                        </h6>
+                    </div>
+                    <div style="padding:20px 22px;">
+                        <!-- Assign Plan Form -->
+                        <form id="assignPlanForm" class="mb-4">
+                            @csrf
+                            <input type="hidden" name="user_id" value="{{ $user->id }}">
+                            <div class="row g-3 align-items-end">
+                                <div class="col-md-3">
+                                    <label class="form-label"
+                                        style="color:var(--heading-color);font-weight:500;font-size:0.85rem;">Select
+                                        Plan</label>
+                                    <select class="admin-form-control" name="plan_id" id="assignPlanSelect" required>
+                                        <option value="">Choose a plan...</option>
+                                        @foreach($plans as $plan)
+                                        <option value="{{ $plan->id }}" data-price="{{ $plan->price }}">{{ $plan->name
+                                            }} — {{ config('currencies.' . ($user->currency ?? 'USD'), '$') }}{{
+                                            number_format($plan->price, 2) }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="col-md-2">
+                                    <label class="form-label"
+                                        style="color:var(--heading-color);font-weight:500;font-size:0.85rem;">Amount</label>
+                                    <input type="number" class="admin-form-control" name="amount" id="assignPlanAmount"
+                                        step="0.01" placeholder="0.00" required>
+                                </div>
+                                <div class="col-md-3">
+                                    <label class="form-label"
+                                        style="color:var(--heading-color);font-weight:500;font-size:0.85rem;">Source
+                                        Account</label>
+                                    <select class="admin-form-control" name="account_type" required>
+                                        <option value="trading">Trading Balance</option>
+                                        <option value="holding">Holding Balance</option>
+                                        <option value="staking">Staking Balance</option>
+                                        <option value="deposit">Deposit Balance</option>
+                                        <option value="profit">Profit</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-2">
+                                    <button type="submit" class="btn btn-admin-primary w-100"
+                                        style="border-radius:10px;padding:9px 16px;font-size:0.85rem;">
+                                        <i class="fas fa-plus me-1"></i> Assign Plan
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+
+                        <!-- Plan History Table -->
+                        @if(isset($planHistories) && $planHistories->count() > 0)
+                        <div style="overflow-x:auto;">
+                            <table class="table table-sm mb-0" style="color:var(--text-color);font-size:0.85rem;">
+                                <thead>
+                                    <tr style="border-bottom:2px solid var(--border-color);">
+                                        <th
+                                            style="color:var(--heading-color);font-weight:600;padding:10px 12px;font-size:0.78rem;text-transform:uppercase;letter-spacing:0.5px;">
+                                            Plan</th>
+                                        <th
+                                            style="color:var(--heading-color);font-weight:600;padding:10px 12px;font-size:0.78rem;text-transform:uppercase;letter-spacing:0.5px;">
+                                            Amount</th>
+                                        <th
+                                            style="color:var(--heading-color);font-weight:600;padding:10px 12px;font-size:0.78rem;text-transform:uppercase;letter-spacing:0.5px;">
+                                            Account</th>
+                                        <th
+                                            style="color:var(--heading-color);font-weight:600;padding:10px 12px;font-size:0.78rem;text-transform:uppercase;letter-spacing:0.5px;">
+                                            Date</th>
+                                        <th
+                                            style="color:var(--heading-color);font-weight:600;padding:10px 12px;font-size:0.78rem;text-transform:uppercase;letter-spacing:0.5px;text-align:right;">
+                                            Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach($planHistories as $history)
+                                    <tr style="border-bottom:1px solid var(--border-color);">
+                                        <td style="padding:12px;">
+                                            <div style="display:flex;align-items:center;gap:10px;">
+                                                <div
+                                                    style="width:32px;height:32px;border-radius:8px;background:rgba(99,91,255,0.1);display:flex;align-items:center;justify-content:center;">
+                                                    <i class="fas fa-layer-group"
+                                                        style="color:var(--accent-color);font-size:0.75rem;"></i>
+                                                </div>
+                                                <span style="font-weight:600;color:var(--heading-color);">{{
+                                                    $history->plan->name ?? 'Deleted Plan' }}</span>
+                                            </div>
+                                        </td>
+                                        <td style="padding:12px;font-weight:600;">{{ config('currencies.' .
+                                            ($user->currency ?? 'USD'), '$') }}{{ number_format($history->amount, 2) }}
+                                        </td>
+                                        <td style="padding:12px;"><span class="meta-pill info">{{
+                                                ucfirst($history->account_type) }}</span></td>
+                                        <td style="padding:12px;opacity:0.7;">{{ $history->created_at->format('M d, Y
+                                            h:i A') }}</td>
+                                        <td style="padding:12px;text-align:right;">
+                                            <button class="btn btn-sm delete-plan-btn" data-id="{{ $history->id }}"
+                                                style="background:rgba(239,68,68,0.1);color:#ef4444;border:none;border-radius:8px;padding:5px 12px;font-size:0.78rem;font-weight:600;">
+                                                <i class="fas fa-trash-alt me-1"></i> Remove
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                        @else
+                        <div style="text-align:center;padding:20px 0;">
+                            <div
+                                style="width:48px;height:48px;border-radius:50%;background:rgba(99,91,255,0.08);display:flex;align-items:center;justify-content:center;margin:0 auto 12px;">
+                                <i class="fas fa-layer-group"
+                                    style="color:var(--accent-color);font-size:1rem;opacity:0.5;"></i>
+                            </div>
+                            <p style="color:var(--text-color);opacity:0.5;font-size:0.88rem;margin:0;">No plans assigned
+                                yet</p>
+                        </div>
+                        @endif
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Personal Information -->
         <div class="info-section">
             <div class="info-section-header">
                 <h6><i class="fas fa-user-circle me-2" style="color:var(--accent-color);"></i>Personal Information</h6>
@@ -611,6 +737,7 @@
             'email' => ['label' => 'Email Address', 'icon' => 'fa-envelope'],
             'phone_number' => ['label' => 'Phone Number', 'icon' => 'fa-phone'],
             'currency' => ['label' => 'Currency', 'icon' => 'fa-dollar-sign'],
+            'active_plan' => ['label' => 'Active Plan', 'icon' => 'fa-layer-group'],
             'country' => ['label' => 'Country', 'icon' => 'fa-globe'],
             'city' => ['label' => 'City', 'icon' => 'fa-city'],
             ];

@@ -8,11 +8,13 @@
     <div class="row g-4">
         <div class="col-md-4">
             <div class="text-center mb-5">
-                <img src="{{ Auth::user()->profile_photo ? asset(Auth::user()->profile_photo) : asset('assets/img/human.png') }}"
-                    class="account-profile-avatar mx-auto mb-3"></img>
+                <img src="{{ Auth::user()->profile_photo_url ? asset(Auth::user()->profile_photo_url) : asset('assets/img/human.png') }}"
+                    class="account-profile-avatar mx-auto mb-3">
                 <h4 class="text-header mb-2 fw-bold">{{Auth::user()->first_name}}
                     {{Auth::user()->last_name}}</h4>
-                <p class="text-muted mb-3">Bronze</p>
+                @if(Auth::user()->active_plan)
+                <p class="text-muted mb-3">{{ Auth::user()->active_plan }}</p>
+                @endif
 
                 <a href="#" class="text-primary text-decoration-none"
                     onclick="event.preventDefault(); document.getElementById('logout-form').submit();">LOGOUT</a>

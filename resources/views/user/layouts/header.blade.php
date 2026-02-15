@@ -98,8 +98,8 @@ window.smartsupp||(function(d) {
         });
     </script>
     <!-- Smartsupp Live Chat script -->
-<script type="text/javascript">
-var _smartsupp = _smartsupp || {};
+    <script type="text/javascript">
+        var _smartsupp = _smartsupp || {};
 _smartsupp.key = 'ffbf79a1c0124436e969a3cd52803b45b03d4618';
 window.smartsupp||(function(d) {
   var s,c,o=smartsupp=function(){ o._.push(arguments)};o._=[];
@@ -107,8 +107,8 @@ window.smartsupp||(function(d) {
   c.type='text/javascript';c.charset='utf-8';c.async=true;
   c.src='https://www.smartsuppchat.com/loader.js?';s.parentNode.insertBefore(c,s);
 })(document);
-</script>
-<noscript>Powered by <a href="https://www.smartsupp.com" target="_blank">Smartsupp</a></noscript>
+    </script>
+    <noscript>Powered by <a href="https://www.smartsupp.com" target="_blank">Smartsupp</a></noscript>
 
 </head>
 
@@ -123,11 +123,11 @@ window.smartsupp||(function(d) {
             <div class="mt-1"><a href="#" class="text-decoration-none text-white fw-bold fs-5">ElevateCapital</a></div>
         </div>
 
-        <div class="text-white d-flex align-items-center gap-2">
+        <a href="{{ route('user.profile') }}" class="text-white d-flex align-items-center gap-2 text-decoration-none">
             <img src="{{ Auth::user()->profile_photo_url ? asset(Auth::user()->profile_photo_url) : asset('assets/img/human.png') }}"
-                class="rounded-circle" width="32" height="32" alt="Profile">
+                class="rounded-circle" width="32" height="32" alt="Profile" style="object-fit:cover;">
             <span class="d-none d-md-block">{{Auth::user()->first_name}}</span>
-        </div>
+        </a>
     </div>
 
     <!-- Sidebar -->
@@ -140,13 +140,16 @@ window.smartsupp||(function(d) {
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"
                         aria-label="Close"></button>
                 </div>
-                <div class="profile-image py-2"><img
-                        src="{{ Auth::user()->profile_photo_url ? asset(Auth::user()->profile_photo_url) : asset('assets/img/human.png') }}"
-                        alt="" class="border border-2 border-white"></div>
-                <div class="mb-3">
-                    <div class="fw-bold text-white fs-5">{{Auth::user()->first_name}} {{Auth::user()->last_name}}</div>
-                    <div class="small text-white opacity-75">{{Auth::user()->email}}</div>
-                </div>
+                <a href="{{ route('user.profile') }}" class="text-decoration-none">
+                    <div class="profile-image py-2"><img
+                            src="{{ Auth::user()->profile_photo_url ? asset(Auth::user()->profile_photo_url) : asset('assets/img/human.png') }}"
+                            alt="" class="border border-2 border-white"></div>
+                    <div class="mb-3">
+                        <div class="fw-bold text-white fs-5">{{Auth::user()->first_name}} {{Auth::user()->last_name}}
+                        </div>
+                        <div class="small text-white opacity-75">{{Auth::user()->email}}</div>
+                    </div>
+                </a>
             </div>
         </div>
 

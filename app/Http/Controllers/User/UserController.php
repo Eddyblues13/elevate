@@ -168,6 +168,11 @@ class UserController extends Controller
         return view('user.home', $data);
     }
 
+    public function profile()
+    {
+        return view('user.profile');
+    }
+
 
     public function holding()
     {

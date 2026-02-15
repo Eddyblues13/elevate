@@ -24,6 +24,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\TransactionNotificationMail;
 use App\Mail\AdminDetailUpdatedMail;
+use App\Models\Plan;
+use App\Models\User\PlanHistory;
 use Illuminate\Support\Facades\Validator;
 
 class AdminController extends Controller
@@ -419,11 +421,57 @@ class AdminController extends Controller
 
 
 
+        // Fetch all available plans
+        $data['plans'] = Plan::all();
+
+        // Fetch user's plan history with plan details
+        $data['planHistories'] = PlanHistory::where('user_id', $id)
+            ->with('plan')
+            ->orderBy('created_at', 'desc')
+            ->get();
+
         return view('admin.user_data', $data);
     }
 
+    /**
+     * Assign or update a plan for a user.
+     */
+    public function updateUserPlan(Request $request)
+    {
+        $request->validate([
+            'user_id' => 'required|exists:users,id',
+            'plan_id' => 'required|exists:plans,id',
+            'amount' => 'required|numeric|min:0',
+            'account_type' => 'required|string',
+        ]);
 
+        $planHistory = PlanHistory::create([
+            'user_id' => $request->user_id,
+            'plan_id' => $request->plan_id,
+            'amount' => $request->amount,
+            'account_type' => $request->account_type,
+        ]);
 
+        return response()->json([
+            'success' => true,
+            'message' => 'Plan assigned successfully!',
+            'plan_history' => $planHistory,
+        ]);
+    }
+
+    /**
+     * Remove a plan assignment from a user.
+     */
+    public function deleteUserPlan($id)
+    {
+        $planHistory = PlanHistory::findOrFail($id);
+        $planHistory->delete();
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Plan removed successfully!',
+        ]);
+    }
 
 
 
