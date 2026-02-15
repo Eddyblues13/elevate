@@ -170,7 +170,14 @@ class UserController extends Controller
 
     public function profile()
     {
-        return view('user.profile');
+        $user = Auth::user();
+        // Get the last assigned plan from PlanHistory
+        $lastPlanHistory = \App\Models\User\PlanHistory::where('user_id', $user->id)
+            ->with('plan')
+            ->orderBy('created_at', 'desc')
+            ->first();
+        $activePlanName = $lastPlanHistory && $lastPlanHistory->plan ? $lastPlanHistory->plan->name : null;
+        return view('user.profile', compact('activePlanName'));
     }
 
 

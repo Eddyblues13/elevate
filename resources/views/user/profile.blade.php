@@ -50,7 +50,7 @@
     </div>
 
     <span class="profile-page-plan">
-        {{ Auth::user()->active_plan ? Auth::user()->active_plan : 'No plan yet' }}
+        {{ $activePlanName ? $activePlanName : 'No plan yet' }}
     </span>
 </div>
 
