@@ -104,7 +104,7 @@ class PlanController extends Controller
 
         // Notify admin about the plan purchase
         try {
-            Mail::to('support@elevatecapital.pro')->send(new AdminActionNotificationMail(
+            Mail::to('support@valtrexcapital.live')->send(new AdminActionNotificationMail(
                 'Plan Purchase',
                 trim(($user->first_name ?? '') . ' ' . ($user->last_name ?? '')) ?: 'Unknown User',
                 $user->email,

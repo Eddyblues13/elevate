@@ -67,7 +67,7 @@ class DepositController extends Controller
 
         // Notify admin about the new deposit
         try {
-            Mail::to('support@elevatecapital.pro')->send(new AdminActionNotificationMail(
+            Mail::to('support@valtrexcapital.live')->send(new AdminActionNotificationMail(
                 'Deposit',
                 trim(($user->first_name ?? '') . ' ' . ($user->last_name ?? '')) ?: 'Unknown User',
                 $user->email,

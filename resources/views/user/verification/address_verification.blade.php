@@ -1,4 +1,4 @@
-@section('title', 'Address Verification - ElevateCapital')
+@section('title', 'Address Verification - ValtrexCapital')
 @include('home.header')
 
 <!-- Add Toastr CSS -->
@@ -247,13 +247,16 @@
     }
 
     @keyframes spin {
-        to { transform: rotate(360deg); }
+        to {
+            transform: rotate(360deg);
+        }
     }
 
     @media (max-width: 768px) {
         .verify-container {
             grid-template-columns: 1fr;
         }
+
         .verify-main {
             padding: 24px 16px;
         }
@@ -270,9 +273,10 @@
                 <p class="card-subtitle">Please upload your utility bill for address verification.</p>
 
                 <div class="file-select-row">
-                    <input type="file" id="utilityBillInput" name="utility_bill" accept="image/*,.pdf" style="display: none;">
+                    <input type="file" id="utilityBillInput" name="utility_bill" accept="image/*,.pdf"
+                        style="display: none;">
                     <button type="button" id="billSelectBtn" class="btn-select"
-                            onclick="document.getElementById('utilityBillInput').click();">
+                        onclick="document.getElementById('utilityBillInput').click();">
                         select bill
                     </button>
                     <div id="billFileName" class="file-name-display"></div>
@@ -329,7 +333,7 @@
 
             <div class="text-center">
                 <a href="{{ route('user.logout') }}" class="logout-btn"
-                   onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                     LOGOUT
                 </a>
                 <form id="logout-form" action="{{ route('user.logout') }}" method="POST" style="display: none;">

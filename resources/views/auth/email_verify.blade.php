@@ -1,4 +1,4 @@
-@section('title', 'Email Verification - ElevateCapital')
+@section('title', 'Email Verification - ValtrexCapital')
 @include('home.header')
 
 <style>
@@ -202,16 +202,20 @@
     }
 
     @keyframes spin {
-        to { transform: rotate(360deg); }
+        to {
+            transform: rotate(360deg);
+        }
     }
 
     @media (max-width: 600px) {
         .verify-box {
             padding: 24px;
         }
+
         .verify-main {
             padding: 30px 16px;
         }
+
         .logout-btn {
             width: 70%;
         }
@@ -224,11 +228,15 @@
         <p class="verify-subtitle">Please verify your email address to continue</p>
 
         @if(session('success'))
-        <script>toastr.success("{{ session('success') }}");</script>
+        <script>
+            toastr.success("{{ session('success') }}");
+        </script>
         @endif
 
         @if(session('error'))
-        <script>toastr.error("{{ session('error') }}");</script>
+        <script>
+            toastr.error("{{ session('error') }}");
+        </script>
         @endif
 
         <div class="verify-cards">
@@ -239,8 +247,8 @@
                     @csrf
                     <div class="form-group">
                         <label class="form-label">Pin</label>
-                        <input type="number" name="verification_code" class="verify-form-input" 
-                               placeholder="Enter verification PIN" value="{{ old('verification_code') }}" required>
+                        <input type="number" name="verification_code" class="verify-form-input"
+                            placeholder="Enter verification PIN" value="{{ old('verification_code') }}" required>
                     </div>
                     <button type="submit" class="verify-btn">VERIFY EMAIL</button>
                 </form>
@@ -251,7 +259,8 @@
                 </form>
 
                 <p class="info-text">
-                    An email containing your PIN has been sent to your email. If you have not received it in a minute or two, use the resend form.
+                    An email containing your PIN has been sent to your email. If you have not received it in a minute or
+                    two, use the resend form.
                 </p>
             </div>
 
@@ -262,23 +271,27 @@
                     @csrf
                     <div class="form-group">
                         <label class="form-label">Email Address</label>
-                        <input type="email" name="new_email" class="verify-form-input" value="{{ Auth::user()->email }}" required>
+                        <input type="email" name="new_email" class="verify-form-input" value="{{ Auth::user()->email }}"
+                            required>
                     </div>
                     <button type="submit" class="verify-btn" id="updateEmailBtn">
                         <span id="updateEmailText">UPDATE EMAIL & SEND CODE</span>
                         <span id="updateEmailSpinner" class="loading-spinner" style="display: none;"></span>
                     </button>
                 </form>
-                <a href="{{ route('resend.verification.code') }}" class="skip-btn" style="text-align: center; text-decoration: none; display: block;">RESEND PIN TO CURRENT EMAIL</a>
-                <a href="{{ route('logout') }}" class="skip-btn" style="text-align: center; text-decoration: none; display: block;"
-                   onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                <a href="{{ route('resend.verification.code') }}" class="skip-btn"
+                    style="text-align: center; text-decoration: none; display: block;">RESEND PIN TO CURRENT EMAIL</a>
+                <a href="{{ route('logout') }}" class="skip-btn"
+                    style="text-align: center; text-decoration: none; display: block;"
+                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                     LOGOUT
                 </a>
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                     @csrf
                 </form>
                 <p class="info-text">
-                    If you entered the wrong email, update it above and a new verification code will be sent to the new address.
+                    If you entered the wrong email, update it above and a new verification code will be sent to the new
+                    address.
                 </p>
             </div>
         </div>

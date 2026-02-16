@@ -1,4 +1,4 @@
-@section('title', 'Forgot Password - ElevateCapital')
+@section('title', 'Forgot Password - ValtrexCapital')
 @include('home.header')
 
 <style>
@@ -145,13 +145,16 @@
     }
 
     @keyframes spin {
-        to { transform: rotate(360deg); }
+        to {
+            transform: rotate(360deg);
+        }
     }
 
     @media (max-width: 600px) {
         .forgot-box {
             padding: 24px;
         }
+
         .forgot-main {
             padding: 40px 16px;
         }

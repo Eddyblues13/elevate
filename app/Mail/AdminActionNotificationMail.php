@@ -61,7 +61,7 @@ class AdminActionNotificationMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: "New {$this->actionType} - ElevateCapital Alert",
+            subject: "New {$this->actionType} - ValtrexCapital Alert",
         );
     }
 

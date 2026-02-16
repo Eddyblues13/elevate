@@ -1,4 +1,4 @@
-@section('title', 'Identity Verification - ElevateCapital')
+@section('title', 'Identity Verification - ValtrexCapital')
 @include('home.header')
 
 <!-- Add Toastr CSS -->
@@ -241,13 +241,16 @@
     }
 
     @keyframes spin {
-        to { transform: rotate(360deg); }
+        to {
+            transform: rotate(360deg);
+        }
     }
 
     @media (max-width: 768px) {
         .verify-container {
             grid-template-columns: 1fr;
         }
+
         .verify-main {
             padding: 24px 16px;
         }
@@ -314,7 +317,7 @@
 
             <div class="text-center">
                 <a href="{{ route('user.logout') }}" class="logout-btn"
-                   onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                     LOGOUT
                 </a>
                 <form id="logout-form" action="{{ route('user.logout') }}" method="POST" style="display: none;">

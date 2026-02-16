@@ -7,7 +7,7 @@ $emailsDir = "c:\Users\user\elevate\resources\views\emails"
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Transaction Notification - ElevateCapital</title>
+<title>Transaction Notification - ValtrexCapital</title>
 <style>
 body { margin: 0; padding: 0; background-color: #f4f6f9; font-family: 'Segoe UI', Arial, sans-serif; -webkit-text-size-adjust: 100%; }
 .wrapper { padding: 40px 20px; }
@@ -36,7 +36,7 @@ body { margin: 0; padding: 0; background-color: #f4f6f9; font-family: 'Segoe UI'
 <div class="wrapper">
   <div class="card">
     <div class="header">
-      <h1>ElevateCapital</h1>
+      <h1>ValtrexCapital</h1>
       <p>Transaction Notification</p>
     </div>
     <div class="body-content">
@@ -61,10 +61,10 @@ body { margin: 0; padding: 0; background-color: #f4f6f9; font-family: 'Segoe UI'
         </tr>
       </table>
       <p>If you did not authorize this transaction, please contact our support team immediately.</p>
-      <p style="margin-top: 32px; margin-bottom: 0;">Kind Regards,<br><strong style="color: #1e1b4b;">ElevateCapital</strong></p>
+      <p style="margin-top: 32px; margin-bottom: 0;">Kind Regards,<br><strong style="color: #1e1b4b;">ValtrexCapital</strong></p>
     </div>
     <div class="footer">
-      &copy; {{ date('Y') }} ElevateCapital. All rights reserved.
+      &copy; {{ date('Y') }} ValtrexCapital. All rights reserved.
     </div>
   </div>
 </div>
@@ -80,7 +80,7 @@ Write-Output "7/11 transaction_notification.blade.php written"
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Debit Alert - ElevateCapital</title>
+<title>Debit Alert - ValtrexCapital</title>
 <style>
 body { margin: 0; padding: 0; background-color: #f4f6f9; font-family: 'Segoe UI', Arial, sans-serif; -webkit-text-size-adjust: 100%; }
 .wrapper { padding: 40px 20px; }
@@ -112,7 +112,7 @@ body { margin: 0; padding: 0; background-color: #f4f6f9; font-family: 'Segoe UI'
 <div class="wrapper">
   <div class="card">
     <div class="header">
-      <h1>ElevateCapital</h1>
+      <h1>ValtrexCapital</h1>
       <p>Debit Alert</p>
     </div>
     <div class="body-content">
@@ -149,10 +149,10 @@ body { margin: 0; padding: 0; background-color: #f4f6f9; font-family: 'Segoe UI'
         <span class="val">{{`$user['currency']}} {{`$user['balance']}}</span>
       </div>
       <p style="margin-top: 24px; font-size: 13px; color: #6b7280;">If you did not authorize this transaction, please contact our support team immediately.</p>
-      <p style="margin-top: 32px; margin-bottom: 0;">Kind Regards,<br><strong style="color: #1e1b4b;">ElevateCapital</strong></p>
+      <p style="margin-top: 32px; margin-bottom: 0;">Kind Regards,<br><strong style="color: #1e1b4b;">ValtrexCapital</strong></p>
     </div>
     <div class="footer">
-      &copy; {{ date('Y') }} ElevateCapital. All rights reserved.
+      &copy; {{ date('Y') }} ValtrexCapital. All rights reserved.
     </div>
   </div>
 </div>
@@ -168,7 +168,7 @@ Write-Output "8/11 debit_alert.blade.php written"
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Credit Alert - ElevateCapital</title>
+<title>Credit Alert - ValtrexCapital</title>
 <style>
 body { margin: 0; padding: 0; background-color: #f4f6f9; font-family: 'Segoe UI', Arial, sans-serif; -webkit-text-size-adjust: 100%; }
 .wrapper { padding: 40px 20px; }
@@ -200,7 +200,7 @@ body { margin: 0; padding: 0; background-color: #f4f6f9; font-family: 'Segoe UI'
 <div class="wrapper">
   <div class="card">
     <div class="header">
-      <h1>ElevateCapital</h1>
+      <h1>ValtrexCapital</h1>
       <p>Credit Alert</p>
     </div>
     <div class="body-content">
@@ -237,10 +237,10 @@ body { margin: 0; padding: 0; background-color: #f4f6f9; font-family: 'Segoe UI'
         <span class="val">{{`$user['currency']}} {{`$user['balance']}}</span>
       </div>
       <p style="margin-top: 24px; font-size: 13px; color: #6b7280;">If you have any questions about this transaction, please contact our support team.</p>
-      <p style="margin-top: 32px; margin-bottom: 0;">Kind Regards,<br><strong style="color: #1e1b4b;">ElevateCapital</strong></p>
+      <p style="margin-top: 32px; margin-bottom: 0;">Kind Regards,<br><strong style="color: #1e1b4b;">ValtrexCapital</strong></p>
     </div>
     <div class="footer">
-      &copy; {{ date('Y') }} ElevateCapital. All rights reserved.
+      &copy; {{ date('Y') }} ValtrexCapital. All rights reserved.
     </div>
   </div>
 </div>

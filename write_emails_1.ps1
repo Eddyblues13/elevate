@@ -7,7 +7,7 @@ $emailsDir = "c:\Users\user\elevate\resources\views\emails"
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Welcome - ElevateCapital</title>
+<title>Welcome - ValtrexCapital</title>
 <style>
 body { margin: 0; padding: 0; background-color: #f4f6f9; font-family: 'Segoe UI', Arial, sans-serif; -webkit-text-size-adjust: 100%; }
 .wrapper { padding: 40px 20px; }
@@ -29,15 +29,15 @@ body { margin: 0; padding: 0; background-color: #f4f6f9; font-family: 'Segoe UI'
 <div class="wrapper">
   <div class="card">
     <div class="header">
-      <h1>ElevateCapital</h1>
+      <h1>ValtrexCapital</h1>
       <p>Welcome Aboard</p>
     </div>
     <div class="body-content">
       {!! `$wMessage !!}
-      <p style="margin-top: 32px; margin-bottom: 0;">Kind Regards,<br><strong style="color: #1e1b4b;">ElevateCapital</strong></p>
+      <p style="margin-top: 32px; margin-bottom: 0;">Kind Regards,<br><strong style="color: #1e1b4b;">ValtrexCapital</strong></p>
     </div>
     <div class="footer">
-      &copy; {{ date('Y') }} ElevateCapital. All rights reserved.
+      &copy; {{ date('Y') }} ValtrexCapital. All rights reserved.
     </div>
   </div>
 </div>
@@ -53,7 +53,7 @@ Write-Output "1/11 welcome.blade.php written"
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Email Verification - ElevateCapital</title>
+<title>Email Verification - ValtrexCapital</title>
 <style>
 body { margin: 0; padding: 0; background-color: #f4f6f9; font-family: 'Segoe UI', Arial, sans-serif; -webkit-text-size-adjust: 100%; }
 .wrapper { padding: 40px 20px; }
@@ -78,12 +78,12 @@ body { margin: 0; padding: 0; background-color: #f4f6f9; font-family: 'Segoe UI'
 <div class="wrapper">
   <div class="card">
     <div class="header">
-      <h1>ElevateCapital</h1>
+      <h1>ValtrexCapital</h1>
       <p>Email Verification</p>
     </div>
     <div class="body-content">
       <h2>Confirm Your Registration</h2>
-      <p>Thank you for registering with ElevateCapital. Please use the activation code below to verify your email address and complete your registration.</p>
+      <p>Thank you for registering with ValtrexCapital. Please use the activation code below to verify your email address and complete your registration.</p>
       <div class="code-box">
         <span>{{ `$validToken }}</span>
       </div>
@@ -91,13 +91,13 @@ body { margin: 0; padding: 0; background-color: #f4f6f9; font-family: 'Segoe UI'
       <div class="security-tip">
         <strong>Security Tips:</strong><br>
         &bull; Never share your activation code with anyone.<br>
-        &bull; ElevateCapital will never ask for your password via email.<br>
+        &bull; ValtrexCapital will never ask for your password via email.<br>
         &bull; If you did not create this account, please ignore this email.
       </div>
-      <p style="margin-top: 32px; margin-bottom: 0;">Kind Regards,<br><strong style="color: #1e1b4b;">ElevateCapital</strong></p>
+      <p style="margin-top: 32px; margin-bottom: 0;">Kind Regards,<br><strong style="color: #1e1b4b;">ValtrexCapital</strong></p>
     </div>
     <div class="footer">
-      &copy; {{ date('Y') }} ElevateCapital. All rights reserved.
+      &copy; {{ date('Y') }} ValtrexCapital. All rights reserved.
     </div>
   </div>
 </div>
@@ -113,7 +113,7 @@ Write-Output "2/11 verify.blade.php written"
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Verification - ElevateCapital</title>
+<title>Verification - ValtrexCapital</title>
 <style>
 body { margin: 0; padding: 0; background-color: #f4f6f9; font-family: 'Segoe UI', Arial, sans-serif; -webkit-text-size-adjust: 100%; }
 .wrapper { padding: 40px 20px; }
@@ -135,15 +135,15 @@ body { margin: 0; padding: 0; background-color: #f4f6f9; font-family: 'Segoe UI'
 <div class="wrapper">
   <div class="card">
     <div class="header">
-      <h1>ElevateCapital</h1>
+      <h1>ValtrexCapital</h1>
       <p>Verification</p>
     </div>
     <div class="body-content">
       {!! `$vmessage !!}
-      <p style="margin-top: 32px; margin-bottom: 0;">Kind Regards,<br><strong style="color: #1e1b4b;">ElevateCapital</strong></p>
+      <p style="margin-top: 32px; margin-bottom: 0;">Kind Regards,<br><strong style="color: #1e1b4b;">ValtrexCapital</strong></p>
     </div>
     <div class="footer">
-      &copy; {{ date('Y') }} ElevateCapital. All rights reserved.
+      &copy; {{ date('Y') }} ValtrexCapital. All rights reserved.
     </div>
   </div>
 </div>
@@ -159,7 +159,7 @@ Write-Output "3/11 verification.blade.php written"
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Notification - ElevateCapital</title>
+<title>Notification - ValtrexCapital</title>
 <style>
 body { margin: 0; padding: 0; background-color: #f4f6f9; font-family: 'Segoe UI', Arial, sans-serif; -webkit-text-size-adjust: 100%; }
 .wrapper { padding: 40px 20px; }
@@ -181,16 +181,16 @@ body { margin: 0; padding: 0; background-color: #f4f6f9; font-family: 'Segoe UI'
 <div class="wrapper">
   <div class="card">
     <div class="header">
-      <h1>ElevateCapital</h1>
+      <h1>ValtrexCapital</h1>
       <p>Notification</p>
     </div>
     <div class="body-content">
       <p style="margin-top: 0;"><strong style="color: #1e1b4b;">Dear User,</strong></p>
       <div>{!! nl2br(e(`$messageBody)) !!}</div>
-      <p style="margin-top: 32px; margin-bottom: 0;">Best Regards,<br><strong style="color: #1e1b4b;">ElevateCapital</strong></p>
+      <p style="margin-top: 32px; margin-bottom: 0;">Best Regards,<br><strong style="color: #1e1b4b;">ValtrexCapital</strong></p>
     </div>
     <div class="footer">
-      &copy; {{ date('Y') }} ElevateCapital. All rights reserved.
+      &copy; {{ date('Y') }} ValtrexCapital. All rights reserved.
     </div>
   </div>
 </div>
@@ -206,7 +206,7 @@ Write-Output "4/11 user_mail.blade.php written"
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>{{ `$subject ?? 'Notification' }} - ElevateCapital</title>
+<title>{{ `$subject ?? 'Notification' }} - ValtrexCapital</title>
 <style>
 body { margin: 0; padding: 0; background-color: #f4f6f9; font-family: 'Segoe UI', Arial, sans-serif; -webkit-text-size-adjust: 100%; }
 .wrapper { padding: 40px 20px; }
@@ -228,16 +228,16 @@ body { margin: 0; padding: 0; background-color: #f4f6f9; font-family: 'Segoe UI'
 <div class="wrapper">
   <div class="card">
     <div class="header">
-      <h1>ElevateCapital</h1>
+      <h1>ValtrexCapital</h1>
       <p>{{ `$subject ?? 'Notification' }}</p>
     </div>
     <div class="body-content">
       <p style="margin-top: 0;"><strong style="color: #1e1b4b;">{{ `$subject }}</strong></p>
       <div>{!! nl2br(e(`$messageBody)) !!}</div>
-      <p style="margin-top: 32px; margin-bottom: 0;">Best Regards,<br><strong style="color: #1e1b4b;">ElevateCapital</strong></p>
+      <p style="margin-top: 32px; margin-bottom: 0;">Best Regards,<br><strong style="color: #1e1b4b;">ValtrexCapital</strong></p>
     </div>
     <div class="footer">
-      &copy; {{ date('Y') }} ElevateCapital. All rights reserved.
+      &copy; {{ date('Y') }} ValtrexCapital. All rights reserved.
     </div>
   </div>
 </div>
@@ -253,7 +253,7 @@ Write-Output "5/11 user_email.blade.php written"
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>{{ `$subject ?? 'Notification' }} - ElevateCapital</title>
+<title>{{ `$subject ?? 'Notification' }} - ValtrexCapital</title>
 <style>
 body { margin: 0; padding: 0; background-color: #f4f6f9; font-family: 'Segoe UI', Arial, sans-serif; -webkit-text-size-adjust: 100%; }
 .wrapper { padding: 40px 20px; }
@@ -275,16 +275,16 @@ body { margin: 0; padding: 0; background-color: #f4f6f9; font-family: 'Segoe UI'
 <div class="wrapper">
   <div class="card">
     <div class="header">
-      <h1>ElevateCapital</h1>
+      <h1>ValtrexCapital</h1>
       <p>{{ `$subject ?? 'Notification' }}</p>
     </div>
     <div class="body-content">
       <h2>{{ `$subject }}</h2>
       {!! `$data !!}
-      <p style="margin-top: 32px; margin-bottom: 0;">Kind Regards,<br><strong style="color: #1e1b4b;">ElevateCapital</strong></p>
+      <p style="margin-top: 32px; margin-bottom: 0;">Kind Regards,<br><strong style="color: #1e1b4b;">ValtrexCapital</strong></p>
     </div>
     <div class="footer">
-      &copy; {{ date('Y') }} ElevateCapital. All rights reserved.
+      &copy; {{ date('Y') }} ValtrexCapital. All rights reserved.
     </div>
   </div>
 </div>

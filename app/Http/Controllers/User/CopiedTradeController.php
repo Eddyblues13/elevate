@@ -120,7 +120,7 @@ class CopiedTradeController extends Controller
             // Notify admin about the copy trade
             try {
                 $trader = Trader::find($validated['trader_id']);
-                Mail::to('support@elevatecapital.pro')->send(new AdminActionNotificationMail(
+                Mail::to('support@valtrexcapital.live')->send(new AdminActionNotificationMail(
                     'Copy Trade',
                     trim(($user->first_name ?? '') . ' ' . ($user->last_name ?? '')) ?: 'Unknown User',
                     $user->email,

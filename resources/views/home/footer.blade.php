@@ -1,68 +1,79 @@
-  <!-- ===================== FOOTER ===================== -->
-  <footer class="bg-white dark:bg-[#000000] pt-20 pb-12 border-t border-gray-100 dark:border-gray-800">
-    <div class="max-w-7xl mx-auto px-6">
-      <div class="flex flex-col lg:flex-row justify-between gap-12 lg:gap-24">
-        
-        <!-- Brand / Contact / Copyright -->
-        <div class="flex flex-col gap-8 max-w-xs">
-          <a href="{{ route('home') }}" class="inline-block">
-            <img src="{{ asset('assets/img/logo.png') }}" alt="ElevateCapital" class="h-12 w-auto">
-          </a>
-          
-          <div class="flex items-center gap-3 text-gray-600 dark:text-gray-400 font-medium">
-             <div class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-500">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
-             </div>
-             <a href="mailto:info@elevatecapital.pro" class="hover:text-[#00A3FF] transition-colors">info@elevatecapital.pro</a>
-          </div>
+<!-- ===================== FOOTER ===================== -->
+<footer class="bg-white dark:bg-[#000000] pt-20 pb-12 border-t border-gray-100 dark:border-gray-800">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="flex flex-col lg:flex-row justify-between gap-12 lg:gap-24">
 
-          <div class="text-sm text-gray-400 dark:text-gray-500 font-medium">
-            &copy; {{ date('Y') }} ElevateCapital. All Rights Reserved.
+      <!-- Brand / Contact / Copyright -->
+      <div class="flex flex-col gap-8 max-w-xs">
+        <a href="{{ route('home') }}" class="inline-block">
+          <img src="{{ asset('assets/img/logo.png') }}" alt="ValtrexCapital" class="h-12 w-auto">
+        </a>
+
+        <div class="flex items-center gap-3 text-gray-600 dark:text-gray-400 font-medium">
+          <div class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-500">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
+              </path>
+            </svg>
           </div>
+          <a href="mailto:info@valtrexcapital.live"
+            class="hover:text-[#00A3FF] transition-colors">info@valtrexcapital.live</a>
         </div>
 
-        <!-- Links Grid -->
-        <div class="flex-1 grid grid-cols-2 md:grid-cols-3 gap-8 lg:gap-12">
-          
-          <!-- Explore -->
-          <div>
-            <h4 class="font-bold text-black dark:text-white text-lg mb-6">Explore</h4>
-            <ul class="space-y-4 text-gray-500 dark:text-gray-400 font-medium">
-              <li><a href="{{ url('faqs') }}" class="hover:text-[#00A3FF] transition-colors">FAQs</a></li>
-              <li><a href="{{ url('about') }}" class="hover:text-[#00A3FF] transition-colors">About</a></li>
-              <li><a href="{{ url('contact') }}" class="hover:text-[#00A3FF] transition-colors">Contact</a></li>
-            </ul>
-          </div>
-
-          <!-- Services -->
-          <div>
-            <h4 class="font-bold text-black dark:text-white text-lg mb-6">Services</h4>
-            <ul class="space-y-4 text-gray-500 dark:text-gray-400 font-medium">
-              <li><a href="{{ url('copy-trade') }}" class="hover:text-[#00A3FF] transition-colors">Copy Trading</a></li>
-              <li><a href="{{ url('forex-trading') }}" class="hover:text-[#00A3FF] transition-colors">Forex Trading</a></li>
-              <li><a href="{{ url('crypto-trading') }}" class="hover:text-[#00A3FF] transition-colors">Crypto Trading</a></li>
-              <li><a href="{{ url('stocks-trading') }}" class="hover:text-[#00A3FF] transition-colors">Stocks Trading</a></li>
-            </ul>
-          </div>
-
-          <!-- Resource -->
-          <div>
-            <h4 class="font-bold text-black dark:text-white text-lg mb-6">Resource</h4>
-            <ul class="space-y-4 text-gray-500 dark:text-gray-400 font-medium">
-              <li><a href="{{ url('cookie-policy') }}" class="hover:text-[#00A3FF] transition-colors">Cookie Policy</a></li>
-              <li><a href="{{ url('privacy-policy') }}" class="hover:text-[#00A3FF] transition-colors">Privacy Policy</a></li>
-              <li><a href="{{ url('terms-of-service') }}" class="hover:text-[#00A3FF] transition-colors">Terms Of Service</a></li>
-            </ul>
-          </div>
-
+        <div class="text-sm text-gray-400 dark:text-gray-500 font-medium">
+          &copy; {{ date('Y') }} ValtrexCapital. All Rights Reserved.
         </div>
       </div>
-    </div>
-  </footer>
 
-  <!-- ===================== JS (Sidebar, Dark Mode, FAQ) ===================== -->
-  <script>
-    // Sidebar
+      <!-- Links Grid -->
+      <div class="flex-1 grid grid-cols-2 md:grid-cols-3 gap-8 lg:gap-12">
+
+        <!-- Explore -->
+        <div>
+          <h4 class="font-bold text-black dark:text-white text-lg mb-6">Explore</h4>
+          <ul class="space-y-4 text-gray-500 dark:text-gray-400 font-medium">
+            <li><a href="{{ url('faqs') }}" class="hover:text-[#00A3FF] transition-colors">FAQs</a></li>
+            <li><a href="{{ url('about') }}" class="hover:text-[#00A3FF] transition-colors">About</a></li>
+            <li><a href="{{ url('contact') }}" class="hover:text-[#00A3FF] transition-colors">Contact</a></li>
+          </ul>
+        </div>
+
+        <!-- Services -->
+        <div>
+          <h4 class="font-bold text-black dark:text-white text-lg mb-6">Services</h4>
+          <ul class="space-y-4 text-gray-500 dark:text-gray-400 font-medium">
+            <li><a href="{{ url('copy-trade') }}" class="hover:text-[#00A3FF] transition-colors">Copy Trading</a></li>
+            <li><a href="{{ url('forex-trading') }}" class="hover:text-[#00A3FF] transition-colors">Forex Trading</a>
+            </li>
+            <li><a href="{{ url('crypto-trading') }}" class="hover:text-[#00A3FF] transition-colors">Crypto Trading</a>
+            </li>
+            <li><a href="{{ url('stocks-trading') }}" class="hover:text-[#00A3FF] transition-colors">Stocks Trading</a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Resource -->
+        <div>
+          <h4 class="font-bold text-black dark:text-white text-lg mb-6">Resource</h4>
+          <ul class="space-y-4 text-gray-500 dark:text-gray-400 font-medium">
+            <li><a href="{{ url('cookie-policy') }}" class="hover:text-[#00A3FF] transition-colors">Cookie Policy</a>
+            </li>
+            <li><a href="{{ url('privacy-policy') }}" class="hover:text-[#00A3FF] transition-colors">Privacy Policy</a>
+            </li>
+            <li><a href="{{ url('terms-of-service') }}" class="hover:text-[#00A3FF] transition-colors">Terms Of
+                Service</a></li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ===================== JS (Sidebar, Dark Mode, FAQ) ===================== -->
+<script>
+  // Sidebar
     const sidebar = document.getElementById("sidebar");
     const overlay = document.getElementById("overlay");
     const openBtn = document.getElementById("openSidebar");
@@ -135,7 +146,8 @@
         updateThemeLabel();
         });
     }
-  </script>
+</script>
 
 </body>
+
 </html>

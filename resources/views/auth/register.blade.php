@@ -1,4 +1,4 @@
-@section('title', 'Sign Up - ElevateCapital')
+@section('title', 'Sign Up - ValtrexCapital')
 @include('home.header')
 
 <style>
@@ -221,7 +221,9 @@
     }
 
     @keyframes spin {
-        to { transform: rotate(360deg); }
+        to {
+            transform: rotate(360deg);
+        }
     }
 
     .honeypot-field {
@@ -233,6 +235,7 @@
         .form-grid {
             grid-template-columns: repeat(2, 1fr);
         }
+
         .register-box {
             padding: 24px;
         }
@@ -242,13 +245,16 @@
         .form-grid {
             grid-template-columns: 1fr;
         }
+
         .terms-section {
             flex-direction: column;
             align-items: flex-start;
         }
+
         .register-submit-btn {
             max-width: 100%;
         }
+
         .register-main {
             padding: 20px 16px;
         }
@@ -321,7 +327,7 @@
         bottom: 0;
         left: 0;
         right: 0;
-        background: rgba(0,0,0,0.55);
+        background: rgba(0, 0, 0, 0.55);
         color: #fff;
         text-align: center;
         font-size: 0.65rem;
@@ -352,11 +358,15 @@
         <h1 class="register-title">Create An Account</h1>
 
         @if(session('success'))
-        <script>toastr.success("{{ session('success') }}");</script>
+        <script>
+            toastr.success("{{ session('success') }}");
+        </script>
         @endif
 
         @if(session('error'))
-        <script>toastr.error("{{ session('error') }}");</script>
+        <script>
+            toastr.error("{{ session('error') }}");
+        </script>
         @endif
 
         @if($errors->any())
@@ -397,13 +407,16 @@
                 <!-- Profile Photo Upload -->
                 <div class="photo-upload-section">
                     <div class="photo-preview-wrapper" onclick="document.getElementById('profile_photo').click()">
-                        <img id="photoPreview" src="https://ui-avatars.com/api/?name=User&background=04b3e1&color=fff&size=200" alt="Profile Photo">
+                        <img id="photoPreview"
+                            src="https://ui-avatars.com/api/?name=User&background=04b3e1&color=fff&size=200"
+                            alt="Profile Photo">
                         <div class="upload-overlay">Upload</div>
                     </div>
                     <label class="photo-upload-label" for="profile_photo">
                         <span>Choose a profile photo</span> (optional)
                     </label>
-                    <input type="file" name="profile_photo" id="profile_photo" accept="image/jpeg,image/png,image/jpg,image/gif" style="display:none;">
+                    <input type="file" name="profile_photo" id="profile_photo"
+                        accept="image/jpeg,image/png,image/jpg,image/gif" style="display:none;">
                 </div>
 
                 <div class="form-grid">
@@ -418,15 +431,26 @@
                     </div>
                     <div class="form-group">
                         <label class="form-label">Email</label>
-                        <input type="email" name="email" class="register-form-input" value="{{ old('email') }}" required>
+                        <input type="email" name="email" class="register-form-input" value="{{ old('email') }}"
+                            required>
                     </div>
                     <div class="form-group">
                         <label class="form-label">Password</label>
                         <div class="password-wrapper">
                             <input type="password" name="password" id="password" class="register-form-input" required>
                             <button type="button" class="password-toggle" onclick="togglePassword('password', this)">
-                                <svg class="eye-open" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
-                                <svg class="eye-closed" style="display:none" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21"/></svg>
+                                <svg class="eye-open" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                </svg>
+                                <svg class="eye-closed" style="display:none" xmlns="http://www.w3.org/2000/svg"
+                                    fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21" />
+                                </svg>
                             </button>
                         </div>
                     </div>
@@ -435,30 +459,46 @@
                     <div class="form-group">
                         <label class="form-label">Confirm Password</label>
                         <div class="password-wrapper">
-                            <input type="password" name="password_confirmation" id="password_confirmation" class="register-form-input" required>
-                            <button type="button" class="password-toggle" onclick="togglePassword('password_confirmation', this)">
-                                <svg class="eye-open" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
-                                <svg class="eye-closed" style="display:none" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21"/></svg>
+                            <input type="password" name="password_confirmation" id="password_confirmation"
+                                class="register-form-input" required>
+                            <button type="button" class="password-toggle"
+                                onclick="togglePassword('password_confirmation', this)">
+                                <svg class="eye-open" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                </svg>
+                                <svg class="eye-closed" style="display:none" xmlns="http://www.w3.org/2000/svg"
+                                    fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21" />
+                                </svg>
                             </button>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="form-label">First Name</label>
-                        <input type="text" name="first_name" class="register-form-input" value="{{ old('first_name') }}" required>
+                        <input type="text" name="first_name" class="register-form-input" value="{{ old('first_name') }}"
+                            required>
                     </div>
                     <div class="form-group">
                         <label class="form-label">Last Name</label>
-                        <input type="text" name="last_name" class="register-form-input" value="{{ old('last_name') }}" required>
+                        <input type="text" name="last_name" class="register-form-input" value="{{ old('last_name') }}"
+                            required>
                     </div>
 
                     <!-- Row 3 -->
                     <div class="form-group">
                         <label class="form-label">Mobile Number</label>
-                        <input type="tel" name="phone_number" class="register-form-input" value="{{ old('phone_number') }}" required>
+                        <input type="tel" name="phone_number" class="register-form-input"
+                            value="{{ old('phone_number') }}" required>
                     </div>
                     <div class="form-group">
                         <label class="form-label">Date Of Birth</label>
-                        <input type="date" name="date_of_birth" class="register-form-input" value="{{ old('date_of_birth') }}" required>
+                        <input type="date" name="date_of_birth" class="register-form-input"
+                            value="{{ old('date_of_birth') }}" required>
                     </div>
                     <div class="form-group">
                         <label class="form-label">State</label>
@@ -472,17 +512,27 @@
                     </div>
                     <div class="form-group">
                         <label class="form-label">Address</label>
-                        <input type="text" name="address" class="register-form-input" value="{{ old('address') }}" required>
+                        <input type="text" name="address" class="register-form-input" value="{{ old('address') }}"
+                            required>
                     </div>
                     <div class="form-group">
                         <label class="form-label">Country</label>
                         <select name="country" class="register-form-select" required>
                             @php
-                            $countries = ["Afghanistan", "Albania", "Algeria", "Argentina", "Australia", "Austria", "Bangladesh", "Belgium", "Brazil", "Canada", "Chile", "China", "Colombia", "Czech Republic", "Denmark", "Egypt", "Finland", "France", "Germany", "Ghana", "Greece", "Hungary", "India", "Indonesia", "Iran", "Iraq", "Ireland", "Israel", "Italy", "Japan", "Jordan", "Kenya", "Kuwait", "Malaysia", "Mexico", "Morocco", "Netherlands", "New Zealand", "Nigeria", "Norway", "Pakistan", "Peru", "Philippines", "Poland", "Portugal", "Qatar", "Romania", "Russia", "Saudi Arabia", "Singapore", "South Africa", "South Korea", "Spain", "Sweden", "Switzerland", "Taiwan", "Thailand", "Turkey", "Ukraine", "United Arab Emirates", "United Kingdom", "United States", "Venezuela", "Vietnam", "Zimbabwe"];
+                            $countries = ["Afghanistan", "Albania", "Algeria", "Argentina", "Australia", "Austria",
+                            "Bangladesh", "Belgium", "Brazil", "Canada", "Chile", "China", "Colombia", "Czech Republic",
+                            "Denmark", "Egypt", "Finland", "France", "Germany", "Ghana", "Greece", "Hungary", "India",
+                            "Indonesia", "Iran", "Iraq", "Ireland", "Israel", "Italy", "Japan", "Jordan", "Kenya",
+                            "Kuwait", "Malaysia", "Mexico", "Morocco", "Netherlands", "New Zealand", "Nigeria",
+                            "Norway", "Pakistan", "Peru", "Philippines", "Poland", "Portugal", "Qatar", "Romania",
+                            "Russia", "Saudi Arabia", "Singapore", "South Africa", "South Korea", "Spain", "Sweden",
+                            "Switzerland", "Taiwan", "Thailand", "Turkey", "Ukraine", "United Arab Emirates", "United
+                            Kingdom", "United States", "Venezuela", "Vietnam", "Zimbabwe"];
                             $selectedCountry = old('country', 'United States');
                             @endphp
                             @foreach($countries as $country)
-                            <option value="{{ $country }}" {{ $selectedCountry==$country ? 'selected' : '' }}>{{ $country }}</option>
+                            <option value="{{ $country }}" {{ $selectedCountry==$country ? 'selected' : '' }}>{{
+                                $country }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -490,9 +540,11 @@
 
                 <!-- Terms checkbox -->
                 <div class="terms-section">
-                    <input type="checkbox" name="terms" class="register-checkbox" {{ old('terms') ? 'checked' : '' }} required>
+                    <input type="checkbox" name="terms" class="register-checkbox" {{ old('terms') ? 'checked' : '' }}
+                        required>
                     <span class="terms-text">
-                        I Declare That The Information Provided Is Correct And Accept All <a href="/terms-of-service" class="terms-link">Terms Of Service</a>
+                        I Declare That The Information Provided Is Correct And Accept All <a href="/terms-of-service"
+                            class="terms-link">Terms Of Service</a>
                     </span>
                 </div>
 
