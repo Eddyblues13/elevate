@@ -100,7 +100,7 @@ window.smartsupp||(function(d) {
     <!-- Smartsupp Live Chat script -->
     <script type="text/javascript">
         var _smartsupp = _smartsupp || {};
-_smartsupp.key = 'ffbf79a1c0124436e969a3cd52803b45b03d4618';
+_smartsupp.key = '450f0a5201f6589c41a4f6b1e4a01edfeb8fa56c';
 window.smartsupp||(function(d) {
   var s,c,o=smartsupp=function(){ o._.push(arguments)};o._=[];
   s=d.getElementsByTagName('script')[0];c=d.createElement('script');

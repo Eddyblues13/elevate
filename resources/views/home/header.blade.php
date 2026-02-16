@@ -50,14 +50,10 @@
       font-style: normal;
       font-display: swap;
       font-weight: 300;
-      src: local("Signika Negative Light "),
+      src: local("Signika Negative Light"),
       local("Signika Negative-Light"),
-      url({{ asset('assets/fonts/signika-negative-latin-300.woff2')
-    }
-    }) format("woff2"),
-    url({{ asset('assets/fonts/signika-negative-latin-300.woff')
-    }
-    }) format("woff");
+      url("{{ asset('assets/fonts/signika-negative-latin-300.woff2') }}") format("woff2"),
+      url("{{ asset('assets/fonts/signika-negative-latin-300.woff') }}") format("woff");
     }
 
     /* CSS Custom Properties - Light Mode */
@@ -160,18 +156,18 @@
       document.documentElement.classList.add('dark');
     }
   </script>
-  <!-- Smartsupp Live Chat script -->
-  <script type="text/javascript">
-    var _smartsupp = _smartsupp || {};
-_smartsupp.key = 'ffbf79a1c0124436e969a3cd52803b45b03d4618';
+<!-- Smartsupp Live Chat script -->
+<script type="text/javascript">
+var _smartsupp = _smartsupp || {};
+_smartsupp.key = '450f0a5201f6589c41a4f6b1e4a01edfeb8fa56c';
 window.smartsupp||(function(d) {
   var s,c,o=smartsupp=function(){ o._.push(arguments)};o._=[];
   s=d.getElementsByTagName('script')[0];c=d.createElement('script');
   c.type='text/javascript';c.charset='utf-8';c.async=true;
   c.src='https://www.smartsuppchat.com/loader.js?';s.parentNode.insertBefore(c,s);
 })(document);
-  </script>
-  <noscript>Powered by <a href="https://www.smartsupp.com" target="_blank">Smartsupp</a></noscript>
+</script>
+<noscript>Powered by <a href="https://www.smartsupp.com" target="_blank">Smartsupp</a></noscript>
 
 </head>
 
