@@ -1,4 +1,4 @@
-@section('title', 'Bitcoin Mining - ValtrexCapital')
+@section('title', 'Bitcoin Mining - TradingSolutions')
 @include('home.header')
 
 <!-- ===================== BITCOIN MINING CONTENT ===================== -->
@@ -95,7 +95,7 @@
                 </div>
 
                 <p class="pt-4 border-t border-gray-100 dark:border-gray-700 mt-8">
-                    Start your Bitcoin mining journey with ValtrexCapital and join our cloud mining platform to earn
+                    Start your Bitcoin mining journey with TradingSolutions and join our cloud mining platform to earn
                     cryptocurrency rewards without the hassle of managing hardware.
                 </p>
             </div>

@@ -1,4 +1,4 @@
-@section('title', 'Privacy Policy - ValtrexCapital')
+@section('title', 'Privacy Policy - TradingSolutions')
 @include('home.header')
 
 <!-- ===================== PRIVACY POLICY CONTENT ===================== -->
@@ -16,7 +16,7 @@
 
             <div class="space-y-8 text-base leading-relaxed text-black/80 dark:text-[#a5bdd9]">
                 <p>
-                    ValtrexCapital ("us", "we" or "Company") respects the privacy of our users (each, "you" or "User")
+                    TradingSolutions ("us", "we" or "Company") respects the privacy of our users (each, "you" or "User")
                     and is committed to protecting the privacy of Users who access, download, install, or register for
                     our mobile application (the "Application"), our website, or any other online services we provide
                     (collectively: the "Services"). The Company has prepared this Privacy Policy to outline our
@@ -96,8 +96,8 @@
 
                 <p class="pt-4 border-t border-gray-100 dark:border-gray-700 mt-8">
                     If you wish to raise a complaint on how we have handled your Personal Information, please contact us
-                    directly at <a href="mailto:support@ValtrexCapital.com"
-                        class="text-[var(--primary-link-colour)] hover:underline">support@ValtrexCapital.com</a>.
+                    directly at <a href="mailto:support@TradingSolutions.com"
+                        class="text-[var(--primary-link-colour)] hover:underline">support@TradingSolutions.com</a>.
                 </p>
             </div>
 

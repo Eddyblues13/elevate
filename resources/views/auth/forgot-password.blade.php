@@ -1,4 +1,4 @@
-@section('title', 'Forgot Password - ValtrexCapital')
+@section('title', 'Forgot Password - TradingSolutions')
 @include('home.header')
 
 <style>

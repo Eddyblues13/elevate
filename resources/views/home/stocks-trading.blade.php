@@ -1,4 +1,4 @@
-@section('title', 'Stocks Trading - ValtrexCapital')
+@section('title', 'Stocks Trading - TradingSolutions')
 @include('home.header')
 
 <!-- ===================== STOCKS TRADING CONTENT ===================== -->
@@ -74,7 +74,8 @@
                 </div>
 
                 <p class="pt-4 border-t border-gray-100 dark:border-gray-700 mt-8">
-                    Start trading stocks with ValtrexCapital and gain access to global markets with competitive spreads,
+                    Start trading stocks with TradingSolutions and gain access to global markets with competitive
+                    spreads,
                     advanced charting tools, and real-time market data.
                 </p>
             </div>

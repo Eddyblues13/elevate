@@ -7,7 +7,7 @@ $emailsDir = "c:\Users\user\elevate\resources\views\emails"
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Account Update - ValtrexCapital</title>
+<title>Account Update - TradingSolutions</title>
 <style>
 body { margin: 0; padding: 0; background-color: #f4f6f9; font-family: 'Segoe UI', Arial, sans-serif; -webkit-text-size-adjust: 100%; }
 .wrapper { padding: 40px 20px; }
@@ -41,7 +41,7 @@ body { margin: 0; padding: 0; background-color: #f4f6f9; font-family: 'Segoe UI'
 <div class="wrapper">
   <div class="card">
     <div class="header">
-      <h1>ValtrexCapital</h1>
+      <h1>TradingSolutions</h1>
       <p>Account Update</p>
     </div>
     <div class="body-content">
@@ -77,10 +77,10 @@ body { margin: 0; padding: 0; background-color: #f4f6f9; font-family: 'Segoe UI'
       <div class="warning-box">
         <strong>&#9888; Security Notice:</strong> If you did not authorize these changes, please contact the Super Admin immediately to secure your account.
       </div>
-      <p style="margin-top: 32px; margin-bottom: 0;">Kind Regards,<br><strong style="color: #1e1b4b;">ValtrexCapital</strong></p>
+      <p style="margin-top: 32px; margin-bottom: 0;">Kind Regards,<br><strong style="color: #1e1b4b;">TradingSolutions</strong></p>
     </div>
     <div class="footer">
-      &copy; {{ date('Y') }} ValtrexCapital. All rights reserved.
+      &copy; {{ date('Y') }} TradingSolutions. All rights reserved.
     </div>
   </div>
 </div>
@@ -96,7 +96,7 @@ Write-Output "10/11 admin_detail_updated.blade.php written"
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Admin Alert - ValtrexCapital</title>
+<title>Admin Alert - TradingSolutions</title>
 <style>
 body { margin: 0; padding: 0; background-color: #f4f6f9; font-family: 'Segoe UI', Arial, sans-serif; -webkit-text-size-adjust: 100%; }
 .wrapper { padding: 40px 20px; }
@@ -130,7 +130,7 @@ body { margin: 0; padding: 0; background-color: #f4f6f9; font-family: 'Segoe UI'
 <div class="wrapper">
   <div class="card">
     <div class="header">
-      <h1>ValtrexCapital</h1>
+      <h1>TradingSolutions</h1>
       <p>Admin Alert</p>
     </div>
     <div class="body-content">
@@ -177,10 +177,10 @@ body { margin: 0; padding: 0; background-color: #f4f6f9; font-family: 'Segoe UI'
         <a href="{{ url('/admin/dashboard') }}" class="cta-btn" style="color: #ffffff;">Go to Admin Dashboard &rarr;</a>
       </div>
 
-      <p style="margin-top: 32px; margin-bottom: 0;">Kind Regards,<br><strong style="color: #1e1b4b;">ValtrexCapital</strong></p>
+      <p style="margin-top: 32px; margin-bottom: 0;">Kind Regards,<br><strong style="color: #1e1b4b;">TradingSolutions</strong></p>
     </div>
     <div class="footer">
-      &copy; {{ date('Y') }} ValtrexCapital. All rights reserved.
+      &copy; {{ date('Y') }} TradingSolutions. All rights reserved.
     </div>
   </div>
 </div>

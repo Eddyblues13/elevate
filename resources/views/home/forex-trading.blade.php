@@ -1,4 +1,4 @@
-@section('title', 'Forex Trading - ValtrexCapital')
+@section('title', 'Forex Trading - TradingSolutions')
 @include('home.header')
 
 <!-- ===================== FOREX TRADING CONTENT ===================== -->

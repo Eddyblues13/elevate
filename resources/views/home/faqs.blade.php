@@ -1,4 +1,4 @@
-@section('title', 'FAQs - ValtrexCapital')
+@section('title', 'FAQs - TradingSolutions')
 @include('home.header')
 
 <!-- ===================== FAQ ===================== -->

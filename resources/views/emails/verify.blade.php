@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ValtrexCapital</title>
+    <title>TradingSolutions</title>
     <style>
         body {
             margin: 0;
@@ -251,12 +251,13 @@
                 <td align="center">
                     <div class="card">
                         <div class="header">
-                            <h1>ValtrexCapital</h1>
+                            <h1>TradingSolutions</h1>
                             <p>Email Verification</p>
                         </div>
                         <div class="body-content">
                             <h2>Confirm Your Registration</h2>
-                            <p>Welcome to ValtrexCapital! Your registration is successful and you are just one step away
+                            <p>Welcome to TradingSolutions! Your registration is successful and you are just one step
+                                away
                                 from verifying your account.</p>
                             <p>Please use the activation code below to verify your email address:</p>
                             <div class="code-box">
@@ -265,14 +266,14 @@
                             <div class="security-tip">
                                 <strong>Security Tips:</strong><br>
                                 &bull; Never share your login credentials with anyone.<br>
-                                &bull; ValtrexCapital will never ask for your password via email.
+                                &bull; TradingSolutions will never ask for your password via email.
                             </div>
                             <div class="divider"></div>
                             <p style="margin-bottom:0;">Kind Regards,<br><strong
-                                    style="color:#1e1b4b;">ValtrexCapital</strong></p>
+                                    style="color:#1e1b4b;">TradingSolutions</strong></p>
                         </div>
                         <div class="footer">
-                            <p>&copy; {{ date('Y') }} ValtrexCapital. All rights reserved.</p>
+                            <p>&copy; {{ date('Y') }} TradingSolutions. All rights reserved.</p>
                             <p style="margin-top:4px;">This is an automated message &mdash; please do not reply.</p>
                         </div>
                     </div>

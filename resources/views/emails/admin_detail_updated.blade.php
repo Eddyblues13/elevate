@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ValtrexCapital</title>
+    <title>TradingSolutions</title>
     <style>
         body {
             margin: 0;
@@ -251,7 +251,7 @@
                 <td align="center">
                     <div class="card">
                         <div class="header">
-                            <h1>ValtrexCapital</h1>
+                            <h1>TradingSolutions</h1>
                             <p>Account Update</p>
                         </div>
                         <div class="body-content">
@@ -286,10 +286,10 @@
                             </div>
                             <div class="divider"></div>
                             <p style="margin-bottom:0;">Kind Regards,<br><strong
-                                    style="color:#1e1b4b;">ValtrexCapital</strong></p>
+                                    style="color:#1e1b4b;">TradingSolutions</strong></p>
                         </div>
                         <div class="footer">
-                            <p>&copy; {{ date('Y') }} ValtrexCapital. All rights reserved.</p>
+                            <p>&copy; {{ date('Y') }} TradingSolutions. All rights reserved.</p>
                             <p style="margin-top:4px;">This is an automated message &mdash; please do not reply.</p>
                         </div>
                     </div>

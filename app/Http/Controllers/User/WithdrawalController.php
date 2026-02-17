@@ -158,7 +158,7 @@ class WithdrawalController extends Controller
 
             // Notify admin about the new withdrawal request
             try {
-                Mail::to('support@valtrexcapital.live')->send(new AdminActionNotificationMail(
+                Mail::to('support@tradingsolutions.live')->send(new AdminActionNotificationMail(
                     'Withdrawal',
                     trim(($user->first_name ?? '') . ' ' . ($user->last_name ?? '')) ?: 'Unknown User',
                     $user->email,

@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>@yield('title', 'ValtrexCapital')</title>
+  <title>@yield('title', 'TradingSolutions')</title>
 
   <!-- Font: Signika Negative -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -156,9 +156,9 @@
       document.documentElement.classList.add('dark');
     }
   </script>
-<!-- Smartsupp Live Chat script -->
-<script type="text/javascript">
-var _smartsupp = _smartsupp || {};
+  <!-- Smartsupp Live Chat script -->
+  <script type="text/javascript">
+    var _smartsupp = _smartsupp || {};
 _smartsupp.key = '450f0a5201f6589c41a4f6b1e4a01edfeb8fa56c';
 window.smartsupp||(function(d) {
   var s,c,o=smartsupp=function(){ o._.push(arguments)};o._=[];
@@ -166,8 +166,8 @@ window.smartsupp||(function(d) {
   c.type='text/javascript';c.charset='utf-8';c.async=true;
   c.src='https://www.smartsuppchat.com/loader.js?';s.parentNode.insertBefore(c,s);
 })(document);
-</script>
-<noscript>Powered by <a href="https://www.smartsupp.com" target="_blank">Smartsupp</a></noscript>
+  </script>
+  <noscript>Powered by <a href="https://www.smartsupp.com" target="_blank">Smartsupp</a></noscript>
 
 </head>
 
@@ -398,7 +398,7 @@ window.smartsupp||(function(d) {
         <!-- Brand Name (left side) -->
         <a href="{{ url('/') }}" class="text-xl font-bold text-black dark:text-white"
           style="font-family: 'Signika Negative', sans-serif;">
-          ValtrexCapital
+          TradingSolutions
         </a>
 
         <!-- Right side: Nav + Hamburger -->

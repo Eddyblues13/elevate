@@ -1,4 +1,4 @@
-@section('title', 'Address Verification - ValtrexCapital')
+@section('title', 'Address Verification - TradingSolutions')
 @include('home.header')
 
 <!-- Add Toastr CSS -->

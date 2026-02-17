@@ -1,4 +1,4 @@
-@section('title', 'Terms of Service - ValtrexCapital')
+@section('title', 'Terms of Service - TradingSolutions')
 @include('home.header')
 
 <!-- ===================== TERMS OF SERVICE CONTENT ===================== -->
@@ -17,7 +17,7 @@
             <div class="space-y-8 text-base leading-relaxed text-black/80 dark:text-[#a5bdd9]">
                 <p>
                     This Agreement is entered into by and these Terms & Conditions shall regulate the relationship
-                    between ValtrexCapital LTD (hereinafter referred to as the "Company"), and the user (a natural or
+                    between TradingSolutions LTD (hereinafter referred to as the "Company"), and the user (a natural or
                     legal entity) (hereinafter referred to as the "Client").
                 </p>
 
@@ -112,8 +112,8 @@
 
                 <p class="pt-4 border-t border-gray-100 dark:border-gray-700 mt-8">
                     For any questions regarding these Terms of Service, please contact us at <a
-                        href="mailto:support@ValtrexCapital.com"
-                        class="text-[var(--primary-link-colour)] hover:underline">support@ValtrexCapital.com</a>.
+                        href="mailto:support@TradingSolutions.com"
+                        class="text-[var(--primary-link-colour)] hover:underline">support@TradingSolutions.com</a>.
                 </p>
             </div>
 

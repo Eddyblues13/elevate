@@ -1,4 +1,4 @@
-@section('title', 'Crypto Trading - ValtrexCapital')
+@section('title', 'Crypto Trading - TradingSolutions')
 @include('home.header')
 
 <!-- ===================== CRYPTO TRADING CONTENT ===================== -->
@@ -16,7 +16,8 @@
 
             <div class="space-y-8 text-base leading-relaxed text-black/80 dark:text-[#a5bdd9]">
                 <p>
-                    ValtrexCapital is excited to announce the launch of our new cryptocurrency trading platform. Now you
+                    TradingSolutions is excited to announce the launch of our new cryptocurrency trading platform. Now
+                    you
                     can start trading Bitcoin, Ethereum, and many more cryptocurrencies quickly, easily, and safely from
                     wherever you are — in just seconds. You get great margin trading leverage and short sell options
                     with fast deposits and withdrawals. Our support team is available 24/7/365 to help get you trading
@@ -55,7 +56,8 @@
                 </div>
 
                 <p class="pt-4 border-t border-gray-100 dark:border-gray-700 mt-8">
-                    Join thousands of traders on ValtrexCapital and start your cryptocurrency trading journey today with
+                    Join thousands of traders on TradingSolutions and start your cryptocurrency trading journey today
+                    with
                     access to major digital assets and advanced trading features.
                 </p>
             </div>

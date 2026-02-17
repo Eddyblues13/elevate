@@ -1,4 +1,4 @@
-@section('title', 'Cookie Policy - ValtrexCapital')
+@section('title', 'Cookie Policy - TradingSolutions')
 @include('home.header')
 
 <!-- ===================== COOKIE POLICY CONTENT ===================== -->
@@ -16,7 +16,7 @@
 
             <div class="space-y-8 text-base leading-relaxed text-black/80 dark:text-[#a5bdd9]">
                 <p>
-                    ValtrexCapital uses cookies to:
+                    TradingSolutions uses cookies to:
                 </p>
 
                 <ul class="list-disc pl-6 space-y-2">
@@ -41,10 +41,12 @@
                 <div>
                     <h3 class="text-xl font-bold text-black dark:text-white mb-2">Managing Cookies</h3>
                     <p>
-                        At ValtrexCapital, we respect your right to privacy and are therefore happy to provide you with
+                        At TradingSolutions, we respect your right to privacy and are therefore happy to provide you
+                        with
                         tools to manage the cookies you receive from our web services. Some cookies are essential to the
                         performance of our platform (you cannot opt out from these cookies if you wish to use our
-                        platform). Below you will find a list of some of the third-party cookies used by ValtrexCapital.
+                        platform). Below you will find a list of some of the third-party cookies used by
+                        TradingSolutions.
                         For those users who would prefer not to receive non-essential cookies, we have provided an "opt
                         out" option for you to select.
                     </p>

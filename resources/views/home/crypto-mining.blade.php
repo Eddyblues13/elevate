@@ -1,4 +1,4 @@
-@section('title', 'Crypto Mining - ValtrexCapital')
+@section('title', 'Crypto Mining - TradingSolutions')
 @include('home.header')
 
 <!-- ===================== CRYPTO MINING CONTENT ===================== -->

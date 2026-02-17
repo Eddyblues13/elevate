@@ -6,7 +6,7 @@
       <!-- Brand / Contact / Copyright -->
       <div class="flex flex-col gap-8 max-w-xs">
         <a href="{{ route('home') }}" class="inline-block">
-          <img src="{{ asset('assets/img/logo.png') }}" alt="ValtrexCapital" class="h-12 w-auto">
+          <img src="{{ asset('assets/img/logo.png') }}" alt="TradingSolutions" class="h-12 w-auto">
         </a>
 
         <div class="flex items-center gap-3 text-gray-600 dark:text-gray-400 font-medium">
@@ -17,12 +17,12 @@
               </path>
             </svg>
           </div>
-          <a href="mailto:info@valtrexcapital.live"
-            class="hover:text-[#00A3FF] transition-colors">info@valtrexcapital.live</a>
+          <a href="mailto:info@tradingsolutions.live"
+            class="hover:text-[#00A3FF] transition-colors">info@tradingsolutions.live</a>
         </div>
 
         <div class="text-sm text-gray-400 dark:text-gray-500 font-medium">
-          &copy; {{ date('Y') }} ValtrexCapital. All Rights Reserved.
+          &copy; {{ date('Y') }} TradingSolutions. All Rights Reserved.
         </div>
       </div>
 

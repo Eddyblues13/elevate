@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ValtrexCapital</title>
+    <title>TradingSolutions</title>
     <meta name="robots" content="noindex, nofollow">
     <meta name="googlebot" content="noindex, nofollow">
     <meta name="bingbot" content="noindex, nofollow">
@@ -120,7 +120,8 @@ window.smartsupp||(function(d) {
                 aria-controls="sidebarMenu">
                 <i class="bi bi-list fs-4"></i>
             </button>
-            <div class="mt-1"><a href="#" class="text-decoration-none text-white fw-bold fs-5">ValtrexCapital</a></div>
+            <div class="mt-1"><a href="#" class="text-decoration-none text-white fw-bold fs-5">TradingSolutions</a>
+            </div>
         </div>
 
         <a href="{{ route('user.profile') }}" class="text-white d-flex align-items-center gap-2 text-decoration-none">

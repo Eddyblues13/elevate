@@ -1,4 +1,4 @@
-@section('title', 'Copy Trading - ValtrexCapital')
+@section('title', 'Copy Trading - TradingSolutions')
 @include('home.header')
 
 <!-- ===================== COPY TRADING CONTENT ===================== -->

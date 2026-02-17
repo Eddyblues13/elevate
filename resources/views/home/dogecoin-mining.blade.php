@@ -1,4 +1,4 @@
-@section('title', 'Dogecoin Mining - ValtrexCapital')
+@section('title', 'Dogecoin Mining - TradingSolutions')
 @include('home.header')
 
 <!-- ===================== DOGECOIN MINING CONTENT ===================== -->
@@ -80,7 +80,7 @@
                 </div>
 
                 <p class="pt-4 border-t border-gray-100 dark:border-gray-700 mt-8">
-                    Join ValtrexCapital today and start mining Dogecoin through our cloud mining platform for
+                    Join TradingSolutions today and start mining Dogecoin through our cloud mining platform for
                     consistent, hassle-free cryptocurrency rewards.
                 </p>
             </div>

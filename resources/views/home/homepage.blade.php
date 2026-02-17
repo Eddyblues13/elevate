@@ -1,4 +1,4 @@
-@section('title', 'ValtrexCapital')
+@section('title', 'TradingSolutions')
 @include('home.header')
 
 
@@ -20,7 +20,7 @@
       <div class="lg:-mt-8 lg:pl-6">
         <h1 class="text-4xl md:text-5xl font-extrabold leading-tight text-black dark:text-white">
           Trading is Better<br />
-          With <span class="text-[#04b3e1]">ValtrexCapital</span>
+          With <span class="text-[#04b3e1]">TradingSolutions</span>
         </h1>
 
         <p class="mt-4 text-[15px] leading-7 text-black/80 dark:text-white/80 font-medium">
@@ -240,8 +240,10 @@
     <!-- Description -->
     <div class="max-w-5xl mb-14">
       <p class="text-[15px] md:text-base leading-7 md:leading-8 text-gray-600 dark:text-gray-300">
-        ValtrexCapital is an online Forex and cryptocurrency STP broker providing CFD trading on hundreds of assets and
-        optimal trading conditions within the award-winning MT4 platform. ValtrexCapital offers deep liquidity, generous
+        TradingSolutions is an online Forex and cryptocurrency STP broker providing CFD trading on hundreds of assets
+        and
+        optimal trading conditions within the award-winning MT4 platform. TradingSolutions offers deep liquidity,
+        generous
         leverage up to 1:500, and some of the best spreads in the industry. As part of our commitment to our client's
         satisfaction, we offer 24/7 live customer service, charge no deposit or withdrawal fees, and process withdrawals
         within 30-minutes or less. We feel that these, along with many other advantages, help to set us apart from the
@@ -1045,7 +1047,7 @@
         <div
           class="bg-white dark:bg-[#0b1118] p-8 md:p-10 shadow-xl rounded-none border border-gray-100 dark:border-gray-800">
           <p class="text-black dark:text-gray-200 font-medium text-lg leading-relaxed">
-            ValtrexCapital stands out for its transparency and user-friendly features. I especially like the
+            TradingSolutions stands out for its transparency and user-friendly features. I especially like the
             customizable dashboards and the fact that they don't overload you with gimmicky offers. It's all about
             performance.
           </p>
@@ -1064,7 +1066,7 @@
         <div
           class="bg-white dark:bg-[#0b1118] p-8 md:p-10 shadow-xl rounded-none border border-gray-100 dark:border-gray-800">
           <p class="text-black dark:text-gray-200 font-medium text-lg leading-relaxed">
-            Any issues I had were quickly resolved by the ValtrexCapital support team. They're responsive, polite, and
+            Any issues I had were quickly resolved by the TradingSolutions support team. They're responsive, polite, and
             genuinely helpful—something that's rare in this industry. The platform itself is intuitive and perfect for
             active traders.
           </p>
@@ -1083,7 +1085,8 @@
         <div
           class="bg-white dark:bg-[#0b1118] p-8 md:p-10 shadow-xl rounded-none border border-gray-100 dark:border-gray-800">
           <p class="text-black dark:text-gray-200 font-medium text-lg leading-relaxed">
-            I’ve been using ValtrexCapital for the past 8 months, and I couldn’t be happier. The interface is clean and
+            I’ve been using TradingSolutions for the past 8 months, and I couldn’t be happier. The interface is clean
+            and
             user-friendly, making it easy even for beginners to get started. What really stands out is the fast trade
             execution and helpful support team. Highly recommended for anyone looking for a reliable trading platform.
           </p>
@@ -1102,7 +1105,8 @@
         <div
           class="bg-white dark:bg-[#0b1118] p-8 md:p-10 shadow-xl rounded-none border border-gray-100 dark:border-gray-800">
           <p class="text-black dark:text-gray-200 font-medium text-lg leading-relaxed">
-            I was initially cautious, but ValtrexCapital proved to be a solid and trustworthy platform. Withdrawals are
+            I was initially cautious, but TradingSolutions proved to be a solid and trustworthy platform. Withdrawals
+            are
             processed on time, and the range of assets available is impressive. I also appreciate the educational
             resources—they really helped me improve my trading strategy.
           </p>
@@ -1121,7 +1125,7 @@
         <div
           class="bg-white dark:bg-[#0b1118] p-8 md:p-10 shadow-xl rounded-none border border-gray-100 dark:border-gray-800">
           <p class="text-black dark:text-gray-200 font-medium text-lg leading-relaxed">
-            I switched to ValtrexCapital after years with another broker, and the difference is night and day. The
+            I switched to TradingSolutions after years with another broker, and the difference is night and day. The
             spreads are tighter, the execution is faster, and the customer service actually responds within minutes. My
             portfolio has grown significantly since I made the switch.
           </p>
@@ -1140,7 +1144,7 @@
         <div
           class="bg-white dark:bg-[#0b1118] p-8 md:p-10 shadow-xl rounded-none border border-gray-100 dark:border-gray-800">
           <p class="text-black dark:text-gray-200 font-medium text-lg leading-relaxed">
-            What I love most about ValtrexCapital is the copy trading feature. As someone who doesn't have hours to
+            What I love most about TradingSolutions is the copy trading feature. As someone who doesn't have hours to
             analyze charts, being able to follow experienced traders has been a game changer. I've seen consistent
             returns and I barely have to lift a finger.
           </p>
@@ -1159,7 +1163,7 @@
         <div
           class="bg-white dark:bg-[#0b1118] p-8 md:p-10 shadow-xl rounded-none border border-gray-100 dark:border-gray-800">
           <p class="text-black dark:text-gray-200 font-medium text-lg leading-relaxed">
-            ValtrexCapital made forex trading accessible for me. The learning resources combined with a demo account
+            TradingSolutions made forex trading accessible for me. The learning resources combined with a demo account
             helped me build confidence before going live. Now I trade daily and the platform never lags or freezes, even
             during volatile market hours.
           </p>
@@ -1178,7 +1182,7 @@
         <div
           class="bg-white dark:bg-[#0b1118] p-8 md:p-10 shadow-xl rounded-none border border-gray-100 dark:border-gray-800">
           <p class="text-black dark:text-gray-200 font-medium text-lg leading-relaxed">
-            Security was my biggest concern when choosing a broker, and ValtrexCapital has exceeded my expectations.
+            Security was my biggest concern when choosing a broker, and TradingSolutions has exceeded my expectations.
             Two-factor authentication, encrypted transactions, and instant withdrawal processing give me complete peace
             of mind. This is how trading should be.
           </p>
