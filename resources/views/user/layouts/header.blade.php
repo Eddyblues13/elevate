@@ -7,9 +7,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TradingSolutions</title>
 
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="{{ url()->current() }}" />
     <meta property="og:title" content="TradingSolutions" />
     <meta property="og:description" content="TradingSolutions - Live Charts with Indicators, Foreign Exchange Market Trading Methods, Hours, Sessions, &amp; Plans, Major and Minor Pairs Currency, Bullish and Bearish Divergence" />
-    <meta property="og:image" content="/assets/img/logo.png" /> 
+    <meta property="og:image" content="{{ asset('assets/img/logo.png') }}" />
+
     <meta name="robots" content="noindex, nofollow">
     <meta name="googlebot" content="noindex, nofollow">
     <meta name="bingbot" content="noindex, nofollow">
