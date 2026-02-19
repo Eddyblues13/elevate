@@ -6,6 +6,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>@yield('title', 'TradingSolutions')</title>
 
+  <!-- Open Graph Meta Tags -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="{{ url()->current() }}" />
+  <meta property="og:title" content="TradingSolutions" />
+  <meta property="og:description" content="TradingSolutions - Live Charts with Indicators, Foreign Exchange Market Trading Methods, Hours, Sessions, &amp; Plans, Major and Minor Pairs Currency, Bullish and Bearish Divergence" />
+  <meta property="og:image" content="{{ asset('assets/img/logo.png') }}" />
+
   <!-- Font: Signika Negative -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
