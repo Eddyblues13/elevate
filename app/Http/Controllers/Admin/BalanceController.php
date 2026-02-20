@@ -124,10 +124,8 @@ class BalanceController extends Controller
         // Update balance
         if ($request->type === 'credit') {
             $profitBalance->increment('amount', $request->amount);
-            $this->updateDepositBalance($request->user_id, $request->amount, 'holding', 'increment');
         } else {
             $profitBalance->decrement('amount', $request->amount);
-            $this->updateDepositBalance($request->user_id, $request->amount, 'holding', 'decrement');
         }
 
         // Send transaction email
