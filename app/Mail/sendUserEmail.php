@@ -40,7 +40,7 @@ class SendUserEmail extends Mailable
         return new Content(
             view: 'emails.user',
             with: [
-                'messageBody' => $this->messageBody,
+                'data' => $this->messageBody,
             ]
         );
     }
