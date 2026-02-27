@@ -103,79 +103,151 @@
             <span class="trade-detail-value">{{ $trade->leverage ?? 25 }}</span>
         </div>
 
-        <!-- TradingView Chart -->
-        <div class="trade-chart-container">
-            <div class="trade-chart-symbol">{{ strtoupper($trade->symbol) }}</div>
-            <div id="tradingview-chart" style="height: 350px;"></div>
+        <!-- Live Area Chart -->
+        <div class="trade-chart-container" style="position: relative;">
+            <div class="trade-chart-symbol d-flex justify-content-between align-items-center">
+                <span>{{ strtoupper($trade->symbol) }}</span>
+                <div class="d-flex align-items-center mt-1">
+                    <div class="pulsing-dot me-2" style="width: 10px; height: 10px; background-color: #10b981; border-radius: 50%; animation: pulse-dot 1.5s infinite;"></div>
+                    <span class="fw-bold" style="font-size: 0.8rem; letter-spacing: 0.5px; opacity: 0.8;">Live Activity</span>
+                    <style>
+                        @keyframes pulse-dot {
+                            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+                            70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(16, 185, 129, 0); }
+                            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+                        }
+                    </style>
+                </div>
+            </div>
+            <div id="live-chart" style="height: 350px; margin-top: 10px;"></div>
         </div>
     </div>
 </div>
 
 @include('user.layouts.footer')
 
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         const isDark = document.documentElement.classList.contains('dark');
         const symbol = '{{ strtoupper($trade->symbol) }}';
+        
+        let currentPriceRaw = '{{ $trade->entry_price ?? "100" }}';
+        let currentPrice = parseFloat(currentPriceRaw.replace(/[^0-9.-]+/g,"")) || 100;
 
-        // Map symbol to TradingView format
-        let tvSymbol = symbol;
-        const forexPairs = ['AUDUSD','EURUSD','GBPUSD','USDJPY','USDCAD','USDCHF','NZDUSD','EURJPY',
-            'EURGBP','GBPJPY','AUDJPY','CADJPY','CHFZAR','AUDCAD','AUDCHF','AUDNZD',
-            'AUDBRL','EURBRL','EURCAD','EURCHF','EURAUD','GBPAUD','GBPCAD','GBPCHF','USDZAR'];
-        const cryptos = ['BTCUSD','ETHUSD','XRPUSD','SOLUSD','BNBUSD','ADAUSD','DOGEUSD','TRXUSD',
-            'DOTUSD','LINKUSD','MATICUSD','AVAXUSD','LTCUSD','ATOMUSD','UNIUSD','XLMUSD',
-            'ALGOUSD','NEARUSD','FILUSD','AAVEUSD','APTUSD','ARBUSD','OPUSD','MKRUSD',
-            'INJUSD','RNDRUSD','SUIUSD','SHIBUSD','PEPEUSD','TONUSD'];
-
-        if (forexPairs.includes(symbol)) {
-            tvSymbol = 'FX:' + symbol;
-        } else if (cryptos.includes(symbol)) {
-            tvSymbol = 'CRYPTO:' + symbol;
-        } else {
-            tvSymbol = 'NASDAQ:' + symbol;
+        let data = [];
+        // Generate initial data points (250 points)
+        for(let i = 0; i <= 250; i++) {
+            let change = (Math.random() - 0.5) * (currentPrice * 0.0015); 
+            currentPrice += change;
+            data.push(currentPrice);
         }
 
-        new TradingView.widget({
-            "container_id": "tradingview-chart",
-            "autosize": true,
-            "symbol": tvSymbol,
-            "interval": "60",
-            "timezone": "Etc/UTC",
-            "theme": isDark ? "dark" : "light",
-            "style": "3",
-            "locale": "en",
-            "toolbar_bg": isDark ? "#1a1f2b" : "#ffffff",
-            "enable_publishing": false,
-            "hide_top_toolbar": true,
-            "hide_legend": true,
-            "save_image": false,
-            "backgroundColor": isDark ? "#1a1f2b" : "#ffffff",
-            "gridColor": isDark ? "#2d3748" : "#f0f0f0",
-        });
+        const chartOptions = {
+            series: [{
+                name: 'Price',
+                data: data.slice()
+            }],
+            chart: {
+                id: 'realtime',
+                height: 350,
+                type: 'area',
+                animations: {
+                    enabled: true,
+                    easing: 'linear',
+                    dynamicAnimation: {
+                        speed: 1000
+                    }
+                },
+                toolbar: { show: false },
+                zoom: { enabled: false },
+                background: 'transparent'
+            },
+            dataLabels: { enabled: false },
+            stroke: {
+                curve: 'smooth',
+                width: 2,
+                colors: isDark ? ['#ffffff'] : ['#4338ca'] 
+            },
+            fill: {
+                type: 'gradient',
+                gradient: {
+                    shadeIntensity: 1,
+                    opacityFrom: 0.6,
+                    opacityTo: 0.0,
+                    stops: [0, 90, 100],
+                    colorStops: isDark ? [
+                        { offset: 0, color: '#ffffff', opacity: 0.6 },
+                        { offset: 100, color: '#ffffff', opacity: 0 }
+                    ] : [
+                        { offset: 0, color: '#4338ca', opacity: 0.4 },
+                        { offset: 100, color: '#4338ca', opacity: 0 }
+                    ]
+                }
+            },
+            markers: { size: 0 },
+            xaxis: {
+                type: 'numeric',
+                range: 250,
+                tickAmount: 5,
+                labels: { 
+                    style: { colors: '#8c98a4' },
+                    formatter: function(val) { return Math.floor(val); }
+                },
+                axisBorder: { show: false },
+                axisTicks: { show: false }
+            },
+            yaxis: {
+                labels: {
+                    style: { colors: '#8c98a4' },
+                    formatter: function(val) { return val.toFixed(4); }
+                }
+            },
+            legend: { show: false },
+            grid: {
+                borderColor: isDark ? '#2d3748' : '#e5e7eb',
+                strokeDashArray: 3,
+                xaxis: { lines: { show: true } },
+                yaxis: { lines: { show: true } }
+            }
+        };
 
-        // Listen for theme changes
+        var chart = new ApexCharts(document.querySelector("#live-chart"), chartOptions);
+        chart.render();
+
+        // Update the chart every 1 second
+        window.setInterval(function () {
+            let change = (Math.random() - 0.5) * (currentPrice * 0.0015);
+            currentPrice += change;
+            
+            data.shift(); // remove first
+            data.push(currentPrice); // add at end
+            
+            chart.updateSeries([{ data: data }]);
+        }, 1000);
+
+        // Listen for theme changes to update chart colors
         document.addEventListener('themeChanged', function () {
             const nowDark = document.documentElement.classList.contains('dark');
-            document.getElementById('tradingview-chart').innerHTML = '';
-            new TradingView.widget({
-                "container_id": "tradingview-chart",
-                "autosize": true,
-                "symbol": tvSymbol,
-                "interval": "60",
-                "timezone": "Etc/UTC",
-                "theme": nowDark ? "dark" : "light",
-                "style": "3",
-                "locale": "en",
-                "toolbar_bg": nowDark ? "#1a1f2b" : "#ffffff",
-                "enable_publishing": false,
-                "hide_top_toolbar": true,
-                "hide_legend": true,
-                "save_image": false,
-                "backgroundColor": nowDark ? "#1a1f2b" : "#ffffff",
-                "gridColor": nowDark ? "#2d3748" : "#f0f0f0",
+            chart.updateOptions({
+                stroke: {
+                    colors: nowDark ? ['#ffffff'] : ['#4338ca']
+                },
+                fill: {
+                    gradient: {
+                        colorStops: nowDark ? [
+                            { offset: 0, color: '#ffffff', opacity: 0.6 },
+                            { offset: 100, color: '#ffffff', opacity: 0 }
+                        ] : [
+                            { offset: 0, color: '#4338ca', opacity: 0.4 },
+                            { offset: 100, color: '#4338ca', opacity: 0 }
+                        ]
+                    }
+                },
+                grid: {
+                    borderColor: nowDark ? '#2d3748' : '#e5e7eb'
+                }
             });
         });
     });
 </script>
-<script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
