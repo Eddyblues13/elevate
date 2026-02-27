@@ -156,7 +156,7 @@
                     enabled: true,
                     easing: 'linear',
                     dynamicAnimation: {
-                        speed: 1000
+                        speed: 200
                     }
                 },
                 toolbar: { show: false },
@@ -224,7 +224,7 @@
             data.push(currentPrice); // add at end
             
             chart.updateSeries([{ data: data }]);
-        }, 1000);
+        }, 200);
 
         // Listen for theme changes to update chart colors
         document.addEventListener('themeChanged', function () {
