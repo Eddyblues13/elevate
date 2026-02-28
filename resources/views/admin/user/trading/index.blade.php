@@ -349,40 +349,7 @@
                         <div class="col-md-6">
                             <div class="field-group">
                                 <label><i class="fas fa-coins me-1"></i> Symbol</label>
-                                <select name="symbol" class="admin-form-control" required>
-                                    <option value="">Select Symbol</option>
-                                    <optgroup label="Crypto">
-                                        <option value="BTCUSDT">BTC/USDT</option>
-                                        <option value="ETHUSDT">ETH/USDT</option>
-                                        <option value="TONUSDT">TON/USDT</option>
-                                        <option value="XRPUSDT">XRP/USDT</option>
-                                        <option value="SOLUSDT">SOL/USDT</option>
-                                        <option value="ADAUSDT">ADA/USDT</option>
-                                        <option value="DOTUSDT">DOT/USDT</option>
-                                        <option value="DOGEUSDT">DOGE/USDT</option>
-                                    </optgroup>
-                                    <optgroup label="Stocks">
-                                        <option value="TSLA">Tesla (TSLA)</option>
-                                        <option value="AAPL">Apple (AAPL)</option>
-                                        <option value="GOOGL">Alphabet (GOOGL)</option>
-                                        <option value="AMZN">Amazon (AMZN)</option>
-                                        <option value="MSFT">Microsoft (MSFT)</option>
-                                        <option value="NFLX">Netflix (NFLX)</option>
-                                        <option value="META">Meta (META)</option>
-                                        <option value="NVDA">NVIDIA (NVDA)</option>
-                                    </optgroup>
-                                    <optgroup label="Forex">
-                                        <option value="EURUSD">EUR/USD</option>
-                                        <option value="GBPUSD">GBP/USD</option>
-                                        <option value="USDJPY">USD/JPY</option>
-                                        <option value="AUDUSD">AUD/USD</option>
-                                    </optgroup>
-                                    <optgroup label="Commodities">
-                                        <option value="GOLD">Gold</option>
-                                        <option value="SILVER">Silver</option>
-                                        <option value="OIL">Oil</option>
-                                    </optgroup>
-                                </select>
+                                <input type="text" name="symbol" class="admin-form-control" placeholder="e.g. BTCUSDT, AAPL, EURUSD" required>
                                 <small id="symbol-error" class="text-danger"></small>
                             </div>
                         </div>
@@ -590,39 +557,7 @@
                         <div class="col-md-6">
                             <div class="field-group">
                                 <label>Symbol</label>
-                                <select name="symbol" class="admin-form-control" id="editSymbol" required>
-                                    <optgroup label="Crypto">
-                                        <option value="BTCUSDT">BTC/USDT</option>
-                                        <option value="ETHUSDT">ETH/USDT</option>
-                                        <option value="TONUSDT">TON/USDT</option>
-                                        <option value="XRPUSDT">XRP/USDT</option>
-                                        <option value="SOLUSDT">SOL/USDT</option>
-                                        <option value="ADAUSDT">ADA/USDT</option>
-                                        <option value="DOTUSDT">DOT/USDT</option>
-                                        <option value="DOGEUSDT">DOGE/USDT</option>
-                                    </optgroup>
-                                    <optgroup label="Stocks">
-                                        <option value="TSLA">Tesla (TSLA)</option>
-                                        <option value="AAPL">Apple (AAPL)</option>
-                                        <option value="GOOGL">Alphabet (GOOGL)</option>
-                                        <option value="AMZN">Amazon (AMZN)</option>
-                                        <option value="MSFT">Microsoft (MSFT)</option>
-                                        <option value="NFLX">Netflix (NFLX)</option>
-                                        <option value="META">Meta (META)</option>
-                                        <option value="NVDA">NVIDIA (NVDA)</option>
-                                    </optgroup>
-                                    <optgroup label="Forex">
-                                        <option value="EURUSD">EUR/USD</option>
-                                        <option value="GBPUSD">GBP/USD</option>
-                                        <option value="USDJPY">USD/JPY</option>
-                                        <option value="AUDUSD">AUD/USD</option>
-                                    </optgroup>
-                                    <optgroup label="Commodities">
-                                        <option value="GOLD">Gold</option>
-                                        <option value="SILVER">Silver</option>
-                                        <option value="OIL">Oil</option>
-                                    </optgroup>
-                                </select>
+                                <input type="text" name="symbol" class="admin-form-control" id="editSymbol" placeholder="e.g. BTCUSDT, AAPL, EURUSD" required>
                                 <small id="edit-symbol-error" class="text-danger"></small>
                             </div>
                         </div>

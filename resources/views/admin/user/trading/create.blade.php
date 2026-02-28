@@ -23,28 +23,67 @@
 
                             <div id="formErrors" class="alert alert-danger d-none"></div>
 
-                            <div class="mb-3">
-                                <label class="form-label" style="color:var(--heading-color);">Trader</label>
-                                <select name="trader_id" class="admin-form-control" required>
-                                    <option value="">Select Trader</option>
-                                    @foreach($traders as $trader)
-                                    <option value="{{ $trader->id }}">{{ $trader->name }}</option>
-                                    @endforeach
-                                </select>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label" style="color:var(--heading-color);">Trader</label>
+                                    <select name="trader_name" class="admin-form-control" required>
+                                        <option value="">Select Trader</option>
+                                        @foreach($traders as $trader)
+                                        <option value="{{ $trader->name }}">{{ $trader->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label" style="color:var(--heading-color);">Symbol</label>
+                                    <input type="text" name="symbol" class="admin-form-control" placeholder="e.g. BTCUSDT, TSLA, EURUSD" required>
+                                </div>
                             </div>
 
-                            <div class="mb-3">
-                                <label class="form-label" style="color:var(--heading-color);">Amount</label>
-                                <input type="number" step="0.01" name="amount" class="admin-form-control" required>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label" style="color:var(--heading-color);">Direction</label>
+                                    <select name="direction" class="admin-form-control" required>
+                                        <option value="up">Long (UP)</option>
+                                        <option value="down">Short (DOWN)</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label" style="color:var(--heading-color);">Status</label>
+                                    <select name="status" class="admin-form-control" id="formStatus" required>
+                                        <option value="active">Active</option>
+                                        <option value="closed">Closed</option>
+                                    </select>
+                                </div>
                             </div>
 
-                            <div class="mb-3">
-                                <label class="form-label" style="color:var(--heading-color);">Status</label>
-                                <select name="status" class="admin-form-control" required>
-                                    <option value="pending">Pending</option>
-                                    <option value="completed">Completed</option>
-                                    <option value="failed">Failed</option>
-                                </select>
+                            <div class="row">
+                                <div class="col-md-4 mb-3">
+                                    <label class="form-label" style="color:var(--heading-color);">Amount</label>
+                                    <input type="number" step="0.01" name="amount" class="admin-form-control" required>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label class="form-label" style="color:var(--heading-color);">Entry Price</label>
+                                    <input type="number" step="0.0001" name="entry_price" class="admin-form-control" required>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label class="form-label" style="color:var(--heading-color);">Profit</label>
+                                    <input type="number" step="0.01" name="profit" class="admin-form-control" placeholder="0.00" required>
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label" style="color:var(--heading-color);">Entry Date</label>
+                                    <input type="datetime-local" class="admin-form-control" name="entry_date" required>
+                                </div>
+                                <div class="col-md-6 mb-3 form-closed-field" style="display:none;">
+                                    <label class="form-label" style="color:var(--heading-color);">Exit Price</label>
+                                    <input type="number" step="0.0001" name="exit_price" class="admin-form-control">
+                                </div>
+                                <div class="col-md-6 mb-3 form-closed-field" style="display:none;">
+                                    <label class="form-label" style="color:var(--heading-color);">Exit Date</label>
+                                    <input type="datetime-local" name="exit_date" class="admin-form-control">
+                                </div>
                             </div>
 
                             <div class="d-flex gap-2">
@@ -63,6 +102,13 @@
 @include('admin.footer')
 
 <script>
+    document.getElementById('formStatus').addEventListener('change', function() {
+        const isClosed = this.value === 'closed';
+        document.querySelectorAll('.form-closed-field').forEach(field => {
+            field.style.display = isClosed ? 'block' : 'none';
+        });
+    });
+
     $(document).ready(function() {
     $('#createHistoryForm').submit(function(e) {
         e.preventDefault();
